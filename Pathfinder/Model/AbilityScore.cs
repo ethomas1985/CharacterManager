@@ -1,6 +1,8 @@
 ﻿using System;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pathfinder.Model
 {
@@ -17,16 +19,32 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return Base + Enhanced + Inherent + Temporary - Penalty;
+				return
+					new List<int> {
+						Base,
+						Enhanced,
+						Inherent,
+						Temporary,
+						Penalty * -1
+					}.Sum();
 			}
 		}
 
-		public int Base { get; private set; }
-		public int Enhanced { get; private set; }
-		public int Inherent { get; private set; }
-		public int Modifier { get; private set; }
-		public int Penalty { get; private set; }
-		public int Temporary { get; private set; }
+		public int Modifier
+		{
+			get
+			{
+				int scoreMinusTen = Score - 10;
+				decimal half = scoreMinusTen / 2.0M;
+				return Math.Max(-5, (int) Math.Floor(half));
+			}
+		}
+
+		public int Base { get; internal set; }
+		public int Enhanced { get; internal set; }
+		public int Inherent { get; internal set; }
+		public int Penalty { get; internal set; }
+		public int Temporary { get; internal set; }
 
 		internal int this[string pPropertyName]
 		{
@@ -34,6 +52,8 @@ namespace Pathfinder.Model
 			{
 				switch (pPropertyName)
 				{
+					case nameof(Score):
+						return Score;
 					case nameof(Base):
 						return Base;
 					case nameof(Enhanced):
@@ -62,9 +82,6 @@ namespace Pathfinder.Model
 						break;
 					case nameof(Inherent):
 						Inherent = value;
-						break;
-					case nameof(Modifier):
-						Modifier = value;
 						break;
 					case nameof(Penalty):
 						Penalty = value;
