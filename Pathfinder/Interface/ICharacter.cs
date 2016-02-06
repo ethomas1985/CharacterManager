@@ -81,5 +81,9 @@ namespace Pathfinder.Model.Interface
 
 		IInventory Inventory { get; }
 
+		int ArmorBonus { get; }
+		int ShieldBonus { get; }
+
+		IEnumerable<IArmor> EquipedArmor { get; }
 	}
 }

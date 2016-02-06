@@ -94,5 +94,10 @@ namespace Pathfinder.Model
 				}
 			}
 		}
+
+		public override string ToString()
+		{
+			return $"{Ability}[{Score}][{Modifier}]";
+		}
 	}
 }

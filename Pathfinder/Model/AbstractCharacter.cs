@@ -8,8 +8,6 @@ namespace Pathfinder.Model
 {
 	internal abstract class AbstractCharacter : ICharacter
 	{
-		private Size _size;
-
 		internal AbstractCharacter()
 		{
 			Classes = new List<IClass>();
@@ -23,46 +21,53 @@ namespace Pathfinder.Model
 			Charisma = new AbilityScore(AbilityType.Charisma);
 
 			ArmorClass = new DefenseScore(
-				DefensiveType.ArmorClass, 
+				DefensiveType.ArmorClass,
 				Dexterity,
-				() => Size);
+				() => (int)Size,
+				() => ArmorBonus,
+				() => ShieldBonus);
 			FlatFooted = new DefenseScore(
-				DefensiveType.FlatFooted, 
-				Dexterity, 
-				() => Size);
+				DefensiveType.FlatFooted,
+				Dexterity,
+				() => (int)Size,
+				() => ArmorBonus,
+				() => ShieldBonus);
 			Touch = new DefenseScore(
-				DefensiveType.Touch, 
+				DefensiveType.Touch,
 				Dexterity,
-				() => Size);
+				() => (int)Size,
+				() => ArmorBonus,
+				() => ShieldBonus);
 			CombatManeuverDefense = new DefenseScore(
-				DefensiveType.CombatManeuverDefense,
 				Dexterity,
-				() => Size);
+				Strength,
+				() => (int)Size,
+				() => BaseAttackBonus);
 
 			Fortitude = new SavingThrow(
-				SavingThrowType.Fortitude, 
-				Constitution, 
+				SavingThrowType.Fortitude,
+				Constitution,
 				() => Classes.Sum(x => x.Fortitude));
 			Reflex = new SavingThrow(
-				SavingThrowType.Reflex, 
-				Dexterity, 
+				SavingThrowType.Reflex,
+				Dexterity,
 				() => Classes.Sum(x => x.Reflex));
 			Will = new SavingThrow(
-				SavingThrowType.Will, 
-				Wisdom, 
+				SavingThrowType.Will,
+				Wisdom,
 				() => Classes.Sum(x => x.Will));
 
 			Melee = new OffensiveScore(
-				OffensiveType.Melee, 
-				Strength, 
+				OffensiveType.Melee,
+				Strength,
 				() => BaseAttackBonus);
 			Ranged = new OffensiveScore(
-				OffensiveType.Ranged, 
-				Dexterity, 
+				OffensiveType.Ranged,
+				Dexterity,
 				() => BaseAttackBonus);
 			CombatManeuverBonus = new OffensiveScore(
-				OffensiveType.CombatManeuverBonus, 
-				Strength, 
+				OffensiveType.CombatManeuverBonus,
+				Strength,
 				() => BaseAttackBonus);
 
 			Experience = new Experience();
@@ -91,17 +96,7 @@ namespace Pathfinder.Model
 
 		public abstract Race Race { get; }
 		public abstract Size BaseSize { get; }
-		public virtual Size Size
-		{
-			get
-			{
-				if (_size != Size.INVALID)
-				{
-					return _size;
-				}
-				return BaseSize;
-			}
-		}
+		public virtual Size Size { get; }
 
 		public decimal Weight { get; internal set; }
 
@@ -136,7 +131,10 @@ namespace Pathfinder.Model
 		public IOffensiveScore Ranged { get; }
 		public IOffensiveScore CombatManeuverBonus { get; }
 
-		public int ExperiencePoints { get; }
+		public int ExperiencePoints
+		{
+			get { return Experience.Sum(x => x.ExperiencePoints); }
+		}
 		public IExperience Experience { get; }
 
 		public IEnumerable<IHitDice> HitDice { get; }
@@ -147,5 +145,21 @@ namespace Pathfinder.Model
 		public IEnumerable<IWeapon> Weapons { get; }
 
 		public IInventory Inventory { get; }
+		public int ArmorBonus
+		{
+			get
+			{
+				return EquipedArmor.Where(x => !x.IsShield).Sum(x => x.Bonus);
+			}
+		}
+
+		public int ShieldBonus
+		{
+			get
+			{
+				return EquipedArmor.Where(x => x.IsShield).Sum(x => x.Bonus);
+			}
+		}
+		public IEnumerable<IArmor> EquipedArmor { get; }
 	}
 }

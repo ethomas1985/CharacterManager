@@ -52,6 +52,7 @@
     <Compile Include="Enum\SavingThrowType.cs" />
     <Compile Include="Enum\Size.cs" />
     <Compile Include="Interface\IAbilityScore.cs" />
+    <Compile Include="Interface\IArmor.cs" />
     <Compile Include="Interface\ICharacter.cs" />
     <Compile Include="Interface\IClass.cs" />
     <Compile Include="Interface\IDefenseScore.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Model\SavingThrow.cs" />
     <Compile Include="Model\SkillsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Tracer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

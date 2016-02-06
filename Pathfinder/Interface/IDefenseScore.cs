@@ -16,8 +16,8 @@ namespace Pathfinder.Interface
 		///		from Base Attack Bonus.
 		/// </summary>
 		/// <see cref="DefensiveType"/>
-		int Base { get; }
-		int Shield { get; }
+		int ArmorBonus { get; }
+		int ShieldBonus { get; }
 		int DexterityModifier { get; }
 		int SizeModifier { get; }
 		int Natural { get; }
@@ -27,5 +27,7 @@ namespace Pathfinder.Interface
 		int MiscModifier { get; }
 
 		int Temporary { get; }
+		int BaseAttackBonus { get; }
+		int StrengthModifier { get; }
 	}
 }

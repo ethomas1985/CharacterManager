@@ -4,15 +4,25 @@ using Pathfinder.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class DefenseScore : IDefenseScore
 	{
-		public DefenseScore(
-			DefensiveType pDefensiveType, 
-			IAbilityScore pDexterity, 
-			Func<Size> pGetSize)
+		private int _dodge;
+		private int _natural;
+
+		/// <summary>
+		/// Creates a DefenseScore for calculating non-CombatManeuverDefense scores.
+		/// </summary>
+		/// <param name="pDefensiveType">DefensiveType this DefenseScore is representing.</param>
+		/// <param name="pDexterity">IAbilityScore configured for representing Dexterity.</param>
+		/// <param name="pGetSize">Delegate that returns the current Size Modifier</param>
+		private DefenseScore(
+			DefensiveType pDefensiveType,
+			IAbilityScore pDexterity,
+			Func<int> pGetSize)
 		{
 			Debug.Assert(AbilityType.Dexterity == pDexterity.Ability);
 			Debug.Assert(pGetSize != null);
@@ -22,58 +32,111 @@ namespace Pathfinder.Model
 			GetSize = pGetSize;
 		}
 
-		private IAbilityScore Dexterity { get; }
-		private Func<Size> GetSize { get; }
+		public DefenseScore(
+		  DefensiveType pDefensiveType,
+		  IAbilityScore pDexterity,
+		  Func<int> pGetSize, 
+		  Func<int> pGetArmorBonus, 
+		  Func<int> pGetShieldBonus) : this(pDefensiveType, pDexterity, pGetSize)
+		{
+			GetArmorBonus = pGetArmorBonus;
+			GetShieldBonus = pGetShieldBonus;
+		}
 
+		/// <summary>
+		/// Creates a DefenseScore for calculating CombatManeuverDefense scores.
+		/// </summary>
+		/// <param name="pDexterity">IAbilityScore configured for representing Dexterity.</param>
+		/// <param name="pStrength">IAbilityScore configured for representing Strength.</param>
+		/// <param name="pGetSize">Delegate that returns the current Size Modifier</param>
+		/// <param name="pGetBaseAttackBonus">Delegate the returns the current BaseAttackBonus.</param>
+		public DefenseScore(
+			IAbilityScore pDexterity,
+			IAbilityScore pStrength,
+			Func<int> pGetSize,
+			Func<int> pGetBaseAttackBonus) : this(DefensiveType.CombatManeuverDefense, pDexterity, pGetSize)
+		{
+			Debug.Assert(AbilityType.Strength == pStrength.Ability);
+
+			Strength = pStrength;
+			GetBaseAttackBonus = pGetBaseAttackBonus;
+		}
+
+		private IAbilityScore Dexterity { get; }
+		private IAbilityScore Strength { get; }
+		private Func<int> GetSize { get; }
+		private Func<int> GetArmorBonus { get; }
+		private Func<int> GetShieldBonus { get; }
+		private Func<int> GetBaseAttackBonus { get; }
 		public DefensiveType Type { get; }
 
 		public int Score
 		{
 			get
 			{
-				return new List<int> {
-					//10,
-					//Base,
-					//Shield,
-					//DexterityModifier,
-					//SizeModifier,
-					//Natural,
-					//Deflect,
-					//Dodge,
-					//MiscModifier,
-					//Temporary
-				}.Sum();
+				var values = new List<int> {
+					10,
+					Type == DefensiveType.CombatManeuverDefense ? BaseAttackBonus: ArmorBonus,
+					Type == DefensiveType.CombatManeuverDefense ? StrengthModifier: ShieldBonus,
+					DexterityModifier,
+					SizeModifier,
+					Natural,
+					Deflect,
+					Dodge,
+					MiscModifier,
+					Temporary
+				};
+				var score = values.Sum();
+
+				Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
+
+				return score;
 			}
 		}
 
-		public int Base { get; private set; }
+		public int DexterityModifier { get { return UseDexterity ? Dexterity.Modifier : 0; } }
+		public int StrengthModifier { get { return Strength?.Modifier ?? 0; } }
+		public int SizeModifier { get { return GetSize(); } }
+		public int BaseAttackBonus { get { return GetBaseAttackBonus(); } }
 
-		public int Shield { get; private set; }
+		private bool UseDexterity { get { return Type != DefensiveType.FlatFooted; } }
+		private bool UseArmor { get { return Type == DefensiveType.ArmorClass || Type == DefensiveType.FlatFooted; } }
+		private bool UseShield { get { return Type == DefensiveType.ArmorClass || Type == DefensiveType.FlatFooted; } }
+		private bool UseNatural { get { return Type != DefensiveType.Touch; } }
+		private bool UseDodge { get { return Type != DefensiveType.FlatFooted; } }
 
-		public int Deflect { get; private set; }
-		public int DexterityModifier { get { return Dexterity.Modifier; } }
-		public int Dodge { get; private set; }
-		public int MiscModifier { get; private set; }
-		public int Natural { get; private set; }
-		public int SizeModifier
+		// TODO: Armor Bonus needs to be backed by a delegate to tie into the Character's equipped armor bonus.
+		public int ArmorBonus
 		{
 			get
 			{
-				var size = GetSize();
-				switch (size)
-				{
-					case Size.Small:
-						return -1;
-					case Size.Medium:
-						return 0;
-					case Size.Large:
-						return 1;
-					default:
-						throw new Exception("Invalid Size.");
-				}
+				return UseArmor ? GetArmorBonus() : 0;
 			}
 		}
-		public int Temporary { get; private set; }
+
+		// TODO: Shield Bonus needs to be backed by a delegate to tie into the Character's equipped Shield bonus.
+		public int ShieldBonus
+		{
+			get { return UseShield ? GetShieldBonus() : 0; }
+		}
+
+		public int Deflect { get; internal set; }
+
+		public int Dodge
+		{
+			get { return UseDodge ? _dodge : 0; }
+			internal set { _dodge = value; }
+		}
+
+		public int MiscModifier { get; internal set; }
+
+		public int Natural
+		{
+			get { return UseNatural ? _natural : 0; }
+			internal set { _natural = value; }
+		}
+
+		public int Temporary { get; internal set; }
 
 		internal int this[string pPropertyName]
 		{
@@ -83,14 +146,18 @@ namespace Pathfinder.Model
 				{
 					case nameof(Score):
 						return Score;
-					case nameof(Base):
-						return Base;
-					case nameof(Shield):
-						return Shield;
+					case nameof(ArmorBonus):
+						return ArmorBonus;
+					case nameof(BaseAttackBonus):
+						return BaseAttackBonus;
+					case nameof(ShieldBonus):
+						return ShieldBonus;
 					case nameof(Deflect):
 						return Deflect;
 					case nameof(DexterityModifier):
 						return DexterityModifier;
+					case nameof(StrengthModifier):
+						return StrengthModifier;
 					case nameof(Dodge):
 						return Dodge;
 					case nameof(MiscModifier):
@@ -109,12 +176,6 @@ namespace Pathfinder.Model
 			{
 				switch (pPropertyName)
 				{
-					case nameof(Base):
-						Base = value;
-						break;
-					case nameof(Shield):
-						Shield = value;
-						break;
 					case nameof(Deflect):
 						Deflect = value;
 						break;
