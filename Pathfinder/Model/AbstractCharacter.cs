@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
-using Pathfinder.Model.Interface;
 using System.Linq;
 
 namespace Pathfinder.Model
@@ -47,15 +46,21 @@ namespace Pathfinder.Model
 			Fortitude = new SavingThrow(
 				SavingThrowType.Fortitude,
 				Constitution,
-				() => Classes.Sum(x => x.Fortitude));
+				() => Classes.Sum(x => x.Fortitude),
+				() => Effects.Where(x=>x.Active && x.Type == EffectType.Resistance).Sum(x => x.FortitudeModifier),
+				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.FortitudeModifier));
 			Reflex = new SavingThrow(
 				SavingThrowType.Reflex,
 				Dexterity,
-				() => Classes.Sum(x => x.Reflex));
+				() => Classes.Sum(x => x.Reflex),
+				() => Effects.Where(x => x.Active && x.Type == EffectType.Resistance).Sum(x => x.ReflexModifier),
+				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.ReflexModifier));
 			Will = new SavingThrow(
 				SavingThrowType.Will,
 				Wisdom,
-				() => Classes.Sum(x => x.Will));
+				() => Classes.Sum(x => x.Will),
+				() => Effects.Where(x => x.Active && x.Type == EffectType.Resistance).Sum(x => x.WillModifier),
+				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.WillModifier));
 
 			Melee = new OffensiveScore(
 				OffensiveType.Melee,
@@ -161,5 +166,6 @@ namespace Pathfinder.Model
 			}
 		}
 		public IEnumerable<IArmor> EquipedArmor { get; }
+		public IEnumerable<IEffect> Effects { get; }
 	}
 }

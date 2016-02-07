@@ -12,15 +12,21 @@ namespace Pathfinder.Model
 		public SavingThrow(
 			SavingThrowType fortitude,
 			IAbilityScore pAbilityScore,
-			Func<int> pGetBase)
+			Func<int> pGetBase,
+			Func<int> pGetResist,
+			Func<int> pGetTemporary)
 		{
 			Type = fortitude;
 			AbilityScore = pAbilityScore;
 
 			GetBase = pGetBase;
+			GetResist = pGetResist;
+			GetTemporary = pGetTemporary;
 		}
 
 		private Func<int> GetBase { get; }
+		private Func<int> GetResist { get; }
+		private Func<int> GetTemporary { get; }
 		private IAbilityScore AbilityScore { get; }
 
 		public SavingThrowType Type { get; }
@@ -46,12 +52,13 @@ namespace Pathfinder.Model
 			}
 		}
 
-		public int Base { get { return GetBase(); } }
-		public AbilityType Ability { get { return AbilityScore.Ability; } }
-		public int AbilityModifier { get { return AbilityScore.Modifier; } }
-		public int Resist { get; internal set; }
+		public int Base => GetBase();
+		public AbilityType Ability => AbilityScore.Ability;
+		public int AbilityModifier => AbilityScore.Modifier;
+
+		public int Resist => GetResist();
 		public int Misc { get; internal set; }
-		public int Temporary { get; internal set; }
+		public int Temporary => GetTemporary();
 
 		internal int this[string pPropertyName]
 		{
@@ -79,15 +86,15 @@ namespace Pathfinder.Model
 			{
 				switch (pPropertyName)
 				{
-					case nameof(Resist):
-						Resist = value;
-						break;
+					//case nameof(Resist):
+					//	Resist = value;
+					//	break;
 					case nameof(Misc):
 						Misc = value;
 						break;
-					case nameof(Temporary):
-						Temporary = value;
-						break;
+					//case nameof(Temporary):
+					//	Temporary = value;
+					//	break;
 					default:
 						throw new ArgumentException($"'{pPropertyName}' is not a valid Property.");
 				}

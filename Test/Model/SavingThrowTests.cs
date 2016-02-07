@@ -22,10 +22,17 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase);
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
-				Assert.AreEqual(2, savingThrow.Score);
+				Assert.AreEqual(4, savingThrow.Score);
 			}
 		}
 
@@ -37,7 +44,14 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase);
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
 				Assert.AreEqual(1, savingThrow.Base);
@@ -52,7 +66,14 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase);
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
 				Assert.AreEqual(AbilityType.Dexterity, savingThrow.Ability);
@@ -67,7 +88,14 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase);
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
 				Assert.AreEqual(ability.Modifier, savingThrow.AbilityModifier);
@@ -82,10 +110,14 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase)
-				{
-					Resist = 1
-				};
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
 				Assert.AreEqual(1, savingThrow.Resist);
@@ -100,11 +132,17 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase)
-				{
-					Misc = 1
-				};
-
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary)
+					{
+						Misc = 1
+					};
 
 				Assert.AreEqual(1, savingThrow.Misc);
 			}
@@ -118,10 +156,14 @@ namespace Test.Model
 			{
 				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
-				var savingThrow = new SavingThrow(SavingThrowType.Fortitude, ability, getBase)
-				{
-					Temporary = 1
-				};
+				var getResist = new Func<int>(() => 1);
+				var getTemporary = new Func<int>(() => 1);
+				var savingThrow =
+					new SavingThrow(
+						SavingThrowType.Fortitude,
+						ability,
+						getBase, getResist,
+						getTemporary);
 
 
 				Assert.AreEqual(1, savingThrow.Temporary);
@@ -141,9 +183,17 @@ namespace Test.Model
 					SavingThrowType pType,
 					IAbilityScore pAbility,
 					Func<int> pGetBase,
+					Func<int> pGetResist,
+					Func<int> pGetTemporary,
 					Action<ISavingThrow> pSetter)
 				{
-					var savingThrow = new SavingThrow(pType, pAbility, pGetBase);
+					var savingThrow =
+						new SavingThrow(
+							pType,
+							pAbility,
+							pGetBase,
+							pGetResist,
+							pGetTemporary);
 					pSetter(savingThrow);
 
 					return savingThrow[pIndex];
@@ -160,9 +210,17 @@ namespace Test.Model
 					SavingThrowType pType,
 					IAbilityScore pAbility,
 					Func<int> pGetBase,
+					Func<int> pGetResist,
+					Func<int> pGetTemporary,
 					int pValue)
 				{
-					var savingThrow = new SavingThrow(pType, pAbility, pGetBase)
+					var savingThrow = 
+						new SavingThrow(
+							pType,
+							pAbility,
+							pGetBase,
+							pGetResist,
+							pGetTemporary)
 					{
 						[pIndex] = pValue
 					};
@@ -180,6 +238,8 @@ namespace Test.Model
 				{
 					var dexScore = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
 					var getBase = new Func<int>(() => 1);
+					var getResist = new Func<int>(() => 1);
+					var getTemporary = new Func<int>(() => 1);
 
 					yield return
 						new TestCaseData(
@@ -187,14 +247,18 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
+							getResist,
+							getTemporary,
 							new Action<ISavingThrow>(pThrow => { }))
-							.Returns(2);
+							.Returns(4);
 					yield return
 						new TestCaseData(
 							nameof(SavingThrow.Base),
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
+							getResist,
+							getTemporary,
 							new Action<ISavingThrow>(pThrow => { }))
 							.Returns(1);
 					yield return
@@ -203,6 +267,8 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
+							getResist,
+							getTemporary,
 							new Action<ISavingThrow>(pThrow => { }))
 							.Throws(typeof(ArgumentException));
 					yield return
@@ -211,6 +277,8 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
+							getResist,
+							getTemporary,
 							new Action<ISavingThrow>(pThrow => { }))
 							.Returns(1);
 					yield return
@@ -219,7 +287,9 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
-							new Action<ISavingThrow>(pThrow => ((SavingThrow)pThrow).Resist = 1))
+							getResist,
+							getTemporary,
+							new Action<ISavingThrow>(pThrow => { }))
 							.Returns(1);
 					yield return
 						new TestCaseData(
@@ -227,7 +297,9 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
-							new Action<ISavingThrow>(pThrow => ((SavingThrow)pThrow).Misc = 1))
+							getResist,
+							getTemporary,
+							new Action<ISavingThrow>(pThrow => ((SavingThrow) pThrow).Misc = 1))
 							.Returns(1);
 					yield return
 						new TestCaseData(
@@ -235,7 +307,9 @@ namespace Test.Model
 							SavingThrowType.Fortitude,
 							dexScore,
 							getBase,
-							new Action<ISavingThrow>(pThrow => ((SavingThrow)pThrow).Temporary = 1))
+							getResist,
+							getTemporary,
+							new Action<ISavingThrow>(pThrow => { }))
 							.Returns(1);
 				}
 			}
@@ -246,35 +320,37 @@ namespace Test.Model
 				{
 					var dexScore = new AbilityScore(AbilityType.Dexterity) { Base = 10 };
 					var getBase = new Func<int>(() => 1);
+					var getResist = new Func<int>(() => 1);
+					var getTemporary = new Func<int>(() => 1);
 
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.Score), SavingThrowType.Fortitude, dexScore, getBase, 1)
+							nameof(SavingThrow.Score), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
 							.Throws(typeof(ArgumentException));
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.Base), SavingThrowType.Fortitude, dexScore, getBase, 1)
+							nameof(SavingThrow.Base), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
 							.Throws(typeof(ArgumentException));
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.Ability), SavingThrowType.Fortitude, dexScore, getBase, 1)
+							nameof(SavingThrow.Ability), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
 							.Throws(typeof(ArgumentException));
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.AbilityModifier), SavingThrowType.Fortitude, dexScore, getBase, 1)
+							nameof(SavingThrow.AbilityModifier), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
 							.Throws(typeof(ArgumentException));
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.Resist), SavingThrowType.Fortitude, dexScore, getBase, 1)
+							nameof(SavingThrow.Resist), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
+							.Throws(typeof(ArgumentException));
+					yield return
+						new TestCaseData(
+							nameof(SavingThrow.Misc), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
 							.Returns(1);
 					yield return
 						new TestCaseData(
-							nameof(SavingThrow.Misc), SavingThrowType.Fortitude, dexScore, getBase, 1)
-							.Returns(1);
-					yield return
-						new TestCaseData(
-							nameof(SavingThrow.Temporary), SavingThrowType.Fortitude, dexScore, getBase, 1)
-							.Returns(1);
+							nameof(SavingThrow.Temporary), SavingThrowType.Fortitude, dexScore, getBase, getResist, getTemporary, 1)
+							.Throws(typeof(ArgumentException));
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-﻿namespace Pathfinder.Model
+﻿namespace Pathfinder.Enum
 {
 	public enum Language
 	{

@@ -51,12 +51,14 @@
     <Compile Include="Enum\OffensiveType.cs" />
     <Compile Include="Enum\SavingThrowType.cs" />
     <Compile Include="Enum\Size.cs" />
+    <Compile Include="Enum\EffectType.cs" />
     <Compile Include="Interface\IAbilityScore.cs" />
     <Compile Include="Interface\IArmor.cs" />
     <Compile Include="Interface\ICharacter.cs" />
     <Compile Include="Interface\IClass.cs" />
     <Compile Include="Interface\IDefenseScore.cs" />
     <Compile Include="Interface\IDie.cs" />
+    <Compile Include="Interface\IEffect.cs" />
     <Compile Include="Interface\IEvent.cs" />
     <Compile Include="Interface\IExperience.cs" />
     <Compile Include="Interface\IFeat.cs" />

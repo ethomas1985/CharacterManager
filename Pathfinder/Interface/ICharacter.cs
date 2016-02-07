@@ -1,8 +1,7 @@
-﻿using Pathfinder.Enum;
-using Pathfinder.Interface;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pathfinder.Enum;
 
-namespace Pathfinder.Model.Interface
+namespace Pathfinder.Interface
 {
 	public interface ICharacter
 	{
@@ -85,5 +84,6 @@ namespace Pathfinder.Model.Interface
 		int ShieldBonus { get; }
 
 		IEnumerable<IArmor> EquipedArmor { get; }
+		IEnumerable<IEffect> Effects { get; }
 	}
 }
