@@ -3,6 +3,7 @@ using Pathfinder.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
@@ -14,33 +15,43 @@ namespace Pathfinder.Model
 			Func<int> pGetBase)
 		{
 			Type = fortitude;
-			Ability = pAbilityScore;
+			AbilityScore = pAbilityScore;
 
 			GetBase = pGetBase;
 		}
 
 		private Func<int> GetBase { get; }
+		private IAbilityScore AbilityScore { get; }
 
 		public SavingThrowType Type { get; }
-		public IAbilityScore Ability { get; }
 
 		public int Score
 		{
 			get
 			{
-				return new List<int>
+				var values = new List<int>
 				{
+					Base,
+					AbilityModifier,
+					Resist,
+					Misc,
+					Temporary
+				};
 
-				}.Sum();
+				var score = values.Sum();
+
+				Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
+
+				return score;
 			}
 		}
 
 		public int Base { get { return GetBase(); } }
-		public int AbilityModifier { get { return Ability.Modifier; } }
-
-		public int Resist { get; private set; }
-		public int Misc { get; private set; }
-		public int Temporary { get; private set; }
+		public AbilityType Ability { get { return AbilityScore.Ability; } }
+		public int AbilityModifier { get { return AbilityScore.Modifier; } }
+		public int Resist { get; internal set; }
+		public int Misc { get; internal set; }
+		public int Temporary { get; internal set; }
 
 		internal int this[string pPropertyName]
 		{
@@ -48,6 +59,8 @@ namespace Pathfinder.Model
 			{
 				switch (pPropertyName)
 				{
+					case nameof(Base):
+						return Base;
 					case nameof(Score):
 						return Score;
 					case nameof(AbilityModifier):
