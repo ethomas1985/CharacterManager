@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
 using System.Linq;
@@ -19,48 +20,85 @@ namespace Pathfinder.Model
 			Wisdom = new AbilityScore(AbilityType.Wisdom);
 			Charisma = new AbilityScore(AbilityType.Charisma);
 
-			ArmorClass = new DefenseScore(
-				DefensiveType.ArmorClass,
-				Dexterity,
-				() => (int)Size,
-				() => ArmorBonus,
-				() => ShieldBonus);
-			FlatFooted = new DefenseScore(
-				DefensiveType.FlatFooted,
-				Dexterity,
-				() => (int)Size,
-				() => ArmorBonus,
-				() => ShieldBonus);
-			Touch = new DefenseScore(
-				DefensiveType.Touch,
-				Dexterity,
-				() => (int)Size,
-				() => ArmorBonus,
-				() => ShieldBonus);
-			CombatManeuverDefense = new DefenseScore(
-				Dexterity,
-				Strength,
-				() => (int)Size,
-				() => BaseAttackBonus);
+			ArmorClass =
+				new DefenseScore(
+					DefensiveType.ArmorClass,
+					GetArmorBonus,
+					GetShieldBonus,
+					Dexterity,
+					() => (int)Size,
+					GetNaturalBonus,
+					GetDeflectBonus,
+					GetDodgeBonus,
+					GetTemporaryBonus);
+			FlatFooted = 
+				new DefenseScore(
+					DefensiveType.FlatFooted,
+					GetArmorBonus,
+					GetShieldBonus,
+					null,
+					() => (int)Size,
+					GetNaturalBonus,
+					GetDeflectBonus,
+					null,
+					GetTemporaryBonus);
+			Touch = 
+				new DefenseScore(
+					DefensiveType.Touch,
+					null,
+					null,
+					Dexterity,
+					() => (int)Size,
+					null,
+					GetDeflectBonus,
+					GetDodgeBonus,
+					GetTemporaryBonus);
+			CombatManeuverDefense = 
+				new DefenseScore(
+					() => BaseAttackBonus,
+					Strength,
+					Dexterity,
+					() => (int)Size,
+					GetDeflectBonus,
+					GetDodgeBonus,
+					GetTemporaryBonus);
 
 			Fortitude = new SavingThrow(
 				SavingThrowType.Fortitude,
 				Constitution,
 				() => Classes.Sum(x => x.Fortitude),
-				() => Effects.Where(x=>x.Active && x.Type == EffectType.Resistance).Sum(x => x.FortitudeModifier),
-				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.FortitudeModifier));
+				() => 
+					Effects
+						.Where(x=>x.Active && x.Type == EffectType.Resistance)
+						.Sum(x => x.FortitudeModifier),
+				() => 
+					Effects
+						.Where(x => x.Active && x.Type != EffectType.Resistance)
+						.Sum(x => x.FortitudeModifier));
 			Reflex = new SavingThrow(
 				SavingThrowType.Reflex,
 				Dexterity,
 				() => Classes.Sum(x => x.Reflex),
-				() => Effects.Where(x => x.Active && x.Type == EffectType.Resistance).Sum(x => x.ReflexModifier),
-				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.ReflexModifier));
+				() => 
+					Effects
+						.Where(x => x.Active && x.Type == EffectType.Resistance)
+						.Sum(x => x.ReflexModifier),
+				() => 
+					Effects
+						.Where(x => x.Active && x.Type != EffectType.Resistance)
+						.Sum(x => x.ReflexModifier));
 			Will = new SavingThrow(
 				SavingThrowType.Will,
 				Wisdom,
 				() => Classes.Sum(x => x.Will),
-				() => Effects.Where(x => x.Active && x.Type == EffectType.Resistance).Sum(x => x.WillModifier),
-				() => Effects.Where(x => x.Active && x.Type != EffectType.Resistance).Sum(x => x.WillModifier));
+				() => 
+					Effects
+						.Where(x => x.Active && x.Type == EffectType.Resistance)
+						.Sum(x => x.WillModifier),
+				() => 
+					Effects
+						.Where(x => x.Active && x.Type != EffectType.Resistance)
+						.Sum(x => x.WillModifier));
 
 			Melee = new OffensiveScore(
 				OffensiveType.Melee,
@@ -82,7 +120,6 @@ namespace Pathfinder.Model
 
 			Inventory = new Inventory();
 		}
-
 		public int Age { get; internal set; }
 		public Alignment Alignment { get; internal set; }
 
@@ -150,22 +187,49 @@ namespace Pathfinder.Model
 		public IEnumerable<IWeapon> Weapons { get; }
 
 		public IInventory Inventory { get; }
-		public int ArmorBonus
-		{
-			get
-			{
-				return EquipedArmor.Where(x => !x.IsShield).Sum(x => x.Bonus);
-			}
-		}
-
-		public int ShieldBonus
-		{
-			get
-			{
-				return EquipedArmor.Where(x => x.IsShield).Sum(x => x.Bonus);
-			}
-		}
 		public IEnumerable<IArmor> EquipedArmor { get; }
 		public IEnumerable<IEffect> Effects { get; }
+
+		private int GetArmorBonus()
+		{
+			return EquipedArmor.Where(x => !x.IsShield).Sum(x => x.Bonus);
+		}
+
+		private int GetShieldBonus()
+		{
+			return EquipedArmor.Where(x => x.IsShield).Sum(x => x.Bonus);
+		}
+
+		private int GetNaturalBonus()
+		{
+			return 
+				Effects
+					.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
+					.Sum(x => x.ArmorClassNaturalModifier);
+		}
+
+		private int GetDeflectBonus()
+		{
+			return
+				Effects
+					.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
+					.Sum(x => x.ArmorClassNaturalModifier);
+		}
+
+		private int GetDodgeBonus()
+		{
+			return
+				Effects
+					.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
+					.Sum(x => x.ArmorClassNaturalModifier);
+		}
+
+		private int GetTemporaryBonus()
+		{
+			return
+				Effects
+					.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
+					.Sum(x => x.ArmorClassNaturalModifier);
+		}
 	}
 }

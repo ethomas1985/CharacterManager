@@ -2,7 +2,6 @@
 {
 	public enum DefensiveType
 	{
-		INVALID,
 		ArmorClass,
 		FlatFooted,
 		Touch,
