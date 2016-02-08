@@ -4,7 +4,7 @@ namespace Pathfinder.Interface
 {
 	public interface IAbilityScore
 	{
-		AbilityType Ability { get; }
+		AbilityType Type { get; }
 		
 		int Score { get; }
 		int Modifier { get; }

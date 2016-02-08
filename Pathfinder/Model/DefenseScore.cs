@@ -53,7 +53,7 @@ namespace Pathfinder.Model
 			Func<int> pGetDodgeBonus,
 			Func<int> pGetTemporaryBonus) : this(pDefensiveType, pGetSize, pGetDeflectBonus, pGetTemporaryBonus)
 		{
-			Debug.Assert(AbilityType.Dexterity == pDexterity.Ability);
+			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
 
 			GetArmorBonus = pGetArmorBonus ?? GetZero;
 			GetShieldBonus = pGetShieldBonus ?? GetZero;
@@ -83,8 +83,8 @@ namespace Pathfinder.Model
 			Func<int> pGetDodgeBonus,
 			Func<int> pGetTemporaryBonus) : this(DefensiveType.CombatManeuverDefense, pGetSize, pGetDeflectBonus, pGetTemporaryBonus)
 		{
-			Debug.Assert(AbilityType.Dexterity == pDexterity.Ability);
-			Debug.Assert(AbilityType.Strength == pStrength.Ability);
+			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
+			Debug.Assert(AbilityType.Strength == pStrength.Type);
 
 			GetBaseAttackBonus = pGetBaseAttackBonus ?? GetZero;
 			Strength = pStrength;

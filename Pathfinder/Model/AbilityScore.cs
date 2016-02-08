@@ -3,6 +3,7 @@ using Pathfinder.Enum;
 using Pathfinder.Interface;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
@@ -10,23 +11,21 @@ namespace Pathfinder.Model
 	{
 		public AbilityScore(AbilityType pAbilityType)
 		{
-			Ability = pAbilityType;
+			Type = pAbilityType;
 		}
 
-		public AbilityType Ability { get; }
+		public AbilityType Type { get; }
 
 		public int Score
 		{
 			get
 			{
-				return
-					new List<int> {
-						Base,
-						Enhanced,
-						Inherent,
-						Temporary,
-						Penalty * -1
-					}.Sum();
+				var score = Values.Sum();
+
+				Tracer.Message(
+					pMessage: $"{Type} = {string.Join(" + ", Values)} = {score}");
+
+				return score;
 			}
 		}
 
@@ -46,58 +45,19 @@ namespace Pathfinder.Model
 		public int Penalty { get; internal set; }
 		public int Temporary { get; internal set; }
 
-		internal int this[string pPropertyName]
-		{
-			get
+		private IEnumerable<int> Values
+			=> new List<int>
 			{
-				switch (pPropertyName)
-				{
-					case nameof(Score):
-						return Score;
-					case nameof(Base):
-						return Base;
-					case nameof(Enhanced):
-						return Enhanced;
-					case nameof(Inherent):
-						return Inherent;
-					case nameof(Modifier):
-						return Modifier;
-					case nameof(Penalty):
-						return Penalty;
-					case nameof(Temporary):
-						return Temporary;
-					default:
-						throw new ArgumentException($"'{pPropertyName}' is not a valid Property.");
-				}
-			}
-			set
-			{
-				switch (pPropertyName)
-				{
-					case nameof(Base):
-						Base = value;
-						break;
-					case nameof(Enhanced):
-						Enhanced = value;
-						break;
-					case nameof(Inherent):
-						Inherent = value;
-						break;
-					case nameof(Penalty):
-						Penalty = value;
-						break;
-					case nameof(Temporary):
-						Temporary = value;
-						break;
-					default:
-						throw new ArgumentException($"'{pPropertyName}' is not a valid Property.");
-				}
-			}
-		}
+				Base,
+				Enhanced,
+				Inherent,
+				Temporary,
+				Penalty*-1
+			};
 
 		public override string ToString()
 		{
-			return $"{Ability}[{Score}][{Modifier}]";
+			return $"{Type}[{Score}][{Modifier}] = {string.Join(" + ", Values)} = {Score}";
 		}
 	}
 }

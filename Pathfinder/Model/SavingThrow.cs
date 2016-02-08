@@ -53,52 +53,11 @@ namespace Pathfinder.Model
 		}
 
 		public int Base => GetBase();
-		public AbilityType Ability => AbilityScore.Ability;
+		public AbilityType Ability => AbilityScore.Type;
 		public int AbilityModifier => AbilityScore.Modifier;
 
 		public int Resist => GetResist();
 		public int Misc { get; internal set; }
 		public int Temporary => GetTemporary();
-
-		internal int this[string pPropertyName]
-		{
-			get
-			{
-				switch (pPropertyName)
-				{
-					case nameof(Base):
-						return Base;
-					case nameof(Score):
-						return Score;
-					case nameof(AbilityModifier):
-						return AbilityModifier;
-					case nameof(Resist):
-						return Resist;
-					case nameof(Misc):
-						return Misc;
-					case nameof(Temporary):
-						return Temporary;
-					default:
-						throw new ArgumentException($"'{pPropertyName}' is not a valid Property.");
-				}
-			}
-			set
-			{
-				switch (pPropertyName)
-				{
-					//case nameof(Resist):
-					//	Resist = value;
-					//	break;
-					case nameof(Misc):
-						Misc = value;
-						break;
-					//case nameof(Temporary):
-					//	Temporary = value;
-					//	break;
-					default:
-						throw new ArgumentException($"'{pPropertyName}' is not a valid Property.");
-				}
-			}
-		}
 	}
 }
