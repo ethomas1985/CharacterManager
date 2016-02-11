@@ -10,9 +10,6 @@ namespace Pathfinder.Model
 {
 	internal class DefenseScore : IDefenseScore
 	{
-		private int _dodge;
-		private int _natural;
-
 		private DefenseScore(
 			DefensiveType pDefensiveType,
 			Func<int> pGetSize,
