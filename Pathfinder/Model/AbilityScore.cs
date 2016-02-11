@@ -9,10 +9,13 @@ namespace Pathfinder.Model
 {
 	internal class AbilityScore : IAbilityScore
 	{
-		public AbilityScore(AbilityType pAbilityType)
+		public AbilityScore(AbilityType pAbilityType, Func<int> pGetTemporaryModifier)
 		{
 			Type = pAbilityType;
+			GetTemporaryModifier = pGetTemporaryModifier;
 		}
+
+		private Func<int> GetTemporaryModifier { get; }
 
 		public AbilityType Type { get; }
 
@@ -43,7 +46,13 @@ namespace Pathfinder.Model
 		public int Enhanced { get; internal set; }
 		public int Inherent { get; internal set; }
 		public int Penalty { get; internal set; }
-		public int Temporary { get; internal set; }
+		public int Temporary
+		{
+			get
+			{
+				return GetTemporaryModifier();
+			}
+		}
 
 		private IEnumerable<int> Values
 			=> new List<int>

@@ -81,7 +81,7 @@ namespace Test.Model
 				get
 				{
 					const Size size = Size.Medium;
-					var dexScore = new AbilityScore(AbilityType.Dexterity) { Base = 10 };
+					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 10 };
 
 					yield return new TestCaseData(DefensiveType.ArmorClass, dexScore, size, 0, 0, 0, 0, 0, 0, 0).Returns(10);
 					yield return new TestCaseData(DefensiveType.ArmorClass, dexScore, size, 1, 0, 0, 0, 0, 0, 0).Returns(11);
@@ -118,8 +118,8 @@ namespace Test.Model
 			{
 				get
 				{
-					var dexScore = new AbilityScore(AbilityType.Dexterity) { Base = 10 };
-					var strScore = new AbilityScore(AbilityType.Strength) { Base = 11 };
+					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 10 };
+					var strScore = new AbilityScore(AbilityType.Strength, () => 0) { Base = 11 };
 					var size = Size.Medium;
 
 					// Combat Maneuver Defense uses BaseAttackBonus and Strength Modifier and ignore Natural 

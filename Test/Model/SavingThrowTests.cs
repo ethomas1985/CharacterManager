@@ -14,7 +14,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -36,7 +36,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -58,7 +58,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -80,7 +80,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -102,7 +102,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -124,7 +124,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
@@ -148,7 +148,7 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);

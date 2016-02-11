@@ -22,12 +22,11 @@ namespace Test.Model
 				int Temporary,
 				int Penalty)
 			{
-				return new AbilityScore(AbilityType.Strength)
+				return new AbilityScore(AbilityType.Strength, () => Temporary)
 				{
 					Base = Base,
 					Enhanced = Enhanced,
 					Inherent = Inherent,
-					Temporary =Temporary,
 					Penalty = Penalty
 				}.Modifier;
 			}
@@ -45,12 +44,11 @@ namespace Test.Model
 				int Temporary,
 				int Penalty)
 			{
-				return new AbilityScore(AbilityType.Strength)
+				return new AbilityScore(AbilityType.Strength, () => Temporary)
 				{
 					Base = Base,
 					Enhanced = Enhanced,
 					Inherent = Inherent,
-					Temporary = Temporary,
 					Penalty = Penalty
 				}.Score;
 			}
