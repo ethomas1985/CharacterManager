@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Model\AbilityScoreTests.cs" />
     <Compile Include="Model\DefenseScoreTests.cs" />
+    <Compile Include="Model\OffensiveScoreTests.cs" />
     <Compile Include="Model\SavingThrowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

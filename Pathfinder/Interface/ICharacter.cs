@@ -29,9 +29,9 @@ namespace Pathfinder.Interface
 
 		IEnumerable<Language> Languages { get; }
 
-		int MaxHealthPoints { get;  }
-		int HealthPoints { get;  }
-		int Damage { get;  }
+		int MaxHealthPoints { get; }
+		int HealthPoints { get; }
+		int Damage { get; }
 
 		decimal BaseSpeed { get; }
 		decimal ArmoredSpeed { get; }
@@ -59,6 +59,9 @@ namespace Pathfinder.Interface
 		/// Sum of the BaseAttackBonus of all classes.
 		/// </summary>
 		int BaseAttackBonus { get; }
+		int BaseFortitude { get; }
+		int BaseReflex { get; }
+		int BaseWill { get; }
 
 		// Offensive Scores
 		IOffensiveScore Melee { get; }
@@ -69,7 +72,7 @@ namespace Pathfinder.Interface
 
 		int ExperiencePoints { get; }
 		IExperience Experience { get; }
-		
+
 		IEnumerable<IHitDice> HitDice { get; }
 
 		IEnumerable<IFeat> Feats { get; }
