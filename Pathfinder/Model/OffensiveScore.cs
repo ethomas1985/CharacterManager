@@ -11,13 +11,13 @@ namespace Pathfinder.Model
 	{
 		public OffensiveScore(
 			OffensiveType pOffensiveType,
-			IAbilityScore pAbilityScore,
+			Func<IAbilityScore> pGetAbilityScore,
 			Func<int> pGetBaseAttackBonus,
 			Func<int> pGetSizeModifier,
 			Func<int> pGetTemporaryModifier)
 		{
 			Type = pOffensiveType;
-			Ability = pAbilityScore;
+			GetAbility = pGetAbilityScore;
 			GetBaseAttackBonus = pGetBaseAttackBonus;
 			GetSizeModifier = pGetSizeModifier;
 			GetTemporaryModifier = pGetTemporaryModifier;
@@ -28,7 +28,7 @@ namespace Pathfinder.Model
 		private Func<int> GetTemporaryModifier { get; }
 
 		public OffensiveType Type { get; }
-		public IAbilityScore Ability { get; }
+		public Func<IAbilityScore> GetAbility { get; }
 
 		public int Score
 		{
@@ -44,7 +44,7 @@ namespace Pathfinder.Model
 		}
 
 		public int BaseAttackBonus { get { return GetBaseAttackBonus(); } }
-		public int AbilityModifier { get { return Ability.Modifier; } }
+		public int AbilityModifier { get { return GetAbility?.Invoke()?.Modifier ?? 0; } }
 		public int SizeModifier { get { return GetSizeModifier(); } }
 		public int MiscModifier { get; internal set; }
 		public int TemporaryModifier { get { return GetTemporaryModifier(); } }

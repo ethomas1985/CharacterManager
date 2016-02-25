@@ -2,7 +2,6 @@
 {
 	public enum Race
 	{
-		INVALID,
 		Dwarf,
 		Halfling,
 		Elf,

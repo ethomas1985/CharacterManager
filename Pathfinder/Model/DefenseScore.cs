@@ -43,19 +43,19 @@ namespace Pathfinder.Model
 			DefensiveType pDefensiveType,
 			Func<int> pGetArmorBonus,
 			Func<int> pGetShieldBonus,
-			IAbilityScore pDexterity,
+			Func<IAbilityScore> pGetDexterity,
 			Func<int> pGetSize,
 			Func<int> pGetNaturalBonus,
 			Func<int> pGetDeflectBonus,
 			Func<int> pGetDodgeBonus,
 			Func<int> pGetTemporaryBonus) : this(pDefensiveType, pGetSize, pGetDeflectBonus, pGetTemporaryBonus)
 		{
-			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
+			//Debug.Assert(AbilityType.Dexterity == pGetDexterity().Type);
 
 			GetArmorBonus = pGetArmorBonus ?? GetZero;
 			GetShieldBonus = pGetShieldBonus ?? GetZero;
 
-			Dexterity = pDexterity;
+			GetDexterity = pGetDexterity;
 
 			GetNaturalBonus = pGetNaturalBonus ?? GetZero;
 			GetDodgeBonus = pGetDodgeBonus ?? GetZero;
@@ -73,25 +73,25 @@ namespace Pathfinder.Model
 		/// <param name="pGetTemporaryBonus"></param>
 		public DefenseScore(
 			Func<int> pGetBaseAttackBonus,
-			IAbilityScore pStrength,
-			IAbilityScore pDexterity,
+			Func<IAbilityScore> pGetStrength,
+			Func<IAbilityScore> pGetDexterity,
 			Func<int> pGetSize,
 			Func<int> pGetDeflectBonus,
 			Func<int> pGetDodgeBonus,
 			Func<int> pGetTemporaryBonus) : this(DefensiveType.CombatManeuverDefense, pGetSize, pGetDeflectBonus, pGetTemporaryBonus)
 		{
-			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
-			Debug.Assert(AbilityType.Strength == pStrength.Type);
+			Debug.Assert(AbilityType.Dexterity == pGetDexterity().Type);
+			Debug.Assert(AbilityType.Strength == pGetStrength().Type);
 
 			GetBaseAttackBonus = pGetBaseAttackBonus ?? GetZero;
-			Strength = pStrength;
-			Dexterity = pDexterity;
+			GetStrength = pGetStrength;
+			GetDexterity = pGetDexterity;
 			GetNaturalBonus = GetZero;
 			GetDodgeBonus = pGetDodgeBonus ?? GetZero;
 		}
 
-		private IAbilityScore Dexterity { get; }
-		private IAbilityScore Strength { get; }
+		private Func<IAbilityScore> GetDexterity { get; }
+		private Func<IAbilityScore> GetStrength { get; }
 		private Func<int> GetSize { get; }
 		private Func<int> GetArmorBonus { get; }
 		private Func<int> GetNaturalBonus { get; }
@@ -126,8 +126,22 @@ namespace Pathfinder.Model
 			}
 		}
 
-		public int DexterityModifier => UseDexterity ? Dexterity.Modifier : 0;
-		public int StrengthModifier => Strength?.Modifier ?? 0;
+		public int DexterityModifier
+		{
+			get
+			{
+				var dexterity = GetDexterity?.Invoke();
+				var modifier = dexterity?.Modifier ?? 0;
+				return UseDexterity ? modifier : 0;
+			}
+		}
+		public int StrengthModifier
+		{
+			get
+			{
+				return GetStrength?.Invoke()?.Modifier ?? 0;
+			}
+		}
 		public int SizeModifier => GetSize();
 		public int BaseAttackBonus => GetBaseAttackBonus();
 

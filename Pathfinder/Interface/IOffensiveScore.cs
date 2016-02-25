@@ -10,7 +10,6 @@ namespace Pathfinder.Interface
 
 		int BaseAttackBonus { get; }
 
-		IAbilityScore Ability { get; }
 		int AbilityModifier { get; }
 
 		int SizeModifier { get; }

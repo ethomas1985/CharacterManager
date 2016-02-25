@@ -1,18 +1,26 @@
-﻿using System;
-using Pathfinder.Enum;
+﻿using Pathfinder.Enum;
 using Pathfinder.Interface;
+using Pathfinder.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class AbilityScore : IAbilityScore
 	{
-		public AbilityScore(AbilityType pAbilityType, Func<int> pGetTemporaryModifier)
+		public AbilityScore(
+			AbilityType pAbilityType,
+			Func<int> pGetTemporaryModifier,
+			int pBase,
+			int pEnhanced = 0,
+			int pInherent = 0)
 		{
 			Type = pAbilityType;
 			GetTemporaryModifier = pGetTemporaryModifier;
+			Base = pBase;
+			Enhanced = pEnhanced;
+			Inherent = pInherent;
 		}
 
 		private Func<int> GetTemporaryModifier { get; }
@@ -42,9 +50,9 @@ namespace Pathfinder.Model
 			}
 		}
 
-		public int Base { get; internal set; }
-		public int Enhanced { get; internal set; }
-		public int Inherent { get; internal set; }
+		public int Base { get; }
+		public int Enhanced { get; }
+		public int Inherent { get; }
 		public int Penalty { get; internal set; }
 		public int Temporary
 		{

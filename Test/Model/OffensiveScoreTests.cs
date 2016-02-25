@@ -23,11 +23,14 @@ namespace Test.Model
 				int pMisc,
 				int pTemporary)
 			{
+				var abilityScore = 
+					new AbilityScore(
+						AbilityType.Strength,
+						() => pAbilityModifier * 2 + 10,
+						0);
 				var offensiveScore = new OffensiveScore(
 					pType,
-					new AbilityScore(
-						AbilityType.Strength, 
-						() => pAbilityModifier * 2 + 10),
+					() => abilityScore,
 					() => pBaseAttackBonus,
 					() => (int) pSize,
 					() => pTemporary)
@@ -52,7 +55,7 @@ namespace Test.Model
 					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Small, 0, 0).Returns(1);
 					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Medium, 1, 0).Returns(1);
 					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Medium, 0, 1).Returns(1);
-					
+
 					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Medium, 0, 0).Returns(2);
 					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Small, 0, 0).Returns(2);
 					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Medium, 1, 0).Returns(2);

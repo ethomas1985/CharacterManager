@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
 using Pathfinder.Model;
+using System.Collections;
 
 namespace Test.Model
 {
@@ -33,8 +32,8 @@ namespace Test.Model
 					pType,
 					() => pArmorBonus,
 					() => pShieldBonus,
-					pDexterityScore,
-					() => (int)pSize,
+					() => pDexterityScore,
+					() => (int) pSize,
 					() => pNatural,
 					() => pDeflect,
 					() => pDodge,
@@ -61,9 +60,9 @@ namespace Test.Model
 			{
 				return new DefenseScore(
 					() => pBaseAttackBonus,
-					pStrengthScore,
-					pDexterityScore,
-					() => (int)pSize,
+					() => pStrengthScore,
+					() => pDexterityScore,
+					() => (int) pSize,
 					() => pDeflect,
 					() => pDodge,
 					() => pTemporary)
@@ -81,7 +80,7 @@ namespace Test.Model
 				get
 				{
 					const Size size = Size.Medium;
-					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 10 };
+					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0, 10);
 
 					yield return new TestCaseData(DefensiveType.ArmorClass, dexScore, size, 0, 0, 0, 0, 0, 0, 0).Returns(10);
 					yield return new TestCaseData(DefensiveType.ArmorClass, dexScore, size, 1, 0, 0, 0, 0, 0, 0).Returns(11);
@@ -118,8 +117,8 @@ namespace Test.Model
 			{
 				get
 				{
-					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 10 };
-					var strScore = new AbilityScore(AbilityType.Strength, () => 0) { Base = 11 };
+					var dexScore = new AbilityScore(AbilityType.Dexterity, () => 0, 10);
+					var strScore = new AbilityScore(AbilityType.Strength, () => 0, 11);
 					var size = Size.Medium;
 
 					// Combat Maneuver Defense uses BaseAttackBonus and Strength Modifier and ignore Natural 

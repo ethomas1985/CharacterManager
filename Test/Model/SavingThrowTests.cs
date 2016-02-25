@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
 using Pathfinder.Enum;
 using Pathfinder.Model;
-using NUnit.Framework;
+using System;
 
 namespace Test.Model
 {
@@ -14,14 +14,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 
@@ -36,14 +36,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 
@@ -58,19 +58,19 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 
 
-				Assert.AreEqual(AbilityType.Dexterity, savingThrow.Ability);
+				Assert.AreEqual(AbilityType.Constitution, savingThrow.Ability);
 			}
 		}
 
@@ -80,14 +80,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 
@@ -102,14 +102,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 
@@ -124,14 +124,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary)
 					{
@@ -148,14 +148,14 @@ namespace Test.Model
 			[Test]
 			public void Expected()
 			{
-				var ability = new AbilityScore(AbilityType.Dexterity, () => 0) { Base = 12 };
+				var ability = new AbilityScore(AbilityType.Constitution, () => 0, 12);
 				var getBase = new Func<int>(() => 1);
 				var getResist = new Func<int>(() => 1);
 				var getTemporary = new Func<int>(() => 1);
 				var savingThrow =
 					new SavingThrow(
 						SavingThrowType.Fortitude,
-						ability,
+						() => ability,
 						getBase, getResist,
 						getTemporary);
 

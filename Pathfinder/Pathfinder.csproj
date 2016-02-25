@@ -32,6 +32,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,23 +72,32 @@
     <Compile Include="Interface\IItem.cs" />
     <Compile Include="Interface\IOffensiveScore.cs" />
     <Compile Include="Enum\Race.cs" />
+    <Compile Include="Interface\IPurse.cs" />
     <Compile Include="Interface\ISavingThrow.cs" />
     <Compile Include="Interface\ISkill.cs" />
     <Compile Include="Interface\IWeapon.cs" />
+    <Compile Include="Library\SkillLibrary.cs" />
     <Compile Include="Model\AbilityScore.cs" />
-    <Compile Include="Model\AbstractCharacter.cs" />
+    <Compile Include="Factories\CharacterBuilder.cs" />
+    <Compile Include="Model\Character\AbstractCharacter.cs" />
     <Compile Include="Model\DefenseScore.cs" />
-    <Compile Include="Model\Dwarf.cs" />
+    <Compile Include="Model\Character\Dwarf.cs" />
     <Compile Include="Model\Experience.cs" />
     <Compile Include="Model\FeatsCollection.cs" />
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\OffensiveScore.cs" />
     <Compile Include="Model\SavingThrow.cs" />
+    <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\SkillsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Tracer.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Class\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

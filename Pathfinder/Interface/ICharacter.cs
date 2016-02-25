@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Pathfinder.Enum;
+﻿using Pathfinder.Enum;
+using System.Collections.Generic;
 
 namespace Pathfinder.Interface
 {
@@ -13,6 +13,7 @@ namespace Pathfinder.Interface
 		Deity Deity { get; }
 
 		string Eyes { get; }
+
 		Gender Gender { get; }
 		string Hair { get; }
 		decimal Height { get; }
@@ -80,6 +81,8 @@ namespace Pathfinder.Interface
 		IEnumerable<ISkill> Skills { get; }
 
 		IEnumerable<IWeapon> Weapons { get; }
+
+		IPurse Purse { get; }
 
 		IInventory Inventory { get; }
 

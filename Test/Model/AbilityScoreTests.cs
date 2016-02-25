@@ -1,8 +1,6 @@
-﻿using System;
-using NUnit.Framework;
-using Pathfinder.Model;
+﻿using NUnit.Framework;
 using Pathfinder.Enum;
-using Pathfinder.Interface;
+using Pathfinder.Model;
 using System.Collections;
 
 namespace Test.Model
@@ -22,11 +20,13 @@ namespace Test.Model
 				int Temporary,
 				int Penalty)
 			{
-				return new AbilityScore(AbilityType.Strength, () => Temporary)
+				return new AbilityScore(
+					AbilityType.Strength,
+					() => Temporary,
+					Base,
+					Enhanced,
+					Inherent)
 				{
-					Base = Base,
-					Enhanced = Enhanced,
-					Inherent = Inherent,
 					Penalty = Penalty
 				}.Modifier;
 			}
@@ -44,11 +44,13 @@ namespace Test.Model
 				int Temporary,
 				int Penalty)
 			{
-				return new AbilityScore(AbilityType.Strength, () => Temporary)
+				return new AbilityScore(
+					AbilityType.Strength,
+					() => Temporary,
+					Base,
+					Enhanced,
+					Inherent)
 				{
-					Base = Base,
-					Enhanced = Enhanced,
-					Inherent = Inherent,
 					Penalty = Penalty
 				}.Score;
 			}
