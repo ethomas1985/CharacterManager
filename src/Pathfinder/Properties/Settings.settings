@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Pathfinder.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TraitLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Traits</Value>
+    </Setting>
+    <Setting Name="SkillLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Skills</Value>
+    </Setting>
+    <Setting Name="RaceLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Races</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

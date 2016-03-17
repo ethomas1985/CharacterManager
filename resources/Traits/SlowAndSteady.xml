@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Trait>
+	<Name>Slow and Steady</Name>
+	<Text>Dwarves have a base speed of 20 feet, but their speed is never modified by armor or encumbrance.</Text>
+	<PropertyModifiers>
+		<BaseSpeed>20</BaseSpeed>
+		<ArmorSpeed>20</ArmorSpeed>
+	</PropertyModifiers>
+</Trait>

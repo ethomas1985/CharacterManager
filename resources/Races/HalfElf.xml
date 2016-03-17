@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Race>
+	<Name>Half-Elf</Name>
+	<Size>Medium</Size>
+	<BaseSpeed>30</BaseSpeed>
+	<!--<AbilityScores>
+		<Selection>2</Selection>
+	</AbilityScores>-->
+	<Traits>
+		<Trait>+2 To One Ability Score (Selection)</Trait>
+		<Trait>Low-light Vision</Trait>
+		<Trait>Adaptability</Trait>
+		<Trait>Elf Blood</Trait>
+		<Trait>Elven Immunities</Trait>
+		<Trait>Keen Senses</Trait>
+		<Trait>Multitalented</Trait>
+	</Traits>
+	<Languages>
+		<Language>Common</Language>
+		<Language>Elven</Language>
+	</Languages>
+</Race>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Race>
+	<Name>Gnome</Name>
+	<Size>Small</Size>
+	<BaseSpeed>20</BaseSpeed>
+	<AbilityScores>
+		<Constitution>2</Constitution>
+		<Charisma>2</Charisma>
+		<Strength>-2</Strength>
+	</AbilityScores>
+	<Traits>
+		<Trait>Low-Light Vision</Trait>
+		<Trait>Defensive Training</Trait>
+		<Trait>Gnome Magic</Trait>
+		<Trait>Hatred (Reptilian)</Trait>
+		<Trait>Hatred (Goblinoid)</Trait>
+		<Trait>Illusion Resistance</Trait>
+		<Trait>Keen Senses</Trait>
+		<Trait>Obsessive</Trait>
+		<Trait>Weapon Familiarity (Gnome*)</Trait>
+	</Traits>
+	<Languages>
+		<Language>Common</Language>
+		<Language>Gnome</Language>
+		<Language>Sylvan</Language>
+	</Languages>
+</Race>

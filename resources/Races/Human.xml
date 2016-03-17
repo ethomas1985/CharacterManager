@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Race>
+	<Name>Human</Name>
+	<Size>Medium</Size>
+	<BaseSpeed>30</BaseSpeed>
+	<!--<AbilityScores>
+		<Selection>2</Selection>
+	</AbilityScores>-->
+	<Traits>
+		<Trait>+2 To One Ability Score (Selection)</Trait>
+		<Trait>Bonus Feat</Trait>
+		<Trait>Skilled</Trait>
+	</Traits>
+	<Languages>
+		<Language>Common</Language>
+	</Languages>
+</Race>
