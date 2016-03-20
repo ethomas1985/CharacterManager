@@ -18,7 +18,7 @@ namespace Test.Serializers
 		const string DESCRIPTION = "Description";
 		const int BASE_SPEED = 15;
 
-		private readonly Race Race =
+		private readonly Race _race =
 			new Race(
 				RACE_NAME,
 				DESCRIPTION,
@@ -42,7 +42,7 @@ namespace Test.Serializers
 					new Language("English")
 				});
 
-		readonly string xmlString =
+		readonly string _xmlString =
 			//$"<?xml version=\"1.0\" encoding=\"utf-8\" ?>{Environment.NewLine}"+
 			$"<Race>{Environment.NewLine}"+
 			$"  <Name>{RACE_NAME}</Name>{Environment.NewLine}"+
@@ -63,31 +63,25 @@ namespace Test.Serializers
 			$"  <Languages>{Environment.NewLine}"+
 			$"    <Language>English</Language>{Environment.NewLine}"+
 			$"  </Languages>{Environment.NewLine}"+
-			$"</Race>";
+			 "</Race>";
 
 		[TestFixture]
-		public class SerializerMethod : RaceSerializerTests
+		public class SerializeMethod : RaceSerializerTests
 		{
 			[Test]
 			public void Expected()
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var xml = serializer.Serialize(Race);
+				var xml = serializer.Serialize(_race);
 
-				Assert.AreEqual(xmlString, xml);
+				Assert.AreEqual(_xmlString, xml);
 			}
 		}
 
 		[TestFixture]
-		public class DeserializerMethod : RaceSerializerTests
+		public class DeserializeMethod : RaceSerializerTests
 		{
-			//[Test]
-			//public void Fail()
-			//{
-			//	Assert.Fail();
-			//}
-
 			[Test]
 			public void ThrowsForNullString()
 			{
@@ -111,7 +105,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.NotNull(result);
 			}
@@ -121,7 +115,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(RACE_NAME, result.Name);
 			}
@@ -131,7 +125,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(DESCRIPTION, result.Description);
 			}
@@ -141,7 +135,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(Size.Gargantuan, result.Size);
 			}
@@ -151,7 +145,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(BASE_SPEED, result.BaseSpeed);
 			}
@@ -161,9 +155,9 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
-				Assert.AreEqual(6, result.AbilityScores.Count());
+				Assert.AreEqual(6, result.AbilityScores.Count);
 			}
 
 			[Test]
@@ -171,7 +165,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Strength]);
 			}
@@ -181,7 +175,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Dexterity]);
 			}
@@ -191,7 +185,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Constitution]);
 			}
@@ -201,7 +195,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Intelligence]);
 			}
@@ -211,7 +205,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Wisdom]);
 			}
@@ -221,7 +215,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Charisma]);
 			}
@@ -231,7 +225,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(1, result.Traits.Count());
 			}
@@ -241,7 +235,7 @@ namespace Test.Serializers
 			{
 				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
 				var serializer = new RaceSerializer(traitLibrary);
-				var result = serializer.Deserialize(xmlString);
+				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(1, result.Languages.Count());
 			}

@@ -1,4 +1,5 @@
 using System;
+using Pathfinder.Enum;
 
 namespace Pathfinder.Utilities
 {
@@ -44,6 +45,17 @@ namespace Pathfinder.Utilities
 			if (string.IsNullOrEmpty(pParameter))
 			{
 				throw new ArgumentNullException(pParameterName);
+			}
+		}
+
+		public static void AreEqual<T>(T pExpected, T pValue)
+		{
+			if (!pExpected.Equals(pValue))
+			{
+				throw new Exception(
+					$"Constraint Violation!{Environment.NewLine}" +
+					$"Expected Value: {pExpected}{Environment.NewLine}" +
+					$"Given Value: {pValue}{Environment.NewLine}");
 			}
 		}
 	}

@@ -62,6 +62,7 @@
     <Compile Include="Interface\ISkillScore.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Model\Language.cs" />
+    <Compile Include="Model\Skill.cs" />
     <Compile Include="Serializers\RaceSerializer.cs" />
     <Compile Include="Model\Race.cs" />
     <Compile Include="Serializers\SkillSerializer.cs" />

@@ -33,7 +33,7 @@ namespace Test.Serializers
 			 "</Trait>";
 
 		[TestFixture]
-		public class SerializerMethod : TraitSerializerTests
+		public class SerializeMethod : TraitSerializerTests
 		{
 			[Test]
 			public void Expected()
@@ -46,7 +46,7 @@ namespace Test.Serializers
 		}
 
 		[TestFixture]
-		public class DeserializerMethod : TraitSerializerTests
+		public class DeserializeMethod : TraitSerializerTests
 		{
 			[Test]
 			public void ThrowsForNullString()

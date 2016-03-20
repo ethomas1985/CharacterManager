@@ -4,10 +4,7 @@ namespace Pathfinder.Interface
 {
 	public interface ISkillScore
 	{
-		string Name { get; }
-
-		string Type { get; }
-
+		ISkill Skill { get; }
 		AbilityType Ability { get; }
 
 		int Total { get; }

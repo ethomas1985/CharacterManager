@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -76,7 +77,9 @@
     <Compile Include="Model\DefenseScoreTests.cs" />
     <Compile Include="Model\OffensiveScoreTests.cs" />
     <Compile Include="Model\SavingThrowTests.cs" />
+    <Compile Include="Model\SkillScoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializers\SkillSerializerTests.cs" />
     <Compile Include="Serializers\TraitSerializerTests.cs" />
     <Compile Include="Serializers\RaceSerializerTests.cs" />
   </ItemGroup>

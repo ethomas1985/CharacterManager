@@ -1,81 +1,72 @@
 ﻿using Pathfinder.Enum;
 using Pathfinder.Interface;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class SkillScore : ISkillScore
 	{
-		public SkillScore(IAbilityScore pAbilityScore)
+		public SkillScore(
+			ISkill pSkill, 
+			IAbilityScore pAbilityScore,
+			int pRanks,
+			int pClassModifier,
+			int pMiscModifier,
+			int pTemporaryModifier,
+			int pArmorClassPenalty)
 		{
+			Assert.ArgumentNotNull(pSkill, nameof(pSkill));
+			Assert.ArgumentNotNull(pAbilityScore, nameof(pAbilityScore));
+			Assert.AreEqual(pSkill.AbilityType, pAbilityScore.Type);
+
+			Skill = pSkill;
 			AbilityScore = pAbilityScore;
+			Ranks = pRanks;
+			ClassModifier = pClassModifier;
+			MiscModifier = pMiscModifier;
+			TemporaryModifier = pTemporaryModifier;
+			ArmorClassPenalty = pArmorClassPenalty;
 		}
 
-		private IAbilityScore AbilityScore { get; set; }
-
+		public ISkill Skill { get; }
+		private IAbilityScore AbilityScore { get; }
 		public AbilityType Ability => AbilityScore.Type;
 
+		public int Ranks { get; }
 		public int AbilityModifier => AbilityScore.Modifier;
-
-		public int ArmorClassPenalty
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public int ClassModifier
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public int MiscModifier
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public int Ranks
-		{
-			get; internal set;
-		}
-
-		public int TemporaryModifier
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
+		public int ClassModifier { get; }
+		public int MiscModifier { get; }
+		public int TemporaryModifier { get; }
+		public int ArmorClassPenalty { get; }
 		public int Total
 		{
 			get
 			{
-				throw new NotImplementedException();
+				var total = Values.Sum();
+
+				Tracer.Message(
+					pMessage: $"{Skill.Name}[{total}] = {string.Join(" + ", Values)}");
+
+				return total;
 			}
 		}
 
-		public string Type
-		{
-			get
+		private IEnumerable<int> Values
+			=> new List<int>
 			{
-				throw new NotImplementedException();
-			}
+						Ranks,
+						AbilityModifier,
+						ClassModifier,
+						MiscModifier,
+						TemporaryModifier,
+						ArmorClassPenalty,
+			};
+
+		public override string ToString()
+		{
+			return $"{Skill.Name}[{Total}] = {string.Join(" + ", Values)}";
 		}
 	}
 }
