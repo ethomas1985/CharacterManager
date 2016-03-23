@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Pathfinder.Interface;
@@ -54,6 +55,16 @@ namespace Pathfinder.Library
 				}
 				throw new KeyNotFoundException($"Key := \"{pKey}\"");
 			}
+		}
+
+		public IEnumerator<IRace> GetEnumerator()
+		{
+			return Library.Values.GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

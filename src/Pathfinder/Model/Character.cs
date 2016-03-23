@@ -4,27 +4,19 @@ using System.Collections.Immutable;
 using System.Linq;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
+using Pathfinder.Library;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class Character : ICharacter
 	{
-		//public Character(string pRace)
-		//{
-		//	Assert.ArgumentIsNotEmpty(pRace, nameof(pRace));
-		//	//Load race from Race Library
-		//	var race = RaceLibrary.Instance[pRace];
-
-		//	Race = race;
-		//	Languages = new List<ILanguage>(Race.Languages);
-		//}
-
-		public Character(IRace pRace)
+		public Character(IRace pRace, ILibrary<ISkill> pSkillLibrary)
 		{
 			Assert.ArgumentNotNull(pRace, nameof(pRace));
 
 			Race = pRace;
+			SkillLibrary = pSkillLibrary;
 			Languages = new List<ILanguage>(Race.Languages);
 		}
 
@@ -194,6 +186,30 @@ namespace Pathfinder.Model
 					Effects
 						.Where(x => x.Active && x.CharismaModifier != 0)
 						.Sum(x => x.CharismaModifier);
+			}
+		}
+
+		private IAbilityScore this[AbilityType pAbilityType]
+		{
+			get
+			{
+				switch (pAbilityType)
+				{
+					case AbilityType.Strength:
+						return Strength;
+					case AbilityType.Dexterity:
+						return Dexterity;
+					case AbilityType.Constitution:
+						return Constitution;
+					case AbilityType.Intelligence:
+						return Intelligence;
+					case AbilityType.Wisdom:
+						return Wisdom;
+					case AbilityType.Charisma:
+						return Charisma;
+					default:
+						throw new ArgumentException($"Unexpected Value for Ability Type: {pAbilityType}");
+				}
 			}
 		}
 
@@ -448,10 +464,37 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IFeat> Feats { get; }
 
-		public IEnumerable<ISkillScore> Skills { get; }
+		private ILibrary<ISkill> SkillLibrary { get; }
+		private IEnumerable<ISkill> Skills => SkillLibrary;
+
+		private IDictionary<ISkill, int> SkillRanks { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
+		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
+		public IEnumerable<ISkillScore> SkillScores
+		{
+			get {
+				return Skills.Select(skill => this[skill]);
+			}
+		}
 		public ISkillScore this[ISkill pSkill]
 		{
-			get { throw new NotImplementedException(); }
+			get
+			{
+				var ranks = GetSkillRanks(pSkill);
+				var classModifier = GetClassModifier(pSkill);
+				var misc = GetMiscellaneousSkillModifier(pSkill);
+				var temp = GetTemporarySkillModifier(pSkill);
+				var armorClassPenalty = EquipedArmor.Sum(x => x.ArmorCheckPenalty);
+
+				return
+					new SkillScore(
+						pSkill,
+						this[pSkill.AbilityType],
+						ranks,
+						classModifier,
+						misc,
+						temp,
+						armorClassPenalty);
+			}
 		}
 
 		public IEnumerable<IWeapon> Weapons { get; }
@@ -463,6 +506,41 @@ namespace Pathfinder.Model
 		public IPurse Purse { get; internal set; }
 
 		public IEnumerable<ITrait> Traits => Race.Traits;
+
+		/*
+		 * METHODS
+		 */
+
+		private int GetSkillRanks(ISkill pSkill)
+		{
+			int ranks;
+			if (!SkillRanks.TryGetValue(pSkill, out ranks))
+			{
+				ranks = 0;
+			}
+			return ranks;
+		}
+		private int GetClassModifier(ISkill pSkill)
+		{
+			return Classes.Any(x => x.Skills.Contains(pSkill)) ? 3 : 0;
+		}
+		private int GetMiscellaneousSkillModifier(ISkill pSkill)
+		{
+			int misc;
+			if (!MiscellenaousSkillBonuses.TryGetValue(pSkill, out misc))
+			{
+				misc = 0;
+			}
+			return misc;
+		}
+		private int GetTemporarySkillModifier(ISkill pSkill)
+		{
+			var temp =
+				Effects
+					.Where(x => x.Active)
+					.Sum(x => x[pSkill]);
+			return temp;
+		}
 
 		public ICharacter SetName(string pName)
 		{

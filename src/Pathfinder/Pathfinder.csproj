@@ -52,6 +52,7 @@
     <Compile Include="Enum\DefensiveType.cs" />
     <Compile Include="Enum\Deity.cs" />
     <Compile Include="Enum\Gender.cs" />
+    <Compile Include="Interface\IFeature.cs" />
     <Compile Include="Interface\ILanguage.cs" />
     <Compile Include="Enum\OffensiveType.cs" />
     <Compile Include="Enum\SavingThrowType.cs" />

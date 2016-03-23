@@ -79,7 +79,7 @@ namespace Pathfinder.Interface
 		IEnumerable<ITrait> Traits { get; }
 		IEnumerable<IFeat> Feats { get; }
 
-		IEnumerable<ISkillScore> Skills { get; }
+		IEnumerable<ISkillScore> SkillScores { get; }
 		ISkillScore this[ISkill pSkill] { get; }
 
 		IEnumerable<IWeapon> Weapons { get; }
