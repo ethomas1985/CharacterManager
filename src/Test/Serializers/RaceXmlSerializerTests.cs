@@ -12,7 +12,7 @@ using Pathfinder.Properties;
 namespace Test.Serializers
 {
 	[TestFixture]
-	public class RaceSerializerTests
+	public class RaceXmlSerializerTests
 	{
 		const string RACE_NAME = "Race";
 		const string DESCRIPTION = "Description";
@@ -66,13 +66,13 @@ namespace Test.Serializers
 			 "</Race>";
 
 		[TestFixture]
-		public class SerializeMethod : RaceSerializerTests
+		public class SerializeMethod : RaceXmlSerializerTests
 		{
 			[Test]
 			public void Expected()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var xml = serializer.Serialize(_race);
 
 				Assert.AreEqual(_xmlString, xml);
@@ -80,13 +80,13 @@ namespace Test.Serializers
 		}
 
 		[TestFixture]
-		public class DeserializeMethod : RaceSerializerTests
+		public class DeserializeMethod : RaceXmlSerializerTests
 		{
 			[Test]
 			public void ThrowsForNullString()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(null));
 			}
@@ -94,8 +94,8 @@ namespace Test.Serializers
 			[Test]
 			public void ThrowsForEmptyString()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(string.Empty));
 			}
@@ -103,8 +103,8 @@ namespace Test.Serializers
 			[Test]
 			public void NotNull()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.NotNull(result);
@@ -113,8 +113,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetName()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(RACE_NAME, result.Name);
@@ -123,8 +123,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetDescription()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(DESCRIPTION, result.Description);
@@ -133,8 +133,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetSize()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(Size.Gargantuan, result.Size);
@@ -143,8 +143,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetBaseSpeed()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(BASE_SPEED, result.BaseSpeed);
@@ -153,8 +153,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityScores()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(6, result.AbilityScores.Count);
@@ -163,8 +163,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityStrength()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Strength]);
@@ -173,8 +173,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityDexterity()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Dexterity]);
@@ -183,8 +183,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityConstitution()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Constitution]);
@@ -193,8 +193,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityIntelligence()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Intelligence]);
@@ -203,8 +203,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityWisdom()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Wisdom]);
@@ -213,8 +213,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetAbilityCharisma()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(2, result.AbilityScores[AbilityType.Charisma]);
@@ -223,8 +223,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetTraits()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(1, result.Traits.Count());
@@ -233,8 +233,8 @@ namespace Test.Serializers
 			[Test]
 			public void SetLanguages()
 			{
-				var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
-				var serializer = new RaceSerializer(traitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var serializer = new RaceXmlSerializer(traitLibrary);
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(1, result.Languages.Count());

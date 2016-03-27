@@ -1,0 +1,63 @@
+{
+    "type": "skill", 
+    "name": "Test Skills/Acrobatics", 
+    "attribute": "Dex", 
+    "source": "Core Rulebook", 
+    "trained_only": true, 
+    "armor_check_penalty": true, 
+    "description": "This is the Description Field",
+    "sections": [
+        {
+            "name": "Check", 
+            "source": "Core Rulebook",
+            "body": "<p>This is the first paragraph of the Check Section</p>", 
+            "type": "section", 
+            "sections": [
+                {
+                    "name": "First Sub Header", 
+                    "source": "Core Rulebook",
+                    "body": "<p>Second Paragraph</p>" 
+                }, 
+                {
+                    "body": "<p>Third Paragraph</p>", 
+                    "source": "Core Rulebook",
+                }, 
+                {
+                    "name": "Second Subheader", 
+                    "source": "Core Rulebook",
+                    "body": "<p>Fourth Paragraph</p>",
+                }, 
+                {
+                    "name": "Third Subheader", 
+                    "source": "Core Rulebook",
+                    "body": "<p>Fifth Paragraph</p>"
+                }
+            ], 
+        }, 
+        {
+            "name": "Try Again",
+            "source": "Core Rulebook", 
+            "body": "This is the Try Again Field", 
+        }, 
+        {
+            "name": "Action",
+            "body": "This is the Action field.", 
+            "source": "Core Rulebook", 
+        }, 
+        {
+            "name": "Special",
+            "body": "This is the Special field", 
+            "source": "Core Rulebook", 
+        }, 
+        {
+            "name": "Restriction",
+            "body": "This is the Restriction field", 
+            "source": "Core Rulebook", 
+        }, 
+        {
+            "name": "Untrained",
+            "body": "This is the Untrained field", 
+            "source": "Core Rulebook", 
+        }
+    ], 
+}

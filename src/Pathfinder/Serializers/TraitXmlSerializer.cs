@@ -7,7 +7,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers
 {
-	internal class TraitSerializer : ISerializer<ITrait, string>
+	internal class TraitXmlSerializer : ISerializer<ITrait, string>
 	{
 		public ITrait Deserialize(string pValue)
 		{

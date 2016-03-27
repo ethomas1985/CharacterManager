@@ -9,7 +9,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers
 {
-	internal class SkillSerializer : ISerializer<ISkill, string>
+	internal class SkillXmlSerializer : ISerializer<ISkill, string>
 	{
 		public ISkill Deserialize(string pValue)
 		{
@@ -20,9 +20,8 @@ namespace Pathfinder.Serializers
 				new Skill(
 					GetValue(xDocument, nameof(Skill.Name)),
 					GetAbilityType(xDocument),
-					GetValue(xDocument, nameof(Skill.KeyAbility)),
-					GetValue(xDocument, nameof(Skill.TrainedOnly)),
-					GetValue(xDocument, nameof(Skill.ArmorCheckPenalty)),
+					GetBooleanValue(xDocument, nameof(Skill.TrainedOnly)),
+					GetBooleanValue(xDocument, nameof(Skill.ArmorCheckPenalty)),
 					GetValue(xDocument, nameof(Skill.Description)),
 					GetValue(xDocument, nameof(Skill.Check)),
 					GetValue(xDocument, nameof(Skill.Action)),
@@ -39,6 +38,16 @@ namespace Pathfinder.Serializers
 					.Descendants(pNodeName)
 					.Select(x => x.Value)
 					.FirstOrDefault();
+		}
+
+		private static bool GetBooleanValue(XDocument xDocument, string pNodeName)
+		{
+			var str = xDocument
+				.Descendants(pNodeName)
+				.Select(x => x.Value)
+				.FirstOrDefault();
+			bool value;
+			return bool.TryParse(str, out value) && value;
 		}
 
 		private static AbilityType GetAbilityType(XDocument xDocument)
@@ -67,7 +76,6 @@ namespace Pathfinder.Serializers
 						{
 							new XElement(nameof(Skill.Name), pObject.Name),
 							new XElement(nameof(Skill.AbilityType), pObject.AbilityType),
-							new XElement(nameof(Skill.KeyAbility), pObject.KeyAbility),
 							new XElement(nameof(Skill.TrainedOnly), pObject.TrainedOnly),
 							new XElement(nameof(Skill.ArmorCheckPenalty), pObject.ArmorCheckPenalty),
 							new XElement(nameof(Skill.Description), pObject.Description),

@@ -8,9 +8,8 @@ namespace Pathfinder.Interface
 
 		AbilityType AbilityType { get; }
 
-		string KeyAbility { get; }
-		string TrainedOnly { get; }
-		string ArmorCheckPenalty { get; }
+		bool TrainedOnly { get; }
+		bool ArmorCheckPenalty { get; }
 		string Description { get; }
 		string Check { get; }
 		string Action { get; }

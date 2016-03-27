@@ -4,7 +4,7 @@ using Pathfinder.Model;
 
 namespace Pathfinder.Serializers
 {
-	internal class CharacterSerializer : ISerializer<Character, string>
+	internal class CharacterXmlSerializer : ISerializer<Character, string>
 	{
 		public Character Deserialize(string pCharacterString)
 		{

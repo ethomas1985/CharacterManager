@@ -46,9 +46,8 @@ namespace Test.Model
 				var skill =
 					new Skill("Test",
 						AbilityType.Strength, 
-						string.Empty, 
-						string.Empty, 
-						string.Empty, 
+						true, 
+						true, 
 						string.Empty, 
 						string.Empty,
 						string.Empty, 

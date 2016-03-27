@@ -12,13 +12,13 @@ namespace Test.Library
 		[Test]
 		public void Singleton()
 		{
-			Assert.IsNotNull(new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary));
+			Assert.IsNotNull(new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary));
 		}
 
 		[Test]
 		public void LoadsFiles()
 		{
-			var traitLibrary = new TraitLibrary(new TraitSerializer(), Settings.Default.TraitLibrary);
+			var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
 			Assert.IsTrue(traitLibrary.Library.Any());
 		}
 	}

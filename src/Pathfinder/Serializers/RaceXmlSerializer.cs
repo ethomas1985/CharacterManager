@@ -8,9 +8,9 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers
 {
-	internal class RaceSerializer : ISerializer<IRace, string>
+	internal class RaceXmlSerializer : ISerializer<IRace, string>
 	{
-		public RaceSerializer(ILibrary<ITrait> pTraitLibrary)
+		public RaceXmlSerializer(ILibrary<ITrait> pTraitLibrary)
 		{
 			TraitLibrary = pTraitLibrary;
 		}

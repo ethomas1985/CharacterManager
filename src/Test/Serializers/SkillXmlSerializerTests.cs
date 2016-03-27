@@ -9,7 +9,7 @@ using Pathfinder.Serializers;
 namespace Test.Serializers
 {
 	[TestFixture]
-	public class SkillSerializerTests
+	public class SkillXmlSerializerTests
 	{
 		private const string UNIT_TESTING = "Unit Testing";
 
@@ -17,9 +17,8 @@ namespace Test.Serializers
 			new Skill(
 				UNIT_TESTING,
 				AbilityType.Intelligence,
-				UNIT_TESTING,
-				UNIT_TESTING,
-				UNIT_TESTING,
+				true,
+				true,
 				UNIT_TESTING,
 				UNIT_TESTING,
 				UNIT_TESTING,
@@ -32,9 +31,8 @@ namespace Test.Serializers
 			$"<Skill>{Environment.NewLine}" +
 			$"  <Name>{UNIT_TESTING}</Name>{Environment.NewLine}" +
 			$"  <AbilityType>{AbilityType.Intelligence}</AbilityType>{Environment.NewLine}" +
-			$"  <KeyAbility>{UNIT_TESTING}</KeyAbility>{Environment.NewLine}" +
-			$"  <TrainedOnly>{UNIT_TESTING}</TrainedOnly>{Environment.NewLine}" +
-			$"  <ArmorCheckPenalty>{UNIT_TESTING}</ArmorCheckPenalty>{Environment.NewLine}" +
+			$"  <TrainedOnly>{true.ToString().ToLower()}</TrainedOnly>{Environment.NewLine}" +
+			$"  <ArmorCheckPenalty>{true.ToString().ToLower()}</ArmorCheckPenalty>{Environment.NewLine}" +
 			$"  <Description>{UNIT_TESTING}</Description>{Environment.NewLine}" +
 			$"  <Check>{UNIT_TESTING}</Check>{Environment.NewLine}" +
 			$"  <Action>{UNIT_TESTING}</Action>{Environment.NewLine}" +
@@ -50,12 +48,12 @@ namespace Test.Serializers
 			$"</Skill>";
 
 		[TestFixture]
-		public class SerializeMethod : SkillSerializerTests
+		public class SerializeMethod : SkillXmlSerializerTests
 		{
 			[Test]
 			public void Expected()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var xml = serializer.Serialize(_skill);
 
 				Assert.AreEqual(_xmlString, xml);
@@ -63,12 +61,12 @@ namespace Test.Serializers
 		}
 
 		[TestFixture]
-		public class DeserializeMethodTests : SkillSerializerTests
+		public class DeserializeMethodTests : SkillXmlSerializerTests
 		{
 			[Test]
 			public void ThrowsForNullString()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(null));
 			}
@@ -76,7 +74,7 @@ namespace Test.Serializers
 			[Test]
 			public void ThrowsForEmptyString()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(string.Empty));
 			}
@@ -84,7 +82,7 @@ namespace Test.Serializers
 			[Test]
 			public void NotNull()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.NotNull(result);
@@ -93,8 +91,7 @@ namespace Test.Serializers
 			[Test]
 			public void BadAbilityScore()
 			{
-				var serializer = new SkillSerializer();
-				var xml = serializer.Serialize(_skill);
+				var serializer = new SkillXmlSerializer();
 
 				Assert.Throws<XmlException>(
 					() => serializer.Deserialize(_badXmlString));
@@ -102,36 +99,27 @@ namespace Test.Serializers
 			}
 
 			[Test]
-			public void SetsKeyAbility()
-			{
-				var serializer = new SkillSerializer();
-				var result = serializer.Deserialize(_xmlString);
-
-				Assert.AreEqual(UNIT_TESTING, result.KeyAbility);
-			}
-
-			[Test]
 			public void SetsTrainedOnly()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
-				Assert.AreEqual(UNIT_TESTING, result.TrainedOnly);
+				Assert.IsTrue(result.TrainedOnly);
 			}
 
 			[Test]
 			public void SetsArmorCheckPenalty()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
-				Assert.AreEqual(UNIT_TESTING, result.ArmorCheckPenalty);
+				Assert.IsTrue(result.ArmorCheckPenalty);
 			}
 
 			[Test]
 			public void SetsDescription()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Description);
@@ -140,7 +128,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsCheck()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Check);
@@ -149,7 +137,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsAction()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Action);
@@ -158,7 +146,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsTryAgain()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.TryAgain);
@@ -167,7 +155,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsSpecial()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Special);
@@ -176,7 +164,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsRestriction()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Restriction);
@@ -185,7 +173,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetsUntrained()
 			{
-				var serializer = new SkillSerializer();
+				var serializer = new SkillXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(UNIT_TESTING, result.Untrained);

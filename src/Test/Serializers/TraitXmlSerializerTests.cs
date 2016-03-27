@@ -7,7 +7,7 @@ using Pathfinder.Model;
 namespace Test.Serializers
 {
 	[TestFixture]
-	public class TraitSerializerTests
+	public class TraitXmlSerializerTests
 	{
 		private const string NAME = "Trait";
 		private const string TEXT = "Description";
@@ -33,12 +33,12 @@ namespace Test.Serializers
 			 "</Trait>";
 
 		[TestFixture]
-		public class SerializeMethod : TraitSerializerTests
+		public class SerializeMethod : TraitXmlSerializerTests
 		{
 			[Test]
 			public void Expected()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 				var xml = serializer.Serialize(_trait);
 
 				Assert.AreEqual(_xmlString, xml);
@@ -46,12 +46,12 @@ namespace Test.Serializers
 		}
 
 		[TestFixture]
-		public class DeserializeMethod : TraitSerializerTests
+		public class DeserializeMethod : TraitXmlSerializerTests
 		{
 			[Test]
 			public void ThrowsForNullString()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(null));
 			}
@@ -59,7 +59,7 @@ namespace Test.Serializers
 			[Test]
 			public void ThrowsForEmptyString()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 
 				Assert.Throws<ArgumentNullException>(() => serializer.Deserialize(string.Empty));
 			}
@@ -67,7 +67,7 @@ namespace Test.Serializers
 			[Test]
 			public void NotNull()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.NotNull(result);
@@ -76,7 +76,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetName()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(NAME, result.Name);
@@ -85,7 +85,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetText()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(TEXT, result.Text);
@@ -94,7 +94,7 @@ namespace Test.Serializers
 			[Test]
 			public void SetPropertyModifiers()
 			{
-				var serializer = new TraitSerializer();
+				var serializer = new TraitXmlSerializer();
 				var result = serializer.Deserialize(_xmlString);
 
 				Assert.AreEqual(1, result.PropertyModifiers.Count);

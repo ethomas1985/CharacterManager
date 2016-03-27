@@ -8,9 +8,8 @@ namespace Pathfinder.Model
 		public Skill(
 			string pName, 
 			AbilityType pAbilityType, 
-			string pKeyAbility, 
-			string pTrainedOnly, 
-			string pArmorCheckPenalty, 
+			bool pTrainedOnly, 
+			bool pArmorCheckPenalty, 
 			string pDescription, 
 			string pCheck, 
 			string pAction, 
@@ -21,7 +20,6 @@ namespace Pathfinder.Model
 		{
 			Name = pName;
 			AbilityType = pAbilityType;
-			KeyAbility = pKeyAbility;
 			TrainedOnly = pTrainedOnly;
 			ArmorCheckPenalty = pArmorCheckPenalty;
 			Description = pDescription;
@@ -36,9 +34,8 @@ namespace Pathfinder.Model
 
 		public string Name { get; }
 		public AbilityType AbilityType { get; }
-		public string KeyAbility { get; }
-		public string TrainedOnly { get; }
-		public string ArmorCheckPenalty { get; }
+		public bool TrainedOnly { get; }
+		public bool ArmorCheckPenalty { get; }
 		public string Description { get; }
 		public string Check { get; }
 		public string Action { get; }

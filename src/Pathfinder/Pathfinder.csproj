@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
@@ -64,14 +68,15 @@
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Skill.cs" />
-    <Compile Include="Serializers\RaceSerializer.cs" />
+    <Compile Include="Serializers\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />
-    <Compile Include="Serializers\SkillSerializer.cs" />
-    <Compile Include="Serializers\TraitSerializer.cs" />
+    <Compile Include="Serializers\PSRD\SkillJsonSerializer.cs" />
+    <Compile Include="Serializers\SkillXmlSerializer.cs" />
+    <Compile Include="Serializers\TraitXmlSerializer.cs" />
     <Compile Include="Utilities\Assert.cs" />
     <Compile Include="Interface\ITrait.cs" />
     <Compile Include="Library\TraitLibrary.cs" />
-    <Compile Include="Serializers\CharacterSerializer.cs" />
+    <Compile Include="Serializers\CharacterXmlSerializer.cs" />
     <Compile Include="Interface\IAbilityScore.cs" />
     <Compile Include="Interface\IArmor.cs" />
     <Compile Include="Interface\ICharacter.cs" />
