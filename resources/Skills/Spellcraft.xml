@@ -1,0 +1,13 @@
+<Skill>
+  <Name>Spellcraft</Name>
+  <AbilityType>Intelligence</AbilityType>
+  <TrainedOnly>true</TrainedOnly>
+  <ArmorCheckPenalty>true</ArmorCheckPenalty>
+  <Description>You are skilled at the art of casting spells, identifying magic items, crafting magic items, and identifying spells as they are being cast.</Description>
+  <Check>&lt;h1&gt;Check&lt;/h1&gt;&lt;p&gt;Spellcraft is used whenever your knowledge and skill of the technical art of casting a spell or crafting a magic item comes into question. This skill is also used to identify the properties of magic items in your possession through the use of spells such as &lt;i&gt;detect magic&lt;/i&gt; and &lt;i&gt;identify&lt;/i&gt;. The DC of this check varies depending upon the task at hand.&lt;/p&gt;</Check>
+  <Action>&lt;p&gt;Identifying a spell as it is being cast requires no action, but you must be able to clearly see the spell as it is being cast, and this incurs the same penalties as a Perception skill check due to distance, poor conditions, and other factors. Learning a spell from a spellbook takes 1 hour per level of the spell (0-level spells take 30 minutes). Preparing a spell from a borrowed spellbook does not add any time to your spell preparation. Making a Spellcraft check to craft a magic item is made as part of the creation process. Attempting to ascertain the properties of a magic item takes 3 rounds per item to be identified and you must be able to thoroughly examine the object.&lt;/p&gt;</Action>
+  <TryAgain />
+  <Special>&lt;p&gt;If you are a specialist wizard, you get a +2 bonus on Spellcraft checks made to identify, learn, and prepare spells from your chosen school. Similarly, you take a &amp;ndash;5 penalty on similar checks made concerning spells from your opposition schools. &lt;/p&gt;&lt;p&gt;An elf gets a +2 racial bonus on Spellcraft checks to identify the properties of magic items.&lt;/p&gt;&lt;p&gt;If you have the Magical Aptitude feat, you gain a bonus on Spellcraft checks (see Feats).&lt;/p&gt;</Special>
+  <Restriction />
+  <Untrained />
+</Skill>

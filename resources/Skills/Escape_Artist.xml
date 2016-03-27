@@ -1,0 +1,13 @@
+<Skill>
+  <Name>Escape Artist</Name>
+  <AbilityType>Dexterity</AbilityType>
+  <TrainedOnly>true</TrainedOnly>
+  <ArmorCheckPenalty>true</ArmorCheckPenalty>
+  <Description>Your training allows you to slip out of bonds and escape from grapples.</Description>
+  <Check>&lt;h1&gt;Check&lt;/h1&gt;&lt;p&gt;The table below gives the DCs needed to escape various forms of restraints.&lt;/p&gt;&lt;h1&gt;Ropes&lt;/h1&gt;&lt;p&gt;The DC of your Escape Artist check is equal to the binder's Combat Maneuver Bonus +20.&lt;/p&gt;&lt;h1&gt;Manacles and Masterwork Manacles&lt;/h1&gt;&lt;p&gt;The DC for manacles is set by their construction (see the table below).&lt;/p&gt;&lt;h1&gt;Tight Space&lt;/h1&gt;&lt;p&gt;The DC noted is for getting through a space through which your head fits but your shoulders don't. If the space is long, you may need to make multiple checks. You can't squeeze through a space that your head does not fit through.&lt;/p&gt;&lt;h1&gt;Grappler&lt;/h1&gt;&lt;p&gt;You can make an Escape Artist check in place of a combat maneuver check to escape a grapple (see Combat) or a pin.&lt;/p&gt;</Check>
+  <Action>&lt;p&gt;Making an Escape Artist check to escape from rope bindings, manacles, or other restraints (except a grappler) requires 1 minute of work. Escaping from a net or an &lt;i&gt;animate rope&lt;/i&gt;, &lt;i&gt;command plants&lt;/i&gt;, &lt;i&gt;control plants&lt;/i&gt;, or &lt;i&gt;entangle&lt;/i&gt; spell is a full-round action. Escaping from a grapple or pin is a standard action. Squeezing through a tight space takes at least 1 minute, maybe longer, depending on how long the space is.&lt;/p&gt;</Action>
+  <TryAgain>&lt;p&gt;Varies. You can make another check after a failed check if you're squeezing your way through a tight space, making multiple checks. If the situation permits, you can make additional checks, or even take 20, as long as you're not being actively opposed. If the DC to escape from rope or bindings is higher than 20 + your Escape Artist skill bonus, you cannot escape from the bonds using Escape Artist.&lt;/p&gt;</TryAgain>
+  <Special>&lt;p&gt;If you have the Stealthy feat, you gain a bonus on Escape Artist checks (see Feats).&lt;/p&gt;</Special>
+  <Restriction />
+  <Untrained />
+</Skill>
