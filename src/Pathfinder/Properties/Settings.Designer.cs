@@ -25,7 +25,7 @@ namespace Pathfinder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\ethomas\\Documents\\GitHub\\CharacterManager\\resources\\Traits")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Traits")]
         public string TraitLibrary {
             get {
                 return ((string)(this["TraitLibrary"]));
@@ -37,7 +37,7 @@ namespace Pathfinder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\ethomas\\Documents\\GitHub\\CharacterManager\\resources\\Skills")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Skills")]
         public string SkillLibrary {
             get {
                 return ((string)(this["SkillLibrary"]));
@@ -49,7 +49,7 @@ namespace Pathfinder.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\ethomas\\Documents\\GitHub\\CharacterManager\\resources\\Races")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Races")]
         public string RaceLibrary {
             get {
                 return ((string)(this["RaceLibrary"]));

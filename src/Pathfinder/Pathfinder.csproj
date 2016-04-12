@@ -68,6 +68,8 @@
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Skill.cs" />
+    <Compile Include="Serializers\PSRD\JsonSerializer.cs" />
+    <Compile Include="Serializers\PSRD\TraitJsonSerializer.cs" />
     <Compile Include="Serializers\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />
     <Compile Include="Serializers\PSRD\SkillJsonSerializer.cs" />

@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="TraitLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Traits</Value>
+      <Value Profile="(Default)">..\..\resources\Traits</Value>
     </Setting>
     <Setting Name="SkillLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Skills</Value>
+      <Value Profile="(Default)">..\..\resources\Skills</Value>
     </Setting>
     <Setting Name="RaceLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\ethomas\Documents\GitHub\CharacterManager\resources\Races</Value>
+      <Value Profile="(Default)">..\..\resources\Races</Value>
     </Setting>
   </Settings>
 </SettingsFile>

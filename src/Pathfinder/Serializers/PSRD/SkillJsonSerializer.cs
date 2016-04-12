@@ -9,9 +9,9 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers.PSRD
 {
-	public class SkillJsonSerializer : ISerializer<ISkill, string>
+	public class SkillJsonSerializer : JsonSerializer<ISkill, string>
 	{
-		public ISkill Deserialize(string pValue)
+		public override ISkill Deserialize(string pValue)
 		{
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
 
@@ -29,17 +29,6 @@ namespace Pathfinder.Serializers.PSRD
 				GetStringFor(jObject, "name", "Special"),
 				GetStringFor(jObject, "name", "Restriction"),
 				GetStringFor(jObject, "name", "Untrained"));
-		}
-
-		private static string GetString(JObject jObject, string pField)
-		{
-			return (string) jObject[pField];
-		}
-
-		private static string GetStringFor(JObject jObject, string pField, string pValue)
-		{
-			var section = jObject["sections"].Children().Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
-			return section.Select(x => (string) x["body"]).FirstOrDefault();
 		}
 
 		private static string GetCheckString(JObject jObject, string pField, string pValue)
@@ -71,12 +60,6 @@ namespace Pathfinder.Serializers.PSRD
 			return string.Concat(mainBody);
 		}
 
-		private static bool GetBoolean(JObject jObject, string pField)
-		{
-			bool value;
-			return bool.TryParse((string) jObject[pField], out value) && value;
-		}
-
 		private AbilityType GetAbilityType(JObject jObject)
 		{
 			var abilityType = GetString(jObject, "attribute");
@@ -104,7 +87,7 @@ namespace Pathfinder.Serializers.PSRD
 			throw new JsonException($"Invalid value for AbilityType; was {abilityType}");
 		}
 
-		public string Serialize(ISkill pObject)
+		public override string Serialize(ISkill pObject)
 		{
 			throw new NotImplementedException();
 		}
