@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder\Pathfinder.csproj", "{675BD0B4-F7DE-4CCC-8467-821A2F9077CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{7BA5B9AA-7794-4A30-9A03-E932AEC61793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsrdParser", "PsrdParser\PsrdParser.csproj", "{D853F9C4-00C9-4001-8A4E-9D76E05ED444}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7BA5B9AA-7794-4A30-9A03-E932AEC61793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BA5B9AA-7794-4A30-9A03-E932AEC61793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BA5B9AA-7794-4A30-9A03-E932AEC61793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D853F9C4-00C9-4001-8A4E-9D76E05ED444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D853F9C4-00C9-4001-8A4E-9D76E05ED444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D853F9C4-00C9-4001-8A4E-9D76E05ED444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D853F9C4-00C9-4001-8A4E-9D76E05ED444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

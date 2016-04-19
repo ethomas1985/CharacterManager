@@ -7,7 +7,7 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
-namespace Pathfinder.Serializers.PSRD
+namespace PsrdParser.Serializers.PSRD
 {
 	public class SkillJsonSerializer : JsonSerializer<ISkill, string>
 	{

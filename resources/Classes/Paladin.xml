@@ -1,0 +1,478 @@
+<Class>
+  <Name>Paladin</Name>
+  <Alignments>
+    <Alignment>LawfulGood</Alignment>
+  </Alignments>
+  <HitDie>d10</HitDie>
+  <Skills>
+    <Skill>Craft</Skill>
+    <Skill>Diplomacy</Skill>
+    <Skill>Handle Animal</Skill>
+    <Skill>Heal</Skill>
+    <Skill>Knowledge (nobility)</Skill>
+    <Skill>Knowledge (religion)</Skill>
+    <Skill>Profession</Skill>
+    <Skill>Ride</Skill>
+    <Skill>Sense Motive</Skill>
+    <Skill>Spellcraft</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Aura Of Good</Feature>
+        <Feature>Detect Evil</Feature>
+        <Feature>Smite Evil 1/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Divine Grace</Feature>
+        <Feature>Lay On Hands</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Aura Of Courage</Feature>
+        <Feature>Divine Health</Feature>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Channel Positive Energy</Feature>
+        <Feature>Smite Evil 2/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Divine Bond</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>1</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>1</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Smite Evil 3/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>1</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Aura Of Resolve</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>1</Zero>
+        <One>1</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>2</Zero>
+        <One>1</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Smite Evil 4/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>2</Zero>
+        <One>1</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>11</One>
+        <Two>6</Two>
+        <Three>1</Three>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Aura Of Justice</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>2</Zero>
+        <One>1</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>2</Zero>
+        <One>2</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>13</One>
+        <Two>8</Two>
+        <Three>3</Three>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Smite Evil 5/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>2</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>14</One>
+        <Two>9</Two>
+        <Three>4</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Aura Of Faith</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>2</One>
+        <Two>1</Two>
+        <Three>1</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>15</One>
+        <Two>10</Two>
+        <Three>5</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>2</One>
+        <Two>2</Two>
+        <Three>1</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>16</One>
+        <Two>11</Two>
+        <Three>6</Three>
+        <Four>1</Four>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Smite Evil 6/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>3</One>
+        <Two>2</Two>
+        <Three>1</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>17</One>
+        <Two>12</Two>
+        <Three>7</Three>
+        <Four>2</Four>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Aura Of Righteousness</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>2</Two>
+        <Three>1</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>18</One>
+        <Two>13</Two>
+        <Three>8</Three>
+        <Four>3</Four>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Mercy</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>2</Two>
+        <Three>2</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>19</One>
+        <Two>14</Two>
+        <Three>9</Three>
+        <Four>4</Four>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Smite Evil 7/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>3</Two>
+        <Three>2</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>20</One>
+        <Two>15</Two>
+        <Three>10</Three>
+        <Four>5</Four>
+      </BaseAttackBonus>
+      <Fortitude>12</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>12</Will>
+      <Specials>
+        <Feature>Holy Champion</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>3</Two>
+        <Three>3</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>Aura of Good</Feature>
+    <Feature>Detect Evil</Feature>
+    <Feature>Smite Evil</Feature>
+    <Feature>Divine Grace</Feature>
+    <Feature>Lay On Hands</Feature>
+    <Feature>Aura of Courage</Feature>
+    <Feature>Divine Health</Feature>
+    <Feature>Mercy</Feature>
+    <Feature>Channel Positive Energy</Feature>
+    <Feature>Spells</Feature>
+    <Feature>Divine Bond</Feature>
+    <Feature>Aura of Resolve</Feature>
+    <Feature>Aura of Justice</Feature>
+    <Feature>Aura of Faith</Feature>
+    <Feature>Aura of Righteousness</Feature>
+    <Feature>Holy Champion</Feature>
+    <Feature>Code of Conduct</Feature>
+    <Feature>Associates</Feature>
+  </Features>
+</Class>

@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Enum;
+using Pathfinder.Library;
+using Pathfinder.Properties;
 using Pathfinder.Serializers;
-using Pathfinder.Serializers.PSRD;
+using PsrdParser.Serializers.PSRD;
 
-namespace Test.Serializers.PSRD
+namespace PsrdParser
 {
 	[TestFixture]
 	public class Convert
@@ -102,6 +103,40 @@ namespace Test.Serializers.PSRD
 				&& !pFilename.Contains("weapon_familiarity")
 				&& !pFilename.Contains("languages")
 				&& !isSize;
+		}
+
+		[Test]
+		[Ignore]
+		public void ConvertClassDirectory()
+		{
+			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
+			var destinationDir = Path.Combine(MyData, "Classes");
+
+			var sourceFiles =
+				Directory
+					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
+					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.OrderBy(x => x);
+
+			WriteDuplicatesToConsole(sourceFiles);
+
+			var skillLibrary = 
+				new SkillLibrary(
+					new SkillXmlSerializer(), 
+					Settings.Default.SkillLibrary);
+			foreach (var file in sourceFiles)
+			{
+				var contents = File.ReadAllText(file);
+				var jsonSerializer = new ClassJsonSerializer(skillLibrary);
+				var result = jsonSerializer.Deserialize(contents);
+
+				var xmlSerializer = new ClassXmlSerializer();
+				var xmlSkill = xmlSerializer.Serialize(result);
+
+				var newPath = Path.Combine(destinationDir, result.Name.Replace(" ", "_"));
+				newPath = Path.ChangeExtension(newPath, "xml");
+				File.WriteAllText(newPath, xmlSkill);
+			}
 		}
 	}
 }

@@ -1,8 +1,7 @@
 ﻿namespace Pathfinder.Interface
 {
-	public interface IFeature
+	public interface ISpell
 	{
 		string Name { get; }
-		string Body { get; }
 	}
 }

@@ -5,22 +5,12 @@ namespace Pathfinder.Interface
 {
 	public interface IClass
 	{
-		int BaseAttackBonus { get; }
-		int Fortitude { get; }
-		int Reflex { get; }
-		int Will { get; }
-		int SkillRanks { get; }
-		int FCSSkills { get; }
-		int FCHp { get; }
-
-		int Level { get; }
-
-		IHitDice HitDice { get; }
+		string Name { get; }
 
 		ISet<Alignment> Alignments { get; }
-			 
+		IDie HitDie { get; }
 		ISet<ISkill> Skills { get; }
-
+		IEnumerable<IClassLevel> ClassLevels { get; }
 		IEnumerable<IFeature> Features { get; }
 	}
 }

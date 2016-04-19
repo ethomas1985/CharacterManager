@@ -31,22 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +47,8 @@
     <Compile Include="Enum\DefensiveType.cs" />
     <Compile Include="Enum\Deity.cs" />
     <Compile Include="Enum\Gender.cs" />
+    <Compile Include="Interface\IClass.cs" />
+    <Compile Include="Interface\IClassLevel.cs" />
     <Compile Include="Interface\IFeature.cs" />
     <Compile Include="Interface\ILanguage.cs" />
     <Compile Include="Enum\OffensiveType.cs" />
@@ -65,14 +58,20 @@
     <Compile Include="Interface\ILibrary.cs" />
     <Compile Include="Interface\IRace.cs" />
     <Compile Include="Interface\ISkillScore.cs" />
+    <Compile Include="Interface\ISpell.cs" />
+    <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
+    <Compile Include="Model\Class.cs" />
+    <Compile Include="Model\ClassLevel.cs" />
+    <Compile Include="Model\Die.cs" />
+    <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Skill.cs" />
-    <Compile Include="Serializers\PSRD\JsonSerializer.cs" />
-    <Compile Include="Serializers\PSRD\TraitJsonSerializer.cs" />
+    <Compile Include="Model\Spell.cs" />
+    <Compile Include="Serializers\ClassXmlSerializer.cs" />
+    <Compile Include="Utilities\intExtensions.cs" />
     <Compile Include="Serializers\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />
-    <Compile Include="Serializers\PSRD\SkillJsonSerializer.cs" />
     <Compile Include="Serializers\SkillXmlSerializer.cs" />
     <Compile Include="Serializers\TraitXmlSerializer.cs" />
     <Compile Include="Utilities\Assert.cs" />
@@ -82,14 +81,13 @@
     <Compile Include="Interface\IAbilityScore.cs" />
     <Compile Include="Interface\IArmor.cs" />
     <Compile Include="Interface\ICharacter.cs" />
-    <Compile Include="Interface\IClass.cs" />
+    <Compile Include="Interface\ICharacterClass.cs" />
     <Compile Include="Interface\IDefenseScore.cs" />
     <Compile Include="Interface\IDie.cs" />
     <Compile Include="Interface\IEffect.cs" />
     <Compile Include="Interface\IEvent.cs" />
     <Compile Include="Interface\IExperience.cs" />
     <Compile Include="Interface\IFeat.cs" />
-    <Compile Include="Interface\IHitDice.cs" />
     <Compile Include="Interface\IInventory.cs" />
     <Compile Include="Interface\IItem.cs" />
     <Compile Include="Interface\IOffensiveScore.cs" />

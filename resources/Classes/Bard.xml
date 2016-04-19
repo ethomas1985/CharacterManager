@@ -1,0 +1,524 @@
+<Class>
+  <Name>Bard</Name>
+  <Alignments>
+    <Alignment>LawfulGood</Alignment>
+    <Alignment>NeutralGood</Alignment>
+    <Alignment>ChaoticGood</Alignment>
+    <Alignment>LawfulNeutral</Alignment>
+    <Alignment>Neutral</Alignment>
+    <Alignment>ChaoticNeutral</Alignment>
+    <Alignment>LawfulEvil</Alignment>
+    <Alignment>NeutralEvil</Alignment>
+    <Alignment>ChaoticEvil</Alignment>
+  </Alignments>
+  <HitDie>d8</HitDie>
+  <Skills>
+    <Skill>Acrobatics</Skill>
+    <Skill>Appraise</Skill>
+    <Skill>Bluff</Skill>
+    <Skill>Climb</Skill>
+    <Skill>Craft</Skill>
+    <Skill>Diplomacy</Skill>
+    <Skill>Disguise</Skill>
+    <Skill>Escape Artist</Skill>
+    <Skill>Intimidate</Skill>
+    <Skill>Knowledge (all)</Skill>
+    <Skill>Linguistics</Skill>
+    <Skill>Perception</Skill>
+    <Skill>Perform</Skill>
+    <Skill>Profession</Skill>
+    <Skill>Sense Motive</Skill>
+    <Skill>Sleight of Hand</Skill>
+    <Skill>Spellcraft</Skill>
+    <Skill>Stealth</Skill>
+    <Skill>Use Magic Device</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>0</One>
+      </BaseAttackBonus>
+      <Fortitude>0</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Bardic Knowledge</Feature>
+        <Feature>Bardic Performance</Feature>
+        <Feature>Cantrips</Feature>
+        <Feature>Countersong</Feature>
+        <Feature>Distraction</Feature>
+        <Feature>Fascinate</Feature>
+        <Feature>Inspire Courage +1</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>1</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>0</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Versatile Performance</Feature>
+        <Feature>Well-Versed</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>2</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Inspire Competence +2</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>1</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Inspire Courage +2</Feature>
+        <Feature>Lore Master 1/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>2</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Suggestion</Feature>
+        <Feature>Versatile Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Inspire Competence +3</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>1</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Dirge Of Doom</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>2</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Inspire Greatness</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>4</One>
+        <Two>3</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>7</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Jack-Of-All-Trades</Feature>
+        <Feature>Versatile Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>4</One>
+        <Two>3</Two>
+        <Three>1</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>7</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Inspire Competence +4</Feature>
+        <Feature>Inspire Courage +3</Feature>
+        <Feature>Lore Master 2/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>2</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>8</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Soothing Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>4</Two>
+        <Three>3</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>8</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>4</Two>
+        <Three>3</Three>
+        <Four>1</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>9</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Frightening Tune</Feature>
+        <Feature>Versatile Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>2</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>11</One>
+        <Two>6</Two>
+        <Three>1</Three>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>9</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Inspire Competence +5</Feature>
+        <Feature>Inspire Heroics</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>4</Three>
+        <Four>3</Four>
+        <Five>0</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>10</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>4</Three>
+        <Four>3</Four>
+        <Five>1</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>10</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Inspire Courage +4</Feature>
+        <Feature>Lore Master 3/Day</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>2</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>13</One>
+        <Two>8</Two>
+        <Three>3</Three>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>11</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Mass Suggestion</Feature>
+        <Feature>Versatile Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>5</Three>
+        <Four>4</Four>
+        <Five>3</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>14</One>
+        <Two>9</Two>
+        <Three>4</Three>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>11</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Inspire Competence +6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>5</Three>
+        <Four>5</Four>
+        <Five>4</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>15</One>
+        <Two>10</Two>
+        <Three>5</Three>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>12</Reflex>
+      <Will>12</Will>
+      <Specials>
+        <Feature>Deadly Performance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>5</Zero>
+        <One>5</One>
+        <Two>5</Two>
+        <Three>5</Three>
+        <Four>5</Four>
+        <Five>5</Five>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>Spells</Feature>
+    <Feature>Bardic Knowledge</Feature>
+    <Feature>Bardic Performance</Feature>
+    <Feature>Cantrips</Feature>
+    <Feature>Versatile Performance</Feature>
+    <Feature>Well-Versed</Feature>
+    <Feature>Lore Master</Feature>
+    <Feature>Jack-of-All-Trades</Feature>
+  </Features>
+</Class>

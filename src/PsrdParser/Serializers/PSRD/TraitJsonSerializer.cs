@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Enum;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 
-namespace Pathfinder.Serializers.PSRD
+namespace PsrdParser.Serializers.PSRD
 {
 	public class TraitJsonSerializer : JsonSerializer<ITrait, string>
 	{

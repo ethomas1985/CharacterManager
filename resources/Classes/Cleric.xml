@@ -1,0 +1,586 @@
+<Class>
+  <Name>Cleric</Name>
+  <Alignments>
+    <Alignment>LawfulGood</Alignment>
+    <Alignment>NeutralGood</Alignment>
+    <Alignment>ChaoticGood</Alignment>
+    <Alignment>LawfulNeutral</Alignment>
+    <Alignment>Neutral</Alignment>
+    <Alignment>ChaoticNeutral</Alignment>
+    <Alignment>LawfulEvil</Alignment>
+    <Alignment>NeutralEvil</Alignment>
+    <Alignment>ChaoticEvil</Alignment>
+  </Alignments>
+  <HitDie>d8</HitDie>
+  <Skills>
+    <Skill>Appraise</Skill>
+    <Skill>Craft</Skill>
+    <Skill>Diplomacy</Skill>
+    <Skill>Heal</Skill>
+    <Skill>Knowledge (arcana)</Skill>
+    <Skill>Knowledge (history)</Skill>
+    <Skill>Knowledge (nobility)</Skill>
+    <Skill>Knowledge (planes)</Skill>
+    <Skill>Knowledge (religion)</Skill>
+    <Skill>Linguistics</Skill>
+    <Skill>Profession</Skill>
+    <Skill>Sense Motive</Skill>
+    <Skill>Spellcraft</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>0</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Aura</Feature>
+        <Feature>Channel Energy 1D6</Feature>
+        <Feature>Domains</Feature>
+        <Feature>Orisons</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Channel Energy 2D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Channel Energy 3D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Channel Energy 4D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Channel Energy 5D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Channel Energy 6D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Channel Energy 7D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>11</One>
+        <Two>6</Two>
+        <Three>1</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Channel Energy 8D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Channel Energy 9D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>13</One>
+        <Two>8</Two>
+        <Three>3</Three>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>14</One>
+        <Two>9</Two>
+        <Three>4</Three>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Channel Energy 10D6</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>15</One>
+        <Two>10</Two>
+        <Three>5</Three>
+      </BaseAttackBonus>
+      <Fortitude>12</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>12</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>Aura</Feature>
+    <Feature>Spells</Feature>
+    <Feature>Channel Energy</Feature>
+    <Feature>Domains</Feature>
+    <Feature>Subdomains: Advanced Player's Guide</Feature>
+    <Feature>Orisons</Feature>
+    <Feature>Spontaneous Casting</Feature>
+    <Feature>Chaotic, Evil, Good, and Lawful Spells</Feature>
+    <Feature>Bonus Languages</Feature>
+  </Features>
+</Class>

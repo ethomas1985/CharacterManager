@@ -1,0 +1,569 @@
+<Class>
+  <Name>Wizard</Name>
+  <Alignments>
+    <Alignment>LawfulGood</Alignment>
+    <Alignment>NeutralGood</Alignment>
+    <Alignment>ChaoticGood</Alignment>
+    <Alignment>LawfulNeutral</Alignment>
+    <Alignment>Neutral</Alignment>
+    <Alignment>ChaoticNeutral</Alignment>
+    <Alignment>LawfulEvil</Alignment>
+    <Alignment>NeutralEvil</Alignment>
+    <Alignment>ChaoticEvil</Alignment>
+  </Alignments>
+  <HitDie>d6</HitDie>
+  <Skills>
+    <Skill>Appraise</Skill>
+    <Skill>Craft</Skill>
+    <Skill>Fly</Skill>
+    <Skill>Knowledge (all)</Skill>
+    <Skill>Linguistics</Skill>
+    <Skill>Profession</Skill>
+    <Skill>Spellcraft</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>0</One>
+      </BaseAttackBonus>
+      <Fortitude>0</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Arcane Bond</Feature>
+        <Feature>Arcane School</Feature>
+        <Feature>Cantrips</Feature>
+        <Feature>Scribe Scroll</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>3</Zero>
+        <One>1</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>0</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>2</One>
+        <Two>0</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>2</One>
+        <Two>1</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>2</Two>
+        <Three>0</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>1</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>2</Two>
+        <Three>1</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>3</One>
+        <Two>3</Two>
+        <Three>2</Three>
+        <Four>0</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>3</Two>
+        <Three>2</Three>
+        <Four>1</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>3</Two>
+        <Three>3</Three>
+        <Four>2</Four>
+        <Five>0</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>3</Three>
+        <Four>2</Four>
+        <Five>1</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>3</Three>
+        <Four>3</Four>
+        <Five>2</Five>
+        <Six>0</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>3</Four>
+        <Five>2</Five>
+        <Six>1</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>3</Four>
+        <Five>3</Five>
+        <Six>2</Six>
+        <Seven>0</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>3</Five>
+        <Six>2</Six>
+        <Seven>1</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>3</Five>
+        <Six>3</Six>
+        <Seven>2</Seven>
+        <Eight>0</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>3</Six>
+        <Seven>2</Seven>
+        <Eight>1</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>3</Six>
+        <Seven>3</Seven>
+        <Eight>2</Eight>
+        <Nine>0</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>4</Six>
+        <Seven>3</Seven>
+        <Eight>2</Eight>
+        <Nine>1</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>4</Six>
+        <Seven>3</Seven>
+        <Eight>3</Eight>
+        <Nine>2</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature></Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>4</Six>
+        <Seven>4</Seven>
+        <Eight>3</Eight>
+        <Nine>3</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>12</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>4</Zero>
+        <One>4</One>
+        <Two>4</Two>
+        <Three>4</Three>
+        <Four>4</Four>
+        <Five>4</Five>
+        <Six>4</Six>
+        <Seven>4</Seven>
+        <Eight>4</Eight>
+        <Nine>4</Nine>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>Spells</Feature>
+    <Feature>Bonus Languages</Feature>
+    <Feature>Arcane Bond</Feature>
+    <Feature>Arcane School</Feature>
+    <Feature>Cantrips</Feature>
+    <Feature>Scribe Scroll</Feature>
+    <Feature>Bonus Feats</Feature>
+    <Feature>Spellbooks</Feature>
+  </Features>
+</Class>

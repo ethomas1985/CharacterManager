@@ -2,7 +2,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
 
-namespace Pathfinder.Serializers.PSRD
+namespace PsrdParser.Serializers.PSRD
 {
 	public abstract class JsonSerializer<TModel, TSerialized> : ISerializer<TModel, TSerialized>
 	{

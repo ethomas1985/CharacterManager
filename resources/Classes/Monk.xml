@@ -1,0 +1,490 @@
+<Class>
+  <Name>Monk</Name>
+  <Alignments>
+    <Alignment>LawfulGood</Alignment>
+    <Alignment>LawfulNeutral</Alignment>
+    <Alignment>LawfulEvil</Alignment>
+  </Alignments>
+  <HitDie>d8</HitDie>
+  <Skills>
+    <Skill>Acrobatics</Skill>
+    <Skill>Climb</Skill>
+    <Skill>Craft</Skill>
+    <Skill>Escape Artist</Skill>
+    <Skill>Intimidate</Skill>
+    <Skill>Knowledge (history)</Skill>
+    <Skill>Knowledge (religion)</Skill>
+    <Skill>Perception</Skill>
+    <Skill>Perform</Skill>
+    <Skill>Profession</Skill>
+    <Skill>Ride</Skill>
+    <Skill>Sense Motive</Skill>
+    <Skill>Stealth</Skill>
+    <Skill>Swim</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>0</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Flurry Of Blows</Feature>
+        <Feature>Stunning Fist</Feature>
+        <Feature>Unarmed Strike</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Evasion</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Fast Movement</Feature>
+        <Feature>Maneuver Training</Feature>
+        <Feature>Still Mind</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>0</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Ki Pool (Magic)</Feature>
+        <Feature>Slow Fall 20 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>High Jump</Feature>
+        <Feature>Purity Of Body</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Slow Fall 30 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Ki Pool (Cold Iron/Silver)</Feature>
+        <Feature>Wholeness Of Body</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>1</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Slow Fall 40 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>2</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Improved Evasion</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>2</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>7</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Ki Pool (Lawful)</Feature>
+        <Feature>Slow Fall 50 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>2</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>7</Reflex>
+      <Will>7</Will>
+      <Specials>
+        <Feature>Diamond Body</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>2</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>8</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Abundant Step</Feature>
+        <Feature>Slow Fall 60 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>3</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>8</Reflex>
+      <Will>8</Will>
+      <Specials>
+        <Feature>Diamond Soul</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>3</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>9</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Slow Fall 70 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>3</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>11</One>
+        <Two>6</Two>
+        <Three>1</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>9</Reflex>
+      <Will>9</Will>
+      <Specials>
+        <Feature>Quivering Palm</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>3</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>10</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Ki Pool (Adamantine)</Feature>
+        <Feature>Slow Fall 80 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>4</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>10</Reflex>
+      <Will>10</Will>
+      <Specials>
+        <Feature>Timeless Body</Feature>
+        <Feature>Tongue Of The Sun And Moon</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>4</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>13</One>
+        <Two>8</Two>
+        <Three>3</Three>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>11</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Bonus Feat</Feature>
+        <Feature>Slow Fall 90 Ft.</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>4</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>14</One>
+        <Two>9</Two>
+        <Three>4</Three>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>11</Reflex>
+      <Will>11</Will>
+      <Specials>
+        <Feature>Empty Body</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>4</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>15</One>
+        <Two>10</Two>
+        <Three>5</Three>
+      </BaseAttackBonus>
+      <Fortitude>12</Fortitude>
+      <Reflex>12</Reflex>
+      <Will>12</Will>
+      <Specials>
+        <Feature>Perfect Self</Feature>
+        <Feature>Slow Fall Any Distance</Feature>
+      </Specials>
+      <SpellsPerDay>
+        <Zero>0</Zero>
+        <One>0</One>
+        <Two>5</Two>
+        <Three>0</Three>
+      </SpellsPerDay>
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>AC Bonus</Feature>
+    <Feature>Flurry of Blows</Feature>
+    <Feature>Unarmed Strike</Feature>
+    <Feature>Bonus Feat</Feature>
+    <Feature>Stunning Fist</Feature>
+    <Feature>Evasion</Feature>
+    <Feature>Fast Movement</Feature>
+    <Feature>Maneuver Training</Feature>
+    <Feature>Still Mind</Feature>
+    <Feature>Ki Pool</Feature>
+    <Feature>Slow Fall</Feature>
+    <Feature>High Jump</Feature>
+    <Feature>Purity of Body</Feature>
+    <Feature>Wholeness of Body</Feature>
+    <Feature>Improved Evasion</Feature>
+    <Feature>Diamond Body</Feature>
+    <Feature>Abundant Step</Feature>
+    <Feature>Diamond Soul</Feature>
+    <Feature>Quivering Palm</Feature>
+    <Feature>Timeless Body</Feature>
+    <Feature>Tongue of the Sun and Moon</Feature>
+    <Feature>Empty Body</Feature>
+    <Feature>Perfect Self</Feature>
+  </Features>
+</Class>

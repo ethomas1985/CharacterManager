@@ -8,7 +8,7 @@ namespace Pathfinder.Interface
 		int Age { get; }
 		Alignment Alignment { get; }
 
-		IEnumerable<IClass> Classes { get; }
+		IEnumerable<ICharacterClass> Classes { get; }
 
 		Deity Deity { get; }
 
@@ -74,7 +74,7 @@ namespace Pathfinder.Interface
 		int ExperiencePoints { get; }
 		IExperience Experience { get; }
 
-		IEnumerable<IHitDice> HitDice { get; }
+		IEnumerable<IDie> HitDice { get; }
 
 		IEnumerable<ITrait> Traits { get; }
 		IEnumerable<IFeat> Feats { get; }
@@ -96,6 +96,7 @@ namespace Pathfinder.Interface
 		ICharacter SetAlignment(Alignment pAlignment);
 		ICharacter SetHomeland(string pHomeland);
 		ICharacter AddClass(IClass pClass);
+		ICharacter IncrementClass(IClass pClass);
 		ICharacter SetDeity(Deity pDeity);
 		ICharacter SetGender(Gender pGender);
 		ICharacter SetEyes(string pEyes);

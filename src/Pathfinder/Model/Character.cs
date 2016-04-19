@@ -24,8 +24,8 @@ namespace Pathfinder.Model
 		public Alignment Alignment { get; private set; }
 
 		// ReSharper disable once InconsistentNaming 
-		internal ICollection<IClass> classes { get; set; } = new List<IClass>();
-		public IEnumerable<IClass> Classes
+		internal ICollection<ICharacterClass> classes { get; set; } = new List<ICharacterClass>();
+		public IEnumerable<ICharacterClass> Classes
 		{
 			get { return classes.ToImmutableList(); }
 			internal set { classes = value.ToList(); }
@@ -460,7 +460,7 @@ namespace Pathfinder.Model
 			get { return Experience.Sum(x => x.ExperiencePoints); }
 		}
 
-		public IEnumerable<IHitDice> HitDice { get { return Classes.Select(x => x.HitDice); } }
+		public IEnumerable<IDie> HitDice { get { return Classes.Select(x => x.Class.HitDie); } }
 
 		public IEnumerable<IFeat> Feats { get; }
 
@@ -522,7 +522,7 @@ namespace Pathfinder.Model
 		}
 		private int GetClassModifier(ISkill pSkill)
 		{
-			return Classes.Any(x => x.Skills.Contains(pSkill)) ? 3 : 0;
+			return Classes.Any(x => x.Class.Skills.Contains(pSkill)) ? 3 : 0;
 		}
 		private int GetMiscellaneousSkillModifier(ISkill pSkill)
 		{
@@ -574,6 +574,11 @@ namespace Pathfinder.Model
 		//internal Character Set() { throw new NotImplementedException(); }
 
 		public ICharacter AddClass(IClass pClass)
+		{
+			throw new NotImplementedException();
+		}
+
+		public ICharacter IncrementClass(IClass pClass)
 		{
 			throw new NotImplementedException();
 		}

@@ -1,0 +1,381 @@
+<Class>
+  <Name>Barbarian</Name>
+  <Alignments>
+    <Alignment>NeutralGood</Alignment>
+    <Alignment>ChaoticGood</Alignment>
+    <Alignment>Neutral</Alignment>
+    <Alignment>ChaoticNeutral</Alignment>
+    <Alignment>NeutralEvil</Alignment>
+    <Alignment>ChaoticEvil</Alignment>
+  </Alignments>
+  <HitDie>d12</HitDie>
+  <Skills>
+    <Skill>Acrobatics</Skill>
+    <Skill>Climb</Skill>
+    <Skill>Craft</Skill>
+    <Skill>Handle Animal</Skill>
+    <Skill>Intimidate</Skill>
+    <Skill>Knowledge (nature)</Skill>
+    <Skill>Perception</Skill>
+    <Skill>Ride</Skill>
+    <Skill>Survival</Skill>
+    <Skill>Swim</Skill>
+  </Skills>
+  <ClassLevels>
+    <ClassLevel>
+      <Level>1</Level>
+      <BaseAttackBonus>
+        <One>1</One>
+      </BaseAttackBonus>
+      <Fortitude>2</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>0</Will>
+      <Specials>
+        <Feature>Fast Movement</Feature>
+        <Feature>Rage</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>2</Level>
+      <BaseAttackBonus>
+        <One>2</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>0</Reflex>
+      <Will>0</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+        <Feature>Uncanny Dodge</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>3</Level>
+      <BaseAttackBonus>
+        <One>3</One>
+      </BaseAttackBonus>
+      <Fortitude>3</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>1</Will>
+      <Specials>
+        <Feature>Trap Sense +1</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>4</Level>
+      <BaseAttackBonus>
+        <One>4</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>1</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>5</Level>
+      <BaseAttackBonus>
+        <One>5</One>
+      </BaseAttackBonus>
+      <Fortitude>4</Fortitude>
+      <Reflex>1</Reflex>
+      <Will>1</Will>
+      <Specials>
+        <Feature>Improved Uncanny Dodge</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>6</Level>
+      <BaseAttackBonus>
+        <One>6</One>
+        <Two>1</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+        <Feature>Trap Sense +2</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>7</Level>
+      <BaseAttackBonus>
+        <One>7</One>
+        <Two>2</Two>
+      </BaseAttackBonus>
+      <Fortitude>5</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Damage Reduction 1/&amp;Mdash;</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>8</Level>
+      <BaseAttackBonus>
+        <One>8</One>
+        <Two>3</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>2</Reflex>
+      <Will>2</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>9</Level>
+      <BaseAttackBonus>
+        <One>9</One>
+        <Two>4</Two>
+      </BaseAttackBonus>
+      <Fortitude>6</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Trap Sense +3</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>10</Level>
+      <BaseAttackBonus>
+        <One>10</One>
+        <Two>5</Two>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Damage Reduction 2/&amp;Mdash;</Feature>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>11</Level>
+      <BaseAttackBonus>
+        <One>11</One>
+        <Two>6</Two>
+        <Three>1</Three>
+      </BaseAttackBonus>
+      <Fortitude>7</Fortitude>
+      <Reflex>3</Reflex>
+      <Will>3</Will>
+      <Specials>
+        <Feature>Greater Rage</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>12</Level>
+      <BaseAttackBonus>
+        <One>12</One>
+        <Two>7</Two>
+        <Three>2</Three>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+        <Feature>Trap Sense +4</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>13</Level>
+      <BaseAttackBonus>
+        <One>13</One>
+        <Two>8</Two>
+        <Three>3</Three>
+      </BaseAttackBonus>
+      <Fortitude>8</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Damage Reduction 3/&amp;Mdash;</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>14</Level>
+      <BaseAttackBonus>
+        <One>14</One>
+        <Two>9</Two>
+        <Three>4</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>4</Reflex>
+      <Will>4</Will>
+      <Specials>
+        <Feature>Indomitable Will</Feature>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>15</Level>
+      <BaseAttackBonus>
+        <One>15</One>
+        <Two>10</Two>
+        <Three>5</Three>
+      </BaseAttackBonus>
+      <Fortitude>9</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Trap Sense +5</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>16</Level>
+      <BaseAttackBonus>
+        <One>16</One>
+        <Two>11</Two>
+        <Three>6</Three>
+        <Four>1</Four>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Damage Reduction 4/&amp;Mdash;</Feature>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>17</Level>
+      <BaseAttackBonus>
+        <One>17</One>
+        <Two>12</Two>
+        <Three>7</Three>
+        <Four>2</Four>
+      </BaseAttackBonus>
+      <Fortitude>10</Fortitude>
+      <Reflex>5</Reflex>
+      <Will>5</Will>
+      <Specials>
+        <Feature>Tireless Rage</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>18</Level>
+      <BaseAttackBonus>
+        <One>18</One>
+        <Two>13</Two>
+        <Three>8</Three>
+        <Four>3</Four>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Rage Power</Feature>
+        <Feature>Trap Sense +6</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>19</Level>
+      <BaseAttackBonus>
+        <One>19</One>
+        <Two>14</Two>
+        <Three>9</Three>
+        <Four>4</Four>
+      </BaseAttackBonus>
+      <Fortitude>11</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Damage Reduction 5/&amp;Mdash;</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+    <ClassLevel>
+      <Level>20</Level>
+      <BaseAttackBonus>
+        <One>20</One>
+        <Two>15</Two>
+        <Three>10</Three>
+        <Four>5</Four>
+      </BaseAttackBonus>
+      <Fortitude>12</Fortitude>
+      <Reflex>6</Reflex>
+      <Will>6</Will>
+      <Specials>
+        <Feature>Mighty Rage</Feature>
+        <Feature>Rage Power</Feature>
+      </Specials>
+      <SpellsPerDay />
+      <SpellsKnown />
+      <Spells />
+    </ClassLevel>
+  </ClassLevels>
+  <Features>
+    <Feature>Weapon and Armor Proficiency</Feature>
+    <Feature>Fast Movement</Feature>
+    <Feature>Rage</Feature>
+    <Feature>Rage Powers</Feature>
+    <Feature>Rage Powers: Advanced Player's Guide</Feature>
+    <Feature>Rage Powers: Ultimate Combat</Feature>
+    <Feature>Uncanny Dodge</Feature>
+    <Feature>Trap Sense</Feature>
+    <Feature>Improved Uncanny Dodge</Feature>
+    <Feature>Damage Reduction</Feature>
+    <Feature>Greater Rage</Feature>
+    <Feature>Indomitable Will</Feature>
+    <Feature>Tireless Rage</Feature>
+    <Feature>Mighty Rage</Feature>
+  </Features>
+</Class>

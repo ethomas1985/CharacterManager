@@ -1,5 +1,4 @@
 using System;
-using Pathfinder.Enum;
 
 namespace Pathfinder.Utilities
 {
