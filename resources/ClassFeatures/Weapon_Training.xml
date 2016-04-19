@@ -1,0 +1,77 @@
+<Feature>
+  <Name>Weapon Training</Name>
+  <Body>&lt;p id="weapon-training"&gt;Starting at 5th level, a fighter can select one group of weapons, as noted below. Whenever he attacks with a weapon from this group, he gains a +1 bonus on attack and damage rolls.&lt;/p&gt;&lt;p&gt;Every four levels thereafter (9th, 13th, and 17th), a fighter becomes further trained in another group of weapons. He gains a +1 bonus on attack and damage rolls when using a weapon from this group. In addition, the bonuses granted by previous weapon groups increase by +1 each. For example, when a fighter reaches 9th level, he receives a +1 bonus on attack and damage rolls with one weapon group and a +2 bonus on attack and damage rolls with the weapon group selected at 5th level. Bonuses granted from overlapping groups do not stack. Take the highest bonus granted for a weapon if it resides in two or more groups.&lt;/p&gt;&lt;p&gt;A fighter also adds this bonus to any combat maneuver checks made with weapons from this group. This bonus also applies to the fighter's Combat Maneuver Defense when defending against disarm and sunder attempts made against weapons from this group.&lt;/p&gt;&lt;p&gt;Weapon groups are defined as follows (GMs may add other weapons to these groups, or add entirely new groups):&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures>
+    <SubFeature>
+      <Name>Axes</Name>
+      <Body>&lt;p&gt;battleaxe, dwarven waraxe, greataxe, handaxe, heavy pick, light pick, orc double axe, and throwing axe. &lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Blades, Heavy</Name>
+      <Body>&lt;p&gt;bastard sword, elven curve blade, falchion, greatsword, longsword, scimitar, scythe, and two-bladed sword.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Blades, Light</Name>
+      <Body>&lt;p&gt;dagger, kama, kukri, rapier, sickle, starknife, and short sword.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Bows</Name>
+      <Body>&lt;p&gt;composite longbow, composite shortbow, longbow, and shortbow.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Close</Name>
+      <Body>&lt;p&gt;gauntlet, heavy shield, light shield, punching dagger, sap, spiked armor, spiked gauntlet, spiked shield, and unarmed strike.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Crossbows</Name>
+      <Body>&lt;p&gt;hand crossbow, heavy crossbow, light crossbow, heavy repeating crossbow, and light repeating crossbow.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Double</Name>
+      <Body>&lt;p&gt;dire flail, dwarven urgrosh, gnome hooked hammer, orc double axe, quarterstaff, and two-bladed sword.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Flails</Name>
+      <Body>&lt;p&gt;dire flail, flail, heavy flail, morningstar, nunchaku, spiked chain, and whip.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Hammers</Name>
+      <Body>&lt;p&gt;club, greatclub, heavy mace, light hammer, light mace, and warhammer.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Monk</Name>
+      <Body>&lt;p&gt;kama, nunchaku, quarterstaff, sai, shuriken, siangham, and unarmed strike.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Natural</Name>
+      <Body>&lt;p&gt;unarmed strike and all natural weapons, such as bite, claw, gore, tail, and wing.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Pole Arms</Name>
+      <Body>&lt;p&gt;glaive, guisarme, halberd, and ranseur.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Spears</Name>
+      <Body>&lt;p&gt;javelin, lance, longspear, shortspear, spear, and trident.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Thrown</Name>
+      <Body>&lt;p&gt;blowgun, bolas, club, dagger, dart, halfling sling staff, javelin, light hammer, net, shortspear, shuriken, sling, spear, starknife, throwing axe, and trident.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+  </SubFeatures>
+</Feature>

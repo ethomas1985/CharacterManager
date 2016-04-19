@@ -1,0 +1,6 @@
+<Feature>
+  <Name>A Thousand Faces</Name>
+  <Body>&lt;p id="a-thousand-faces"&gt;At 13th level, a druid gains the ability to change her appearance at will, as if using the &lt;i&gt;alter self&lt;/i&gt; spell, but only while in her normal form.&lt;/p&gt;</Body>
+  <AbilityType>Supernatural</AbilityType>
+  <SubFeatures />
+</Feature>

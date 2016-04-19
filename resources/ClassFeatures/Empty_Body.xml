@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Empty Body</Name>
+  <Body>&lt;p id="empty-body"&gt;At 19th level, a monk gains the ability to assume an ethereal state for 1 minute as though using the spell &lt;i&gt;etherealness&lt;/i&gt;. Using this ability is a move action that consumes 3 points from his ki pool. This ability only affects the monk and cannot be used to make other creatures ethereal.&lt;/p&gt;</Body>
+  <AbilityType>Supernatural</AbilityType>
+  <SubFeatures />
+</Feature>

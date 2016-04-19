@@ -1,0 +1,82 @@
+<Feature>
+  <Name>Rogue Talents</Name>
+  <Body>&lt;p id="rogue-talents"&gt;As a rogue gains experience, she learns a number of talents that aid her and confound her foes. Starting at 2nd level, a rogue gains one rogue talent. She gains an additional rogue talent for every 2 levels of rogue attained after 2nd level. A rogue cannot select an individual talent more than once.&lt;/p&gt;&lt;p&gt;Talents marked with an asterisk add effects to a rogue's sneak attack. Only one of these talents can be applied to an individual attack and the decision must be made before the attack roll is made. &lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures>
+    <SubFeature>
+      <Name>Bleeding Attack*</Name>
+      <Body>&lt;p id="rogue-talents-bleeding-attack"&gt;A rogue with this ability can cause living opponents to bleed by hitting them with a sneak attack. This attack causes the target to take 1 additional point of damage each round for each die of the rogue's sneak attack (e.g., 4d6 equals 4 points of bleed). Bleeding creatures take that amount of damage every round at the start of each of their turns. The bleeding can be stopped by a DC 15 Heal check or the application of any effect that heals hit point damage. Bleeding damage from this ability does not stack with itself. Bleeding damage bypasses any damage reduction the creature might possess.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Combat Trick</Name>
+      <Body>&lt;p id="rogue-talents-combat-trick"&gt;A rogue that selects this talent gains a bonus combat feat (see Feats).&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Fast Stealth</Name>
+      <Body>&lt;p id="rogue-talents-fast-stealth"&gt;This ability allows a rogue to move at full speed using the Stealth skill without penalty.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Finesse Rogue</Name>
+      <Body>&lt;p id="rogue-talents-finesse-rogue"&gt;A rogue that selects this talent gains Weapon Finesse as a bonus feat.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Ledge Walker</Name>
+      <Body>&lt;p id="rogue-talents-ledge-walker"&gt;This ability allows a rogue to move along narrow surfaces at full speed using the Acrobatics skill without penalty. In addition, a rogue with this talent is not flat-footed when using Acrobatics to move along narrow surfaces.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Major Magic</Name>
+      <Body>&lt;p id="rogue-talents-major-magic"&gt; &lt;i&gt;&lt;/i&gt;A rogue with this talent gains the ability to cast a 1st-level spell from the sorcerer/wizard spell list two times a day as a spell-like ability. The caster level for this ability is equal to the rogue's level. The save DC for this spell is 11 + the rogue's Intelligence modifier. The rogue must have an Intelligence of at least 11 to select this talent. A rogue must have the minor magic rogue talent before choosing this talent.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Minor Magic</Name>
+      <Body>&lt;p id="rogue-talents-minor-magic"&gt; &lt;i&gt;&lt;/i&gt;A rogue with this talent gains the ability to cast a 0-level spell from the sorcerer/wizard spell list. This spell can be cast three times a day as a spell-like ability. The caster level for this ability is equal to the rogue's level. The save DC for this spell is 10 + the rogue's Intelligence modifier. The rogue must have an Intelligence of at least 10 to select this talent.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Quick Disable</Name>
+      <Body>&lt;p id="rogue-talents-quick-disable"&gt;It takes a rogue with this ability half the normal amount of time to disable a trap using the Disable Device skill (minimum 1 round).&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Resiliency</Name>
+      <Body>&lt;p id="rogue-talents-resiliency"&gt;Once per day, a rogue with this ability can gain a number of temporary hit points equal to the rogue's level. Activating this ability is an immediate action that can only be performed when she is brought to below 0 hit points. This ability can be used to prevent her from dying. These temporary hit points last for 1 minute. If the rogue's hit points drop below 0 due to the loss of these temporary hit points, she falls unconscious and is dying as normal.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Rogue Crawl</Name>
+      <Body>&lt;p id="rogue-talents-rogue-crawl"&gt;While prone, a rogue with this ability can move at half speed. This movement provokes attacks of opportunity as normal. A rogue with this talent can take a 5-foot step while crawling.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Slow Reactions*</Name>
+      <Body>&lt;p id="rogue-talents-slow-reactions"&gt;Opponents damaged by the rogue's sneak attack can't make attacks of opportunity for 1 round.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Stand Up</Name>
+      <Body>&lt;p id="rogue-talents-stand-up"&gt;A rogue with this ability can stand up from a prone position as a free action. This still provokes attacks of opportunity for standing up while threatened by a foe.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Surprise Attack</Name>
+      <Body>&lt;p id="rogue-talents-surprise-attack"&gt;During the surprise round, opponents are always considered flat-footed to a rogue with this ability, even if they have already acted. &lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Trap Spotter</Name>
+      <Body>&lt;p id="rogue-talents-trap-spotter"&gt;Whenever a rogue with this talent comes within 10 feet of a trap, she receives an immediate Perception skill check to notice the trap. This check should be made in secret by the GM.&lt;/p&gt;</Body>
+      <AbilityType>Extraordinary</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Weapon Training</Name>
+      <Body>&lt;p id="rogue-talents-weapon-training"&gt;A rogue that selects this talent gains Weapon Focus as a bonus feat.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+  </SubFeatures>
+</Feature>

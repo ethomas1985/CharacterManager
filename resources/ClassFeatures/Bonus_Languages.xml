@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Bonus Languages</Name>
+  <Body>&lt;p id="bonus-languages-wizard"&gt;A wizard may substitute Draconic for one of the bonus languages available to the character because of his race.&lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

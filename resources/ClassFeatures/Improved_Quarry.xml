@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Improved Quarry</Name>
+  <Body>&lt;p id="improved-quarry"&gt;At 19th level, the ranger's ability to hunt his quarry improves. He can now select a quarry as a free action, and can now take 20 while using Survival to track his quarry, while moving at normal speed without penalty. His insight bonus to attack his quarry increases to +4. If his quarry is killed or dismissed, he can select a new one after 10 minutes have passed.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

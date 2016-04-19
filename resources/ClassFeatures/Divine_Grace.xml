@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Divine Grace</Name>
+  <Body>&lt;p id="divine-grace"&gt;At 2nd level, a paladin gains a bonus equal to her Charisma bonus (if any) on all saving throws.&lt;/p&gt;</Body>
+  <AbilityType>Supernatural</AbilityType>
+  <SubFeatures />
+</Feature>

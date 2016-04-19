@@ -120,9 +120,9 @@ namespace PsrdParser
 
 			WriteDuplicatesToConsole(sourceFiles);
 
-			var skillLibrary = 
+			var skillLibrary =
 				new SkillLibrary(
-					new SkillXmlSerializer(), 
+					new SkillXmlSerializer(),
 					Settings.Default.SkillLibrary);
 			foreach (var file in sourceFiles)
 			{
@@ -136,6 +136,39 @@ namespace PsrdParser
 				var newPath = Path.Combine(destinationDir, result.Name.Replace(" ", "_"));
 				newPath = Path.ChangeExtension(newPath, "xml");
 				File.WriteAllText(newPath, xmlSkill);
+			}
+		}
+
+		[Test]
+		[Ignore]
+		public void ConvertFeaturesDirectory()
+		{
+			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
+			var destinationDir = Path.Combine(MyData, "ClassFeatures");
+
+			var sourceFiles =
+				Directory
+					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
+					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.OrderBy(x => x);
+
+			WriteDuplicatesToConsole(sourceFiles);
+
+			foreach (var file in sourceFiles)
+			{
+				var contents = File.ReadAllText(file);
+				var jsonSerializer = new FeatureJsonSerializer();
+				var results = jsonSerializer.Deserialize(contents);
+
+				foreach (var result in results)
+				{
+					var xmlSerializer = new FeatureXmlSerializer();
+					var xmlSkill = xmlSerializer.Serialize(result);
+
+					var newPath = Path.Combine(destinationDir, result.Name.Replace(" ", "_").Replace(":", ""));
+					newPath = Path.ChangeExtension(newPath, "xml");
+					File.WriteAllText(newPath, xmlSkill);
+				}
 			}
 		}
 	}

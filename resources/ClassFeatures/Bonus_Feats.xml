@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Bonus Feats</Name>
+  <Body>&lt;p id="bonus-feats-wizard"&gt;At 5th, 10th, 15th, and 20th level, a wizard gains a bonus feat. At each such opportunity, he can choose a metamagic feat, an item creation feat, or Spell Mastery. The wizard must still meet all prerequisites for a bonus feat, including caster level minimums. These bonus feats are in addition to the feats that a character of any class gets from advancing levels. The wizard is not limited to the categories of item creation feats, metamagic feats, or Spell Mastery when choosing those feats.&lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

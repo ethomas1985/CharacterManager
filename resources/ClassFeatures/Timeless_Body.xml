@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Timeless Body</Name>
+  <Body>&lt;p id="timeless-body-monk"&gt;At 17th level, a monk no longer takes penalties to his ability scores for aging and cannot be magically aged. Any such penalties that he has already taken, however, remain in place. Age bonuses still accrue, and the monk still dies of old age when his time is up.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

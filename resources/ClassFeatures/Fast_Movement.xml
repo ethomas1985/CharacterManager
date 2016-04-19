@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Fast Movement</Name>
+  <Body>&lt;p id="fast-movement-monk"&gt;At 3rd level, a monk gains an enhancement bonus to his land speed, as shown on Table: Monk. A monk in armor or carrying a medium or heavy load loses this extra speed.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

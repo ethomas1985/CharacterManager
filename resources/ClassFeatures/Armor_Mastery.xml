@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Armor Mastery</Name>
+  <Body>&lt;p id="armor-mastery"&gt;At 19th level, a fighter gains DR 5/&amp;mdash; whenever he is wearing armor or using a shield.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

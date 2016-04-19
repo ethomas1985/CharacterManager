@@ -1,0 +1,82 @@
+<Feature>
+  <Name>Mercy</Name>
+  <Body>&lt;p id="mercy"&gt;At 3rd level, and every three levels thereafter, a paladin can select one mercy. Each mercy adds an effect to the paladin's lay on hands ability. Whenever the paladin uses lay on hands to heal damage to one target, the target also receives the additional effects from all of the mercies possessed by the paladin. A mercy can remove a condition caused by a curse, disease, or poison without curing the affliction. Such conditions return after 1 hour unless the mercy actually removes the affliction that causes the condition.&lt;/p&gt;&lt;p&gt;At 3rd level, the paladin can select from the following initial mercies. &lt;/p&gt;</Body>
+  <AbilityType>Supernatural</AbilityType>
+  <SubFeatures>
+    <SubFeature>
+      <Name>Fatigued</Name>
+      <Body>&lt;p&gt;The target is no longer fatigued.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Shaken</Name>
+      <Body>&lt;p&gt;The target is no longer shaken.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Sickened</Name>
+      <Body>&lt;p&gt;The target is no longer sickened. &lt;/p&gt;&lt;p&gt;At 6th level, a paladin adds the following mercies to the list of those that can be selected. &lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Dazed</Name>
+      <Body>&lt;p&gt;The target is no longer dazed.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Diseased</Name>
+      <Body>&lt;p&gt;The paladin's lay on hands ability also acts as &lt;i&gt;remove disease&lt;/i&gt;, using the paladin's level as the caster level.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Staggered</Name>
+      <Body>&lt;p&gt;The target is no longer staggered, unless the target is at exactly 0 hit points.&lt;/p&gt;&lt;p&gt;At 9th level, a paladin adds the following mercies to the list of those that can be selected.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Cursed</Name>
+      <Body>&lt;p&gt;The paladin's lay on hands ability also acts as &lt;i&gt;remove curse&lt;/i&gt;, using the paladin's level as the caster level.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Exhausted</Name>
+      <Body>&lt;p&gt;The target is no longer exhausted. The paladin must have the fatigue mercy before selecting this mercy.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Frightened</Name>
+      <Body>&lt;p&gt;The target is no longer frightened. The paladin must have the shaken mercy before selecting this mercy.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Nauseated</Name>
+      <Body>&lt;p&gt;The target is no longer nauseated. The paladin must have the sickened mercy before selecting this mercy.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Poisoned</Name>
+      <Body>&lt;p&gt;The paladin's lay on hands ability also acts as &lt;i&gt;neutralize poison&lt;/i&gt;, using the paladin's level as the caster level.&lt;/p&gt;&lt;p&gt;At 12th level, a paladin adds the following mercies to the list of those that can be selected.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Blinded</Name>
+      <Body>&lt;p&gt;The target is no longer blinded.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Deafened</Name>
+      <Body>&lt;p&gt;The target is no longer deafened.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Paralyzed</Name>
+      <Body>&lt;p&gt;The target is no longer paralyzed.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+    <SubFeature>
+      <Name>Stunned</Name>
+      <Body>&lt;p&gt;The target is no longer stunned. &lt;/p&gt;&lt;p&gt;These abilities are cumulative. For example, a 12th-level paladin's lay on hands ability heals 6d6 points of damage and might also cure fatigued and exhausted conditions as well as removing diseases and neutralizing poisons. Once a condition or spell effect is chosen, it can't be changed.&lt;/p&gt;</Body>
+      <AbilityType>Normal</AbilityType>
+    </SubFeature>
+  </SubFeatures>
+</Feature>

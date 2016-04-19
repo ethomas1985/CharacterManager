@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Weapon Mastery</Name>
+  <Body>&lt;p id="weapon-mastery"&gt;At 20th level, a fighter chooses one weapon, such as the longsword, greataxe, or longbow. Any attacks made with that weapon automatically confirm all critical threats and have their damage multiplier increased by 1 (&amp;times;2 becomes &amp;times;3, for example). In addition, he cannot be disarmed while wielding a weapon of this type.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

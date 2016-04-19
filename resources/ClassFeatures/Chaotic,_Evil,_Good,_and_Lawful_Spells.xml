@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Chaotic, Evil, Good, and Lawful Spells</Name>
+  <Body>&lt;p id="chaotic-evil-good-and-lawful-spells-druid"&gt;A druid can't cast spells of an alignment opposed to her own or her deity's (if she has one). Spells associated with particular alignments are indicated by the chaos, evil, good, and law descriptors in their spell descriptions.&lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

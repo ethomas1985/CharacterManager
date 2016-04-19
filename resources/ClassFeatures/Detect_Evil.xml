@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Detect Evil</Name>
+  <Body>&lt;p id="detect-evil"&gt; &lt;b&gt;&lt;/b&gt;At will, a paladin can use &lt;i&gt;detect evil&lt;/i&gt;, as the spell. A paladin can, as a move action, concentrate on a single item or individual within 60 feet and determine if it is evil, learning the strength of its aura as if having studied it for 3 rounds. While focusing on one individual or object, the paladin does not detect evil in any other object or individual within range.&lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

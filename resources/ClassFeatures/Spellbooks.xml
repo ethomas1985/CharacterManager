@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Spellbooks</Name>
+  <Body>&lt;p id="spellbooks"&gt;A wizard must study his spellbook each day to prepare his spells. He cannot prepare any spell not recorded in his spellbook, except for &lt;i&gt;read magic&lt;/i&gt;, which all wizards can prepare from memory.&lt;/p&gt;&lt;p&gt;A wizard begins play with a spellbook containing all 0-level wizard spells (except those from his prohibited schools, if any; see Arcane Schools) plus three 1st-level spells of his choice. The wizard also selects a number of additional 1st-level spells equal to his Intelligence modifier to add to the spellbook. At each new wizard level, he gains two new spells of any spell level or levels that he can cast (based on his new wizard level) for his spellbook. At any time, a wizard can also add spells found in other wizards' spellbooks to his own (see Magic).&lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

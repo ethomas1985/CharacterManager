@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Channel Positive Energy</Name>
+  <Body>&lt;p id="channel-positive-energy-paladin"&gt;When a paladin reaches 4th level, she gains the supernatural ability to channel positive energy like a cleric. Using this ability consumes two uses of her lay on hands ability. A paladin uses her level as her effective cleric level when channeling positive energy. This is a Charisma-based ability.&lt;/p&gt;</Body>
+  <AbilityType>Supernatural</AbilityType>
+  <SubFeatures />
+</Feature>

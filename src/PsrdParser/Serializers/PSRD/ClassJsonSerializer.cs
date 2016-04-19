@@ -143,7 +143,7 @@ namespace PsrdParser.Serializers.PSRD
 			return nodes.Select(
 				rowNode => rowNode.Elements("td")
 					.Select(td => td.InnerText.Trim()).ToArray())
-					.Select(cells => 
+					.Select(cells =>
 						new ClassLevel(
 							AsInt(cells[0]),
 							AsEnumerableOfInts(cells[1]),
@@ -158,16 +158,25 @@ namespace PsrdParser.Serializers.PSRD
 
 		private IDictionary<int, int> GetSpellsPerDay(IEnumerable<string> pValues)
 		{
-			return 
+			return
 				pValues
-					.Select((x, i) => new {Index = i, Count = AsIntWithDefault(x) })
+					.Select((x, i) => new { Index = i, Count = AsIntWithDefault(x) })
 					.ToDictionary(k => k.Index, v => v.Count);
 		}
 
 		private static IEnumerable<IFeature> GetSpecials(string pValue)
 		{
 			var textInfo = new CultureInfo("en-US", false).TextInfo;
-			return pValue.Split(',').Select(x => new Feature(textInfo.ToTitleCase(x.Trim()), null)).ToList();
+			return
+				pValue
+					.Split(',')
+					.Select(
+						x => new Feature(
+							textInfo.ToTitleCase(x.Trim()),
+							null,
+							FeatureAbilityTypes.Normal,
+							null))
+					.ToList();
 		}
 
 		private static int AsInt(string pValue)
@@ -218,14 +227,14 @@ namespace PsrdParser.Serializers.PSRD
 
 		private IEnumerable<IFeature> GetClassFeatures(JObject jObject)
 		{
-			var featuresSection = 
+			var featuresSection =
 				jObject[SECTIONS_FIELD]
 					.Children()
 					.FirstOrDefault(x => x[NAME_FIELD] != null && ((string) x[NAME_FIELD]).Equals("Class Features"));
 
 			return featuresSection[SECTIONS_FIELD]
 					.Children()
-					.Select(x => new Feature((string) x["name"], (string) x["body"]))
+					.Select(x => new Feature((string) x["name"], null, FeatureAbilityTypes.Normal, null))
 					.ToList();
 		}
 

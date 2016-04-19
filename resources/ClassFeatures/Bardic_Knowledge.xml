@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Bardic Knowledge</Name>
+  <Body>&lt;p id="bardic-knowledge"&gt;A bard adds half his class level (minimum 1) on all Knowledge skill checks and may make all Knowledge skill checks untrained. &lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>

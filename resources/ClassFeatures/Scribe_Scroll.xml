@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Scribe Scroll</Name>
+  <Body>&lt;p id="scribe-scroll"&gt;At 1st level, a wizard gains Scribe Scroll as a bonus feat. &lt;/p&gt;</Body>
+  <AbilityType>Normal</AbilityType>
+  <SubFeatures />
+</Feature>

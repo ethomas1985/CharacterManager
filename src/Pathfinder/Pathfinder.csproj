@@ -46,6 +46,7 @@
     <Compile Include="Enum\BonusType.cs" />
     <Compile Include="Enum\DefensiveType.cs" />
     <Compile Include="Enum\Deity.cs" />
+    <Compile Include="Enum\FeatureAbilityTypes.cs" />
     <Compile Include="Enum\Gender.cs" />
     <Compile Include="Interface\IClass.cs" />
     <Compile Include="Interface\IClassLevel.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Interface\IRace.cs" />
     <Compile Include="Interface\ISkillScore.cs" />
     <Compile Include="Interface\ISpell.cs" />
+    <Compile Include="Interface\ISubFeature.cs" />
     <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Model\Class.cs" />
@@ -68,7 +70,9 @@
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\Spell.cs" />
+    <Compile Include="Model\SubFeature.cs" />
     <Compile Include="Serializers\ClassXmlSerializer.cs" />
+    <Compile Include="Serializers\FeatureXmlSerializer.cs" />
     <Compile Include="Utilities\intExtensions.cs" />
     <Compile Include="Serializers\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />

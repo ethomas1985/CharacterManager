@@ -1,0 +1,6 @@
+<Feature>
+  <Name>Trackless Step</Name>
+  <Body>&lt;p id="trackless-step"&gt;Starting at 3rd level, a druid leaves no trail in natural surroundings and cannot be tracked. She may choose to leave a trail if so desired.&lt;/p&gt;</Body>
+  <AbilityType>Extraordinary</AbilityType>
+  <SubFeatures />
+</Feature>
