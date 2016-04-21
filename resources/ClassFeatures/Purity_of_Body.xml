@@ -1,6 +1,6 @@
 <Feature>
   <Name>Purity of Body</Name>
-  <Body>&lt;p id="purity-of-body"&gt;At 5th level, a monk gains immunity to all diseases, including supernatural and magical diseases.&lt;/p&gt;</Body>
+  <Body>At 5th level, a monk gains immunity to all diseases, including supernatural and magical diseases.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

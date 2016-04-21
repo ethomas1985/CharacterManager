@@ -1,0 +1,12 @@
+<Feat>
+  <Name>Critical Mastery</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Critical Focus</Prerequisite>
+    <Prerequisite>any two critical feats</Prerequisite>
+    <Prerequisite>14th-level fighter</Prerequisite>
+  </Prerequisites>
+  <Description>Your critical hits cause two additional effects.</Description>
+  <Benefit> When you score a critical hit, you can apply the effects of two critical feats in addition to the damage dealt.</Benefit>
+  <Special />
+</Feat>

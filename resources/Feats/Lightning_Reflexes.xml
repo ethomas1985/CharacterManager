@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Lightning Reflexes</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites />
+  <Description>You have faster reflexes than normal.</Description>
+  <Benefit> You get a +2 bonus on all Reflex saving throws.</Benefit>
+  <Special />
+</Feat>

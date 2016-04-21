@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Still Spell</Name>
+  <FeatType>Metamagic</FeatType>
+  <Prerequisites />
+  <Description>You can cast spells without moving.</Description>
+  <Benefit> A stilled spell can be cast with no somatic components. Spells without somatic components are not affected. A stilled spell uses up a spell slot one level higher than the spell's actual level.</Benefit>
+  <Special />
+</Feat>

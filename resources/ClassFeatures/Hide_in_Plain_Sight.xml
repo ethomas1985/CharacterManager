@@ -1,6 +1,6 @@
 <Feature>
   <Name>Hide in Plain Sight</Name>
-  <Body>&lt;p id="hide-in-plain-sight-ranger"&gt;While in any of his favored terrains, a ranger of 17th level or higher can use the Stealth skill even while being observed.&lt;/p&gt;</Body>
+  <Body>While in any of his favored terrains, a ranger of 17th level or higher can use the Stealth skill even while being observed.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

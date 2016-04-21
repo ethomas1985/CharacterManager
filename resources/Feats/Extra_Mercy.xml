@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Extra Mercy</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites>
+    <Prerequisite>Lay on hands class feature</Prerequisite>
+    <Prerequisite>mercy class feature</Prerequisite>
+  </Prerequisites>
+  <Description>Your lay on hands ability adds an additional mercy.</Description>
+  <Benefit> Select one additional mercy for which you qualify. When you use lay on hands to heal damage to one target, it also receives the additional effects of this mercy.</Benefit>
+  <Special> You can gain this feat multiple times. Its effects do not stack. Each time you take this feat, select a new mercy. </Special>
+</Feat>

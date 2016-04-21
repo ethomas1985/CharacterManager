@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Improved Initiative</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites />
+  <Description>Your quick reflexes allow you to react rapidly to danger.</Description>
+  <Benefit> You get a +4 bonus on initiative checks.</Benefit>
+  <Special />
+</Feat>

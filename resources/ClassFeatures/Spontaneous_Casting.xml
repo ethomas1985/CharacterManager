@@ -1,6 +1,6 @@
 <Feature>
   <Name>Spontaneous Casting</Name>
-  <Body>&lt;p id="spontaneous-casting-druid"&gt;A druid can channel stored spell energy into summoning spells that she hasn't prepared ahead of time. She can &amp;ldquo;lose&amp;rdquo; a prepared spell in order to cast any &lt;i&gt;summon nature's ally&lt;/i&gt; spell of the same level or lower. &lt;/p&gt;</Body>
+  <Body>A druid can channel stored spell energy into summoning spells that she hasn't prepared ahead of time. She can &amp;ldquo;lose&amp;rdquo; a prepared spell in order to cast any summon nature's ally spell of the same level or lower. </Body>
   <AbilityType>Normal</AbilityType>
   <SubFeatures />
 </Feature>

@@ -1,0 +1,10 @@
+<Feat>
+  <Name>Tower Shield Proficiency</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Shield Proficiency</Prerequisite>
+  </Prerequisites>
+  <Description>You are trained in how to properly use a tower shield.</Description>
+  <Benefit> When you use a tower shield, the shield's armor check penalty only applies to Strength and Dexterity-based skills.</Benefit>
+  <Special> Fighters automatically have Tower Shield Proficiency as a bonus feat. They need not select it.</Special>
+</Feat>

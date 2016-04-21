@@ -1,6 +1,6 @@
 <Feature>
   <Name>Woodland Stride</Name>
-  <Body>&lt;p id="woodland-stride-ranger"&gt;Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.&lt;/p&gt;&lt;p&gt;Thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion, however, still affect him.&lt;/p&gt;</Body>
+  <Body>Starting at 7th level, a ranger may move through any sort of undergrowth (such as natural thorns, briars, overgrown areas, and similar terrain) at his normal speed and without taking damage or suffering any other impairment.Thorns, briars, and overgrown areas that are enchanted or magically manipulated to impede motion, however, still affect him.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

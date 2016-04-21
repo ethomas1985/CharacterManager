@@ -1,11 +1,11 @@
 <Feature>
   <Name>Endurance</Name>
-  <Body>&lt;p id="endurance"&gt;A ranger gains Endurance as a bonus feat at 3rd level.&lt;/p&gt;</Body>
+  <Body>A ranger gains Endurance as a bonus feat at 3rd level.</Body>
   <AbilityType>Normal</AbilityType>
   <SubFeatures>
     <SubFeature>
       <Name>Favored Terrains</Name>
-      <Body>&lt;table id="favored-terrains-tables"&gt;&lt;caption&gt;Favored Terrains&lt;/caption&gt;&lt;tr class="odd"&gt;&lt;td&gt;Cold (ice, glaciers, snow, and tundra)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="even"&gt;&lt;td&gt;Desert (sand and wastelands)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="odd"&gt;&lt;td&gt;Forest (coniferous and deciduous)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="even"&gt;&lt;td&gt;Jungle&lt;/td&gt;&lt;/tr&gt;&lt;tr class="odd"&gt;&lt;td&gt;Mountain (including hills)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="even"&gt;&lt;td&gt;Plains&lt;/td&gt;&lt;/tr&gt;&lt;tr class="odd"&gt;&lt;td&gt;Planes (pick one, other than Material Plane)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="even"&gt;&lt;td&gt;Swamp&lt;/td&gt;&lt;/tr&gt;&lt;tr class="odd"&gt;&lt;td&gt;Underground (caves and dungeons)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="even"&gt;&lt;td&gt;Urban (buildings, streets, and sewers)&lt;/td&gt;&lt;/tr&gt;&lt;tr class="odd"&gt;&lt;td&gt;Water (above and below the surface)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Body>
+      <Body>Favored TerrainsCold (ice, glaciers, snow, and tundra)Desert (sand and wastelands)Forest (coniferous and deciduous)JungleMountain (including hills)PlainsPlanes (pick one, other than Material Plane)SwampUnderground (caves and dungeons)Urban (buildings, streets, and sewers)Water (above and below the surface)</Body>
       <AbilityType>Normal</AbilityType>
     </SubFeature>
   </SubFeatures>

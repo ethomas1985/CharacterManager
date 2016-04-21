@@ -1,0 +1,12 @@
+<Feat>
+  <Name>Improved Two-Weapon Fighting</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Dex 17</Prerequisite>
+    <Prerequisite>Two-Weapon Fighting</Prerequisite>
+    <Prerequisite>base attack bonus +6</Prerequisite>
+  </Prerequisites>
+  <Description>You are skilled at fighting with two weapons.</Description>
+  <Benefit> In addition to the standard single extra attack you get with an off-hand weapon, you get a second attack with it, albeit at a &amp;ndash;5 penalty.</Benefit>
+  <Special />
+</Feat>

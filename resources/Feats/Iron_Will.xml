@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Iron Will</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites />
+  <Description>You are more resistant to mental effects.</Description>
+  <Benefit> You get a +2 bonus on all Will saving throws.</Benefit>
+  <Special />
+</Feat>

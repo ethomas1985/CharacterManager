@@ -1,6 +1,6 @@
 <Feature>
   <Name>Eschew Materials</Name>
-  <Body>&lt;p id="eschew-materials"&gt;A sorcerer gains Eschew Materials as a bonus feat at 1st level.&lt;/p&gt;</Body>
+  <Body>A sorcerer gains Eschew Materials as a bonus feat at 1st level.</Body>
   <AbilityType>Normal</AbilityType>
   <SubFeatures />
 </Feature>

@@ -1,6 +1,6 @@
 <Feature>
   <Name>High Jump</Name>
-  <Body>&lt;p id="high-jump"&gt;At 5th level, a monk adds his level to all Acrobatics checks made to jump, both for vertical jumps and horizontal jumps. In addition, he always counts as having a running start when making jump checks using Acrobatics. By spending 1 point from his ki pool as a swift action, a monk gains a +20 bonus on Acrobatics checks made to jump for 1 round.&lt;/p&gt;</Body>
+  <Body>At 5th level, a monk adds his level to all Acrobatics checks made to jump, both for vertical jumps and horizontal jumps. In addition, he always counts as having a running start when making jump checks using Acrobatics. By spending 1 point from his ki pool as a swift action, a monk gains a +20 bonus on Acrobatics checks made to jump for 1 round.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

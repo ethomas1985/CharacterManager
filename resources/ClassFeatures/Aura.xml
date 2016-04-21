@@ -1,6 +1,6 @@
 <Feature>
   <Name>Aura</Name>
-  <Body>&lt;p id="aura-cleric"&gt;A cleric of a chaotic, evil, good, or lawful deity has a particularly powerful aura corresponding to the deity's alignment (see the &lt;i&gt;detect evil&lt;/i&gt; spell for details).&lt;/p&gt;</Body>
+  <Body>A cleric of a chaotic, evil, good, or lawful deity has a particularly powerful aura corresponding to the deity's alignment (see the detect evil spell for details).</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

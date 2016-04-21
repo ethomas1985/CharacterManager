@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Dazzling Display</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Weapon Focus</Prerequisite>
+    <Prerequisite>proficiency with the selected weapon</Prerequisite>
+  </Prerequisites>
+  <Description>Your skill with your favored weapon can frighten enemies.</Description>
+  <Benefit> While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display. </Benefit>
+  <Special />
+</Feat>

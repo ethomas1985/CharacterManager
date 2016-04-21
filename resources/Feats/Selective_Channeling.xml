@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Selective Channeling</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites>
+    <Prerequisite>Cha 13</Prerequisite>
+    <Prerequisite>channel energy class feature</Prerequisite>
+  </Prerequisites>
+  <Description>You can choose whom to affect when you channel energy.</Description>
+  <Benefit> When you channel energy, you can choose a number of targets in the area up to your Charisma modifier. These targets are not affected by your channeled energy.</Benefit>
+  <Special />
+</Feat>

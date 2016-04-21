@@ -46,45 +46,50 @@ namespace PsrdParser.Serializers.PSRD
 		{
 			var value = GetString(jObject, pField);
 
-			var alignments = new List<Alignment>();
 			switch (value)
 			{
 				case "Lawful good.":
-					alignments.Add(Alignment.LawfulGood);
-					break;
+					return new HashSet<Alignment> { Alignment.LawfulGood };
 				case "Any lawful.":
-					alignments.Add(Alignment.LawfulGood);
-					alignments.Add(Alignment.LawfulNeutral);
-					alignments.Add(Alignment.LawfulEvil);
-					break;
+					return new HashSet<Alignment>
+						   {
+							   Alignment.LawfulGood,
+							   Alignment.LawfulNeutral,
+							   Alignment.LawfulEvil
+						   };
 				case "Any nonlawful.":
-					alignments.Add(Alignment.NeutralGood);
-					alignments.Add(Alignment.ChaoticGood);
-					alignments.Add(Alignment.Neutral);
-					alignments.Add(Alignment.ChaoticNeutral);
-					alignments.Add(Alignment.NeutralEvil);
-					alignments.Add(Alignment.ChaoticEvil);
-					break;
+					return new HashSet<Alignment>
+						   {
+							   Alignment.NeutralGood,
+							   Alignment.ChaoticGood,
+							   Alignment.Neutral,
+							   Alignment.ChaoticNeutral,
+							   Alignment.NeutralEvil,
+							   Alignment.ChaoticEvil
+						   };
 				case "Any neutral.":
-					alignments.Add(Alignment.NeutralGood);
-					alignments.Add(Alignment.LawfulNeutral);
-					alignments.Add(Alignment.Neutral);
-					alignments.Add(Alignment.ChaoticNeutral);
-					alignments.Add(Alignment.NeutralEvil);
-					break;
+					return new HashSet<Alignment>
+						{
+							Alignment.NeutralGood,
+							Alignment.LawfulNeutral,
+							Alignment.Neutral,
+							Alignment.ChaoticNeutral,
+							Alignment.NeutralEvil
+						};
 				default:
-					alignments.Add(Alignment.LawfulGood);
-					alignments.Add(Alignment.NeutralGood);
-					alignments.Add(Alignment.ChaoticGood);
-					alignments.Add(Alignment.LawfulNeutral);
-					alignments.Add(Alignment.Neutral);
-					alignments.Add(Alignment.ChaoticNeutral);
-					alignments.Add(Alignment.LawfulEvil);
-					alignments.Add(Alignment.NeutralEvil);
-					alignments.Add(Alignment.ChaoticEvil);
-					break;
+					return new HashSet<Alignment>
+						{
+							Alignment.LawfulGood,
+							Alignment.NeutralGood,
+							Alignment.ChaoticGood,
+							Alignment.LawfulNeutral,
+							Alignment.Neutral,
+							Alignment.ChaoticNeutral,
+							Alignment.LawfulEvil,
+							Alignment.NeutralEvil,
+							Alignment.ChaoticEvil
+						};
 			}
-			return new HashSet<Alignment>(alignments);
 		}
 
 		private static IDie GetHitDie(JObject jObject, string pField)

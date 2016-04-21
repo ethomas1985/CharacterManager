@@ -1,0 +1,13 @@
+<Feat>
+  <Name>Greater Bull Rush</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Improved Bull Rush</Prerequisite>
+    <Prerequisite>Power Attack</Prerequisite>
+    <Prerequisite>base attack bonus +6</Prerequisite>
+    <Prerequisite>Str 13</Prerequisite>
+  </Prerequisites>
+  <Description>Your bull rush attacks throw enemies off balance.</Description>
+  <Benefit> You receive a +2 bonus on checks made to bull rush a foe. This bonus stacks with the bonus granted by Improved Bull Rush. Whenever you bull rush an opponent, his movement provokes attacks of opportunity from all of your allies (but not you).</Benefit>
+  <Special />
+</Feat>

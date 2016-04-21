@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Two-Weapon Defense</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Dex 15</Prerequisite>
+    <Prerequisite>Two-Weapon Fighting</Prerequisite>
+  </Prerequisites>
+  <Description>You are skilled at defending yourself while dual-wielding.</Description>
+  <Benefit> When wielding a double weapon or two weapons (not including natural weapons or unarmed strikes), you gain a +1 shield bonus to your AC.When you are fighting defensively or using the total defense action, this shield bonus increases to +2.</Benefit>
+  <Special />
+</Feat>

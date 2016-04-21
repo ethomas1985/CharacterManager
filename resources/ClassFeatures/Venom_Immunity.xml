@@ -1,6 +1,6 @@
 <Feature>
   <Name>Venom Immunity</Name>
-  <Body>&lt;p id="venom-immunity"&gt;At 9th level, a druid gains immunity to all poisons. &lt;/p&gt;</Body>
+  <Body>At 9th level, a druid gains immunity to all poisons. </Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

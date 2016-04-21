@@ -1,0 +1,10 @@
+<Feat>
+  <Name>Exotic Weapon Proficiency</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Base attack bonus +1</Prerequisite>
+  </Prerequisites>
+  <Description>Choose one type of exotic weapon, such as the spiked chain or whip. You understand how to use that type of exotic weapon in combat, and can utilize any special tricks or qualities that exotic weapon might allow.</Description>
+  <Benefit> You make attack rolls with the weapon normally.</Benefit>
+  <Special> You can gain Exotic Weapon Proficiency multiple times. Each time you take the feat, it applies to a new type of exotic weapon. </Special>
+</Feat>

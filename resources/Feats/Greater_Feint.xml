@@ -1,0 +1,13 @@
+<Feat>
+  <Name>Greater Feint</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Combat Expertise</Prerequisite>
+    <Prerequisite>Improved Feint</Prerequisite>
+    <Prerequisite>base attack bonus +6</Prerequisite>
+    <Prerequisite>Int 13</Prerequisite>
+  </Prerequisites>
+  <Description>You are skilled at making foes overreact to your attacks.</Description>
+  <Benefit> Whenever you use feint to cause an opponent to lose his Dexterity bonus, he loses that bonus until the beginning of your next turn, in addition to losing his Dexterity bonus against your next attack.</Benefit>
+  <Special />
+</Feat>

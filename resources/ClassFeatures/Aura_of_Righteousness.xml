@@ -1,6 +1,6 @@
 <Feature>
   <Name>Aura of Righteousness</Name>
-  <Body>&lt;p id="aura-of-righteousness"&gt;At 17th level, a paladin gains DR 5/evil and immunity to compulsion spells and spell-like abilities. Each ally within 10 feet of her gains a +4 morale bonus on saving throws against compulsion effects. &lt;/p&gt;&lt;p&gt;This ability functions only while the paladin is conscious, not if she is unconscious or dead.&lt;/p&gt;</Body>
+  <Body>At 17th level, a paladin gains DR 5/evil and immunity to compulsion spells and spell-like abilities. Each ally within 10 feet of her gains a +4 morale bonus on saving throws against compulsion effects. This ability functions only while the paladin is conscious, not if she is unconscious or dead.</Body>
   <AbilityType>Supernatural</AbilityType>
   <SubFeatures />
 </Feature>

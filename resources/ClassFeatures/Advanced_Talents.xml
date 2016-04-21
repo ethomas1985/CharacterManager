@@ -1,46 +1,46 @@
 <Feature>
   <Name>Advanced Talents</Name>
-  <Body>&lt;p id="advanced-talents"&gt;At 10th level, and every two levels thereafter, a rogue can choose one of the following advanced talents in place of a rogue talent.&lt;/p&gt;</Body>
+  <Body>At 10th level, and every two levels thereafter, a rogue can choose one of the following advanced talents in place of a rogue talent.</Body>
   <AbilityType>Normal</AbilityType>
   <SubFeatures>
     <SubFeature>
       <Name>Crippling Strike*</Name>
-      <Body>&lt;p id="advanced-talents-crippling-strike"&gt; &lt;i&gt;&lt;/i&gt;A rogue with this ability can sneak attack opponents with such precision that her blows weaken and hamper them. An opponent damaged by one of her sneak attacks also takes 2 points of Strength damage.&lt;/p&gt;</Body>
+      <Body> A rogue with this ability can sneak attack opponents with such precision that her blows weaken and hamper them. An opponent damaged by one of her sneak attacks also takes 2 points of Strength damage.</Body>
       <AbilityType>Extraordinary</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Defensive Roll</Name>
-      <Body>&lt;p id="advanced-talents-defensive-roll"&gt; &lt;i&gt;&lt;/i&gt;With this advanced talent, the rogue can roll with a potentially lethal blow to take less damage from it than she otherwise would. Once per day, when she would be reduced to 0 or fewer hit points by damage in combat (from a weapon or other blow, not a spell or special ability), the rogue can attempt to roll with the damage. To use this ability, the rogue must attempt a Reflex saving throw (DC = damage dealt). If the save succeeds, she takes only half damage from the blow; if it fails, she takes full damage. She must be aware of the attack and able to react to it in order to execute her defensive roll&amp;mdash;if she is denied her Dexterity bonus to AC, she can't use this ability. Since this effect would not normally allow a character to make a Reflex save for half damage, the rogue's evasion ability does not apply to the defensive roll.&lt;/p&gt;</Body>
+      <Body> With this advanced talent, the rogue can roll with a potentially lethal blow to take less damage from it than she otherwise would. Once per day, when she would be reduced to 0 or fewer hit points by damage in combat (from a weapon or other blow, not a spell or special ability), the rogue can attempt to roll with the damage. To use this ability, the rogue must attempt a Reflex saving throw (DC = damage dealt). If the save succeeds, she takes only half damage from the blow; if it fails, she takes full damage. She must be aware of the attack and able to react to it in order to execute her defensive roll&amp;mdash;if she is denied her Dexterity bonus to AC, she can't use this ability. Since this effect would not normally allow a character to make a Reflex save for half damage, the rogue's evasion ability does not apply to the defensive roll.</Body>
       <AbilityType>Extraordinary</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Dispelling Attack*</Name>
-      <Body>&lt;p id="advanced-talents-dispelling-attack"&gt;Opponents that are dealt sneak attack damage by a rogue with this ability are affected by a targeted &lt;i&gt;dispel magic&lt;/i&gt;, targeting the lowest-level spell effect active on the target. The caster level for this ability is equal to the rogue's level. A rogue must have the major magic rogue talent before choosing dispelling attack.&lt;/p&gt;</Body>
+      <Body>Opponents that are dealt sneak attack damage by a rogue with this ability are affected by a targeted dispel magic, targeting the lowest-level spell effect active on the target. The caster level for this ability is equal to the rogue's level. A rogue must have the major magic rogue talent before choosing dispelling attack.</Body>
       <AbilityType>Supernatural</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Improved Evasion</Name>
-      <Body>&lt;p id="advanced-talents-improved-evasion"&gt; &lt;i&gt;&lt;/i&gt;This works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks, she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion.&lt;/p&gt;</Body>
+      <Body> This works like evasion, except that while the rogue still takes no damage on a successful Reflex saving throw against attacks, she henceforth takes only half damage on a failed save. A helpless rogue does not gain the benefit of improved evasion.</Body>
       <AbilityType>Extraordinary</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Opportunist</Name>
-      <Body>&lt;p id="advanced-talents-opportunist"&gt; &lt;i&gt;&lt;/i&gt;Once per round, the rogue can make an attack of opportunity against an opponent who has just been struck for damage in melee by another character. This attack counts as an attack of opportunity for that round. Even a rogue with the Combat Reflexes feat can't use the opportunist ability more than once per round.&lt;/p&gt;</Body>
+      <Body> Once per round, the rogue can make an attack of opportunity against an opponent who has just been struck for damage in melee by another character. This attack counts as an attack of opportunity for that round. Even a rogue with the Combat Reflexes feat can't use the opportunist ability more than once per round.</Body>
       <AbilityType>Extraordinary</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Skill Mastery</Name>
-      <Body>&lt;p id="advanced-talents-skill-mastery"&gt;The rogue becomes so confident in the use of certain skills that she can use them reliably even under adverse conditions.&lt;/p&gt;&lt;p&gt;Upon gaining this ability, she selects a number of skills equal to 3 + her Intelligence modifier. When making a skill check with one of these skills, she may take 10 even if stress and distractions would normally prevent her from doing so. A rogue may gain this special ability multiple times, selecting additional skills for skill mastery to apply to each time.&lt;/p&gt;</Body>
+      <Body>The rogue becomes so confident in the use of certain skills that she can use them reliably even under adverse conditions.Upon gaining this ability, she selects a number of skills equal to 3 + her Intelligence modifier. When making a skill check with one of these skills, she may take 10 even if stress and distractions would normally prevent her from doing so. A rogue may gain this special ability multiple times, selecting additional skills for skill mastery to apply to each time.</Body>
       <AbilityType>Normal</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Slippery Mind</Name>
-      <Body>&lt;p id="advanced-talents-slippery-mind"&gt; &lt;i&gt;&lt;/i&gt;This ability represents the rogue's ability to wriggle free from magical effects that would otherwise control or compel her. If a rogue with slippery mind is affected by an enchantment spell or effect and fails her saving throw, she can attempt it again 1 round later at the same DC. She gets only this one extra chance to succeed on her saving throw.&lt;/p&gt;</Body>
+      <Body> This ability represents the rogue's ability to wriggle free from magical effects that would otherwise control or compel her. If a rogue with slippery mind is affected by an enchantment spell or effect and fails her saving throw, she can attempt it again 1 round later at the same DC. She gets only this one extra chance to succeed on her saving throw.</Body>
       <AbilityType>Extraordinary</AbilityType>
     </SubFeature>
     <SubFeature>
       <Name>Feat</Name>
-      <Body>&lt;p id="advanced-talents-feat"&gt;A rogue may gain any feat that she qualifies for in place of a rogue talent.&lt;/p&gt;</Body>
+      <Body>A rogue may gain any feat that she qualifies for in place of a rogue talent.</Body>
       <AbilityType>Normal</AbilityType>
     </SubFeature>
   </SubFeatures>

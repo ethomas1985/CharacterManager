@@ -1,6 +1,6 @@
 <Feature>
   <Name>Indomitable Will</Name>
-  <Body>&lt;p id="indomitable-will"&gt;While in rage, a barbarian of 14th level or higher gains a +4 bonus on Will saves to resist enchantment spells. This bonus stacks with all other modifiers, including the morale bonus on Will saves she also receives during her rage.&lt;/p&gt;</Body>
+  <Body>While in rage, a barbarian of 14th level or higher gains a +4 bonus on Will saves to resist enchantment spells. This bonus stacks with all other modifiers, including the morale bonus on Will saves she also receives during her rage.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

@@ -1,0 +1,13 @@
+<Feat>
+  <Name>Greater Trip</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Combat Expertise</Prerequisite>
+    <Prerequisite>Improved Trip</Prerequisite>
+    <Prerequisite>base attack bonus +6</Prerequisite>
+    <Prerequisite>Int 13</Prerequisite>
+  </Prerequisites>
+  <Description>You can make free attacks on foes that you knock down.</Description>
+  <Benefit> You receive a +2 bonus on checks made to trip a foe. This bonus stacks with the bonus granted by Improved Trip. Whenever you successfully trip an opponent, that opponent provokes attacks of opportunity.</Benefit>
+  <Special />
+</Feat>

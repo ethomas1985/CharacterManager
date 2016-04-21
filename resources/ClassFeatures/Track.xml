@@ -1,6 +1,6 @@
 <Feature>
   <Name>Track</Name>
-  <Body>&lt;p id="track"&gt;A ranger adds half his level (minimum 1) to Survival skill checks made to follow tracks.&lt;/p&gt;</Body>
+  <Body>A ranger adds half his level (minimum 1) to Survival skill checks made to follow tracks.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

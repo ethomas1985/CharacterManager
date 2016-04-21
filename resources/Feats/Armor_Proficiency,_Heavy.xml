@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Armor Proficiency, Heavy</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Light Armor Proficiency</Prerequisite>
+    <Prerequisite>Medium Armor Proficiency</Prerequisite>
+  </Prerequisites>
+  <Description>You are skilled at wearing heavy armor.</Description>
+  <Benefit> See Armor Proficiency, Light.</Benefit>
+  <Special> Fighters and paladins automatically have Heavy Armor Proficiency as a bonus feat. They need not select it.</Special>
+</Feat>

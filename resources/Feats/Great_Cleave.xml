@@ -1,0 +1,13 @@
+<Feat>
+  <Name>Great Cleave</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Str 13</Prerequisite>
+    <Prerequisite>Cleave</Prerequisite>
+    <Prerequisite>Power Attack</Prerequisite>
+    <Prerequisite>base attack bonus +4</Prerequisite>
+  </Prerequisites>
+  <Description>You can strike many adjacent foes with a single blow.</Description>
+  <Benefit> As a standard action, you can make a single attack at your full base attack bonus against a foe within reach. If you hit, you deal damage normally and can make an additional attack (using your full base attack bonus) against a foe that is adjacent to the previous foe and also within reach. If you hit, you can continue to make attacks against foes adjacent to the previous foe, so long as they are within your reach. You cannot attack an individual foe more than once during this attack action. When you use this feat, you take a &amp;ndash;2 penalty to your Armor Class until your next turn.</Benefit>
+  <Special />
+</Feat>

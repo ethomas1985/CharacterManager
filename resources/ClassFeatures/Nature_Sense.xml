@@ -1,6 +1,6 @@
 <Feature>
   <Name>Nature Sense</Name>
-  <Body>&lt;p id="nature-sense"&gt;A druid gains a +2 bonus on Knowledge (nature) and Survival checks.&lt;/p&gt;</Body>
+  <Body>A druid gains a +2 bonus on Knowledge (nature) and Survival checks.</Body>
   <AbilityType>Extraordinary</AbilityType>
   <SubFeatures />
 </Feature>

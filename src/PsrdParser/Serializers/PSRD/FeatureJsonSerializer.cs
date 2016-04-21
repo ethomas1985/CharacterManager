@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enum;
 using Pathfinder.Interface;
@@ -43,7 +45,17 @@ namespace PsrdParser.Serializers.PSRD
 
 		private static string GetBody(JToken pToken)
 		{
-			return (string) pToken["body"];
+			var body = (string) pToken["body"];
+
+			if (body == null)
+			{
+				return null;
+			}
+
+			var htmlTable = new HtmlDocument();
+			htmlTable.Load(new StringReader(body));
+
+			return htmlTable.DocumentNode.InnerText;
 		}
 
 		private static FeatureAbilityTypes GetAbilityTypes(JToken pToken)

@@ -1,0 +1,10 @@
+<Feat>
+  <Name>Quick Draw</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Base attack bonus +1</Prerequisite>
+  </Prerequisites>
+  <Description>You can draw weapons faster than most.</Description>
+  <Benefit> You can draw a weapon as a free action instead of as a move action. You can draw a hidden weapon (see the Sleight of Hand skill) as a move action.A character who has selected this feat may throw weapons at his full normal rate of attacks (much like a character with a bow).Alchemical items, potions, scrolls, and wands cannot be drawn quickly using this feat.</Benefit>
+  <Special />
+</Feat>

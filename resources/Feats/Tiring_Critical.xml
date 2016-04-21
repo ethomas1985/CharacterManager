@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Tiring Critical</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites>
+    <Prerequisite>Critical Focus</Prerequisite>
+    <Prerequisite>base attack bonus +13</Prerequisite>
+  </Prerequisites>
+  <Description>Your critical hits cause opponents to become fatigued.</Description>
+  <Benefit> Whenever you score a critical hit, your opponent becomes fatigued. This feat has no additional effect on a fatigued or exhausted creature.</Benefit>
+  <Special> You can only apply the effects of one critical feat to a given critical hit unless you possess Critical Mastery.</Special>
+</Feat>

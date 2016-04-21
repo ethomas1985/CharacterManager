@@ -1,0 +1,13 @@
+<Feat>
+  <Name>Greater Two-Weapon Fighting</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Dex 19</Prerequisite>
+    <Prerequisite>Improved Two-Weapon Fighting</Prerequisite>
+    <Prerequisite>Two-Weapon Fighting</Prerequisite>
+    <Prerequisite>base attack bonus +11</Prerequisite>
+  </Prerequisites>
+  <Description>You are incredibly skilled at fighting with two weapons at the same time.</Description>
+  <Benefit> You get a third attack with your off-hand weapon, albeit at a &amp;ndash;10 penalty.</Benefit>
+  <Special />
+</Feat>

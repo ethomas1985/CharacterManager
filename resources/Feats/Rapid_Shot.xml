@@ -1,0 +1,11 @@
+<Feat>
+  <Name>Rapid Shot</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Dex 13</Prerequisite>
+    <Prerequisite>Point-Blank Shot</Prerequisite>
+  </Prerequisites>
+  <Description>You can make an additional ranged attack.</Description>
+  <Benefit> When making a full-attack action with a ranged weapon, you can fire one additional time this round. All of your attack rolls take a &amp;ndash;2 penalty when using Rapid Shot.</Benefit>
+  <Special />
+</Feat>

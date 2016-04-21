@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Catch Off-Guard</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites />
+  <Description>Foes are surprised by your skilled use of unorthodox and improvised weapons.</Description>
+  <Benefit> You do not suffer any penalties for using an improvised melee weapon. Unarmed opponents are flat-footed against any attacks you make with an improvised melee weapon.</Benefit>
+  <Special />
+</Feat>

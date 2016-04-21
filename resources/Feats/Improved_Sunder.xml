@@ -1,0 +1,12 @@
+<Feat>
+  <Name>Improved Sunder</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Str 13</Prerequisite>
+    <Prerequisite>Power Attack</Prerequisite>
+    <Prerequisite>base attack bonus +1</Prerequisite>
+  </Prerequisites>
+  <Description>You are skilled at damaging your foes' weapons and armor.</Description>
+  <Benefit> You do not provoke an attack of opportunity when performing a sunder combat maneuver. In addition, you receive a +2 bonus on checks made to sunder an item. You also receive a +2 bonus to your Combat Maneuver Defense whenever an opponent tries to sunder your gear. </Benefit>
+  <Special />
+</Feat>

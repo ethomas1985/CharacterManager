@@ -1,6 +1,6 @@
 <Feature>
   <Name>Trapfinding</Name>
-  <Body>&lt;p id="trapfinding"&gt;A rogue adds 1/2 her level to Perception skill checks made to locate traps and to Disable Device skill checks (minimum +1). A rogue can use Disable Device to disarm magic traps.&lt;/p&gt;</Body>
+  <Body>A rogue adds 1/2 her level to Perception skill checks made to locate traps and to Disable Device skill checks (minimum +1). A rogue can use Disable Device to disarm magic traps.</Body>
   <AbilityType>Normal</AbilityType>
   <SubFeatures />
 </Feature>

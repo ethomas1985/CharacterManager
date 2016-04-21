@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Throw Anything</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites />
+  <Description>You are used to throwing things you have on hand.</Description>
+  <Benefit> You do not suffer any penalties for using an improvised ranged weapon. You receive a +1 circumstance bonus on attack rolls made with thrown splash weapons.</Benefit>
+  <Special />
+</Feat>

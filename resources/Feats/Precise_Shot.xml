@@ -1,0 +1,10 @@
+<Feat>
+  <Name>Precise Shot</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites>
+    <Prerequisite>Point-Blank Shot</Prerequisite>
+  </Prerequisites>
+  <Description>You are adept at firing ranged attacks into melee.</Description>
+  <Benefit> You can shoot or throw ranged weapons at an opponent engaged in melee without taking the standard &amp;ndash;4 penalty on your attack roll.</Benefit>
+  <Special />
+</Feat>

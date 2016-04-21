@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Defensive Combat Training</Name>
+  <FeatType>Combat</FeatType>
+  <Prerequisites />
+  <Description>You excel at defending yourself from all manner of combat maneuvers.</Description>
+  <Benefit> You treat your total Hit Dice as your base attack bonus when calculating your Combat Maneuver Defense (see Combat). </Benefit>
+  <Special />
+</Feat>

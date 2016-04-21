@@ -30,6 +30,7 @@ namespace PsrdParser
 
 			var sourceDir = Path.Combine(PsrdDataCore, "skill");
 			var destinationDir = Path.Combine(MyData, "Skills");
+			CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles = Directory.EnumerateFiles(sourceDir);
 			foreach (var file in sourceFiles)
@@ -53,6 +54,7 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "racial_trait");
 			var destinationDir = Path.Combine(MyData, "Traits");
+			CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
@@ -77,20 +79,6 @@ namespace PsrdParser
 			}
 		}
 
-		private static void WriteDuplicatesToConsole(IOrderedEnumerable<string> sourceFiles)
-		{
-			var dups =
-				sourceFiles
-					.GroupBy(Path.GetFileNameWithoutExtension)
-					.Select(x => new { x.Key, Count = x.Count() })
-					.Where(x => x.Count > 1)
-					.OrderByDescending(x => x.Count);
-			foreach (var file in dups)
-			{
-				Console.WriteLine($"{file.Key}\t\t{file.Count}");
-			}
-		}
-
 		private static bool IsValidTraitFile(string pFilename)
 		{
 			var textInfo = new CultureInfo("en-US", false).TextInfo;
@@ -111,6 +99,7 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
 			var destinationDir = Path.Combine(MyData, "Classes");
+			CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
@@ -145,6 +134,7 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
 			var destinationDir = Path.Combine(MyData, "ClassFeatures");
+			CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
@@ -169,6 +159,59 @@ namespace PsrdParser
 					newPath = Path.ChangeExtension(newPath, "xml");
 					File.WriteAllText(newPath, xmlSkill);
 				}
+			}
+		}
+
+		[Test]
+		[Ignore]
+		public void ConvertFeatsDirectory()
+		{
+			var sourceDir = Path.Combine(PsrdDataCore, "feat");
+			var destinationDir = Path.Combine(MyData, "Feats");
+			CreateDestinationDirectory(destinationDir);
+
+			var sourceFiles =
+				Directory
+					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
+					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.OrderBy(x => x);
+
+			WriteDuplicatesToConsole(sourceFiles);
+			foreach (var file in sourceFiles)
+			{
+				var contents = File.ReadAllText(file);
+				var jsonSerializer = new FeatJsonSerializer();
+				var result = jsonSerializer.Deserialize(contents);
+
+				var xmlSerializer = new FeatXmlSerializer();
+				var xmlSkill = xmlSerializer.Serialize(result);
+
+				var newPath = Path.Combine(destinationDir, result.Name.Replace(" ", "_"));
+				newPath = Path.ChangeExtension(newPath, "xml");
+				File.WriteAllText(newPath, xmlSkill);
+			}
+		}
+
+		private static void CreateDestinationDirectory(string destinationDir)
+		{
+			if (!Directory.Exists(destinationDir))
+			{
+				Directory.CreateDirectory(destinationDir);
+			}
+		}
+
+		private static void WriteDuplicatesToConsole(IOrderedEnumerable<string> sourceFiles)
+		{
+			var dups =
+				sourceFiles
+					.GroupBy(Path.GetFileNameWithoutExtension)
+					.Select(x => new { x.Key, Count = x.Count() })
+					.Where(x => x.Count > 1)
+					.OrderByDescending(x => x.Count).ToList();
+			Console.WriteLine($"Total Duplicates: {dups.Count}");
+			foreach (var file in dups)
+			{
+				Console.WriteLine($"{file.Key}\t\t{file.Count}");
 			}
 		}
 	}

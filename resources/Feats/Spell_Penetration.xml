@@ -1,0 +1,8 @@
+<Feat>
+  <Name>Spell Penetration</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites />
+  <Description>Your spells break through spell resistance more easily than most.</Description>
+  <Benefit> You get a +2 bonus on caster level checks (1d20 + caster level) made to overcome a creature's spell resistance.</Benefit>
+  <Special />
+</Feat>

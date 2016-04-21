@@ -1,0 +1,10 @@
+<Feat>
+  <Name>Extra Ki</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites>
+    <Prerequisite>Ki pool class feature</Prerequisite>
+  </Prerequisites>
+  <Description>You can use your ki pool more times per day than most.</Description>
+  <Benefit> Your ki pool increases by 2. </Benefit>
+  <Special> You can gain Extra Ki multiple times. Its effects stack.</Special>
+</Feat>

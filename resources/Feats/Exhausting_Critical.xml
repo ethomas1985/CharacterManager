@@ -1,0 +1,12 @@
+<Feat>
+  <Name>Exhausting Critical</Name>
+  <FeatType>General</FeatType>
+  <Prerequisites>
+    <Prerequisite>Critical Focus</Prerequisite>
+    <Prerequisite>Tiring Critical</Prerequisite>
+    <Prerequisite>base attack bonus +15</Prerequisite>
+  </Prerequisites>
+  <Description>Your critical hits cause opponents to become exhausted.</Description>
+  <Benefit> When you score a critical hit on a foe, your target immediately becomes exhausted. This feat has no effect on exhausted creatures.</Benefit>
+  <Special> You can only apply the effects of one critical feat to a given critical hit unless you possess the Critical Mastery feat.</Special>
+</Feat>
