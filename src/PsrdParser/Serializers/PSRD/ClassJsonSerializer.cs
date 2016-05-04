@@ -19,13 +19,6 @@ namespace PsrdParser.Serializers.PSRD
 		private const string NAME_FIELD = "name";
 		private const string SECTIONS_FIELD = "sections";
 
-		public ClassJsonSerializer(ILibrary<ISkill> pSkillLibrary)
-		{
-			SkillLibrary = pSkillLibrary;
-		}
-
-		private ILibrary<ISkill> SkillLibrary { get; }
-
 		public override IClass Deserialize(string pValue)
 		{
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));

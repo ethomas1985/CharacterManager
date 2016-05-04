@@ -26,16 +26,6 @@ namespace PsrdParser
 			Path.Combine(MyDocuments, "GitHub", "CharacterManager", "resources");
 
 
-		private readonly ILibrary<ISkill> _skillLibrary;
-
-		public Convert()
-		{
-			_skillLibrary =
-			new SkillLibrary(
-				new SkillXmlSerializer(),
-				Settings.Default.SkillLibrary);
-		}
-
 		[Test]
 		[Ignore]
 		public void ConvertSkillsDirectory()
@@ -125,7 +115,7 @@ namespace PsrdParser
 			foreach (var file in sourceFiles)
 			{
 				var contents = File.ReadAllText(file);
-				var jsonSerializer = new ClassJsonSerializer(_skillLibrary);
+				var jsonSerializer = new ClassJsonSerializer();
 				var result = jsonSerializer.Deserialize(contents);
 
 				var xmlSerializer = new ClassXmlSerializer();
