@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface IFeature
+	public interface IFeature : INamed
 	{
-		string Name { get; }
 		string Body { get; }
 
-		FeatureAbilityTypes AbilityType { get; } 
+		FeatureAbilityType AbilityType { get; } 
 
 		IEnumerable<ISubFeature> SubFeatures { get; } 
 	}

@@ -6,25 +6,25 @@ namespace Pathfinder.Model
 	internal class ClassLevel : IClassLevel
 	{
 		public ClassLevel(
-			int level,
-			IEnumerable<int> baseAttackBonus,
-			int fortitude,
-			int reflex,
-			int will,
-			IEnumerable<IFeature> specials,
-			IDictionary<int, int> spellsPerDay = null,
-			IDictionary<int, int> spellsKnown = null,
-			IDictionary<int, IEnumerable<ISpell>> spells = null)
+			int pLevel,
+			IEnumerable<int> pBaseAttackBonus,
+			int pFortitude,
+			int pReflex,
+			int pWill,
+			IEnumerable<string> pSpecials,
+			IDictionary<int, int> pSpellsPerDay = null,
+			IDictionary<int, int> pSpellsKnown = null,
+			IDictionary<int, IEnumerable<string>> pSpells = null)
 		{
-			Level = level;
-			BaseAttackBonus = baseAttackBonus;
-			Fortitude = fortitude;
-			Reflex = reflex;
-			Will = will;
-			Specials = specials;
-			SpellsPerDay = spellsPerDay;
-			SpellsKnown = spellsKnown;
-			Spells = spells;
+			Level = pLevel;
+			BaseAttackBonus = pBaseAttackBonus;
+			Fortitude = pFortitude;
+			Reflex = pReflex;
+			Will = pWill;
+			Specials = pSpecials;
+			SpellsPerDay = pSpellsPerDay;
+			SpellsKnown = pSpellsKnown;
+			Spells = pSpells;
 		}
 
 		public int Level { get; }
@@ -32,9 +32,9 @@ namespace Pathfinder.Model
 		public int Fortitude { get; }
 		public int Reflex { get; }
 		public int Will { get; }
-		public IEnumerable<IFeature> Specials { get; }
+		public IEnumerable<string> Specials { get; }
 		public IDictionary<int, int> SpellsPerDay { get; }
 		public IDictionary<int, int> SpellsKnown { get; }
-		public IDictionary<int, IEnumerable<ISpell>> Spells { get; }
+		public IDictionary<int, IEnumerable<string>> Spells { get; }
 	}
 }

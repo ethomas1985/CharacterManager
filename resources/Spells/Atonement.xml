@@ -1,0 +1,61 @@
+<Spell>
+  <Name>Atonement</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>none</SavingThrow>
+  <Description>Removes burden of misdeeds from subject.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 hour</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Burning incense</Text>
+    </Component>
+    <Component>
+      <Type>Focus</Type>
+      <Text>A set of prayer beads or other prayer device worth at least 500 gp</Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

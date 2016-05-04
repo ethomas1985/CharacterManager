@@ -1,0 +1,45 @@
+<Spell>
+  <Name>Awaken</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates</SavingThrow>
+  <Description>Animal or tree gains human intellect.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>24 hours</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Herbs and oils worth 2,000 gp</Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Blink</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>You randomly vanish and reappear for 1 round per level.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>personal</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bard</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Skald</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 round/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

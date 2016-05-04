@@ -1,0 +1,37 @@
+<Spell>
+  <Name>Liveoak</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>none</SavingThrow>
+  <Description>Oak becomes treant guardian.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>10 minutes</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 day/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

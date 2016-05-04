@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using Pathfinder.Enum;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using System.Collections;
+using Pathfinder.Enums;
 
 namespace Test.Model
 {

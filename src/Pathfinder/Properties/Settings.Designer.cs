@@ -58,5 +58,41 @@ namespace Pathfinder.Properties {
                 this["RaceLibrary"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Classes")]
+        public string ClassLibrary {
+            get {
+                return ((string)(this["ClassLibrary"]));
+            }
+            set {
+                this["ClassLibrary"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\ClassFeatures")]
+        public string ClassFeatureLibrary {
+            get {
+                return ((string)(this["ClassFeatureLibrary"]));
+            }
+            set {
+                this["ClassFeatureLibrary"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Spells")]
+        public string SpellLibrary {
+            get {
+                return ((string)(this["SpellLibrary"]));
+            }
+            set {
+                this["SpellLibrary"] = value;
+            }
+        }
     }
 }

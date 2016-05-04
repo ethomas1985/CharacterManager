@@ -1,0 +1,29 @@
+<Spell>
+  <Name>Animate Plants</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>none</SavingThrow>
+  <Description>One or more plants animate and fight for you.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 round/level or 1 hour/level; see text</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

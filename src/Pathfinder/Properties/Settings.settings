@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Pathfinder.Properties" GeneratedClasspName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Pathfinder.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="TraitLibrary" Type="System.String" Scope="User">
@@ -10,6 +10,15 @@
     </Setting>
     <Setting Name="RaceLibrary" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\resources\Races</Value>
+    </Setting>
+    <Setting Name="ClassLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\resources\Classes</Value>
+    </Setting>
+    <Setting Name="ClassFeatureLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\resources\ClassFeatures</Value>
+    </Setting>
+    <Setting Name="SpellLibrary" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\resources\Spells</Value>
     </Setting>
   </Settings>
 </SettingsFile>

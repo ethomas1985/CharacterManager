@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Glyph Of Warding</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>see text</SavingThrow>
+  <Description>Inscription harms those who pass it.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance>(object) and yes; see text</SpellResistance>
+  <CastingTime>10 minutes</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>permanent until discharged (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Powdered diamond worth 200 gp</Text>
+    </Component>
+  </Components>
+</Spell>

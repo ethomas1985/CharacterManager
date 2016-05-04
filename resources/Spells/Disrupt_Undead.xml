@@ -1,0 +1,45 @@
+<Spell>
+  <Name>Disrupt Undead</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>none</SavingThrow>
+  <Description>Deals 1d6 damage to one undead.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

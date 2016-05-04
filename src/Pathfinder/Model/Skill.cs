@@ -1,4 +1,4 @@
-﻿using Pathfinder.Enum;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 
 namespace Pathfinder.Model

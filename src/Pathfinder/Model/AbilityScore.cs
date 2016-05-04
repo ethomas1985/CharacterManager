@@ -1,9 +1,9 @@
-﻿using Pathfinder.Enum;
-using Pathfinder.Interface;
+﻿using Pathfinder.Interface;
 using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinder.Enums;
 
 namespace Pathfinder.Model
 {

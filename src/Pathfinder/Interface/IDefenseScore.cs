@@ -1,4 +1,4 @@
-﻿using Pathfinder.Enum;
+﻿using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {

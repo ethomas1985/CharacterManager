@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Color Spray</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates</SavingThrow>
+  <Description>Knocks unconscious, blinds, and/or stuns weak creatures.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>15 ft.</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bloodrager</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous; see text</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Red, yellow, and blue powder or colored sand</Text>
+    </Component>
+  </Components>
+</Spell>

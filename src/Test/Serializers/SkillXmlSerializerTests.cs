@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 using NUnit.Framework;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Serializers;

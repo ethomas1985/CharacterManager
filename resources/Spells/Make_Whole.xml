@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Make Whole</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates (harmless, object)</SavingThrow>
+  <Description>Repairs an object.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless, object)</SpellResistance>
+  <CastingTime>10 minutes</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

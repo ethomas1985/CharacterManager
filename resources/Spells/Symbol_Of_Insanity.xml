@@ -1,0 +1,57 @@
+<Spell>
+  <Name>Symbol Of Insanity</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates</SavingThrow>
+  <Description>Triggered rune renders nearby creatures insane.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime />
+  <Range />
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration />
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Mercury and phosphorus, plus powdered diamond and opal worth a total of 5,000 gp</Text>
+    </Component>
+  </Components>
+</Spell>

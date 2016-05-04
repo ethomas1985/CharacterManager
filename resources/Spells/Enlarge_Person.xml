@@ -1,0 +1,61 @@
+<Spell>
+  <Name>Enlarge Person</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Fortitude negates</SavingThrow>
+  <Description>Humanoid creature doubles in size.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 round</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Alchemist</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bloodrager</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 min./level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Powdered iron</Text>
+    </Component>
+  </Components>
+</Spell>

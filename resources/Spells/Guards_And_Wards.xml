@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Guards And Wards</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>see text</SavingThrow>
+  <Description>Array of magic effects protect area.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance>text</SpellResistance>
+  <CastingTime>30 minutes</CastingTime>
+  <Range>anywhere within the area to be warded</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>2 hours/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Burning incense, a small measure of brimstone and oil, a knotted string, and a small amount of blood</Text>
+    </Component>
+    <Component>
+      <Type>Focus</Type>
+      <Text>A small silver rod</Text>
+    </Component>
+  </Components>
+</Spell>

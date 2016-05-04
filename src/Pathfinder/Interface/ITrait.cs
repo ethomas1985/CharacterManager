@@ -2,9 +2,8 @@
 
 namespace Pathfinder.Interface
 {
-	public interface ITrait
+	public interface ITrait : INamed
 	{
-		string Name { get; }
 		bool Active{ get; set; }
 		string Text { get; }
 

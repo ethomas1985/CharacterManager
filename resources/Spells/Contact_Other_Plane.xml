@@ -1,0 +1,45 @@
+<Spell>
+  <Name>Contact Other Plane</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>Lets you ask question of extraplanar entity.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>10 minutes</CastingTime>
+  <Range>personal</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Alchemist</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>concentration</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

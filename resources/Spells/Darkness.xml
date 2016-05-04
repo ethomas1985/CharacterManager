@@ -1,0 +1,83 @@
+<Spell>
+  <Name>Darkness</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Darkness</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>none</SavingThrow>
+  <Description>20-ft. radius of supernatural shadow.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Adept</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Antipaladin</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Skald</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 min./level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Bat fur and a piece of coal</Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text>Bat fur and a piece of coal</Text>
+    </Component>
+  </Components>
+</Spell>

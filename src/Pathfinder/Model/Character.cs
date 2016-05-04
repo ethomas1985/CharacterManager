@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Utilities;
@@ -522,7 +522,7 @@ namespace Pathfinder.Model
 		}
 		private int GetClassModifier(ISkill pSkill)
 		{
-			return Classes.Any(x => x.Class.Skills.Contains(pSkill)) ? 3 : 0;
+			return Classes.Any(x => x.Class.Skills.Contains(pSkill.Name)) ? 3 : 0;
 		}
 		private int GetMiscellaneousSkillModifier(ISkill pSkill)
 		{

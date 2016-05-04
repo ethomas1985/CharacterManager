@@ -1,5 +1,5 @@
-﻿using Pathfinder.Enum;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {

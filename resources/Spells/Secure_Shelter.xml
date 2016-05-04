@@ -1,0 +1,53 @@
+<Spell>
+  <Name>Secure Shelter</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>none</SavingThrow>
+  <Description>Creates sturdy cottage.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>10 minutes</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bard</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Skald</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>2 hours/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>A chip of stone, sand, a drop of water, and a wood splinter</Text>
+    </Component>
+  </Components>
+</Spell>

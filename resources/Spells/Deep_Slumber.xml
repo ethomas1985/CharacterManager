@@ -1,0 +1,44 @@
+<Spell>
+  <Name>Deep Slumber</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>Puts 10 HD of creatures to sleep.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime />
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bard</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Skald</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration />
+  <Components />
+</Spell>

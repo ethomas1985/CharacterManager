@@ -1,0 +1,45 @@
+<Spell>
+  <Name>Ghoul Touch</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Fortitude negates</SavingThrow>
+  <Description>Paralyzes one subject, which exudes stench that makes those nearby sickened.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bloodrager</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1d6+2 rounds</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Cloth from a ghoul or earth from a ghoul's lair</Text>
+    </Component>
+  </Components>
+</Spell>

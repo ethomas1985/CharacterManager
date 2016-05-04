@@ -1,0 +1,37 @@
+<Spell>
+  <Name>Hold Animal</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>Paralyzes one animal for 1 round/level.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime />
+  <Range />
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Ranger</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration />
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

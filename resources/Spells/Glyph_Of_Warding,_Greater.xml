@@ -1,0 +1,45 @@
+<Spell>
+  <Name>Glyph Of Warding, Greater</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>see text</SavingThrow>
+  <Description>As glyph of warding, but up to 10d8 damage or 6th-level spell.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance>(object) and yes; see text</SpellResistance>
+  <CastingTime>10 minutes</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>permanent until discharged (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Powdered diamond worth 200 gp</Text>
+    </Component>
+  </Components>
+</Spell>

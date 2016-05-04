@@ -1,0 +1,41 @@
+<Spell>
+  <Name>Longstrider</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>Your base speed increases by 10 ft.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>personal</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Ranger</Class>
+      <Level>1</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 hour/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>A pinch of dirt</Text>
+    </Component>
+  </Components>
+</Spell>

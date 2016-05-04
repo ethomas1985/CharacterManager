@@ -1,0 +1,81 @@
+<Spell>
+  <Name>Stoneskin</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates (harmless)</SavingThrow>
+  <Description>Grants DR 10/adamantine.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless)</SpellResistance>
+  <CastingTime>1 standard action</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Adept</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Alchemist</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bloodrager</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Elementalist Wizard</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Shaman</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>10 min./level or until discharged</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Granite and diamond dust worth 250 gp</Text>
+    </Component>
+  </Components>
+</Spell>

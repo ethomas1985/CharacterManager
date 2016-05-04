@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Serializers;

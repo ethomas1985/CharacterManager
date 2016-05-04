@@ -1,53 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 
 namespace Pathfinder.Library
 {
-	internal class SkillLibrary : ILibrary<ISkill>
+	internal class SkillLibrary : AbstractLibrary<ISkill>
 	{
-
-		private readonly Lazy<IDictionary<string, ISkill>> _library =
-			new Lazy<IDictionary<string, ISkill>>(
-				() => new Dictionary<string, ISkill>());
-
-		internal SkillLibrary(ISerializer<ISkill, string> pSerializer, string pRaceLibraryDirectory)
+		internal SkillLibrary(ISerializer<ISkill, string> pSerializer, string pLibraryDirectory)
+			: base(pSerializer, pLibraryDirectory)
 		{
-			if (!Directory.Exists(pRaceLibraryDirectory))
-			{
-				throw new DirectoryNotFoundException();
-			}
-
-			var files = Directory.EnumerateFiles(pRaceLibraryDirectory, "*.xml");
-			foreach (var file in files)
-			{
-				LoadFile(pSerializer, file);
-			}
 		}
 
-		private void LoadFile(ISerializer<ISkill, string> pSerializer, string pFile)
-		{
-			var xml = File.ReadAllText(pFile);
-			var race = pSerializer.Deserialize(xml);
-
-			ISkill value;
-			if (Library.TryGetValue(race.Name, out value))
-			{
-				Library[race.Name] = race;
-			}
-			else
-			{
-				Library.Add(race.Name, race);
-			}
-		}
-
-		private IDictionary<string, ISkill> Library => _library.Value;
-
-		public ISkill this[string pKey]
+		public override ISkill this[string pKey]
 		{
 			get
 			{
@@ -93,16 +58,6 @@ namespace Pathfinder.Library
 			Library.Add(skill.Name, skill);
 
 			return skill;
-		}
-
-		public IEnumerator<ISkill> GetEnumerator()
-		{
-			return Library.Values.GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
 		}
 	}
 }

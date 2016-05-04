@@ -1,0 +1,55 @@
+<Spell>
+  <Name>Acid Splash</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Acid</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>none</SavingThrow>
+  <Description>Orb deals 1d3 acid damage.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Elementalist Wizard</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Inquisitor</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>0</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

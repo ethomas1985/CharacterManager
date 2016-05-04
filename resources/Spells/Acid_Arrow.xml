@@ -1,0 +1,59 @@
+<Spell>
+  <Name>Acid Arrow</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Acid</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>none</SavingThrow>
+  <Description>Ranged touch attack; 2d4 damage for 1 round + 1 round/3 levels.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>long (400 ft. + 40 ft./level)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Bloodrager</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Elementalist Wizard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Magus</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 round + 1 round per three levels</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Rhubarb leaf and an adder's stomach</Text>
+    </Component>
+    <Component>
+      <Type>Focus</Type>
+      <Text>A dart</Text>
+    </Component>
+  </Components>
+</Spell>

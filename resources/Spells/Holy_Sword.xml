@@ -1,0 +1,31 @@
+<Spell>
+  <Name>Holy Sword</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Good</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>none</SavingThrow>
+  <Description>Weapon becomes +5, deals +2d6 damage against evil.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Paladin</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 round/level</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

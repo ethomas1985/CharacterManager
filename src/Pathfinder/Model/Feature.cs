@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 
 namespace Pathfinder.Model
@@ -9,7 +9,7 @@ namespace Pathfinder.Model
 		public Feature(
 			string pName,
 			string pBody,
-			FeatureAbilityTypes pAbilityType,
+			FeatureAbilityType pAbilityType,
 			IEnumerable<ISubFeature> subFeatures)
 		{
 			Name = pName;
@@ -21,7 +21,7 @@ namespace Pathfinder.Model
 
 		public string Name { get; }
 		public string Body { get; }
-		public FeatureAbilityTypes AbilityType { get; }
+		public FeatureAbilityType AbilityType { get; }
 		public IEnumerable<ISubFeature> SubFeatures { get; }
 	}
 }

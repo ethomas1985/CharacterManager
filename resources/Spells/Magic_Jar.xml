@@ -1,0 +1,53 @@
+<Spell>
+  <Name>Magic Jar</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates; see text</SavingThrow>
+  <Description>Enables possession of another creature.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>1 standard action</CastingTime>
+  <Range>medium (100 ft. + 10 ft./level)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Alchemist</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>4</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Witch</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 hour/level or until you return to your body</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Focus</Type>
+      <Text>A gem or crystal worth at least 100 gp</Text>
+    </Component>
+  </Components>
+</Spell>

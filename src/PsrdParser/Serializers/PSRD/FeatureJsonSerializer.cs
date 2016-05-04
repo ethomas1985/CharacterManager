@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -58,11 +58,11 @@ namespace PsrdParser.Serializers.PSRD
 			return htmlTable.DocumentNode.InnerText;
 		}
 
-		private static FeatureAbilityTypes GetAbilityTypes(JToken pToken)
+		private static FeatureAbilityType GetAbilityTypes(JToken pToken)
 		{
 			var value = (string) pToken["ability_types"]?["ability_type"];
-			FeatureAbilityTypes fat; // Stop laughing.
-			return Enum.TryParse(value, out fat) ? fat : FeatureAbilityTypes.Normal;
+			FeatureAbilityType fat; // Stop laughing.
+			return Enum.TryParse(value, out fat) ? fat : FeatureAbilityType.Normal;
 		}
 
 		private static IEnumerable<ISubFeature> GetSubFeatures(JToken pToken)

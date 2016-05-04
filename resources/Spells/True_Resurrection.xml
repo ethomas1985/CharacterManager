@@ -1,0 +1,45 @@
+<Spell>
+  <Name>True Resurrection</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow />
+  <Description>As resurrection, plus remains aren't needed.</Description>
+  <HasSpellResistance>false</HasSpellResistance>
+  <SpellResistance />
+  <CastingTime>10 minutes</CastingTime>
+  <Range />
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>9</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>9</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>9</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration />
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text>Diamond worth 25,000 gp</Text>
+    </Component>
+  </Components>
+</Spell>

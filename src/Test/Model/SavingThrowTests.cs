@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Model;
 
 namespace Test.Model

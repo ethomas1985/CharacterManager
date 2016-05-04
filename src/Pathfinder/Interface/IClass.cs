@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface IClass
+	public interface IClass : INamed
 	{
-		string Name { get; }
-
 		ISet<Alignment> Alignments { get; }
 		IDie HitDie { get; }
-		ISet<ISkill> Skills { get; }
+		ISet<string> Skills { get; }
 		IEnumerable<IClassLevel> ClassLevels { get; }
-		IEnumerable<IFeature> Features { get; }
+		IEnumerable<string> Features { get; }
 	}
 }

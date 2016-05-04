@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -76,7 +76,8 @@ namespace PsrdParser.Serializers.PSRD
 							Alignment.ChaoticNeutral,
 							Alignment.NeutralEvil
 						};
-				default:
+				case "Any.":
+				case "All.":
 					return new HashSet<Alignment>
 						{
 							Alignment.LawfulGood,
@@ -89,6 +90,8 @@ namespace PsrdParser.Serializers.PSRD
 							Alignment.NeutralEvil,
 							Alignment.ChaoticEvil
 						};
+				default:
+					throw new Exception($"Unknown Alignment Set: {value}");
 			}
 		}
 
@@ -110,9 +113,9 @@ namespace PsrdParser.Serializers.PSRD
 			return new Die(faces);
 		}
 
-		private ISet<ISkill> GetSkills(JObject jObject, string pField, string pValue)
+		private ISet<string> GetSkills(JObject jObject, string pField, string pValue)
 		{
-			var skills = new HashSet<ISkill>();
+			var skills = new HashSet<string>();
 			var lineRegex = new Regex(@"(?:<p>)?The \w+'s class skills are (.*).?(?:</p>)?");
 			var value = GetStringFor(jObject, pField, pValue);
 
@@ -128,9 +131,7 @@ namespace PsrdParser.Serializers.PSRD
 				var itemMatch = itemRegex.Match(token);
 				Assert.IsTrue(itemMatch.Success, $"{value} does not match the Item Regex Pattern.");
 
-				var name = itemMatch.Groups[1].Value;
-				var skill = SkillLibrary[name];
-				skills.Add(skill);
+				skills.Add(itemMatch.Groups[1].Value);
 			}
 
 			return skills;
@@ -169,18 +170,14 @@ namespace PsrdParser.Serializers.PSRD
 					.ToDictionary(k => k.Index, v => v.Count);
 		}
 
-		private static IEnumerable<IFeature> GetSpecials(string pValue)
+		private static IEnumerable<string> GetSpecials(string pValue)
 		{
 			var textInfo = new CultureInfo("en-US", false).TextInfo;
 			return
 				pValue
 					.Split(',')
 					.Select(
-						x => new Feature(
-							textInfo.ToTitleCase(x.Trim()),
-							null,
-							FeatureAbilityTypes.Normal,
-							null))
+						x => textInfo.ToTitleCase(x.Trim()))
 					.ToList();
 		}
 
@@ -230,7 +227,7 @@ namespace PsrdParser.Serializers.PSRD
 			return classSkills;
 		}
 
-		private IEnumerable<IFeature> GetClassFeatures(JObject jObject)
+		private IEnumerable<string> GetClassFeatures(JObject jObject)
 		{
 			var featuresSection =
 				jObject[SECTIONS_FIELD]
@@ -239,7 +236,7 @@ namespace PsrdParser.Serializers.PSRD
 
 			return featuresSection[SECTIONS_FIELD]
 					.Children()
-					.Select(x => new Feature((string) x["name"], null, FeatureAbilityTypes.Normal, null))
+					.Select(x => (string) x["name"])
 					.ToList();
 		}
 

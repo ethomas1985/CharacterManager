@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Statue</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates (harmless)</SavingThrow>
+  <Description>Subject can become a statue at will.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless)</SpellResistance>
+  <CastingTime>1 round</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Alchemist</Class>
+      <Level>6</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Elementalist Wizard</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 hour/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>Lime, sand, and a drop of water stirred by an iron spike</Text>
+    </Component>
+  </Components>
+</Spell>

@@ -1,0 +1,39 @@
+<Spell>
+  <Name>Chill Metal</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Cold</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>Will negates (object)</SavingThrow>
+  <Description>Cold metal damages those who touch it.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(object)</SpellResistance>
+  <CastingTime>1 standard action</CastingTime>
+  <Range>close (25 ft. + 5 ft./2 levels)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Druid</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Hunter</Class>
+      <Level>2</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>7 rounds</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

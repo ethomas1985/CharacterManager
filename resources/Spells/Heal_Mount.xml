@@ -1,0 +1,29 @@
+<Spell>
+  <Name>Heal Mount</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates (harmless)</SavingThrow>
+  <Description>As heal on horse or other special mount.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless)</SpellResistance>
+  <CastingTime>1 standard action</CastingTime>
+  <Range>touch</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Paladin</Class>
+      <Level>3</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>instantaneous</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+  </Components>
+</Spell>

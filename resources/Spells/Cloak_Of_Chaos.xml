@@ -1,0 +1,43 @@
+<Spell>
+  <Name>Cloak Of Chaos</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors>
+    <MagicDescriptor>Chaotic</MagicDescriptor>
+  </MagicDescriptors>
+  <SavingThrow>see text</SavingThrow>
+  <Description>+4 to AC, +4 resistance, and SR 25 against lawful spells.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless)</SpellResistance>
+  <CastingTime>1 standard action</CastingTime>
+  <Range>20 ft.</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Cleric</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Oracle</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Warpriest</Class>
+      <Level>8</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 round/level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Focus</Type>
+      <Text>A tiny reliquary worth 500 gp</Text>
+    </Component>
+  </Components>
+</Spell>

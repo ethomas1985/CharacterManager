@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;

@@ -1,0 +1,49 @@
+<Spell>
+  <Name>Invisibility, Mass</Name>
+  <School>Universal</School>
+  <SubSchool>None</SubSchool>
+  <MagicDescriptors />
+  <SavingThrow>Will negates (harmless) or Will negates (harmless, object)</SavingThrow>
+  <Description>As invisibility, but affects all in range.</Description>
+  <HasSpellResistance>true</HasSpellResistance>
+  <SpellResistance>(harmless) or yes (harmless, object)</SpellResistance>
+  <CastingTime>1 standard action</CastingTime>
+  <Range>long (400 ft. + 40 ft./level)</Range>
+  <LevelRequirements>
+    <LevelRequirement>
+      <Class>Arcanist</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Sorcerer</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Summoner</Class>
+      <Level>5</Level>
+    </LevelRequirement>
+    <LevelRequirement>
+      <Class>Wizard</Class>
+      <Level>7</Level>
+    </LevelRequirement>
+  </LevelRequirements>
+  <Duration>1 min./level (D)</Duration>
+  <Components>
+    <Component>
+      <Type>Verbal</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Somatic</Type>
+      <Text></Text>
+    </Component>
+    <Component>
+      <Type>Material</Type>
+      <Text>An eyelash encased in gum arabic</Text>
+    </Component>
+    <Component>
+      <Type>DivineFocus</Type>
+      <Text>An eyelash encased in gum arabic</Text>
+    </Component>
+  </Components>
+</Spell>

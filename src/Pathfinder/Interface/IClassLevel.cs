@@ -11,11 +11,11 @@ namespace Pathfinder.Interface
 		int Reflex { get; }
 		int Will { get; }
 
-		IEnumerable<IFeature> Specials { get; }
+		IEnumerable<string> Specials { get; }
 
 		IDictionary<int, int> SpellsPerDay { get; }
 		IDictionary<int, int> SpellsKnown { get; }
 
-		IDictionary<int, IEnumerable<ISpell>> Spells { get; }
+		IDictionary<int, IEnumerable<string>> Spells { get; }
 	}
 }

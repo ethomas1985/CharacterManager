@@ -1,11 +1,9 @@
-﻿using Pathfinder.Enum;
+﻿using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface ISkill
+	public interface ISkill : INamed
 	{
-		string Name { get; }
-
 		AbilityType AbilityType { get; }
 
 		bool TrainedOnly { get; }

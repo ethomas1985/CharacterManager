@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
+using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Properties;
 using Pathfinder.Serializers;
@@ -22,6 +24,17 @@ namespace PsrdParser
 			Path.Combine(PsrdData, "core_rulebook");
 		private static readonly string MyData =
 			Path.Combine(MyDocuments, "GitHub", "CharacterManager", "resources");
+
+
+		private readonly ILibrary<ISkill> _skillLibrary;
+
+		public Convert()
+		{
+			_skillLibrary =
+			new SkillLibrary(
+				new SkillXmlSerializer(),
+				Settings.Default.SkillLibrary);
+		}
 
 		[Test]
 		[Ignore]
@@ -109,14 +122,10 @@ namespace PsrdParser
 
 			WriteDuplicatesToConsole(sourceFiles);
 
-			var skillLibrary =
-				new SkillLibrary(
-					new SkillXmlSerializer(),
-					Settings.Default.SkillLibrary);
 			foreach (var file in sourceFiles)
 			{
 				var contents = File.ReadAllText(file);
-				var jsonSerializer = new ClassJsonSerializer(skillLibrary);
+				var jsonSerializer = new ClassJsonSerializer(_skillLibrary);
 				var result = jsonSerializer.Deserialize(contents);
 
 				var xmlSerializer = new ClassXmlSerializer();
@@ -192,18 +201,54 @@ namespace PsrdParser
 			}
 		}
 
-		private static void CreateDestinationDirectory(string destinationDir)
+		[Test]
+		[Ignore]
+		public void ConvertSpellsDirectory()
 		{
-			if (!Directory.Exists(destinationDir))
+			var sourceDir = Path.Combine(PsrdDataCore, "spell");
+			var destinationDir = Path.Combine(MyData, "Spells");
+			CreateDestinationDirectory(destinationDir);
+
+			var sourceFiles =
+				Directory
+					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
+					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.OrderBy(x => x);
+
+			WriteDuplicatesToConsole(sourceFiles);
+
+
+			foreach (var file in sourceFiles)
 			{
-				Directory.CreateDirectory(destinationDir);
+				Console.WriteLine($"Spell: {Path.GetFileNameWithoutExtension(file)}");
+				var contents = File.ReadAllText(file);
+				var jsonSerializer = new SpellJsonSerializer();
+				var result = jsonSerializer.Deserialize(contents);
+
+				var xmlSerializer = new SpellXmlSerializer();
+				var xmlSkill = xmlSerializer.Serialize(result);
+
+				var newPath = 
+					Path.Combine(
+						destinationDir, 
+						result.Name.Replace(" ", "_").Replace("\\", "_").Replace("/", "_"));
+				newPath = Path.ChangeExtension(newPath, "xml");
+				File.WriteAllText(newPath, xmlSkill);
 			}
 		}
 
-		private static void WriteDuplicatesToConsole(IOrderedEnumerable<string> sourceFiles)
+		private static void CreateDestinationDirectory(string pDestinationDir)
+		{
+			if (!Directory.Exists(pDestinationDir))
+			{
+				Directory.CreateDirectory(pDestinationDir);
+			}
+		}
+
+		private static void WriteDuplicatesToConsole(IEnumerable<string> pSourceFiles)
 		{
 			var dups =
-				sourceFiles
+				pSourceFiles
 					.GroupBy(Path.GetFileNameWithoutExtension)
 					.Select(x => new { x.Key, Count = x.Count() })
 					.Where(x => x.Count > 1)

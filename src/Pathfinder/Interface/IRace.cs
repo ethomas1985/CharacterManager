@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Pathfinder.Enum;
+using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface IRace
+	public interface IRace : INamed
 	{
-		string Name { get; }
 		Size Size { get; }
 		int BaseSpeed { get; }
 		IDictionary<AbilityType, int> AbilityScores { get; }

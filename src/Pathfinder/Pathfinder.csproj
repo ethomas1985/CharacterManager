@@ -41,29 +41,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enum\AbilityType.cs" />
-    <Compile Include="Enum\Alignment.cs" />
-    <Compile Include="Enum\BonusType.cs" />
-    <Compile Include="Enum\DefensiveType.cs" />
-    <Compile Include="Enum\Deity.cs" />
-    <Compile Include="Enum\FeatType.cs" />
-    <Compile Include="Enum\FeatureAbilityTypes.cs" />
-    <Compile Include="Enum\Gender.cs" />
+    <Compile Include="Enums\AbilityType.cs" />
+    <Compile Include="Enums\Alignment.cs" />
+    <Compile Include="Enums\BonusType.cs" />
+    <Compile Include="Enums\ComponentType.cs" />
+    <Compile Include="Enums\DefensiveType.cs" />
+    <Compile Include="Enums\Deity.cs" />
+    <Compile Include="Enums\FeatType.cs" />
+    <Compile Include="Enums\FeatureAbilityType.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\MagicSchool.cs" />
+    <Compile Include="Enums\MagicSubSchool.cs" />
+    <Compile Include="Enums\MagicDescriptor.cs" />
     <Compile Include="Interface\IClass.cs" />
     <Compile Include="Interface\IClassLevel.cs" />
     <Compile Include="Interface\IFeature.cs" />
     <Compile Include="Interface\ILanguage.cs" />
-    <Compile Include="Enum\OffensiveType.cs" />
-    <Compile Include="Enum\SavingThrowType.cs" />
-    <Compile Include="Enum\Size.cs" />
-    <Compile Include="Enum\EffectType.cs" />
+    <Compile Include="Enums\OffensiveType.cs" />
+    <Compile Include="Enums\SavingThrowType.cs" />
+    <Compile Include="Enums\Size.cs" />
+    <Compile Include="Enums\EffectType.cs" />
     <Compile Include="Interface\ILibrary.cs" />
+    <Compile Include="Interface\INamed.cs" />
     <Compile Include="Interface\IRace.cs" />
     <Compile Include="Interface\ISkillScore.cs" />
     <Compile Include="Interface\ISpell.cs" />
     <Compile Include="Interface\ISubFeature.cs" />
+    <Compile Include="Library\AbstractLibrary.cs" />
+    <Compile Include="Library\ClassLibrary.cs" />
     <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
+    <Compile Include="Library\SpellLibrary.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassLevel.cs" />
     <Compile Include="Model\Die.cs" />
@@ -76,6 +84,7 @@
     <Compile Include="Serializers\ClassXmlSerializer.cs" />
     <Compile Include="Serializers\FeatureXmlSerializer.cs" />
     <Compile Include="Serializers\FeatXmlSerializer.cs" />
+    <Compile Include="Serializers\SpellXmlSerializer.cs" />
     <Compile Include="Utilities\intExtensions.cs" />
     <Compile Include="Serializers\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />
@@ -123,6 +132,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\stringExtensions.cs" />
     <Compile Include="Utilities\Tracer.cs" />
   </ItemGroup>
   <ItemGroup />
