@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Elven)</Name>
+  <Text> {{Race | Plural}} treat any weapon with the word "elven" in its name as a martial weapon.</Text>
+  <PropertyModifiers />
+</Trait>

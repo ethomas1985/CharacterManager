@@ -4,9 +4,9 @@ using Pathfinder.Model;
 
 namespace Pathfinder.Serializers
 {
-	internal class CharacterXmlSerializer : ISerializer<Character, string>
+	internal class CharacterXmlSerializer : ISerializer<ICharacter, string>
 	{
-		public Character Deserialize(string pCharacterString)
+		public ICharacter Deserialize(string pCharacterString)
 		{
 			throw new NotImplementedException();
 			/*
@@ -50,7 +50,7 @@ namespace Pathfinder.Serializers
 			*/
 		}
 
-		public string Serialize(Character pThis)
+		public string Serialize(ICharacter pThis)
 		{
 			throw new NotImplementedException();
 		}

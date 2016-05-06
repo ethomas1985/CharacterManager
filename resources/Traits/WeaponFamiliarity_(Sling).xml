@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Sling)</Name>
+  <Text> {{Race | Plural}} are proficient with slings.</Text>
+  <PropertyModifiers />
+</Trait>

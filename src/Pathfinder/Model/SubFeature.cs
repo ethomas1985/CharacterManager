@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 
 namespace Pathfinder.Model

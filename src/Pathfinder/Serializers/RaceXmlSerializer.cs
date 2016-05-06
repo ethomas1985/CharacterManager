@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Pathfinder.Enums;
@@ -31,7 +32,15 @@ namespace Pathfinder.Serializers
 			var traits = GetTraits(xDocument, TraitLibrary);
 			var languages = GetLanguages(xDocument);
 
-			return new Race(name, description, size, baseSpeed, abilities, traits, languages);
+			try
+			{
+				return new Race(name, description, size, baseSpeed, abilities, traits, languages);
+			}
+			catch (Exception ex)
+			{
+				Tracer.Message(pMessage: ex.ToString());
+				throw;
+			}
 		}
 
 		private static string GetName(XDocument xDocument)

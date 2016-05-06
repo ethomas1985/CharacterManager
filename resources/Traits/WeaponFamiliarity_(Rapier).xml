@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Rapier)</Name>
+  <Text> {{Race | Plural}} are proficient with rapiers.</Text>
+  <PropertyModifiers />
+</Trait>

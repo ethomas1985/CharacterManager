@@ -4,7 +4,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
-using Pathfinder.Library;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model

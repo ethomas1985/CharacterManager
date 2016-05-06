@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Heavy Pick)</Name>
+  <Text> {{Race | Plural}} are proficient with heavy picks.</Text>
+  <PropertyModifiers />
+</Trait>

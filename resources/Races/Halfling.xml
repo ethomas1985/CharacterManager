@@ -12,9 +12,9 @@
 		<Trait>Fearless</Trait>
 		<Trait>Halfling Luck</Trait>
 		<Trait>Keen Senses</Trait>
-		<Trait>Sure-footed</Trait>
-		<Trait>Weapon Familiarity (slings)</Trait>
-		<Trait>Weapon Familiarity (Halfling*)</Trait>
+		<Trait>Sure-Footed</Trait>
+		<Trait>Weapon Familiarity (Sling)</Trait>
+		<Trait>Weapon Familiarity (Halfling)</Trait>
 	</Traits>
 	<Languages>
 		<Language>Common</Language>

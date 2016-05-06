@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterFactory.cs" />
     <Compile Include="Enums\AbilityType.cs" />
     <Compile Include="Enums\Alignment.cs" />
     <Compile Include="Enums\BonusType.cs" />
@@ -67,7 +68,9 @@
     <Compile Include="Interface\ISkillScore.cs" />
     <Compile Include="Interface\ISpell.cs" />
     <Compile Include="Interface\ISubFeature.cs" />
+    <Compile Include="LibraryFactory.cs" />
     <Compile Include="Library\AbstractLibrary.cs" />
+    <Compile Include="Library\CharacterLibrary.cs" />
     <Compile Include="Library\ClassLibrary.cs" />
     <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />

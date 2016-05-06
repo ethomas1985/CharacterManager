@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Dwarven)</Name>
+  <Text> {{Race |Plural}} treat any weapon with the word "dwarven" in its name as a martial weapon.</Text>
+  <PropertyModifiers />
+</Trait>

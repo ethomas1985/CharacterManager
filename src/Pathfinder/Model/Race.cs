@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 
@@ -20,16 +21,16 @@ namespace Pathfinder.Model
 			Size = pSize;
 			BaseSpeed = pBaseSpeed;
 			AbilityScores = pAbilityScores;
-			Traits = pTraits;
-			Languages = pLanguages;
+			Traits = pTraits.ToList();
+			Languages = pLanguages.ToList();
 		}
 
-		public string Name { get; private set; }
-		public string Description { get; private set; }
-		public Size Size { get; private set; }
-		public int BaseSpeed { get; private set; }
-		public IDictionary<AbilityType, int> AbilityScores { get; private set; }
-		public IEnumerable<ITrait> Traits { get; private set; }
-		public IEnumerable<ILanguage> Languages { get; private set; }
+		public string Name { get; }
+		public string Description { get; }
+		public Size Size { get; }
+		public int BaseSpeed { get; }
+		public IDictionary<AbilityType, int> AbilityScores { get; }
+		public IEnumerable<ITrait> Traits { get; }
+		public IEnumerable<ILanguage> Languages { get; }
 	}
 }

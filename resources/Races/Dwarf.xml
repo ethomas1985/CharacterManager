@@ -13,14 +13,15 @@
 		<Trait>Darkvision</Trait>
 		<Trait>Defensive Training</Trait>
 		<Trait>Greed</Trait>
-		<Trait>Hatred</Trait>
+		<Trait>Hatred (Orc)</Trait>
+		<Trait>Hatred (Goblinoid)</Trait>
 		<Trait>Hardy</Trait>
 		<Trait>Stability</Trait>
 		<Trait>Stonecunning</Trait>
 		<Trait>Weapon Familiarity (Battleaxe)</Trait>
 		<Trait>Weapon Familiarity (Heavy Pick)</Trait>
 		<Trait>Weapon Familiarity (Warhammer)</Trait>
-		<Trait>Weapon Familiarity (Dwarven*)</Trait>
+		<Trait>Weapon Familiarity (Dwarven)</Trait>
 	</Traits>
 	<Languages>
 		<Language>Common</Language>

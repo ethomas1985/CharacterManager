@@ -9,7 +9,7 @@
 		<Constitution>-2</Constitution>
 	</AbilityScores>
 	<Traits>
-		<Trait>Low-light Vision</Trait>
+		<Trait>Low-Light Vision</Trait>
 		<Trait>Elven Immunities</Trait>
 		<Trait>Elven Magic</Trait>
 		<Trait>Keen Senses</Trait>
@@ -17,7 +17,7 @@
 		<Trait>Weapon Familiarity (Shortbow)</Trait>
 		<Trait>Weapon Familiarity (Longsword)</Trait>
 		<Trait>Weapon Familiarity (Rapier)</Trait>
-		<Trait>Weapon Familiarity (Elven*)</Trait>
+		<Trait>Weapon Familiarity (Elven)</Trait>
 	</Traits>
 	<Languages>
 		<Language>Common</Language>

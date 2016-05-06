@@ -23,75 +23,57 @@ namespace Pathfinder.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Traits")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Traits")]
         public string TraitLibrary {
             get {
                 return ((string)(this["TraitLibrary"]));
             }
-            set {
-                this["TraitLibrary"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Skills")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Skills")]
         public string SkillLibrary {
             get {
                 return ((string)(this["SkillLibrary"]));
             }
-            set {
-                this["SkillLibrary"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Races")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Races")]
         public string RaceLibrary {
             get {
                 return ((string)(this["RaceLibrary"]));
             }
-            set {
-                this["RaceLibrary"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Classes")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Classes")]
         public string ClassLibrary {
             get {
                 return ((string)(this["ClassLibrary"]));
             }
-            set {
-                this["ClassLibrary"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\ClassFeatures")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\ClassFeatures")]
         public string ClassFeatureLibrary {
             get {
                 return ((string)(this["ClassFeatureLibrary"]));
             }
-            set {
-                this["ClassFeatureLibrary"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\resources\\Spells")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Spells")]
         public string SpellLibrary {
             get {
                 return ((string)(this["SpellLibrary"]));
-            }
-            set {
-                this["SpellLibrary"] = value;
             }
         }
     }

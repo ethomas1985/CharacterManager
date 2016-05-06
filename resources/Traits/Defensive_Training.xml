@@ -1,5 +1,5 @@
 <Trait>
   <Name>Defensive Training</Name>
-  <Text>{{Racial | Plural}} get a +4 dodge bonus to AC against monsters of the giant subtype.</Text>
+  <Text>{{Race | plural}}|{{Race | plural}} get a +4 dodge bonus to AC against monsters of the giant subtype.</Text>
   <PropertyModifiers />
 </Trait>

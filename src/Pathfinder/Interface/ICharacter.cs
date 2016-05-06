@@ -3,7 +3,7 @@ using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface ICharacter
+	public interface ICharacter : INamed
 	{
 		int Age { get; }
 		Alignment Alignment { get; }
@@ -19,8 +19,6 @@ namespace Pathfinder.Interface
 		decimal Height { get; }
 
 		string Homeland { get; }
-
-		string Name { get; }
 
 		IRace Race { get; }
 		Size BaseSize { get; }

@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Battleaxe)</Name>
+  <Text> {{Race | Plural}} are proficient with battleaxes.</Text>
+  <PropertyModifiers />
+</Trait>

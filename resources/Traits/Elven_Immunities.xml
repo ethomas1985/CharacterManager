@@ -1,5 +1,5 @@
 <Trait>
   <Name>Elven Immunities</Name>
-  <Text>{{Racial | Plural}} are immune to magic sleep effects and get a +2 racial saving throw bonus against enchantment spells and effects.</Text>
+  <Text>{{Race | plural}}|{{Race | plural}} are immune to magic sleep effects and get a +2 racial saving throw bonus against enchantment spells and effects.</Text>
   <PropertyModifiers />
 </Trait>

@@ -2,23 +2,23 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Pathfinder.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TraitLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\Traits</Value>
+    <Setting Name="TraitLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Traits</Value>
     </Setting>
-    <Setting Name="SkillLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\Skills</Value>
+    <Setting Name="SkillLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Skills</Value>
     </Setting>
-    <Setting Name="RaceLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\Races</Value>
+    <Setting Name="RaceLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Races</Value>
     </Setting>
-    <Setting Name="ClassLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\Classes</Value>
+    <Setting Name="ClassLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Classes</Value>
     </Setting>
-    <Setting Name="ClassFeatureLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\ClassFeatures</Value>
+    <Setting Name="ClassFeatureLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\ClassFeatures</Value>
     </Setting>
-    <Setting Name="SpellLibrary" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\resources\Spells</Value>
+    <Setting Name="SpellLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Spells</Value>
     </Setting>
   </Settings>
 </SettingsFile>

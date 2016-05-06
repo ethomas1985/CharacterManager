@@ -1,0 +1,5 @@
+<Trait>
+  <Name>Weapon Familiarity (Greataxe)</Name>
+  <Text> {{Race | Plural}} are proficient with greataxes.</Text>
+  <PropertyModifiers />
+</Trait>

@@ -1,5 +1,5 @@
 <Trait>
   <Name>Darkvision</Name>
-  <Text>{{Racial | Plural}} can see in the dark up to 60 feet.</Text>
+  <Text>{{Race | plural}}|{{Race | plural}} can see in the dark up to 60 feet.</Text>
   <PropertyModifiers />
 </Trait>
