@@ -1,4 +1,5 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Enums;
@@ -6,7 +7,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
-	internal class SkillScore : ISkillScore
+	internal class SkillScore : ISkillScore, IEquatable<ISkillScore>
 	{
 		public SkillScore(
 			ISkill pSkill, 
@@ -46,8 +47,8 @@ namespace Pathfinder.Model
 			{
 				var total = Values.Sum();
 
-				Tracer.Message(
-					pMessage: $"{Skill.Name}[{total}] = {string.Join(" + ", Values)}");
+				//Tracer.Message(
+				//	pMessage: $"{Skill.Name}[{total}] = {string.Join(" + ", Values)}");
 
 				return total;
 			}
@@ -67,6 +68,46 @@ namespace Pathfinder.Model
 		public override string ToString()
 		{
 			return $"{Skill.Name}[{Total}] = {string.Join(" + ", Values)}";
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as ISkillScore);
+		}
+
+		public bool Equals(ISkillScore pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+			return 
+				Equals(Skill, pOther.Skill)
+				&& AbilityModifier == pOther.AbilityModifier
+				&& Ranks == pOther.Ranks
+				&& ClassModifier == pOther.ClassModifier
+				&& MiscModifier == pOther.MiscModifier
+				&& TemporaryModifier == pOther.TemporaryModifier
+				&& ArmorClassPenalty == pOther.ArmorClassPenalty;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = Skill?.GetHashCode() ?? 0;
+				hashCode = (hashCode*397) ^ (AbilityScore?.GetHashCode() ?? 0);
+				hashCode = (hashCode*397) ^ Ranks;
+				hashCode = (hashCode*397) ^ ClassModifier;
+				hashCode = (hashCode*397) ^ MiscModifier;
+				hashCode = (hashCode*397) ^ TemporaryModifier;
+				hashCode = (hashCode*397) ^ ArmorClassPenalty;
+				return hashCode;
+			}
 		}
 	}
 }

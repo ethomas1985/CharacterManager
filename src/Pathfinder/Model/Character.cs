@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
@@ -8,15 +9,11 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
-	internal class Character : ICharacter
+	internal class Character : ICharacter, IEquatable<ICharacter>
 	{
-		public Character(IRace pRace, ILibrary<ISkill> pSkillLibrary)
+		public Character(ILibrary<ISkill> pSkillLibrary)
 		{
-			Assert.ArgumentNotNull(pRace, nameof(pRace));
-
-			Race = pRace;
 			SkillLibrary = pSkillLibrary;
-			Languages = new List<ILanguage>(Race.Languages);
 		}
 
 		public int Age { get; private set; }
@@ -36,25 +33,25 @@ namespace Pathfinder.Model
 
 		public string Eyes { get; private set; }
 		public string Hair { get; private set; }
-		public decimal Height { get; private set; }
-		public decimal Weight { get; private set; }
+		public string Height { get; private set; }
+		public string Weight { get; private set; }
 
 		public string Homeland { get; private set; }
 
 		public string Name { get; private set; }
 
-		public IRace Race { get; }
-		public Size BaseSize => Race.Size;
+		public IRace Race { get; private set; }
+		public Size BaseSize => Race?.Size ?? default(Size);
 		public virtual Size Size => BaseSize;// + AnySizeModifier;
 
-		public IEnumerable<ILanguage> Languages { get; }
+		public IEnumerable<ILanguage> Languages { get; private set; }
 
-		public int MaxHealthPoints { get { throw new NotImplementedException(); } }
+		public int MaxHealthPoints { get { return Classes?.SelectMany(x => x.HitPoints).Sum() ?? 0; } }
 		public int Damage { get; private set; }
 		public int HealthPoints => MaxHealthPoints - Damage;
 
-		public decimal BaseSpeed => Race.BaseSpeed;
-		public decimal ArmoredSpeed { get; }
+		public int BaseSpeed => Race?.BaseSpeed ?? 0;
+		public int ArmoredSpeed { get; }
 
 		public IAbilityScore Strength =>
 			new AbilityScore(
@@ -70,11 +67,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Strength] +
-					Effects
-						.Where(x => x.Active && x.StrengthModifier != 0)
-						.Sum(x => x.StrengthModifier);
+				int strength;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Strength, out strength))
+				{
+					return 0;
+				}
+				return strength
+					+ Effects
+						?.Where(x => x.Active && x.StrengthModifier != 0)
+						.Sum(x => x.StrengthModifier) ?? 0;
 			}
 		}
 
@@ -92,11 +93,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Dexterity] +
-					Effects
-						.Where(x => x.Active && x.DexterityModifier != 0)
-						.Sum(x => x.DexterityModifier);
+				int dexterity;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Dexterity, out dexterity))
+				{
+					return 0;
+				}
+				return dexterity
+					+ Effects
+						?.Where(x => x.Active && x.DexterityModifier != 0)
+						.Sum(x => x.DexterityModifier) ?? 0;
 			}
 		}
 
@@ -114,11 +119,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Constitution] +
-					Effects
-						.Where(x => x.Active && x.ConstitutionModifier != 0)
-						.Sum(x => x.ConstitutionModifier);
+				int constitution;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Constitution, out constitution))
+				{
+					return 0;
+				}
+				return constitution
+					+ Effects
+						?.Where(x => x.Active && x.ConstitutionModifier != 0)
+						.Sum(x => x.ConstitutionModifier) ?? 0;
 			}
 		}
 
@@ -136,11 +145,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Intelligence] +
-					Effects
-						.Where(x => x.Active && x.IntelligenceModifier != 0)
-						.Sum(x => x.IntelligenceModifier);
+				int intelligence;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Intelligence, out intelligence))
+				{
+					return 0;
+				}
+				return intelligence
+					+ Effects
+						?.Where(x => x.Active && x.IntelligenceModifier != 0)
+						.Sum(x => x.IntelligenceModifier) ?? 0;
 			}
 		}
 
@@ -158,11 +171,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Wisdom] +
-					Effects
-						.Where(x => x.Active && x.WisdomModifier != 0)
-						.Sum(x => x.WisdomModifier);
+				int wisdom;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Wisdom, out wisdom))
+				{
+					return 0;
+				}
+				return wisdom
+					+ Effects
+						?.Where(x => x.Active && x.WisdomModifier != 0)
+						.Sum(x => x.WisdomModifier) ?? 0;
 			}
 		}
 
@@ -180,11 +197,15 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				return
-					Race.AbilityScores[AbilityType.Charisma] +
-					Effects
-						.Where(x => x.Active && x.CharismaModifier != 0)
-						.Sum(x => x.CharismaModifier);
+				int charisma;
+				if (Race == null || !Race.TryGetAbilityScore(AbilityType.Charisma, out charisma))
+				{
+					return 0;
+				}
+				return charisma
+					+ Effects
+						?.Where(x => x.Active && x.CharismaModifier != 0)
+						.Sum(x => x.CharismaModifier) ?? 0;
 			}
 		}
 
@@ -217,7 +238,7 @@ namespace Pathfinder.Model
 				DefensiveType.ArmorClass,
 				ArmorBonus,
 				ShieldBonus,
-				Dexterity,
+				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				(int) Size,
 				NaturalBonus,
 				DeflectBonus,
@@ -245,7 +266,7 @@ namespace Pathfinder.Model
 				DefensiveType.Touch,
 				0,
 				0,
-				Dexterity,
+				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				(int) Size,
 				0,
 				DeflectBonus,
@@ -257,8 +278,8 @@ namespace Pathfinder.Model
 		public IDefenseScore CombatManeuverDefense =>
 			new DefenseScore(
 				BaseAttackBonus,
-				Strength,
-				Dexterity,
+				Strength ?? new AbilityScore(AbilityType.Strength, 0),
+				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				(int) Size,
 				DeflectBonus,
 				DodgeBonus,
@@ -268,11 +289,11 @@ namespace Pathfinder.Model
 
 		private int ArmorBonus
 		{
-			get { return EquipedArmor.Where(x => !x.IsShield).Sum(x => x.Bonus); }
+			get { return EquipedArmor?.Where(x => !x.IsShield).Sum(x => x.Bonus) ?? 0; }
 		}
 		private int ShieldBonus
 		{
-			get { return EquipedArmor.Where(x => x.IsShield).Sum(x => x.Bonus); }
+			get { return EquipedArmor?.Where(x => x.IsShield).Sum(x => x.Bonus) ?? 0; }
 		}
 		private int NaturalBonus
 		{
@@ -280,8 +301,8 @@ namespace Pathfinder.Model
 			{
 				return
 					Effects
-						.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
-						.Sum(x => x.ArmorClassNaturalModifier);
+						?.Where(x => x.Active && x.ArmorClassNaturalModifier != 0)
+						.Sum(x => x.ArmorClassNaturalModifier) ?? 0;
 			}
 		}
 		private int DeflectBonus
@@ -290,8 +311,8 @@ namespace Pathfinder.Model
 			{
 				return
 					Effects
-						.Where(x => x.Active && x.Type == EffectType.Deflection)
-						.Sum(x => x.ArmorClassOtherModifier);
+						?.Where(x => x.Active && x.Type == EffectType.Deflection)
+						.Sum(x => x.ArmorClassOtherModifier) ?? 0;
 			}
 		}
 		private int DodgeBonus
@@ -300,8 +321,8 @@ namespace Pathfinder.Model
 			{
 				return
 					Effects
-						.Where(x => x.Active && x.Type == EffectType.Dodge)
-						.Sum(x => x.ArmorClassOtherModifier);
+						?.Where(x => x.Active && x.Type == EffectType.Dodge)
+						.Sum(x => x.ArmorClassOtherModifier) ?? 0;
 			}
 		}
 		private int TemporaryBonus
@@ -310,10 +331,10 @@ namespace Pathfinder.Model
 			{
 				return
 					Effects
-						.Where(x => x.Active
+						?.Where(x => x.Active
 									&& x.Type != EffectType.Deflection
 									&& x.Type != EffectType.Dodge)
-						.Sum(x => x.ArmorClassNaturalModifier);
+						.Sum(x => x.ArmorClassNaturalModifier) ?? 0;
 			}
 		}
 		public int BaseAttackBonus { get { return Classes.Sum(x => x.BaseAttackBonus); } }
@@ -332,8 +353,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type == EffectType.Resistance)
-					.Sum(x => x.FortitudeModifier);
+					?.Where(x => x.Active && x.Type == EffectType.Resistance)
+					.Sum(x => x.FortitudeModifier) ?? 0;
 			}
 		}
 		private int TemporaryFortitude
@@ -341,8 +362,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type != EffectType.Resistance)
-					.Sum(x => x.FortitudeModifier);
+					?.Where(x => x.Active && x.Type != EffectType.Resistance)
+					.Sum(x => x.FortitudeModifier) ?? 0;
 			}
 		}
 		private int MiscellaneousFortitudeModifier { get; set; }
@@ -350,7 +371,7 @@ namespace Pathfinder.Model
 		public ISavingThrow Reflex =>
 				new SavingThrow(
 					SavingThrowType.Reflex,
-					Dexterity,
+					Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 					BaseReflex,
 					ReflexResistance,
 					TemporaryReflex,
@@ -361,8 +382,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type == EffectType.Resistance)
-					.Sum(x => x.ReflexModifier);
+					?.Where(x => x.Active && x.Type == EffectType.Resistance)
+					.Sum(x => x.ReflexModifier) ?? 0;
 			}
 		}
 		private int TemporaryReflex
@@ -370,8 +391,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type != EffectType.Resistance)
-					.Sum(x => x.ReflexModifier);
+					?.Where(x => x.Active && x.Type != EffectType.Resistance)
+					.Sum(x => x.ReflexModifier) ?? 0;
 			}
 		}
 		private int MiscellaneousReflexModifier { get; set; }
@@ -390,8 +411,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type == EffectType.Resistance)
-					.Sum(x => x.WillModifier);
+					?.Where(x => x.Active && x.Type == EffectType.Resistance)
+					.Sum(x => x.WillModifier) ?? 0;
 			}
 		}
 		private int TemporaryWill
@@ -399,8 +420,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active && x.Type != EffectType.Resistance)
-					.Sum(x => x.WillModifier);
+					?.Where(x => x.Active && x.Type != EffectType.Resistance)
+					.Sum(x => x.WillModifier) ?? 0;
 			}
 		}
 		private int MiscellaneousWillModifier { get; set; }
@@ -418,8 +439,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active)
-					.Sum(x => x.MeleeAttackModifier);
+					?.Where(x => x.Active)
+					.Sum(x => x.MeleeAttackModifier) ?? 0;
 			}
 		}
 		private int MiscellaneousMeleeModifier { get; set; }
@@ -427,7 +448,7 @@ namespace Pathfinder.Model
 		public IOffensiveScore Ranged =>
 			new OffensiveScore(
 				OffensiveType.Ranged,
-				Dexterity,
+				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				BaseAttackBonus,
 				(int) Size,
 				TemporaryRangedModifier,
@@ -437,8 +458,8 @@ namespace Pathfinder.Model
 			get
 			{
 				return Effects
-					.Where(x => x.Active)
-					.Sum(x => x.RangedAttackModifier);
+					?.Where(x => x.Active)
+					.Sum(x => x.RangedAttackModifier) ?? 0;
 			}
 		}
 		private int MiscellaneousRangedModifier { get; set; }
@@ -446,7 +467,7 @@ namespace Pathfinder.Model
 		public IOffensiveScore CombatManeuverBonus =>
 			new OffensiveScore(
 				OffensiveType.CombatManeuverBonus,
-				Strength,
+				Strength ?? new AbilityScore(AbilityType.Strength, 0),
 				BaseAttackBonus,
 				(int) Size,
 				TemporaryMeleeModifier,
@@ -456,7 +477,7 @@ namespace Pathfinder.Model
 		public IExperience Experience { get; }
 		public int ExperiencePoints
 		{
-			get { return Experience.Sum(x => x.ExperiencePoints); }
+			get { return Experience?.Sum(x => x.ExperiencePoints) ?? 0; }
 		}
 
 		public IEnumerable<IDie> HitDice { get { return Classes.Select(x => x.Class.HitDie); } }
@@ -470,8 +491,11 @@ namespace Pathfinder.Model
 		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		public IEnumerable<ISkillScore> SkillScores
 		{
-			get {
-				return Skills.Select(skill => this[skill]);
+			get
+			{
+				var skillScores = Skills?.Select(skill => this[skill]).ToImmutableList();
+				return skillScores
+					?? new List<ISkillScore>().ToImmutableList();
 			}
 		}
 		public ISkillScore this[ISkill pSkill]
@@ -482,7 +506,7 @@ namespace Pathfinder.Model
 				var classModifier = GetClassModifier(pSkill);
 				var misc = GetMiscellaneousSkillModifier(pSkill);
 				var temp = GetTemporarySkillModifier(pSkill);
-				var armorClassPenalty = EquipedArmor.Sum(x => x.ArmorCheckPenalty);
+				var armorClassPenalty = EquipedArmor?.Sum(x => x.ArmorCheckPenalty) ?? 0;
 
 				return
 					new SkillScore(
@@ -504,7 +528,7 @@ namespace Pathfinder.Model
 
 		public IPurse Purse { get; internal set; }
 
-		public IEnumerable<ITrait> Traits => Race.Traits;
+		public IEnumerable<ITrait> Traits => Race?.Traits;
 
 		/*
 		 * METHODS
@@ -536,14 +560,26 @@ namespace Pathfinder.Model
 		{
 			var temp =
 				Effects
-					.Where(x => x.Active)
-					.Sum(x => x[pSkill]);
+					?.Where(x => x.Active)
+					.Sum(x => x[pSkill]) ?? 0;
 			return temp;
+		}
+
+		public ICharacter SetRace(IRace pRace)
+		{
+			Assert.ArgumentNotNull(pRace, nameof(pRace));
+
+			var newCharacter = _copy();
+
+			newCharacter.Race = pRace;
+			newCharacter.Languages = new List<ILanguage>(newCharacter.Race.Languages);
+
+			return newCharacter;
 		}
 
 		public ICharacter SetName(string pName)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Name = pName;
 
 			return newCharacter;
@@ -551,21 +587,21 @@ namespace Pathfinder.Model
 
 		public ICharacter SetAge(int pAge)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Age = pAge;
 			return newCharacter;
 		}
 
 		public ICharacter SetAlignment(Alignment pAlignment)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Alignment = pAlignment;
 			return newCharacter;
 		}
 
 		public ICharacter SetHomeland(string pHomeland)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Homeland = pHomeland;
 			return newCharacter;
 		}
@@ -584,56 +620,56 @@ namespace Pathfinder.Model
 
 		public ICharacter SetDeity(Deity pDeity)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Deity = pDeity;
 			return newCharacter;
 		}
 
 		public ICharacter SetGender(Gender pGender)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Gender = pGender;
 			return newCharacter;
 		}
 
 		public ICharacter SetEyes(string pEyes)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Eyes = pEyes;
 			return newCharacter;
 		}
 
 		public ICharacter SetHair(string pHair)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Hair = pHair;
 			return newCharacter;
 		}
 
-		public ICharacter SetHeight(decimal pHeight)
+		public ICharacter SetHeight(string pHeight)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Height = pHeight;
 			return newCharacter;
 		}
 
-		public ICharacter SetWeight(decimal pWeight)
+		public ICharacter SetWeight(string pWeight)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Weight = pWeight;
 			return newCharacter;
 		}
 
 		public ICharacter SetDamage(int pDamage)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Damage = pDamage;
 			return newCharacter;
 		}
 
 		public ICharacter AddDamage(int pDamage)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Damage += pDamage;
 			return newCharacter;
 		}
@@ -662,7 +698,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.Purse = Purse.Add(pCopper, pSilver, pGold, pPlatinum);
 			return newCharacter;
 		}
@@ -684,7 +720,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseStrength = pBase;
 			newCharacter.EnhancedStrength = pEnhanced;
 			newCharacter.InherentStrength = pInherent;
@@ -693,7 +729,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseDexterity = pBase;
 			newCharacter.EnhancedDexterity = pEnhanced;
 			newCharacter.InherentDexterity = pInherent;
@@ -702,7 +738,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseConstitution = pBase;
 			newCharacter.EnhancedConstitution = pEnhanced;
 			newCharacter.InherentConstitution = pInherent;
@@ -711,7 +747,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseIntelligence = pBase;
 			newCharacter.EnhancedIntelligence = pEnhanced;
 			newCharacter.InherentIntelligence = pInherent;
@@ -720,7 +756,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseWisdom = pBase;
 			newCharacter.EnhancedWisdom = pEnhanced;
 			newCharacter.InherentWisdom = pInherent;
@@ -729,7 +765,7 @@ namespace Pathfinder.Model
 
 		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			var newCharacter = copy();
+			var newCharacter = _copy();
 			newCharacter.BaseCharisma = pBase;
 			newCharacter.EnhancedCharisma = pEnhanced;
 			newCharacter.InherentCharisma = pInherent;
@@ -738,12 +774,130 @@ namespace Pathfinder.Model
 
 		public ICharacter Copy()
 		{
-			return copy();
+			return _copy();
 		}
 
-		private Character copy()
+		private Character _copy()
 		{
-			throw new NotImplementedException();
+			return (Character) MemberwiseClone();
+		}
+
+		public override bool Equals(object pObj)
+		{
+			return Equals(pObj as ICharacter);
+		}
+
+		public bool Equals(ICharacter pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			var result = Age == pOther.Age;
+
+			result &= Alignment == pOther.Alignment;
+			result &= classes.SequenceEqual(pOther.Classes);
+			result &= Deity == pOther.Deity;
+			result &= Gender == pOther.Gender;
+			result &= string.Equals(Eyes, pOther.Eyes, StringComparison.InvariantCultureIgnoreCase);
+			result &= string.Equals(Hair, pOther.Hair, StringComparison.InvariantCultureIgnoreCase);
+			result &= string.Equals(Height, pOther.Height, StringComparison.InvariantCultureIgnoreCase);
+			result &= string.Equals(Weight, pOther.Weight, StringComparison.InvariantCultureIgnoreCase);
+			result &= string.Equals(Homeland, pOther.Homeland, StringComparison.InvariantCultureIgnoreCase);
+			result &= string.Equals(Name, pOther.Name, StringComparison.InvariantCultureIgnoreCase);
+			result &= Equals(Race, pOther.Race);
+			result &= Equals(Languages, pOther.Languages);
+			result &= Damage == pOther.Damage;
+			result &= ArmoredSpeed == pOther.ArmoredSpeed;
+			result &= Equals(Strength, pOther.Strength);
+			result &= Equals(Dexterity, pOther.Dexterity);
+			result &= Equals(Constitution, pOther.Constitution);
+			result &= Equals(Intelligence, pOther.Intelligence);
+			result &= Equals(Wisdom, pOther.Wisdom);
+			result &= Equals(Charisma, pOther.Charisma);
+			result &= Equals(Fortitude, pOther.Fortitude);
+			result &= Equals(Reflex, pOther.Reflex);
+			result &= Equals(Will, pOther.Will);
+			result &= Equals(ArmorClass, pOther.ArmorClass);
+			result &= Equals(FlatFooted, pOther.FlatFooted);
+			result &= Equals(Touch, pOther.Touch);
+			result &= Equals(CombatManeuverDefense, pOther.CombatManeuverDefense);
+			result &= Equals(Melee, pOther.Melee);
+			result &= Equals(Ranged, pOther.Ranged);
+			result &= Equals(CombatManeuverBonus, pOther.CombatManeuverBonus);
+			result &= Equals(Experience, pOther.Experience);
+
+			var skillScoresEqual = SkillScores.SequenceEqual(pOther.SkillScores);
+			result &= skillScoresEqual;
+			if (!skillScoresEqual)
+			{
+				Tracer.Message(pMessage: $"{nameof(SkillScores)} :: {string.Join(", ", SkillScores.Select(x => x.ToString()))}");
+				Tracer.Message(pMessage: $"{nameof(pOther)}.{nameof(SkillScores)} :: {string.Join(", ", pOther.SkillScores.Select(x => x.ToString()))}");
+			}
+
+			result &= Equals(Feats, pOther.Feats);
+			//result &= Equals(Weapons, other.Weapons);
+			result &= Equals(Inventory, pOther.Inventory);
+			//result &= Equals(EquipedArmor, other.EquipedArmor);
+			//result &= Equals(Effects, other.Effects);
+			 result &= Equals(Purse, pOther.Purse);
+
+			return result;
+		}
+
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = Age;
+				hashCode = (hashCode * 397) ^ (int) Alignment;
+				hashCode = (hashCode * 397) ^ (classes?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (int) Deity;
+				hashCode = (hashCode * 397) ^ (int) Gender;
+				hashCode = (hashCode * 397) ^ (Eyes != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Eyes) : 0);
+				hashCode = (hashCode * 397) ^ (Hair != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Hair) : 0);
+				hashCode = (hashCode * 397) ^ (Height != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Height) : 0);
+				hashCode = (hashCode * 397) ^ (Weight != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Weight) : 0);
+				hashCode = (hashCode * 397) ^ (Homeland != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Homeland) : 0);
+				hashCode = (hashCode * 397) ^ (Name != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Name) : 0);
+				hashCode = (hashCode * 397) ^ (Race?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Languages?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ Damage;
+				hashCode = (hashCode * 397) ^ ArmoredSpeed;
+				hashCode = (hashCode * 397) ^ BaseStrength;
+				hashCode = (hashCode * 397) ^ BaseDexterity;
+				hashCode = (hashCode * 397) ^ BaseConstitution;
+				hashCode = (hashCode * 397) ^ BaseIntelligence;
+				hashCode = (hashCode * 397) ^ BaseWisdom;
+				hashCode = (hashCode * 397) ^ BaseCharisma;
+				hashCode = (hashCode * 397) ^ ArmorClass.GetHashCode();
+				hashCode = (hashCode * 397) ^ FlatFooted.GetHashCode();
+				hashCode = (hashCode * 397) ^ Touch.GetHashCode();
+				hashCode = (hashCode * 397) ^ CombatManeuverDefense.GetHashCode();
+				hashCode = (hashCode * 397) ^ Fortitude.GetHashCode();
+				hashCode = (hashCode * 397) ^ Reflex.GetHashCode();
+				hashCode = (hashCode * 397) ^ Will.GetHashCode();
+				hashCode = (hashCode * 397) ^ Melee.GetHashCode();
+				hashCode = (hashCode * 397) ^ Ranged.GetHashCode();
+				hashCode = (hashCode * 397) ^ CombatManeuverBonus.GetHashCode();
+				hashCode = (hashCode * 397) ^ (Experience?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Feats?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (SkillLibrary?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (SkillRanks?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (MiscellenaousSkillBonuses?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Weapons?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Inventory?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (EquipedArmor?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Effects?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Purse?.GetHashCode() ?? 0);
+				return hashCode;
+			}
 		}
 	}
 }

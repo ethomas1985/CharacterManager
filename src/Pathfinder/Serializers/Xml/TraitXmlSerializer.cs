@@ -5,7 +5,7 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
-namespace Pathfinder.Serializers
+namespace Pathfinder.Serializers.Xml
 {
 	internal class TraitXmlSerializer : ISerializer<ITrait, string>
 	{

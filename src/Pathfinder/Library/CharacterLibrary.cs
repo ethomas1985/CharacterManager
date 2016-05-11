@@ -1,4 +1,6 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using System.IO;
+using Pathfinder.Interface;
 
 namespace Pathfinder.Library
 {
@@ -8,6 +10,21 @@ namespace Pathfinder.Library
 			ISerializer<ICharacter, string> pSerializer,
 			string pLibraryDirectory) : base(pSerializer, pLibraryDirectory)
 		{
+		}
+
+		public override void Store(ICharacter pCharacter)
+		{
+			var serialized = Serializer.Serialize(pCharacter);
+
+			var fileName = Path.ChangeExtension(pCharacter.Name, "xml");
+			var filePath = Path.Combine(LibraryDirectory, fileName);
+			if (File.Exists(filePath))
+			{
+				var newFileName = Path.ChangeExtension(filePath, $"{DateTime.Now}.xml");
+				File.Copy(filePath, newFileName);
+			}
+
+			File.WriteAllText(filePath, serialized);
 		}
 	}
 }

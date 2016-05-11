@@ -8,6 +8,7 @@ using Pathfinder.Library;
 using Pathfinder.Serializers;
 using Pathfinder.Model;
 using Pathfinder.Properties;
+using Pathfinder.Serializers.Xml;
 
 namespace Test.Serializers
 {
@@ -20,6 +21,7 @@ namespace Test.Serializers
 
 		private readonly Race _race =
 			new Race(
+				RACE_NAME,
 				RACE_NAME,
 				DESCRIPTION,
 				Size.Gargantuan,
@@ -46,6 +48,7 @@ namespace Test.Serializers
 			//$"<?xml version=\"1.0\" encoding=\"utf-8\" ?>{Environment.NewLine}"+
 			$"<Race>{Environment.NewLine}"+
 			$"  <Name>{RACE_NAME}</Name>{Environment.NewLine}"+
+			$"  <Adjective>{RACE_NAME}</Adjective>{Environment.NewLine}" +
 			$"  <Description>{DESCRIPTION}</Description>{Environment.NewLine}"+
 			$"  <Size>{Size.Gargantuan}</Size>{Environment.NewLine}"+
 			$"  <BaseSpeed>{BASE_SPEED}</BaseSpeed>{Environment.NewLine}"+

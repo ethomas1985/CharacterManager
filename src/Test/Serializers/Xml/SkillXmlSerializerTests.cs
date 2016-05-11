@@ -5,6 +5,7 @@ using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Serializers;
+using Pathfinder.Serializers.Xml;
 
 namespace Test.Serializers
 {

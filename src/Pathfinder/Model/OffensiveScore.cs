@@ -1,4 +1,5 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface;
 using Pathfinder.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using Pathfinder.Enums;
 
 namespace Pathfinder.Model
 {
-	internal class OffensiveScore : IOffensiveScore
+	internal class OffensiveScore : IOffensiveScore, IEquatable<IOffensiveScore>
 	{
 		public OffensiveScore(
 			OffensiveType pOffensiveType,
@@ -33,8 +34,8 @@ namespace Pathfinder.Model
 			{
 				var score = Values.Sum();
 
-				Tracer.Message(
-					pMessage: $"{Type} = {string.Join(" + ", Values)} = {score}");
+				//Tracer.Message(
+				//	pMessage: $"{Type} = {string.Join(" + ", Values)} = {score}");
 
 				return score;
 			}
@@ -59,6 +60,53 @@ namespace Pathfinder.Model
 		public override string ToString()
 		{
 			return $"{Type} = {string.Join(" + ", Values)} = {Score}";
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as IOffensiveScore);
+		}
+
+		public bool Equals(IOffensiveScore pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			var equal = 
+				Type == pOther.Type
+				&& AbilityModifier == pOther.AbilityModifier
+				&& BaseAttackBonus == pOther.BaseAttackBonus
+				&& SizeModifier == pOther.SizeModifier
+				&& MiscModifier == pOther.MiscModifier
+				&& TemporaryModifier == pOther.TemporaryModifier;
+
+			if (!equal)
+			{
+				Tracer.Message(pMessage: $"{Type} :: this :: {ToString()}");
+				Tracer.Message(pMessage: $"{Type} :: that :: {pOther.ToString()}");
+			}
+
+			return equal;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = (int) Type;
+				hashCode = (hashCode*397) ^ (Ability != null ? Ability.GetHashCode() : 0);
+				hashCode = (hashCode*397) ^ BaseAttackBonus;
+				hashCode = (hashCode*397) ^ SizeModifier;
+				hashCode = (hashCode*397) ^ MiscModifier;
+				hashCode = (hashCode*397) ^ TemporaryModifier;
+				return hashCode;
+			}
 		}
 	}
 }

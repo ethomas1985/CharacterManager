@@ -1,10 +1,13 @@
-﻿namespace Pathfinder.Interface
+﻿using System.Collections.Generic;
+
+namespace Pathfinder.Interface
 {
 	public interface ICharacterClass
 	{
 		IClass Class { get; }
 
 		int Level { get; }
+		IEnumerable<int> HitPoints { get; }
 
 		int SkillRanks { get; }
 

@@ -76,5 +76,14 @@ namespace Pathfinder.Properties {
                 return ((string)(this["SpellLibrary"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thean\\Documents\\GitHub\\CharacterManager\\resources\\Characters")]
+        public string CharacterLibrary {
+            get {
+                return ((string)(this["CharacterLibrary"]));
+            }
+        }
     }
 }

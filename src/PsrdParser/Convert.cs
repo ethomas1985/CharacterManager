@@ -9,6 +9,7 @@ using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Properties;
 using Pathfinder.Serializers;
+using Pathfinder.Serializers.Xml;
 using PsrdParser.Serializers.PSRD;
 
 namespace PsrdParser

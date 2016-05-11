@@ -16,7 +16,7 @@ namespace Pathfinder.Interface
 
 		Gender Gender { get; }
 		string Hair { get; }
-		decimal Height { get; }
+		string Height { get; }
 
 		string Homeland { get; }
 
@@ -24,7 +24,7 @@ namespace Pathfinder.Interface
 		Size BaseSize { get; }
 		Size Size { get; }
 
-		decimal Weight { get; }
+		string Weight { get; }
 
 		IEnumerable<ILanguage> Languages { get; }
 
@@ -32,8 +32,8 @@ namespace Pathfinder.Interface
 		int HealthPoints { get; }
 		int Damage { get; }
 
-		decimal BaseSpeed { get; }
-		decimal ArmoredSpeed { get; }
+		int BaseSpeed { get; }
+		int ArmoredSpeed { get; }
 
 		// Ability Scores
 		IAbilityScore Strength { get; }
@@ -89,20 +89,25 @@ namespace Pathfinder.Interface
 		IEnumerable<IArmor> EquipedArmor { get; }
 		IEnumerable<IEffect> Effects { get; }
 
+		ICharacter SetRace(IRace pRace);
+
 		ICharacter SetName(string pName);
 		ICharacter SetAge(int pAge);
 		ICharacter SetAlignment(Alignment pAlignment);
 		ICharacter SetHomeland(string pHomeland);
-		ICharacter AddClass(IClass pClass);
 		ICharacter IncrementClass(IClass pClass);
 		ICharacter SetDeity(Deity pDeity);
 		ICharacter SetGender(Gender pGender);
 		ICharacter SetEyes(string pEyes);
 		ICharacter SetHair(string pHair);
-		ICharacter SetHeight(decimal pHeight);
-		ICharacter SetWeight(decimal pWeight);
+		ICharacter SetHeight(string pHeight);
+		ICharacter SetWeight(string pWeight);
+
+		ICharacter AddClass(IClass pClass);
+
 		ICharacter SetDamage(int pDamage);
 		ICharacter AddDamage(int pDamage);
+
 		ICharacter AddExperience(IEvent pEvent);
 		//ICharacter SetSkills(SkillsCollection pSkillsColection);
 		ICharacter SetSkill(ISkill pSkill);
@@ -112,6 +117,7 @@ namespace Pathfinder.Interface
 		ICharacter SetInventory(IItem pItem);
 		ICharacter EquipArmor(IArmor pArmor);
 		ICharacter ReplaceArmor(IArmor pArmorToReplace, IArmor pArmorToEquip);
+
 		ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0);
 		ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0);
 		ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0);

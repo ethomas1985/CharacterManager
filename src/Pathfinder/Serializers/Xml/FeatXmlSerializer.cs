@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 
-namespace Pathfinder.Serializers
+namespace Pathfinder.Serializers.Xml
 {
 	internal class FeatXmlSerializer : ISerializer<IFeat, string>
 	{

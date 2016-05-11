@@ -1,8 +1,7 @@
 ﻿using System;
 using Pathfinder.Interface;
-using Pathfinder.Model;
 
-namespace Pathfinder.Serializers
+namespace Pathfinder.Serializers.Xml
 {
 	internal class CharacterXmlSerializer : ISerializer<ICharacter, string>
 	{

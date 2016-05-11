@@ -8,6 +8,8 @@ namespace Pathfinder.Interface
 		IEnumerable<T> Values { get; }
 		T this[string pKey] { get; }
 
+		bool TryGetValue(string pKey, out T pValue);
+
 		void Store(T pValue);
 	}
 }

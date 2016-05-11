@@ -1,4 +1,5 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
@@ -7,7 +8,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
-	internal class DefenseScore : IDefenseScore
+	internal class DefenseScore : IDefenseScore, IEquatable<IDefenseScore>
 	{
 		private DefenseScore(
 			DefensiveType pDefensiveType,
@@ -36,7 +37,7 @@ namespace Pathfinder.Model
 			int pTemporaryBonus,
 			int pMiscellaneousModifier ) : this(pDefensiveType, pSize, pDeflectBonus, pTemporaryBonus, pMiscellaneousModifier)
 		{
-			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
+			Debug.Assert(pDexterity == null || AbilityType.Dexterity == pDexterity.Type);
 
 			Armor = pArmorBonus;
 			Shield = pShieldBonus;
@@ -85,21 +86,9 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				var values = new List<int> {
-					10,
-					Type == DefensiveType.CombatManeuverDefense ? BaseAttackBonus: ArmorBonus,
-					Type == DefensiveType.CombatManeuverDefense ? StrengthModifier: ShieldBonus,
-					DexterityModifier,
-					SizeModifier,
-					NaturalBonus,
-					DeflectBonus,
-					DodgeBonus,
-					MiscellaneousBonus,
-					TemporaryBonus
-				};
-				var score = values.Sum();
+				var score = Values.Sum();
 
-				Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
+				//Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
 
 				return score;
 			}
@@ -109,21 +98,8 @@ namespace Pathfinder.Model
 		public DefensiveType Type { get; }
 		public int ArmorBonus => UseArmor ? Armor : 0;
 		public int ShieldBonus => UseShield ? Shield : 0;
-		public int DexterityModifier
-		{
-			get
-			{
-				var modifier = Dexterity?.Modifier ?? 0;
-				return UseDexterity ? modifier : 0;
-			}
-		}
-		public int StrengthModifier
-		{
-			get
-			{
-				return Strength?.Modifier ?? 0;
-			}
-		}
+		public int DexterityModifier => UseDexterity ? (Dexterity?.Modifier ?? 0) : 0;
+		public int StrengthModifier => Strength?.Modifier ?? 0;
 		public int BaseAttackBonus { get; }
 		public int SizeModifier { get; }
 		public int DeflectBonus => Deflect;
@@ -131,5 +107,84 @@ namespace Pathfinder.Model
 		public int MiscellaneousBonus { get; }
 		public int NaturalBonus => UseNatural ? Natural : 0;
 		public int TemporaryBonus => Temporary;
+
+		private IEnumerable<int> Values
+			=> new List<int>
+			{
+				10,
+				Type == DefensiveType.CombatManeuverDefense ? BaseAttackBonus: ArmorBonus,
+				Type == DefensiveType.CombatManeuverDefense ? StrengthModifier: ShieldBonus,
+				DexterityModifier,
+				SizeModifier,
+				NaturalBonus,
+				DeflectBonus,
+				DodgeBonus,
+				MiscellaneousBonus,
+				TemporaryBonus
+			};
+
+		public override string ToString()
+		{
+			return $"{Type}[{Score}] = {string.Join(" + ", Values)} = {Score}";
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as IDefenseScore);
+		}
+
+		public bool Equals(IDefenseScore pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			var equal =
+				DexterityModifier == pOther.DexterityModifier
+				&& StrengthModifier == pOther.StrengthModifier
+				&& ArmorBonus == pOther.ArmorBonus
+				&& NaturalBonus == pOther.NaturalBonus
+				&& DeflectBonus == pOther.DeflectBonus
+				&& DodgeBonus == pOther.DodgeBonus
+				&& TemporaryBonus == pOther.TemporaryBonus
+				&& ShieldBonus == pOther.ShieldBonus
+				&& Type == pOther.Type
+				&& BaseAttackBonus == pOther.BaseAttackBonus
+				&& SizeModifier == pOther.SizeModifier
+				&& MiscellaneousBonus == pOther.MiscellaneousBonus;
+
+			if (!equal)
+			{
+				Tracer.Message(pMessage: $"{Type} :: this :: {ToString()}");
+				Tracer.Message(pMessage: $"{Type} :: that :: {pOther.ToString()}");
+			}
+
+			return equal;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = Dexterity?.GetHashCode() ?? 0;
+				hashCode = (hashCode*397) ^ (Strength?.GetHashCode() ?? 0);
+				hashCode = (hashCode*397) ^ Armor;
+				hashCode = (hashCode*397) ^ Natural;
+				hashCode = (hashCode*397) ^ Deflect;
+				hashCode = (hashCode*397) ^ Dodge;
+				hashCode = (hashCode*397) ^ Temporary;
+				hashCode = (hashCode*397) ^ Shield;
+				hashCode = (hashCode*397) ^ (int) Type;
+				hashCode = (hashCode*397) ^ BaseAttackBonus;
+				hashCode = (hashCode*397) ^ SizeModifier;
+				hashCode = (hashCode*397) ^ MiscellaneousBonus;
+				return hashCode;
+			}
+		}
 	}
 }

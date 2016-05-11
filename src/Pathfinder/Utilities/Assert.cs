@@ -2,7 +2,7 @@ using System;
 
 namespace Pathfinder.Utilities
 {
-	internal static class Assert
+	public static class Assert
 	{
 		/// <summary>
 		/// 

@@ -7,7 +7,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
-	internal class SavingThrow : ISavingThrow
+	internal class SavingThrow : ISavingThrow, IEquatable<ISavingThrow>
 	{
 		public SavingThrow(
 			SavingThrowType pSavingThrowType,
@@ -30,18 +30,9 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				var values = new List<int>
-				{
-					Base,
-					AbilityModifier,
-					Resist,
-					Misc,
-					Temporary
-				};
+				var score = Values.Sum();
 
-				var score = values.Sum();
-
-				Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
+				//Tracer.Message(pMessage: $"{Type} = {string.Join(" + ", values)} = {score}");
 
 				return score;
 			}
@@ -91,5 +82,64 @@ namespace Pathfinder.Model
 		public int Resist { get; }
 		public int Misc { get; }
 		public int Temporary { get; }
+		private IEnumerable<int> Values
+			=> new List<int>
+			{
+				Base,
+				AbilityModifier,
+				Resist,
+				Misc,
+				Temporary
+			};
+
+		public override string ToString()
+		{
+			return $"{Type} = {string.Join(" + ", Values)} = {Score}";
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as ISavingThrow);
+		}
+
+		public bool Equals(ISavingThrow pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			var equal = 
+				Type == pOther.Type
+				&& Base == pOther.Base
+				&& Resist == pOther.Resist
+				&& Misc == pOther.Misc
+				&& Temporary == pOther.Temporary;
+
+			if (!equal) {
+				Tracer.Message(pMessage: $"{Type} this :: {ToString()}");
+				Tracer.Message(pMessage: $"{Type} that :: {pOther.ToString()}");
+			}
+
+			return equal;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = (int) Type;
+				hashCode = (hashCode*397) ^ (AbilityScore?.GetHashCode() ?? 0);
+				hashCode = (hashCode*397) ^ Base;
+				hashCode = (hashCode*397) ^ Resist;
+				hashCode = (hashCode*397) ^ Misc;
+				hashCode = (hashCode*397) ^ Temporary;
+				return hashCode;
+			}
+		}
 	}
 }

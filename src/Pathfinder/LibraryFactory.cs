@@ -3,6 +3,7 @@ using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Properties;
 using Pathfinder.Serializers;
+using Pathfinder.Serializers.Xml;
 
 namespace Pathfinder
 {
@@ -15,6 +16,7 @@ namespace Pathfinder
 		private  readonly ILibrary<ISkill> _skillLibrary;
 		private  readonly ILibrary<ISpell> _spellLibrary;
 		private  readonly ILibrary<ITrait> _traitLibrary;
+		private  readonly ILibrary<ICharacter> _characterLibrary;
 
 		public LibraryFactory()
 		{
@@ -38,6 +40,9 @@ namespace Pathfinder
 			
 			var raceSerializer = new RaceXmlSerializer(_traitLibrary);
 			_raceLibrary = new RaceLibrary(raceSerializer, Settings.Default.RaceLibrary);
+
+			var characterSerializer = new CharacterXmlSerializer();
+			_characterLibrary = new CharacterLibrary(characterSerializer, Settings.Default.CharacterLibrary);
 		}
 
 		public ILibrary<IClass> GetClassLibrary()
@@ -73,6 +78,11 @@ namespace Pathfinder
 		public ILibrary<ITrait> GetTraitLibrary()
 		{
 			return _traitLibrary;
+		}
+
+		public ILibrary<ICharacter> GetCharacterLibrary()
+		{
+			return _characterLibrary;
 		}
 	}
 }

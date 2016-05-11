@@ -17,7 +17,7 @@ namespace Pathfinder.Library
 		{
 			if (!Directory.Exists(pLibraryDirectory))
 			{
-				throw new DirectoryNotFoundException();
+				Directory.CreateDirectory(pLibraryDirectory);
 			}
 			Serializer = pSerializer;
 			LibraryDirectory = pLibraryDirectory;
@@ -34,8 +34,8 @@ namespace Pathfinder.Library
 			}
 		}
 
-		private ISerializer<T, string> Serializer { get; }
-		private string LibraryDirectory { get; }
+		protected ISerializer<T, string> Serializer { get; }
+		protected string LibraryDirectory { get; }
 		internal IDictionary<string, T> Library => _library.Value;
 
 		public IEnumerable<string> Keys => Library.Keys.ToImmutableList();
@@ -54,7 +54,12 @@ namespace Pathfinder.Library
 			}
 		}
 
-		public void Store(T pValue)
+		public bool TryGetValue(string pKey, out T pValue)
+		{
+			return Library.TryGetValue(pKey, out pValue);
+		}
+
+		public virtual void Store(T pValue)
 		{
 			var serialized = Serializer.Serialize(pValue);
 

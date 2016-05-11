@@ -7,7 +7,7 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
-namespace Pathfinder.Serializers
+namespace Pathfinder.Serializers.Xml
 {
 	internal class RaceXmlSerializer : ISerializer<IRace, string>
 	{
@@ -25,6 +25,7 @@ namespace Pathfinder.Serializers
 			var xDocument = XDocument.Parse(pValue);
 
 			var name = GetName(xDocument);
+			var adjective = GetAdjective(xDocument);
 			var description = GetDescription(xDocument);
 			var size = GetSize(xDocument);
 			var baseSpeed = GetBaseSpeed(xDocument);
@@ -34,7 +35,7 @@ namespace Pathfinder.Serializers
 
 			try
 			{
-				return new Race(name, description, size, baseSpeed, abilities, traits, languages);
+				return new Race(name, adjective, description, size, baseSpeed, abilities, traits, languages);
 			}
 			catch (Exception ex)
 			{
@@ -48,6 +49,15 @@ namespace Pathfinder.Serializers
 			return
 				xDocument
 					.Descendants(nameof(Race.Name))
+					.Select(x => x.Value)
+					.FirstOrDefault();
+		}
+
+		private static string GetAdjective(XDocument xDocument)
+		{
+			return
+				xDocument
+					.Descendants(nameof(Race.Adjective))
 					.Select(x => x.Value)
 					.FirstOrDefault();
 		}
@@ -111,7 +121,7 @@ namespace Pathfinder.Serializers
 					.Descendants(nameof(Race.Traits))
 					.Descendants()
 					.Select(x => pLibrary[x.Value]);
-			return traits;
+			return traits?.ToList();
 		}
 		private static IEnumerable<Language> GetLanguages(XDocument xDocument)
 		{
@@ -120,7 +130,7 @@ namespace Pathfinder.Serializers
 					.Descendants(nameof(Race.Languages))
 					.Descendants()
 					.Select(x => new Language(x.Name.LocalName));
-			return languages;
+			return languages?.ToList();
 		}
 
 		public string Serialize(IRace pObject)
@@ -132,6 +142,7 @@ namespace Pathfinder.Serializers
 						new List<XElement>
 						{
 							new XElement(nameof(Race.Name), pObject.Name),
+							new XElement(nameof(Race.Adjective), pObject.Adjective),
 							new XElement(nameof(Race.Description), pObject.Description),
 							new XElement(nameof(Race.Size), pObject.Size),
 							new XElement(nameof(Race.BaseSpeed), pObject.BaseSpeed),

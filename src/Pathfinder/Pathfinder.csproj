@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
@@ -84,19 +88,21 @@
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\Spell.cs" />
     <Compile Include="Model\SubFeature.cs" />
-    <Compile Include="Serializers\ClassXmlSerializer.cs" />
-    <Compile Include="Serializers\FeatureXmlSerializer.cs" />
-    <Compile Include="Serializers\FeatXmlSerializer.cs" />
-    <Compile Include="Serializers\SpellXmlSerializer.cs" />
+    <Compile Include="Serializers\Json\CharacterJsonSerializer.cs" />
+    <Compile Include="Serializers\Xml\ClassXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\FeatureXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\FeatXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\SpellXmlSerializer.cs" />
+    <Compile Include="Utilities\decimalExtensions.cs" />
     <Compile Include="Utilities\intExtensions.cs" />
-    <Compile Include="Serializers\RaceXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />
-    <Compile Include="Serializers\SkillXmlSerializer.cs" />
-    <Compile Include="Serializers\TraitXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\SkillXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\TraitXmlSerializer.cs" />
     <Compile Include="Utilities\Assert.cs" />
     <Compile Include="Interface\ITrait.cs" />
     <Compile Include="Library\TraitLibrary.cs" />
-    <Compile Include="Serializers\CharacterXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\CharacterXmlSerializer.cs" />
     <Compile Include="Interface\IAbilityScore.cs" />
     <Compile Include="Interface\IArmor.cs" />
     <Compile Include="Interface\ICharacter.cs" />

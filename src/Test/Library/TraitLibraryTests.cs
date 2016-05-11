@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Pathfinder.Library;
 using Pathfinder.Properties;
 using Pathfinder.Serializers;
+using Pathfinder.Serializers.Xml;
 
 namespace Test.Library
 {

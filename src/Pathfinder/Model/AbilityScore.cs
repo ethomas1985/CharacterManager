@@ -7,7 +7,7 @@ using Pathfinder.Enums;
 
 namespace Pathfinder.Model
 {
-	internal class AbilityScore : IAbilityScore
+	internal class AbilityScore : IAbilityScore, IEquatable<IAbilityScore>
 	{
 		public AbilityScore(
 			AbilityType pAbilityType,
@@ -33,8 +33,8 @@ namespace Pathfinder.Model
 			{
 				var score = Values.Sum();
 
-				Tracer.Message(
-					pMessage: $"{Type} = {string.Join(" + ", Values)} = {score}");
+				//Tracer.Message(
+				//	pMessage: $"{Type} = {string.Join(" + ", Values)} = {score}");
 
 				return score;
 			}
@@ -69,6 +69,53 @@ namespace Pathfinder.Model
 		public override string ToString()
 		{
 			return $"{Type}[{Score}][{Modifier}] = {string.Join(" + ", Values)} = {Score}";
+		}
+
+		public override bool Equals(object pObj)
+		{
+			return Equals(pObj as IAbilityScore);
+		}
+
+		public bool Equals(IAbilityScore pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			var equal =
+				Type == pOther.Type
+				&& Base == pOther.Base
+				&& Enhanced == pOther.Enhanced
+				&& Inherent == pOther.Inherent
+				&& Penalty == pOther.Penalty
+				&& Temporary == pOther.Temporary;
+
+			if (!equal)
+			{
+				Tracer.Message(pMessage: $"{GetType().Name}.{Type} this :: {ToString()}");
+				Tracer.Message(pMessage: $"{GetType().Name}.{Type} that :: {pOther.ToString()}");
+			}
+
+			return equal;
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = (int) Type;
+				hashCode = (hashCode*397) ^ Base;
+				hashCode = (hashCode*397) ^ Enhanced;
+				hashCode = (hashCode*397) ^ Inherent;
+				hashCode = (hashCode*397) ^ Penalty;
+				hashCode = (hashCode*397) ^ Temporary;
+				return hashCode;
+			}
 		}
 	}
 }
