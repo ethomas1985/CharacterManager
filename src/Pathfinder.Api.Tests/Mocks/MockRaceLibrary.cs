@@ -6,10 +6,12 @@ namespace Pathfinder.Api.Tests.Mocks
 {
 	internal class MockRaceLibrary : ILibrary<IRace>
 	{
+		private const string TEST_RACE = "Test Race";
+
 		private readonly Dictionary<string, IRace> _library =
 			new Dictionary<string, IRace>
 			{
-				["Test Race"] = new MockRace { Name = "Test Race"}
+				[TEST_RACE] = new MockRace { Name = TEST_RACE}
 			};
 
 		public IEnumerable<string> Keys => _library.Keys;

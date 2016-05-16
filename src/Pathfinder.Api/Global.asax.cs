@@ -16,11 +16,13 @@ namespace Pathfinder.Api
 			
 			var raceLibrary = libraryFactory.GetRaceLibrary();
 			var skillLibrary = libraryFactory.GetSkillLibrary();
+			var classLibrary = libraryFactory.GetClassLibrary();
 
 			var characterJsonSerializer = 
 				new CharacterJsonSerializer(
 					raceLibrary,
-					skillLibrary);
+					skillLibrary,
+					classLibrary);
 			jsonFormatter.SerializerSettings.Converters.Add(characterJsonSerializer);
 		}
 	}

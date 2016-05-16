@@ -51,7 +51,7 @@
     <Compile Include="Enums\BonusType.cs" />
     <Compile Include="Enums\ComponentType.cs" />
     <Compile Include="Enums\DefensiveType.cs" />
-    <Compile Include="Enums\Deity.cs" />
+    <Compile Include="Interface\IDeity.cs" />
     <Compile Include="Enums\FeatType.cs" />
     <Compile Include="Enums\FeatureAbilityType.cs" />
     <Compile Include="Enums\Gender.cs" />
@@ -79,8 +79,10 @@
     <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Library\SpellLibrary.cs" />
+    <Compile Include="Model\CharacterClass.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassLevel.cs" />
+    <Compile Include="Model\Deity.cs" />
     <Compile Include="Model\Die.cs" />
     <Compile Include="Model\Feat.cs" />
     <Compile Include="Model\Feature.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Serializers\Xml\FeatXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\SpellXmlSerializer.cs" />
     <Compile Include="Utilities\decimalExtensions.cs" />
+    <Compile Include="Utilities\enumerableExtensions.cs" />
     <Compile Include="Utilities\intExtensions.cs" />
     <Compile Include="Serializers\Xml\RaceXmlSerializer.cs" />
     <Compile Include="Model\Race.cs" />

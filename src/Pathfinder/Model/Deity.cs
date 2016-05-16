@@ -3,41 +3,43 @@ using Pathfinder.Interface;
 
 namespace Pathfinder.Model
 {
-	internal class Die : IDie, IEquatable<IDie>
+	internal class Deity : IDeity, IEquatable<IDeity>
 	{
-		public Die(int pFaces)
+		public Deity(string pName)
 		{
-			Faces = pFaces;
+			Name = pName;
 		}
 
-		public int Faces { get; }
+		public string Name { get; }
 
 		public override string ToString()
 		{
-			return $"d{Faces}";
+			return Name;
 		}
 
 		public override bool Equals(object pObject)
 		{
-			return Equals(pObject as IDie);
+			return Equals(pObject as IDeity);
 		}
 
-		public bool Equals(IDie pOther)
+		public bool Equals(IDeity pOther)
 		{
 			if (ReferenceEquals(null, pOther))
 			{
 				return false;
 			}
+
 			if (ReferenceEquals(this, pOther))
 			{
 				return true;
 			}
-			return Faces == pOther.Faces;
+
+			return string.Equals(Name, pOther.Name);
 		}
 
 		public override int GetHashCode()
 		{
-			return Faces;
+			return Name?.GetHashCode() ?? 0;
 		}
 	}
 }

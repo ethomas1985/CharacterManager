@@ -32,7 +32,7 @@ namespace Pathfinder
 		public ICharacter Get(string pName)
 		{
 			ICharacter value;
-			if (Library.TryGetValue(pName, out value))
+			if (pName != null && Library.TryGetValue(pName, out value))
 			{
 				return value;
 			}

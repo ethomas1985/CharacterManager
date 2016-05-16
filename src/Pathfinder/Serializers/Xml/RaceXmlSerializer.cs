@@ -129,7 +129,7 @@ namespace Pathfinder.Serializers.Xml
 				xDocument
 					.Descendants(nameof(Race.Languages))
 					.Descendants()
-					.Select(x => new Language(x.Name.LocalName));
+					.Select(x => new Language(x.Value));
 			return languages?.ToList();
 		}
 

@@ -11,7 +11,7 @@ namespace Pathfinder.Api.Tests.Mocks
 		public int Age { get; }
 		public Alignment Alignment { get; }
 		public IEnumerable<ICharacterClass> Classes { get; }
-		public Deity Deity { get; }
+		public IDeity Deity { get; }
 		public string Eyes { get; }
 		public Gender Gender { get; }
 		public string Hair { get; }
@@ -71,147 +71,152 @@ namespace Pathfinder.Api.Tests.Mocks
 
 		public ICharacter SetName(string pName)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetAge(int pAge)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetAlignment(Alignment pAlignment)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetHomeland(string pHomeland)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter AddClass(IClass pClass)
+		{
+			return this;
+		}
+
+		public ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints)
 		{
 			throw new NotImplementedException();
 		}
 
 		public ICharacter IncrementClass(IClass pClass)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
-		public ICharacter SetDeity(Deity pDeity)
+		public ICharacter SetDeity(IDeity pDeity)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetGender(Gender pGender)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetEyes(string pEyes)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetHair(string pHair)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetHeight(string pHeight)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetWeight(string pWeight)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetDamage(int pDamage)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter AddDamage(int pDamage)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter AddExperience(IEvent pEvent)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetSkill(ISkill pSkill)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter AssignSkillPoint(ISkill pSkill, int pPoint)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter AddFeat(IFeat pFeat)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetInventory(IItem pItem)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter EquipArmor(IArmor pArmor)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter ReplaceArmor(IArmor pArmorToReplace, IArmor pArmorToEquip)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 
 		public ICharacter Copy()
 		{
-			throw new NotImplementedException();
+			return this;
 		}
 	}
 

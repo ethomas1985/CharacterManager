@@ -1,8 +1,9 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface;
 
 namespace Pathfinder.Model
 {
-	internal class Language : ILanguage
+	internal class Language : ILanguage, IEquatable<ILanguage>
 	{
 		public Language(string pName)
 		{
@@ -10,5 +11,33 @@ namespace Pathfinder.Model
 		}
 
 		public string Name { get; }
+
+		public override string ToString()
+		{
+			return Name;
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as ILanguage);
+		}
+
+		public bool Equals(ILanguage pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+			return string.Equals(Name, pOther.Name);
+		}
+
+		public override int GetHashCode()
+		{
+			return Name?.GetHashCode() ?? 0;
+		}
 	}
 }

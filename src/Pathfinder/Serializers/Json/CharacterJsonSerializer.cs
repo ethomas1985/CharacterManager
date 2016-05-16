@@ -14,14 +14,17 @@ namespace Pathfinder.Serializers.Json
 	{
 		public CharacterJsonSerializer(
 			ILibrary<IRace> pRaceLibrary,
-			ILibrary<ISkill> pSkillLibrary)
+			ILibrary<ISkill> pSkillLibrary,
+			ILibrary<IClass> pClassLibrary)
 		{
 			RaceLibrary = pRaceLibrary;
 			SkillLibrary = pSkillLibrary;
+			ClassLibrary = pClassLibrary;
 		}
 
 		public ILibrary<IRace> RaceLibrary { get; }
 		public ILibrary<ISkill> SkillLibrary { get; }
+		public ILibrary<IClass> ClassLibrary { get; }
 
 		public override bool CanRead => true;
 		public override bool CanWrite => true;
@@ -45,8 +48,6 @@ namespace Pathfinder.Serializers.Json
 
 			ICharacter character = new Character(SkillLibrary);
 
-			//pSerializer.Populate(pReader, character);
-
 			var jObject = JObject.Load(pReader);
 
 			var name = getString(jObject, nameof(ICharacter.Name));
@@ -66,10 +67,9 @@ namespace Pathfinder.Serializers.Json
 			}
 
 			var parsedDeity = getString(jObject, nameof(ICharacter.Deity));
-			Deity deity;
-			if (Enum.TryParse(parsedDeity, out deity))
+			if (!string.IsNullOrWhiteSpace(parsedDeity))
 			{
-				character = character.SetDeity(deity);
+				character = character.SetDeity(new Deity(parsedDeity));
 			}
 
 			var parsedGender = getString(jObject, nameof(ICharacter.Gender));
@@ -111,13 +111,14 @@ namespace Pathfinder.Serializers.Json
 
 			var parsedRace = getString(jObject, nameof(ICharacter.Race));
 			IRace race;
-			if (RaceLibrary.TryGetValue(parsedRace, out race))
+			if (parsedRace != null && RaceLibrary.TryGetValue(parsedRace, out race))
 			{
 				character = character.SetRace(race);
 			}
 
+			//Todo: Parse non-starting languages
 			//var languages = getString(jObject, nameof(ICharacter.Languages));
-			//character = character.SetName(name);
+			//character = character.AddLanguages(name);
 
 			var damage = getInt(jObject, nameof(ICharacter.Damage));
 			character = character.SetDamage(damage);
@@ -131,6 +132,8 @@ namespace Pathfinder.Serializers.Json
 
 			// TODO = DefensiveScores, OffensiveScores, SavingThrows, Effects, Classes, etc
 
+			character = parseClasses(jObject, character, nameof(ICharacter.Classes));
+
 			return character;
 		}
 
@@ -143,9 +146,43 @@ namespace Pathfinder.Serializers.Json
 			return pSetAbilityScore(baseValue, enhancedValue, inherentValue);
 		}
 
+		protected ICharacter parseClasses(JObject pJObject, ICharacter pCharacter, string pFieldName)
+		{
+			var tokens = pJObject.SelectTokens(pFieldName).Children();
+
+			var character = pCharacter;
+			foreach (var token in tokens)
+			{
+				var className = token.SelectToken(nameof(ICharacterClass.Class))?.ToString();
+
+				var levelText = token.SelectToken(nameof(ICharacterClass.Level))?.ToString();
+				int level;
+				if (!int.TryParse(levelText, out level))
+				{
+					level = 0;
+				}
+
+				var isFavoredText = token.SelectToken(nameof(ICharacterClass.IsFavored))?.ToString();
+				bool isFavored;
+				if (!bool.TryParse(isFavoredText, out isFavored))
+				{
+					isFavored = false;
+				}
+
+				var hitPointTokens = token.SelectToken(nameof(ICharacterClass.HitPoints));
+				var hitPoints = hitPointTokens.Values<int>();
+
+				var @class = ClassLibrary[className];
+
+				character = character.AddClass(@class, level, isFavored, hitPoints);
+			}
+
+			return character;
+		}
+
 		protected static string getString(JObject pJObject, string pField)
 		{
-			return pJObject.SelectToken(pField).ToString();
+			return pJObject.SelectToken(pField)?.ToString();
 		}
 
 		protected static int getInt(JObject pJObject, string pField)
@@ -180,21 +217,49 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteStartObject();
 
 			_writeProperty(pWriter, nameof(ICharacter.Age), character.Age);
-			_writeProperty(pWriter, nameof(ICharacter.Alignment), character.Alignment);
+			_writeProperty(pWriter, nameof(ICharacter.Alignment), character.Alignment.ToString());
 
-			//TODO : Classes
-			//WriteProperty(pWriter, nameof(ICharacter.Classes), character.Classes);
+			if (character.Deity != null)
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Deity), character.Deity.ToString());
+			}
 
-			_writeProperty(pWriter, nameof(ICharacter.Deity), character.Deity);
-			_writeProperty(pWriter, nameof(ICharacter.Gender), character.Gender);
-			_writeProperty(pWriter, nameof(ICharacter.Eyes), character.Eyes);
-			_writeProperty(pWriter, nameof(ICharacter.Hair), character.Hair);
-			_writeProperty(pWriter, nameof(ICharacter.Height), character.Height);
-			_writeProperty(pWriter, nameof(ICharacter.Weight), character.Weight);
-			_writeProperty(pWriter, nameof(ICharacter.Homeland), character.Homeland);
-			_writeProperty(pWriter, nameof(ICharacter.Name), character.Name);
+			_writeProperty(pWriter, nameof(ICharacter.Gender), character.Gender.ToString());
 
-			_writeProperty(pWriter, nameof(ICharacter.Race), character.Race.Name);
+			if (!string.IsNullOrEmpty(character.Eyes))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Eyes), character.Eyes);
+			}
+
+			if (!string.IsNullOrEmpty(character.Hair))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Hair), character.Hair);
+			}
+
+			if (!string.IsNullOrEmpty(character.Height))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Height), character.Height);
+			}
+
+			if (!string.IsNullOrEmpty(character.Weight))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Weight), character.Weight);
+			}
+
+			if (!string.IsNullOrEmpty(character.Homeland))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Homeland), character.Homeland);
+			}
+
+			if (!string.IsNullOrEmpty(character.Name))
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Name), character.Name);
+			}
+
+			if (character.Race != null)
+			{
+				_writeProperty(pWriter, nameof(ICharacter.Race), character.Race.Name);
+			}
 
 			_writeProperty(pWriter, nameof(ICharacter.BaseSize), character.BaseSize.ToString());
 			_writeProperty(pWriter, nameof(ICharacter.Size), character.Size.ToString());
@@ -207,11 +272,7 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ICharacter.BaseSpeed), character.BaseSpeed);
 			_writeProperty(pWriter, nameof(ICharacter.ArmoredSpeed), character.ArmoredSpeed);
 
-			_writeProperty(pWriter, nameof(ICharacter.BaseAttackBonus), character.BaseAttackBonus);
-
-			_writeProperty(pWriter, nameof(ICharacter.BaseFortitude), character.BaseFortitude);
-			_writeProperty(pWriter, nameof(ICharacter.BaseReflex), character.BaseReflex);
-			_writeProperty(pWriter, nameof(ICharacter.BaseWill), character.BaseWill);
+			_writeCharacterClasses(pWriter, character.Classes, nameof(ICharacter.Classes));
 
 			_writeAbilityScore(pWriter, character.Strength, nameof(ICharacter.Strength));
 			_writeAbilityScore(pWriter, character.Dexterity, nameof(ICharacter.Dexterity));
@@ -238,17 +299,45 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteEndObject();
 		}
 
-		private static void _writeLanguages(JsonWriter pWriter, ICharacter character)
+		private static void _writeLanguages(JsonWriter pWriter, ICharacter pCharacter)
 		{
+			if (pCharacter.Languages == null)
+			{
+				return;
+			}
+
 			pWriter.WritePropertyName(nameof(ICharacter.Languages));
 
 			pWriter.WriteStartArray();
-			foreach (var language in character.Languages)
+			foreach (var language in pCharacter.Languages)
 			{
 				pWriter.WriteValue(language.ToString());
 			}
 			pWriter.WriteEndArray();
 
+		}
+
+		private void _writeCharacterClasses(JsonWriter pWriter, IEnumerable<ICharacterClass> pCharacterClasses, string pPropertyName)
+		{
+			//TODO : Classes
+			pWriter.WritePropertyName(pPropertyName);
+			pWriter.WriteStartArray();
+
+			foreach (var characterClass in pCharacterClasses)
+			{
+				pWriter.WriteStartObject();
+
+				_writeProperty(pWriter, nameof(ICharacterClass.Class), characterClass.Class.Name);
+				_writeProperty(pWriter, nameof(ICharacterClass.Level), characterClass.Level);
+				_writeProperty(pWriter, nameof(ICharacterClass.IsFavored), characterClass.IsFavored);
+
+				pWriter.WritePropertyName(nameof(ICharacterClass.HitPoints));
+				_writeSimpleArray(pWriter, characterClass.HitPoints.ToArray());
+
+				pWriter.WriteEndObject();
+			}
+
+			pWriter.WriteEndArray();
 		}
 
 		private static void _writeAbilityScore(JsonWriter pWriter, IAbilityScore pAbilityScore, string pPropertyName)
@@ -372,14 +461,14 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteValue(pValue);
 		}
 
-		private static void _writeSimpleArray(JsonWriter pWriter, params object[] pValues)
+		private static void _writeSimpleArray<T>(JsonWriter pWriter, params T[] pValues)
 		{
 			pWriter.WriteStartArray();
-			_writeValues(pWriter, pValues);
-			pWriter.WriteEnd();
+			_writeValues(pWriter, pValues.ToArray());
+			pWriter.WriteEndArray();
 		}
 
-		private static void _writeValues(JsonWriter pWriter, params object[] pValues)
+		private static void _writeValues<T>(JsonWriter pWriter, params T[] pValues)
 		{
 			foreach (var value in pValues)
 			{

@@ -27,7 +27,7 @@ namespace Pathfinder.Model
 			internal set { classes = value.ToList(); }
 		}
 
-		public Deity Deity { get; private set; }
+		public IDeity Deity { get; private set; }
 
 		public Gender Gender { get; private set; }
 
@@ -502,10 +502,10 @@ namespace Pathfinder.Model
 		{
 			get
 			{
-				var ranks = GetSkillRanks(pSkill);
-				var classModifier = GetClassModifier(pSkill);
-				var misc = GetMiscellaneousSkillModifier(pSkill);
-				var temp = GetTemporarySkillModifier(pSkill);
+				var ranks = _GetSkillRanks(pSkill);
+				var classModifier = _GetClassModifier(pSkill);
+				var misc = _GetMiscellaneousSkillModifier(pSkill);
+				var temp = _GetTemporarySkillModifier(pSkill);
 				var armorClassPenalty = EquipedArmor?.Sum(x => x.ArmorCheckPenalty) ?? 0;
 
 				return
@@ -534,7 +534,7 @@ namespace Pathfinder.Model
 		 * METHODS
 		 */
 
-		private int GetSkillRanks(ISkill pSkill)
+		private int _GetSkillRanks(ISkill pSkill)
 		{
 			int ranks;
 			if (!SkillRanks.TryGetValue(pSkill, out ranks))
@@ -543,11 +543,14 @@ namespace Pathfinder.Model
 			}
 			return ranks;
 		}
-		private int GetClassModifier(ISkill pSkill)
+		private int _GetClassModifier(ISkill pSkill)
 		{
-			return Classes.Any(x => x.Class.Skills.Contains(pSkill.Name)) ? 3 : 0;
+			return
+				(Classes != null && Classes.Any(x => x.Class.Skills.Contains(pSkill.Name)))
+					? 3
+					: 0;
 		}
-		private int GetMiscellaneousSkillModifier(ISkill pSkill)
+		private int _GetMiscellaneousSkillModifier(ISkill pSkill)
 		{
 			int misc;
 			if (!MiscellenaousSkillBonuses.TryGetValue(pSkill, out misc))
@@ -556,7 +559,7 @@ namespace Pathfinder.Model
 			}
 			return misc;
 		}
-		private int GetTemporarySkillModifier(ISkill pSkill)
+		private int _GetTemporarySkillModifier(ISkill pSkill)
 		{
 			var temp =
 				Effects
@@ -606,11 +609,31 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		//internal Character Set() { throw new NotImplementedException(); }
-
 		public ICharacter AddClass(IClass pClass)
 		{
-			throw new NotImplementedException();
+			Assert.ArgumentNotNull(pClass, nameof(pClass));
+
+			var newCharacter = _copy();
+
+			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
+			var characterClass = new CharacterClass(pClass, true, hitPoints);
+
+			newCharacter.classes.Add(characterClass);
+
+			return newCharacter;
+		}
+		public ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints)
+		{
+			Assert.ArgumentNotNull(pClass, nameof(pClass));
+
+			var newCharacter = _copy();
+
+			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
+			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, pHitPoints);
+
+			newCharacter.classes.Add(characterClass);
+
+			return newCharacter;
 		}
 
 		public ICharacter IncrementClass(IClass pClass)
@@ -618,7 +641,7 @@ namespace Pathfinder.Model
 			throw new NotImplementedException();
 		}
 
-		public ICharacter SetDeity(Deity pDeity)
+		public ICharacter SetDeity(IDeity pDeity)
 		{
 			var newCharacter = _copy();
 			newCharacter.Deity = pDeity;
@@ -802,7 +825,7 @@ namespace Pathfinder.Model
 
 			result &= Alignment == pOther.Alignment;
 			result &= classes.SequenceEqual(pOther.Classes);
-			result &= Deity == pOther.Deity;
+			result &= Equals(Deity, pOther.Deity);
 			result &= Gender == pOther.Gender;
 			result &= string.Equals(Eyes, pOther.Eyes, StringComparison.InvariantCultureIgnoreCase);
 			result &= string.Equals(Hair, pOther.Hair, StringComparison.InvariantCultureIgnoreCase);
@@ -811,7 +834,7 @@ namespace Pathfinder.Model
 			result &= string.Equals(Homeland, pOther.Homeland, StringComparison.InvariantCultureIgnoreCase);
 			result &= string.Equals(Name, pOther.Name, StringComparison.InvariantCultureIgnoreCase);
 			result &= Equals(Race, pOther.Race);
-			result &= Equals(Languages, pOther.Languages);
+			result &= (Languages != null && pOther.Languages != null) && Languages.SequenceEqual(pOther.Languages);
 			result &= Damage == pOther.Damage;
 			result &= ArmoredSpeed == pOther.ArmoredSpeed;
 			result &= Equals(Strength, pOther.Strength);
@@ -858,7 +881,7 @@ namespace Pathfinder.Model
 				var hashCode = Age;
 				hashCode = (hashCode * 397) ^ (int) Alignment;
 				hashCode = (hashCode * 397) ^ (classes?.GetHashCode() ?? 0);
-				hashCode = (hashCode * 397) ^ (int) Deity;
+				hashCode = (hashCode * 397) ^ Deity.GetHashCode();
 				hashCode = (hashCode * 397) ^ (int) Gender;
 				hashCode = (hashCode * 397) ^ (Eyes != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Eyes) : 0);
 				hashCode = (hashCode * 397) ^ (Hair != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Hair) : 0);

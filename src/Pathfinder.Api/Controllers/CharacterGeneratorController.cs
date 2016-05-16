@@ -5,14 +5,15 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Api.Controllers
 {
-	public class CharacterGeneraterController : ApiController
+	public class CharacterGeneratorController : ApiController
 	{
 
-		public CharacterGeneraterController()
+		public CharacterGeneratorController()
 		{
 			CharacterLibrary = new LibraryFactory().GetCharacterLibrary();
 			SkillLibrary = new LibraryFactory().GetSkillLibrary();
 			RaceLibrary = new LibraryFactory().GetRaceLibrary();
+			ClassLibrary = new LibraryFactory().GetClassLibrary();
 		}
 
 		/// <summary>
@@ -23,16 +24,23 @@ namespace Pathfinder.Api.Controllers
 		/// <param name="pCharacterLibrary"></param>
 		/// <param name="pLibrary"></param>
 		/// <param name="pSkillLibrary"></param>
-		internal CharacterGeneraterController(ILibrary<ICharacter> pCharacterLibrary, ILibrary<IRace> pLibrary, ILibrary<ISkill> pSkillLibrary)
+		/// <param name="pClassLibrary"></param>
+		internal CharacterGeneratorController(
+			ILibrary<ICharacter> pCharacterLibrary,
+			ILibrary<IRace> pLibrary,
+			ILibrary<ISkill> pSkillLibrary,
+			ILibrary<IClass> pClassLibrary)
 		{
 			CharacterLibrary = pCharacterLibrary;
 			RaceLibrary = pLibrary;
 			SkillLibrary = pSkillLibrary;
+			ClassLibrary = pClassLibrary;
 		}
 
 		internal ILibrary<ICharacter> CharacterLibrary { get; }
 		internal ILibrary<IRace> RaceLibrary { get; }
 		internal ILibrary<ISkill> SkillLibrary { get; }
+		internal ILibrary<IClass> ClassLibrary { get; }
 
 		public ICharacter SetAbilityScores([FromBody] AbilityScoreSet pAbilityScores)
 		{
@@ -54,6 +62,13 @@ namespace Pathfinder.Api.Controllers
 			Assert.ArgumentNotNull(pRaceName, nameof(pRaceName));
 			Assert.ArgumentNotNull(pCharacter, nameof(pCharacter));
 			return pCharacter.SetRace(RaceLibrary[pRaceName]);
+		}
+
+		public ICharacter SetClass([FromUri] string pClassName, [FromBody] ICharacter pCharacter)
+		{
+			Assert.ArgumentNotNull(pClassName, nameof(pClassName));
+			Assert.ArgumentNotNull(pCharacter, nameof(pCharacter));
+			return pCharacter.AddClass(ClassLibrary[pClassName]);
 		}
 	}
 }

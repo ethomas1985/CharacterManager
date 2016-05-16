@@ -21,16 +21,17 @@ namespace Pathfinder.Serializers.Xml
 			var xDocument = XDocument.Parse(pValue);
 
 			return new Class(
-				GetName(xDocument),
-				GetAlignments(xDocument),
-				GetHitDie(xDocument),
-				GetSkillSet(xDocument),
-				GetClassLevels(xDocument),
-				GetFeatures(xDocument.Descendants(nameof(IClass.Features)).FirstOrDefault())
+				_GetName(xDocument),
+				_GetAlignments(xDocument),
+				_GetHitDie(xDocument),
+				_GetSkillAddend(xDocument),
+				_GetSkillSet(xDocument),
+				_GetClassLevels(xDocument),
+				_GetFeatures(xDocument.Descendants(nameof(IClass.Features)).FirstOrDefault())
 				);
 		}
 
-		private IEnumerable<IClassLevel> GetClassLevels(XContainer pXDocument)
+		private IEnumerable<IClassLevel> _GetClassLevels(XContainer pXDocument)
 		{
 			var classLevels =
 				new HashSet<IClassLevel>(
@@ -38,27 +39,27 @@ namespace Pathfinder.Serializers.Xml
 						.Descendants(nameof(ClassLevel))
 						.Select(
 							    x => new ClassLevel(
-									GetLevel(x),
-									GetBaseAttackBonuses(x),
-									GetFortitude(x),
-									GetReflex(x),
-									GetWill(x),
-									GetFeatures(x),
-									GetSpellsPerDay(x),
+									_GetLevel(x),
+									_GetBaseAttackBonuses(x),
+									_GetFortitude(x),
+									_GetReflex(x),
+									_GetWill(x),
+									_GetFeatures(x),
+									_GetSpellsPerDay(x),
 									null, //spellsKnown
-									GetSpellsByLevel(x)
+									_GetSpellsByLevel(x)
 									)));
 			return classLevels;
 		}
 
-		private static string GetName(XContainer pXDocument)
+		private static string _GetName(XContainer pXDocument)
 		{
 			return pXDocument
 				.Descendants(nameof(IClass.Name))
 				.Select(x => x.Value)
 				.FirstOrDefault();
 		}
-		private HashSet<string> GetSkillSet(XContainer pXDocument)
+		private HashSet<string> _GetSkillSet(XContainer pXDocument)
 		{
 			var skills =
 				new HashSet<string>(
@@ -67,40 +68,40 @@ namespace Pathfinder.Serializers.Xml
 						.Select(x => x.Value));
 			return skills;
 		}
-		private static int GetLevel(XContainer pElement)
+		private static int _GetLevel(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Level)).Select(y => AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Level)).Select(y => _AsInt(y.Value)).FirstOrDefault();
 		}
-		private static IEnumerable<int> GetBaseAttackBonuses(XContainer pElement)
+		private static IEnumerable<int> _GetBaseAttackBonuses(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.BaseAttackBonus)).Descendants().Select(y => AsInt(y.Value));
+			return pElement.Descendants(nameof(ClassLevel.BaseAttackBonus)).Descendants().Select(y => _AsInt(y.Value));
 		}
-		private static int GetFortitude(XContainer pElement)
+		private static int _GetFortitude(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Fortitude)).Select(y => AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Fortitude)).Select(y => _AsInt(y.Value)).FirstOrDefault();
 		}
-		private static int GetReflex(XContainer pElement)
+		private static int _GetReflex(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Reflex)).Select(y => AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Reflex)).Select(y => _AsInt(y.Value)).FirstOrDefault();
 		}
-		private static int GetWill(XContainer pElement)
+		private static int _GetWill(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Will)).Select(y => AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Will)).Select(y => _AsInt(y.Value)).FirstOrDefault();
 		}
-		private IEnumerable<string> GetFeatures(XContainer pElement)
+		private IEnumerable<string> _GetFeatures(XContainer pElement)
 		{
 			return pElement.Descendants(nameof(Feature)).Select(y => y.Value);
 		}
-		private static Dictionary<int, int> GetSpellsPerDay(XElement pElement)
+		private static Dictionary<int, int> _GetSpellsPerDay(XElement pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.SpellsPerDay)).ToDictionary(k => k.Name.LocalName.WrittenToInteger(), v => AsInt(pElement.Value));
+			return pElement.Descendants(nameof(ClassLevel.SpellsPerDay)).ToDictionary(k => k.Name.LocalName.WrittenToInteger(), v => _AsInt(pElement.Value));
 		}
-		private Dictionary<int, IEnumerable<string>> GetSpellsByLevel(XContainer pElement)
+		private Dictionary<int, IEnumerable<string>> _GetSpellsByLevel(XContainer pElement)
 		{
 			return pElement.Descendants(nameof(Spell)).GroupBy(k => k.Name.LocalName.WrittenToInteger()).ToDictionary(k => k.Key, v => v.Select(y => y.Value));
 		}
 
-		private static Die GetHitDie(XContainer pDocument)
+		private static Die _GetHitDie(XContainer pDocument)
 		{
 			var hitDie =
 				pDocument
@@ -111,19 +112,27 @@ namespace Pathfinder.Serializers.Xml
 								return match.Success ? match.Groups[1].Value : null;
 							})
 					.Where(x => x != null)
-					.Select(AsInt)
+					.Select(_AsInt)
 					.Select(x => new Die(x))
 					.FirstOrDefault();
 			return hitDie;
 		}
 
-		private static int AsInt(string pValue)
+		private static int _GetSkillAddend(XContainer pXDocument)
+		{
+			return pXDocument
+				.Descendants(nameof(IClass.Features))
+				.Select(x => _AsInt(x.Value))
+				.FirstOrDefault();
+		}
+
+		private static int _AsInt(string pValue)
 		{
 			int value;
 			return int.TryParse(pValue, out value) ? value : 0;
 		}
 
-		private static HashSet<Alignment> GetAlignments(XContainer pDocument)
+		private static HashSet<Alignment> _GetAlignments(XContainer pDocument)
 		{
 			var alignmentsStrings =
 				pDocument

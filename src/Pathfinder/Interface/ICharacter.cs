@@ -10,7 +10,7 @@ namespace Pathfinder.Interface
 
 		IEnumerable<ICharacterClass> Classes { get; }
 
-		Deity Deity { get; }
+		IDeity Deity { get; }
 
 		string Eyes { get; }
 
@@ -96,7 +96,7 @@ namespace Pathfinder.Interface
 		ICharacter SetAlignment(Alignment pAlignment);
 		ICharacter SetHomeland(string pHomeland);
 		ICharacter IncrementClass(IClass pClass);
-		ICharacter SetDeity(Deity pDeity);
+		ICharacter SetDeity(IDeity pDeity);
 		ICharacter SetGender(Gender pGender);
 		ICharacter SetEyes(string pEyes);
 		ICharacter SetHair(string pHair);
@@ -104,6 +104,7 @@ namespace Pathfinder.Interface
 		ICharacter SetWeight(string pWeight);
 
 		ICharacter AddClass(IClass pClass);
+		ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints);
 
 		ICharacter SetDamage(int pDamage);
 		ICharacter AddDamage(int pDamage);
