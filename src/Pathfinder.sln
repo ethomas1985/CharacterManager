@@ -13,6 +13,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder.Api", "Pathfinde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder.Api.Tests", "Pathfinder.Api.Tests\Pathfinder.Api.Tests.csproj", "{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "www", "www\", "{52AE4D08-69EB-425E-BF62-3676403FA716}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64463"
+		Debug.AspNetCompiler.PhysicalPath = "www\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64463\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64463"
+		Release.AspNetCompiler.PhysicalPath = "www\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64463\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64463"
+		SlnRelativePath = "www\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +60,10 @@ Global
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52AE4D08-69EB-425E-BF62-3676403FA716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AE4D08-69EB-425E-BF62-3676403FA716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52AE4D08-69EB-425E-BF62-3676403FA716}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{52AE4D08-69EB-425E-BF62-3676403FA716}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

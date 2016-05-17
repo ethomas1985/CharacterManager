@@ -1,0 +1,19 @@
+{
+  "name": "CharacterManager",
+  "private": true,
+  "dependencies": {
+    "angular-material": "latest",
+    "jquery": "latest",
+    "angular-material-icons": "latest",
+    "angular-sanitize": "latest",
+    "angular-route": "latest",
+    "angular": "latest"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

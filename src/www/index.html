@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Pathfinder Character Manager</title>
+	<meta charset="utf-8"/>
+
+	<link rel="stylesheet" href=".lib/angular-material/angular-material.min.css"/>
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
+	<link rel="stylesheet" href=".lib/angular-material-icons/angular-material-icons.css"/>
+
+
+
+	<link rel="stylesheet" href="assets/app.css"/>
+</head>
+<body ng-app="app">
+
+	<script src=".lib/angular/angular.js"></script>
+	<script src=".lib/angular-animate/angular-animate.js"></script>
+	<script src=".lib/angular-aria/angular-aria.js"></script>
+	<script src=".lib/angular-material/angular-material.js"></script>
+	<script src=".lib/angular-material-icons/angular-material-icons.js"></script>
+	<script src=".lib/angular-messages/angular-messages.js"></script>
+	<script src=".lib/angular-route/angular-route.js"></script>
+	<script src=".lib/angular-sanitize/angular-sanitize.js"></script>
+
+	<script src="apps/components/omnibar.component.js"></script>
+	<script src="apps/components/footer.component.js"></script>
+	<script src="app.js"></script>
+
+	<div layout="column" layout-fill>
+		<omni></omni>
+		<md-content>
+			<ng-view></ng-view>
+		</md-content>
+		<foot></foot>
+	</div>
+
+</body>
+</html>
