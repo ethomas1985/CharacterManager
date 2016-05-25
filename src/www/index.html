@@ -1,19 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
 	<title>Pathfinder Character Manager</title>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
+	<base href="/" />
+	<link rel="stylesheet" href=".lib/angular-material/angular-material.css" />
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href=".lib/angular-material-icons/angular-material-icons.css" />
 
-	<link rel="stylesheet" href=".lib/angular-material/angular-material.min.css"/>
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css"/>
-	<link rel="stylesheet" href=".lib/angular-material-icons/angular-material-icons.css"/>
-
-
-
-	<link rel="stylesheet" href="assets/app.css"/>
+	<link rel="stylesheet" href="assets/app.css" />
 </head>
+
 <body ng-app="app">
 
 	<script src=".lib/angular/angular.js"></script>
@@ -25,17 +25,41 @@
 	<script src=".lib/angular-route/angular-route.js"></script>
 	<script src=".lib/angular-sanitize/angular-sanitize.js"></script>
 
+	<script src="apps/shared/character.model.js"></script>
+
+	<script src="apps/character/components/savingThrows/savingThrow.directive.js"></script>
+	<script src="apps/character/components/savingThrows/savingThrows.component.js"></script>
+
+	<script src="apps/character/components/offensiveScores/offensiveScore.directive.js"></script>
+	<script src="apps/character/components/offensiveScores/offensiveScores.component.js"></script>
+	<script src="apps/character/components/defensiveScores/defensiveScore.directive.js"></script>
+	<script src="apps/character/components/defensiveScores/defensiveScores.component.js"></script>
+	<script src="apps/character/components/abilityScores/abilityScore.directive.js"></script>
+	<script src="apps/character/components/abilityScores/abilityScores.component.js"></script>
+	<script src="apps/character/components/status/status.component.js"></script>
+	<script src="apps/character/components/main/main.component.js"></script>
+	<script src="apps/character/character.component.js"></script>
+	<script src="apps/character/character.module.js"></script>
+
+	<!--<script src="apps/CharacterCreator/components/wizard/wizard.component.js"></script>
+	<script src="apps/CharacterCreator/characterCreator.module.js"></script>-->
+
+	<script src="apps/filters/camelToHuman.filter.js"></script>
+
+	<script src="apps/directives/labelValue.directive.js"></script>
+
 	<script src="apps/components/omnibar.component.js"></script>
 	<script src="apps/components/footer.component.js"></script>
 	<script src="app.js"></script>
 
 	<div layout="column" layout-fill>
 		<omni></omni>
-		<md-content>
+		<md-content class='md-padding cm-main' flex>
 			<ng-view></ng-view>
 		</md-content>
 		<foot></foot>
 	</div>
 
 </body>
+
 </html>
