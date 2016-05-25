@@ -2,18 +2,25 @@
 namespace app {
 	"use strict";
 
-	angular.module('app', ['ngRoute', 'ngMdIcons'])
-		.config(configureRoutes)
-		.component('omni', new app.components.OmnibarComponent())
-		.component('foot', new app.components.FooterComponent())
-		;
+	var characterManager =
+		angular.module('app', ['ngRoute', 'ngMdIcons', 'ngMaterial', 'characterCreator', 'character']);
+	characterManager.config(configureRouteProvider);
 
-	configureRoutes.$inject = ['$routeProvider', '$locationProvider'];
-	function configureRoutes($routeProvider: ng.route.IRouteProvider) {
+	characterManager.filter('camelToHuman', app.filters.CamelToHumanFilter);
+
+	characterManager.directive('labelValue', app.directives.LabelValueDirective.factory());
+
+	characterManager.component('omni', new app.components.OmnibarComponent());
+	characterManager.component('foot', new app.components.FooterComponent());
+
+	function configureRouteProvider(
+		$routeProvider: ng.route.IRouteProvider,
+		$locationProvider: ng.ILocationProvider) {
+		console.log('Adding Root Routes');
 		$routeProvider
-			.when("/",<ng.route.IRoute>{
-				template: "<character-creator></character-creator>"
-			})
 			.otherwise("/");
+
+        // use the HTML5 History API
+        // $locationProvider.html5Mode(true);
 	}
 }

@@ -2,23 +2,21 @@ var app;
 (function (app) {
     var components;
     (function (components) {
-        var FooterController = (function () {
-            function FooterController() {
+        class FooterController {
+            constructor() {
                 this.title = "CharacterManager";
                 this.version = "0.0.0.1";
             }
-            return FooterController;
-        }());
+        }
         components.FooterController = FooterController;
-        var FooterComponent = (function () {
-            function FooterComponent() {
+        class FooterComponent {
+            constructor() {
                 this.controllerAs = "footerController";
                 this.transclude = true;
                 this.controller = FooterController;
                 this.templateUrl = "apps/components/footer.tmpl.html";
             }
-            return FooterComponent;
-        }());
+        }
         components.FooterComponent = FooterComponent;
     })(components = app.components || (app.components = {}));
 })(app || (app = {}));

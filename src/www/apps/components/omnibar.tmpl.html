@@ -1,25 +1,18 @@
 <div layout="column" class="omni">
-	<div layout="row" layout-align="center center">
+	<!--<div layout="row" layout-align="center center">
 		<img ng-src="{{omniController.image}}" class="md-card-image" width="500px" />
 	</div>
-	<md-divider></md-divider>
-	<md-toolbar class="omni-toolbar">
+	<md-divider></md-divider>-->
+	<md-toolbar class="omni-toolbar" layout="row" layout-align="start center">
 		<div class="md-toolbar-tools" layout-align="space-around center">
-			<md-button class="md-icon-button" aria-label="Now Widgets">
-				<ng-md-icon icon="now_widgets" size="32"></ng-md-icon>
-			</md-button>
-
-			<md-button class="md-icon-button" aria-label="Login">
-				<ng-md-icon icon="login" size="32"></ng-md-icon>
-			</md-button>
-
-			<md-button class="md-icon-button" aria-label="Logout">
-				<ng-md-icon icon="logout" size="32"></ng-md-icon>
-			</md-button>
-
-			<md-button class="md-icon-button" aria-label="Android">
-				<ng-md-icon icon="android" size="32"></ng-md-icon>
-			</md-button>
+			<div ng-repeat="command in omniController.commands track by command.Name" layout-align="center center">
+				<md-button class="md-raised md-icon-button launch"
+						   aria-label="{{command.Name}}"
+						   ng-click="command.Action()">
+					<md-tooltip>{{command.Tooltip}}</md-tooltip>
+					<ng-md-icon icon="{{command.Icon}}" size="24"></ng-md-icon>
+				</md-button>
+			</div>
 		</div>
 	</md-toolbar>
 	<md-divider></md-divider>

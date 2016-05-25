@@ -272,6 +272,8 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ICharacter.BaseSpeed), character.BaseSpeed);
 			_writeProperty(pWriter, nameof(ICharacter.ArmoredSpeed), character.ArmoredSpeed);
 
+			_writeProperty(pWriter, nameof(ICharacter.Initiative), character.Initiative);
+
 			_writeCharacterClasses(pWriter, character.Classes, nameof(ICharacter.Classes));
 
 			_writeAbilityScore(pWriter, character.Strength, nameof(ICharacter.Strength));
@@ -363,6 +365,7 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteStartObject();
 
 			_writeProperty(pWriter, nameof(IDefenseScore.Type), pDefenseScore.Type.ToString());
+			_writeProperty(pWriter, nameof(IDefenseScore.Score), pDefenseScore.Score);
 			_writeProperty(pWriter, nameof(IDefenseScore.ArmorBonus), pDefenseScore.ArmorBonus);
 			_writeProperty(pWriter, nameof(IDefenseScore.ShieldBonus), pDefenseScore.ShieldBonus);
 			_writeProperty(pWriter, nameof(IDefenseScore.DexterityModifier), pDefenseScore.DexterityModifier);

@@ -1,7 +1,6 @@
 ﻿namespace Pathfinder.Interface
 {
-	public interface IDeity
+	public interface IDeity : INamed
 	{
-		string Name { get; }
 	}
 }

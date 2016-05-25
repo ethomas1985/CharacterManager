@@ -1,6 +1,6 @@
 ﻿namespace Pathfinder.Interface
 {
-	public interface IItem
+	public interface IItem : INamed
 	{
 	}
 }

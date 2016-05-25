@@ -43,6 +43,8 @@ namespace Pathfinder.Interface
 		IAbilityScore Wisdom { get; }
 		IAbilityScore Charisma { get; }
 
+		int Initiative { get; }
+
 		// Saving Throws
 		ISavingThrow Fortitude { get; }
 		ISavingThrow Reflex { get; }

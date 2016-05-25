@@ -1,0 +1,21 @@
+<md-card>
+	<md-card-header layout-align="space-around center">
+		<md-card-avatar>
+			<ng-md-icon icon="person" size="32" />
+		</md-card-avatar>
+		<md-card-header-text layout="row" layout-align="space-around center">
+			<div flex="60">
+				<label-value label="Damage" value="{{cardController.character.Damage}}"></label-value>
+			</div>
+			<div flex="20">
+				<label-value label="Health" value="{{cardController.character.HealthPoints}} / {{cardController.character.MaxHealthPoints}} [{{100 * (cardController.character.HealthPoints / cardController.character.MaxHealthPoints)}} %]"></label-value>
+				<md-progress-linear md-mode="determinate" value="{{100 * (cardController.character.HealthPoints / cardController.character.MaxHealthPoints)}}"></md-progress-linear>
+			</div>
+		</md-card-header-text>
+		<!--<md-card-actions layout="row" layout-align="end center">
+			<md-button class="md-raised md-icon-button launch" aria-label="{{cardController.viewExpanded ? 'Collapse' : 'Expand'}}" ng-click="cardController.expandCard()">
+				<ng-md-icon class="card-toolbar-view-more-icon" icon="{{cardController.viewExpanded ? 'expand_less' : 'expand_more'}}" />
+			</md-button>
+		</md-card-actions>-->
+	</md-card-header>
+</md-card>

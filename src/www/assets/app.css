@@ -1,3 +1,7 @@
+.cm-main {
+	background: darkgray;
+}
+
 .omni{
 	background: sandybrown;
 	color: black
@@ -11,4 +15,20 @@
 .footer{
 	background: sandybrown;
 	color: white
+}
+
+my-input-container {
+	margin-bottom: 9px;
+	margin-top: 9px;
+}
+
+.cm-label-value .cm-label {
+	color: #6e6e6e;
+	/*font-size: 11px;*/
+	font-size: 0.6rem;
+}
+.cm-label-value .cm-value {
+	color: #323232;
+	/*font-size: 14px;*/
+	font-size: 1.0rem;
 }

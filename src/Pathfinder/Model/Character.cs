@@ -190,6 +190,10 @@ namespace Pathfinder.Model
 				EnhancedCharisma,
 				InherentCharisma,
 				TemporaryCharismaModifier);
+
+		public int Initiative => (Dexterity?.Modifier ?? 0) + MiscellaneousInitiativeModifier;
+		private int MiscellaneousInitiativeModifier { get; set; }
+
 		private int BaseCharisma { get; set; }
 		private int EnhancedCharisma { get; set; }
 		private int InherentCharisma { get; set; }

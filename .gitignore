@@ -238,5 +238,8 @@ _Pvt_Extensions
 
 src/www/.lib/*
 src/www/typings/*
-
+src/www/*.js
+src/www/*.js.map
+src/www/**/*.js
+src/www/**/*.js.map
 

@@ -33,6 +33,7 @@ namespace Pathfinder.Api.Tests.Mocks
 		public IAbilityScore Intelligence { get; }
 		public IAbilityScore Wisdom { get; }
 		public IAbilityScore Charisma { get; }
+		public int Initiative { get; }
 		public ISavingThrow Fortitude { get; }
 		public ISavingThrow Reflex { get; }
 		public ISavingThrow Will { get; }
