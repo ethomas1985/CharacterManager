@@ -1,5 +1,5 @@
-namespace app.Character {
-	import Character = app.character.model.ICharacter;
+namespace app.Character.SavingThrows {
+	import ICharacter = app.character.model.ICharacter;
 
 	export class savingThrowsComponent implements ng.IComponentOptions {
 		public controller: any;
@@ -18,30 +18,23 @@ namespace app.Character {
 		}
 	}
 
-	export class savingThrowsController {
-		private viewExpanded: boolean;
-
+	export class savingThrowsController extends app.Character.BaseCardController {
 		private parentCtrl: any;
 		private $controller: app.Character.CharacterController;
-		// private character: Character;
 
 		$onInit = () => {
 			this.$controller = this.parentCtrl;
 		}
 
 		constructor() {
-			this.viewExpanded = true;
+			super();
 		}
 
-		get character(): Character{
+		get character(): ICharacter{
 			return this.$controller.character;
 		}
-		set character(character: Character){
+		set character(character: ICharacter){
 			this.$controller.character = character;
-		}
-
-		expandCard() {
-			this.viewExpanded = !this.viewExpanded;
 		}
 	}
 }

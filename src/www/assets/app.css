@@ -22,6 +22,10 @@ my-input-container {
 	margin-top: 9px;
 }
 
+.hoverBold {
+	padding: 5px;
+}
+
 .hoverBold:hover {
 	font-weight: bold;
 	background-color: rgba(81,81,81, 0.25);
@@ -35,4 +39,8 @@ my-input-container {
 .cm-label-value .cm-value {
 	color: #323232;
 	font-size: 1.0rem;
+}
+
+.number {
+	text-align: right;
 }

@@ -1,9 +1,4 @@
-<div layout="row" layout-align="space-around center" class="hoverBold">
-	<label-value flex="60" label="Type" value="{{score.Type | camelToHuman}}"></label-value>
-	<label-value flex="25" label="Score" value="{{score.Score}}"></label-value>
-	<!--<md-tooltip md-direction="right">
-		{{score.Type}}
-		[Score: {{score.Score}}]
-		:= {{tooltip}}
-	</md-tooltip>-->
+<div layout="row" layout-align="space-around start" class="hoverBold">
+	<label-value flex="60" value="{{score.Type | camelToHuman}}"></label-value>
+	<label-value flex="25" label="Score" value="{{score.Score}}" css="number"></label-value>
 </div>

@@ -1,5 +1,5 @@
-namespace app.Character {
-	import Character = app.character.model.ICharacter;
+namespace app.Character.OffensiveScores {
+	import ICharacter = app.character.model.ICharacter;
 
 	export class offensiveScoresComponent implements ng.IComponentOptions {
 		public controller: any;
@@ -18,30 +18,23 @@ namespace app.Character {
 		}
 	}
 
-	export class offensiveScoresController {
-		private viewExpanded: boolean;
-
+	export class offensiveScoresController extends app.Character.BaseCardController {
 		private parentCtrl: any;
 		private $controller: app.Character.CharacterController;
-		// private character: Character;
 
 		$onInit = () => {
 			this.$controller = this.parentCtrl;
 		}
 
 		constructor() {
-			this.viewExpanded = true;
+			super();
 		}
 
-		get character(): Character{
+		get character(): ICharacter{
 			return this.$controller.character;
 		}
-		set character(character: Character){
+		set character(character: ICharacter){
 			this.$controller.character = character;
-		}
-
-		expandCard() {
-			this.viewExpanded = !this.viewExpanded;
 		}
 	}
 }

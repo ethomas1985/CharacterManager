@@ -9,6 +9,7 @@ namespace app.directives {
 			this.scope = {
 				label: "@",
 				value: "@",
+				css: "@"
 			}
 		}
 

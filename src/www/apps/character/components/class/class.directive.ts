@@ -1,14 +1,14 @@
-namespace app.Character.AbilityScores {
-	export class abilityScoreDirective implements ng.IDirective {
+namespace app.Character.Classes {
+	export class classDirective implements ng.IDirective {
 		public templateUrl: string;
 		public scope:Object;
 		public restrict = 'E';
 		public replace: boolean = true;
 
 		constructor() {
-			this.templateUrl = "/apps/character/components/abilityScores/abilityScore.tmpl.html";
+			this.templateUrl = "/apps/character/components/class/class.tmpl.html";
 			this.scope = {
-				score: "=",
+				characterClass: "=characterClass",
 			}
 		}
 
@@ -16,7 +16,7 @@ namespace app.Character.AbilityScores {
 		}
 
 		static factory(): ng.IDirectiveFactory {
-			const directive = () => new abilityScoreDirective();
+			const directive = () => new classDirective();
 			// directive.$inject = [];
 			return directive;
 		}

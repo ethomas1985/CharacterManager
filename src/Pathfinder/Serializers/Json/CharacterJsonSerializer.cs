@@ -333,6 +333,11 @@ namespace Pathfinder.Serializers.Json
 				_writeProperty(pWriter, nameof(ICharacterClass.Level), characterClass.Level);
 				_writeProperty(pWriter, nameof(ICharacterClass.IsFavored), characterClass.IsFavored);
 
+				_writeProperty(pWriter, nameof(ICharacterClass.BaseAttackBonus), characterClass.BaseAttackBonus);
+				_writeProperty(pWriter, nameof(ICharacterClass.Fortitude), characterClass.Fortitude);
+				_writeProperty(pWriter, nameof(ICharacterClass.Reflex), characterClass.Reflex);
+				_writeProperty(pWriter, nameof(ICharacterClass.Will), characterClass.Will);
+
 				pWriter.WritePropertyName(nameof(ICharacterClass.HitPoints));
 				_writeSimpleArray(pWriter, characterClass.HitPoints.ToArray());
 

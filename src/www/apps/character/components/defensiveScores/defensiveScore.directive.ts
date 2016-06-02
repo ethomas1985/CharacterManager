@@ -1,4 +1,4 @@
-namespace app.Character {
+namespace app.Character.DefensiveScores {
 
 	export interface IDefensiveScoreScope extends ng.IScope {
 		score: app.character.model.IDefenseScore;

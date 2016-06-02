@@ -1,6 +1,18 @@
 namespace app.Character {
+	import ICharacter = app.character.model.ICharacter;
 
-	import Character = app.character.model.ICharacter;
+	export class BaseCardController {
+		public viewExpanded: boolean;
+
+		constructor() {
+			this.viewExpanded = false;
+		}
+
+		public expandCard() {
+			this.viewExpanded = !this.viewExpanded;
+		}
+	}
+
 	export class CharacterComponent implements ng.IComponentOptions {
 		public controller: any;
 		public controllerAs: string = "characterController";
@@ -19,7 +31,7 @@ namespace app.Character {
 
 	export class CharacterController {
 		isLoading: boolean;
-		character: Character;
+		character: ICharacter;
 
 		private viewExpanded: boolean = false;
 
@@ -34,22 +46,13 @@ namespace app.Character {
 				this.$http
 					.post(url, null)
 					.then(
-						(result: ng.IHttpPromiseCallbackArg<Character>) => this.setCharacter(result.data));
+						(result: ng.IHttpPromiseCallbackArg<ICharacter>) => this.setCharacter(result.data));
 			}
 		}
 
-		setCharacter(character: Character) {
+		setCharacter(character: ICharacter) {
 			this.character = character;
-
-			// this.character.Name = "Character McCharacterFace";
-			// this.character.MaxHealthPoints = 100;
-			// this.character.HealthPoints = 48;
-
 			this.isLoading = false;
-		}
-
-		expandCard() {
-			this.viewExpanded = !this.viewExpanded;
 		}
 	}
 }

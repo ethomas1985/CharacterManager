@@ -1,4 +1,4 @@
-namespace app.Character {
+namespace app.Character.SavingThrows {
 
 	export interface ISavingThrowScope extends ng.IScope {
 		score: app.character.model.ISavingThrow;

@@ -1,7 +1,7 @@
-namespace app.Character.DefensiveScores {
+namespace app.Character.Classes {
 	import ICharacter = app.character.model.ICharacter;
 
-	export class defensiveScoresComponent implements ng.IComponentOptions {
+	export class classesComponent implements ng.IComponentOptions {
 		public controller: any;
 		public controllerAs: string = "cardController";
 		public templateUrl: string;
@@ -10,15 +10,15 @@ namespace app.Character.DefensiveScores {
 		public require: string | string[] | { [controller: string]: string };
 
 		constructor() {
-			this.controller = defensiveScoresController;
-			this.templateUrl = "/apps/character/components/defensiveScores/defensiveScores.tmpl.html";
+			this.controller = classesController;
+			this.templateUrl = "/apps/character/components/class/classes.tmpl.html";
 
 			this.require = {
 				parentCtrl: '^character' }
 		}
 	}
 
-	export class defensiveScoresController extends app.Character.BaseCardController{
+	export class classesController extends app.Character.BaseCardController {
 		private parentCtrl: any;
 		private $controller: app.Character.CharacterController;
 

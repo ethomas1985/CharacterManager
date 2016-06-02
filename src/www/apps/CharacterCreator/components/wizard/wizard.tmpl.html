@@ -1,0 +1,27 @@
+<md-content layout="Row" layout-align="center center">
+	<md-card>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Step 1 - Determine Ability Scores</span>
+				<span class="md-subhead">Blah Blah Blah</span>
+			</md-card-title-text>
+		</md-card-title>
+
+		<md-card-content layout="column" layout-align="start center">
+			<md-input-container ng-repeat="score in characterController.scores" class="my-input-container">
+				<label>{{score.Name}}</label>
+				<input ng-model="score.Value" css="number" min="1" max="20">
+				<md-tooltip md-direction="right">{{score.Text}}</md-tooltip>
+				</input>
+			</md-input-container>
+		</md-card-content>
+
+		<md-card-actions layout="row" layout-align="end center">
+			<md-button>Cancel</md-button>
+			<md-button>
+				<ng-md-icon icon="forward" />
+				Next
+			</md-button>
+		</md-card-actions>
+	</md-card>
+</md-content>

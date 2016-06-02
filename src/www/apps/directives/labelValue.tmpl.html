@@ -1,8 +1,5 @@
-<div class="cm-label-value" layout-fill flex ng-if="value">
-	<span class="cm-value">
-		{{value}}
-		<br />
-	</span>
-	<md-divider />
-	<span class="cm-label">{{label}}</span>
+<div class="cm-label-value" layout="column" layout-align="end stretch" ng-if="value">
+	<span class="cm-label">{{label}}<br /></span>
+	<span class="cm-value {{css}}">{{value}}</span>
+	<md-divider></md-divider>
 </div>

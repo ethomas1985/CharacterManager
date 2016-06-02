@@ -1,36 +1,11 @@
 <div ng-if="!characterController.isLoading">
 	<main parentCtrl="characterController"></main>
 	<status parentCtrl="characterController"></status>
-	<div layout-xs="column" layout="row" layout-wrap>
-		<ability-scores parentCtrl="characterController" flex="35"></ability-scores>
-		<offensive-scores parentCtrl="characterController" flex="30"></offensive-scores>
-		<saving-throws parentCtrl="characterController" flex="30"></saving-throws>
-		<defensive-scores parentCtrl="characterController" flex="60"></defensive-scores>
+	<classes parentCtrl="characterController"></classes>
+	<div layout-xs="column" layout="row" layout-wrap layout-align="space-between center">
+		<ability-scores parentCtrl="characterController" flex="60"></ability-scores>
+		<saving-throws parentCtrl="characterController" flex="35"></saving-throws>
+		<offensive-scores parentCtrl="characterController" flex="50"></offensive-scores>
+		<defensive-scores parentCtrl="characterController" flex="45"></defensive-scores>
 	</div>
 </div>
-
-
-<!--<md-card>
-	<md-card-header>
-		<md-card-avatar>
-			<ng-md-icon icon="info" />
-		</md-card-avatar>
-		<md-card-title>
-			Ability Scores
-		</md-card-title>
-		<md-card-actions layout="row" layout-align="end center">
-			<md-button class="md-icon-button" ng-click="CardController.item.viewExpanded['AbilityScores'] = !CardController.item.viewExpanded['AbilityScores']">
-				<md-icon class="card-toolbar-view-more-icon" md-font-set="material-icons" ng-show="!CardController.item.viewExpanded['AbilityScores']">expand_more</md-icon>
-				<md-icon class="card-toolbar-view-more-icon" md-font-set="material-icons" ng-show="CardController.item.viewExpanded['AbilityScores']">expand_less</md-icon>
-			</md-button>
-		</md-card-actions>
-	</md-card-header>
-	<div ng-show="ctrl.viewExpanded['AbilityScores']">
-		<md-card-content>
-			Content
-		</md-card-content>
-		<md-card-actions layout="row" layout-align="end center">
-			<md-button>Action</md-button>
-		</md-card-actions>
-	</div>
-</md-card>-->

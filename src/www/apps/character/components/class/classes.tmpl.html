@@ -4,7 +4,7 @@
 			<ng-md-icon icon="tune" size="32" />
 		</md-card-avatar>
 		<md-card-header-text class="md-title" layout="row" layout-align="space-around center">
-			Ability Scores
+			Classes
 		</md-card-header-text>
 		<md-card-actions layout="row" layout-align="end center">
 			<md-button class="md-icon-button launch" aria-label="{{cardController.viewExpanded ? 'Collapse' : 'Expand'}}" ng-click="cardController.expandCard()">
@@ -14,18 +14,11 @@
 	</md-card-header>
 	<md-divider />
 		<md-card-content ng-show="cardController.viewExpanded"
-						 layout="row"
+						 layout="column"
 						 layout-align="space-between center"
 						 layout-fill>
-			<div layout="column" flex="45">
-				<ability-score score="cardController.character.Strength"></ability-score>
-				<ability-score score="cardController.character.Dexterity"></ability-score>
-				<ability-score score="cardController.character.Constitution"></ability-score>
-			</div>
-			<div layout="column" flex="45">
-				<ability-score score="cardController.character.Intelligence"></ability-score>
-				<ability-score score="cardController.character.Wisdom"></ability-score>
-				<ability-score score="cardController.character.Charisma"></ability-score>
+			<div ng-repeat="class in cardController.character.Classes track by class.Name" layout-fill>
+				<class character-class="class"></class>
 			</div>
 		</md-card-content>
 </md-card>
