@@ -20,10 +20,8 @@ namespace app.Character {
 
 	export class statusController {
 		private viewExpanded: boolean;
-
 		private parentCtrl: any;
 		private $controller: app.Character.CharacterController;
-		// private character: Character;
 
 		$onInit = () => {
 			this.$controller = this.parentCtrl;
@@ -42,6 +40,11 @@ namespace app.Character {
 
 		expandCard() {
 			this.viewExpanded = !this.viewExpanded;
+		}
+
+		getCurrentHealthValue() : number {
+			let health =  100 * (this.character.HealthPoints / this.character.MaxHealthPoints);
+			return health;
 		}
 	}
 }

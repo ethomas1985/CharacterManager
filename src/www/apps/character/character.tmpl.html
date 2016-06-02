@@ -1,12 +1,12 @@
 <div ng-if="!characterController.isLoading">
 	<main parentCtrl="characterController"></main>
 	<status parentCtrl="characterController"></status>
-	<md-content class="md-padding" layout-xs="column" layout="row" layout-wrap>
+	<div layout-xs="column" layout="row" layout-wrap>
 		<ability-scores parentCtrl="characterController" flex="35"></ability-scores>
 		<offensive-scores parentCtrl="characterController" flex="30"></offensive-scores>
 		<saving-throws parentCtrl="characterController" flex="30"></saving-throws>
 		<defensive-scores parentCtrl="characterController" flex="60"></defensive-scores>
-	</md-content>
+	</div>
 </div>
 
 

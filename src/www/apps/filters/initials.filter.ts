@@ -1,6 +1,6 @@
 namespace app.filters {
 	export function InitialsFilter() {
-		return CamelToHuman;
+		return Initials;
 	}
 
 	export function Initials(value: string): string {

@@ -3,10 +3,17 @@ namespace app {
 	"use strict";
 
 	var characterManager =
-		angular.module('app', ['ngRoute', 'ngMdIcons', 'ngMaterial', 'characterCreator', 'character']);
+		angular.module(
+			'app',
+			[
+				'ngRoute',
+				'ngMdIcons',
+				'ngMaterial',
+				'character']);
 	characterManager.config(configureRouteProvider);
 
 	characterManager.filter('camelToHuman', app.filters.CamelToHumanFilter);
+	characterManager.filter('initials', app.filters.InitialsFilter);
 
 	characterManager.directive('labelValue', app.directives.LabelValueDirective.factory());
 

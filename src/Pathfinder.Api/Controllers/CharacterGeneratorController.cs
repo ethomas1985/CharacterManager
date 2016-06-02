@@ -79,7 +79,7 @@ namespace Pathfinder.Api.Controllers
 					//.AssignSkillPoint(SkillLibrary["Sense Motive"], 1)
 					//.AssignSkillPoint(SkillLibrary["Spellcraft"], 2)
 					//.AssignSkillPoint(SkillLibrary["Use Magic Device"], 1)
-					.SetDamage(19)
+					.SetDamage(5)
 					;
 		}
 

@@ -8,8 +8,8 @@
 				<label-value label="Damage" value="{{cardController.character.Damage}}"></label-value>
 			</div>
 			<div flex="20">
-				<label-value label="Health" value="{{cardController.character.HealthPoints}} / {{cardController.character.MaxHealthPoints}} [{{100 * (cardController.character.HealthPoints / cardController.character.MaxHealthPoints)}} %]"></label-value>
-				<md-progress-linear md-mode="determinate" value="{{100 * (cardController.character.HealthPoints / cardController.character.MaxHealthPoints)}}"></md-progress-linear>
+				<label-value label="Health" value="{{cardController.character.HealthPoints}} / {{cardController.character.MaxHealthPoints}} [{{cardController.getCurrentHealthValue()}} %]"></label-value>
+				<md-progress-linear md-mode="determinate" value="{{cardController.getCurrentHealthValue()}}"></md-progress-linear>
 			</div>
 		</md-card-header-text>
 		<!--<md-card-actions layout="row" layout-align="end center">
