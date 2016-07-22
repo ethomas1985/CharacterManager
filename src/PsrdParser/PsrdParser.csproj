@@ -69,6 +69,7 @@
     <Compile Include="Serializers\PSRD\ClassJsonSerializer.cs" />
     <Compile Include="Serializers\PSRD\FeatJsonSerializer.cs" />
     <Compile Include="Serializers\PSRD\FeatureJsonSerializer.cs" />
+    <Compile Include="Serializers\PSRD\ItemJsonSerializer.cs" />
     <Compile Include="Serializers\PSRD\JsonSerializer.cs" />
     <Compile Include="Serializers\PSRD\SkillJsonSerializer.cs" />
     <Compile Include="Serializers\PSRD\SpellJsonSerializer.cs" />

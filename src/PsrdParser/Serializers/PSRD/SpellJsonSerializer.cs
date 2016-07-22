@@ -29,39 +29,39 @@ namespace PsrdParser.Serializers.PSRD
 
 			return
 				new Spell(
-					GetName(jObject),
-					GetMagicSchool(jObject),
-					GetSubMagicSchool(jObject),
-					GetMagicDescriptors(jObject),
-					GetSavingThrow(jObject),
-					GetDescription(jObject),
-					HasSpellResistance(jObject),
-					GetSpellResistance(jObject),
-					GetCastingTime(jObject),
-					GetRange(jObject),
-					GetLevelRequirements(jObject),
-					GetDuration(jObject),
-					GetComponents(jObject));
+					_GetName(jObject),
+					_GetMagicSchool(jObject),
+					_GetSubMagicSchool(jObject),
+					_GetMagicDescriptors(jObject),
+					_GetSavingThrow(jObject),
+					_GetDescription(jObject),
+					_HasSpellResistance(jObject),
+					_GetSpellResistance(jObject),
+					_GetCastingTime(jObject),
+					_GetRange(jObject),
+					_GetLevelRequirements(jObject),
+					_GetDuration(jObject),
+					_GetComponents(jObject));
 		}
 
-		private static string GetName(JObject pJObject)
+		private static string _GetName(JObject pJObject)
 		{
-			return GetString(pJObject, "name");
+			return getString(pJObject, "name");
 		}
 
-		private static MagicSchool GetMagicSchool(JObject pJObject)
+		private static MagicSchool _GetMagicSchool(JObject pJObject)
 		{
 			MagicSchool value;
 			return Enum.TryParse((string) pJObject["school"], out value) ? value : MagicSchool.Universal;
 		}
 
-		private static MagicSubSchool GetSubMagicSchool(JObject pJObject)
+		private static MagicSubSchool _GetSubMagicSchool(JObject pJObject)
 		{
 			MagicSubSchool value;
 			return Enum.TryParse((string) pJObject["school"], out value) ? value : MagicSubSchool.None;
 		}
 
-		private static ISet<MagicDescriptor> GetMagicDescriptors(JObject pJObject)
+		private static ISet<MagicDescriptor> _GetMagicDescriptors(JObject pJObject)
 		{
 			var values = new HashSet<MagicDescriptor>();
 
@@ -85,17 +85,17 @@ namespace PsrdParser.Serializers.PSRD
 			return values;
 		}
 
-		private static string GetSavingThrow(JObject pJObject)
+		private static string _GetSavingThrow(JObject pJObject)
 		{
-			return GetString(pJObject, "saving_throw");
+			return getString(pJObject, "saving_throw");
 		}
 
-		private static string GetDescription(JObject pJObject)
+		private static string _GetDescription(JObject pJObject)
 		{
-			return GetString(pJObject, "description");
+			return getString(pJObject, "description");
 		}
 
-		private static bool HasSpellResistance(JObject pJObject)
+		private static bool _HasSpellResistance(JObject pJObject)
 		{
 			var str = (string) pJObject["spell_resistance"];
 			str = str?.Split(' ').FirstOrDefault();
@@ -109,7 +109,7 @@ namespace PsrdParser.Serializers.PSRD
 			return "yes".Equals(str, StringComparison.InvariantCultureIgnoreCase);
 		}
 
-		private static string GetSpellResistance(JObject pJObject)
+		private static string _GetSpellResistance(JObject pJObject)
 		{
 			var str = (string) pJObject["spell_resistance"];
 			var theRest = str?.Split(' ').Skip(1).ToArray();
@@ -117,17 +117,17 @@ namespace PsrdParser.Serializers.PSRD
 			return theRest?.Length > 0 ? string.Join(" ", theRest) : null;
 		}
 
-		private static string GetCastingTime(JObject pJObject)
+		private static string _GetCastingTime(JObject pJObject)
 		{
-			return GetString(pJObject, "casting_time");
+			return getString(pJObject, "casting_time");
 		}
 
-		private static string GetRange(JObject pJObject)
+		private static string _GetRange(JObject pJObject)
 		{
-			return GetString(pJObject, "range");
+			return getString(pJObject, "range");
 		}
 
-		private static IDictionary<string, int> GetLevelRequirements(JObject pJObject)
+		private static IDictionary<string, int> _GetLevelRequirements(JObject pJObject)
 		{
 			var values = new Dictionary<string, int>();
 
@@ -148,12 +148,12 @@ namespace PsrdParser.Serializers.PSRD
 			return values;
 		}
 
-		private static string GetDuration(JObject pJObject)
+		private static string _GetDuration(JObject pJObject)
 		{
-			return GetString(pJObject, "duration");
+			return getString(pJObject, "duration");
 		}
 
-		private static ISet<Tuple<ComponentType, string>> GetComponents(JObject pJObject)
+		private static ISet<Tuple<ComponentType, string>> _GetComponents(JObject pJObject)
 		{
 			var values = new HashSet<Tuple<ComponentType, string>>();
 
@@ -168,7 +168,7 @@ namespace PsrdParser.Serializers.PSRD
 						x => new
 						{
 							Type = (string) x["type"],
-							Text = CapitalizeFirstCharacter((string) x["text"])
+							Text = _CapitalizeFirstCharacter((string) x["text"])
 						})
 					.Where(x => x.Type != null);
 
@@ -189,7 +189,7 @@ namespace PsrdParser.Serializers.PSRD
 			return values;
 		}
 
-		private static string CapitalizeFirstCharacter(string pValue)
+		private static string _CapitalizeFirstCharacter(string pValue)
 		{
 			if (string.IsNullOrWhiteSpace(pValue))
 			{

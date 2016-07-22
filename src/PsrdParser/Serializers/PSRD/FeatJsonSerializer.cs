@@ -24,32 +24,32 @@ namespace PsrdParser.Serializers.PSRD
 
 			return
 				new Feat(
-					GetName(jObject),
-					GetFeatType(jObject),
-					GetPrerequisites(jObject),
-					GetDescription(jObject),
-					GetBenefit(jObject),
-					GetSpecial(jObject));
+					_GetName(jObject),
+					_GetFeatType(jObject),
+					_GetPrerequisites(jObject),
+					_GetDescription(jObject),
+					_GetBenefit(jObject),
+					_GetSpecial(jObject));
 		}
 
-		private static string GetName(JToken jToken)
+		private static string _GetName(JToken pJToken)
 		{
-			return (string) jToken[NAME_FIELD];
+			return (string) pJToken[NAME_FIELD];
 		}
-		private static FeatType GetFeatType(JToken jToken)
+		private static FeatType _GetFeatType(JToken pJToken)
 		{
-			var featTypes = jToken["feat_types"];
+			var featTypes = pJToken["feat_types"];
 			var featType = (string) featTypes["feat_type"];
 
 			FeatType type;
 			return Enum.TryParse(featType, out type) ? type : FeatType.General;
 		}
-		private static IEnumerable<string> GetPrerequisites(JToken jToken)
+		private static IEnumerable<string> _GetPrerequisites(JToken pJToken)
 		{
 			var prerequisites = 
-				jToken[SECTIONS_FIELD]
+				pJToken[SECTIONS_FIELD]
 					.FirstOrDefault(
-						x => SectionFieldEquals((string) x["name"], "Prerequisites"));
+						x => _SectionFieldEquals((string) x["name"], "Prerequisites"));
 			if (prerequisites == null)
 			{
 				return null;
@@ -62,15 +62,15 @@ namespace PsrdParser.Serializers.PSRD
 					.Select(x => x.Trim())
 					.Select(x => x.EndsWith(".") ? x.Substring(0, x.Length-1) : x);
 		}
-		private static string GetDescription(JToken jToken)
+		private static string _GetDescription(JToken pJToken)
 		{
-			return (string) jToken["description"];
+			return (string) pJToken["description"];
 		}
-		private static string GetBenefit(JToken jToken)
+		private static string _GetBenefit(JToken pJToken)
 		{
-			var benefits = jToken[SECTIONS_FIELD]
+			var benefits = pJToken[SECTIONS_FIELD]
 				.FirstOrDefault(
-					x => SectionFieldEquals((string) x["name"], "Benefits"));
+					x => _SectionFieldEquals((string) x["name"], "Benefits"));
 			if (benefits == null)
 			{
 				return null;
@@ -83,12 +83,12 @@ namespace PsrdParser.Serializers.PSRD
 
 			return htmlTable.DocumentNode.InnerText;
 		}
-		private static string GetSpecial(JToken jToken)
+		private static string _GetSpecial(JToken pJToken)
 		{
 			var special = 
-				jToken[SECTIONS_FIELD]
+				pJToken[SECTIONS_FIELD]
 					.FirstOrDefault(
-						x => SectionFieldEquals((string) x["name"], "Special"));
+						x => _SectionFieldEquals((string) x["name"], "Special"));
 			if (special == null)
 			{
 				return null;
@@ -102,7 +102,7 @@ namespace PsrdParser.Serializers.PSRD
 			return htmlTable.DocumentNode.InnerText;
 		}
 
-		private static bool SectionFieldEquals(string pField, string pValue)
+		private static bool _SectionFieldEquals(string pField, string pValue)
 		{
 			return pField != null && (pField).Equals(pValue);
 		}

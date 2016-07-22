@@ -26,18 +26,19 @@ namespace PsrdParser.Serializers.PSRD
 			var jObject = JObject.Parse(pValue);
 
 			return new Class(
-				GetString(jObject, NAME_FIELD),
-				GetAlignments(jObject, "alignment"),
-				GetHitDie(jObject, "hit_die"),
-				GetSkills(jObject, NAME_FIELD, "Class Skills"),
-				GetClassLevels(jObject),
-				GetClassFeatures(jObject)
+				getString(jObject, NAME_FIELD),
+				_GetAlignments(jObject, "alignment"),
+				_GetHitDie(jObject, "hit_die"),
+				_GetSkillAddend(jObject),
+				_GetSkills(jObject, NAME_FIELD, "Class Skills"),
+				_GetClassLevels(jObject),
+				_GetClassFeatures(jObject)
 				);
 		}
 
-		private static ISet<Alignment> GetAlignments(JObject jObject, string pField)
+		private static ISet<Alignment> _GetAlignments(JObject pJObject, string pField)
 		{
-			var value = GetString(jObject, pField);
+			var value = getString(pJObject, pField);
 
 			switch (value)
 			{
@@ -71,6 +72,7 @@ namespace PsrdParser.Serializers.PSRD
 						};
 				case "Any.":
 				case "All.":
+				default:
 					return new HashSet<Alignment>
 						{
 							Alignment.LawfulGood,
@@ -83,16 +85,14 @@ namespace PsrdParser.Serializers.PSRD
 							Alignment.NeutralEvil,
 							Alignment.ChaoticEvil
 						};
-				default:
-					throw new Exception($"Unknown Alignment Set: {value}");
 			}
 		}
 
-		private static IDie GetHitDie(JObject jObject, string pField)
+		private static IDie _GetHitDie(JObject pJObject, string pField)
 		{
 			var regex = new Regex(@"d(\d+)");
 
-			var value = GetString(jObject, pField);
+			var value = getString(pJObject, pField);
 
 			var match = regex.Match(value);
 			Assert.IsTrue(match.Success, $"{value} does not match the Regex Pattern.");
@@ -104,13 +104,40 @@ namespace PsrdParser.Serializers.PSRD
 			Assert.IsTrue(faces > 0, $"faces must be greater than 0");
 
 			return new Die(faces);
+
 		}
 
-		private ISet<string> GetSkills(JObject jObject, string pField, string pValue)
+		private static int _GetSkillAddend(JObject pJObject)
+		{
+			//var stringFor = getStringFor(pJObject, "name", "Skill Ranks per Level");
+			var sections = pJObject["sections"];
+			var children = sections.Children();
+
+			var classSkillsSection = 
+				children
+				.FirstOrDefault(x => x["name"] != null && ((string)x["name"]).Equals("Class Skills"));
+
+			var skillsSection = 
+				classSkillsSection["sections"]
+					.Children()
+					.FirstOrDefault(x => x["name"] != null && ((string)x["name"]).Equals("Skill Ranks per Level"));
+
+			var stringFor = (string)skillsSection["body"];
+
+			var regex = new Regex(@"(\d+)");
+			var match = regex.Match(stringFor);
+			Assert.IsTrue(match.Success, $"[{stringFor}] does not match the Regex Pattern.");
+			Assert.IsTrue(match.Groups[1].Success, $"Group 1 was not a success.");
+
+
+			return _AsInt(match.Groups[1].Value);
+		}
+
+		private ISet<string> _GetSkills(JObject pJObject, string pField, string pValue)
 		{
 			var skills = new HashSet<string>();
 			var lineRegex = new Regex(@"(?:<p>)?The \w+'s class skills are (.*).?(?:</p>)?");
-			var value = GetStringFor(jObject, pField, pValue);
+			var value = getStringFor(pJObject, pField, pValue);
 
 			var lineMatch = lineRegex.Match(value);
 			Assert.IsTrue(lineMatch.Success, $"{value} does not match the Line Regex Pattern.");
@@ -130,9 +157,9 @@ namespace PsrdParser.Serializers.PSRD
 			return skills;
 		}
 
-		private IEnumerable<IClassLevel> GetClassLevels(JObject jObject)
+		private IEnumerable<IClassLevel> _GetClassLevels(JObject pJObject)
 		{
-			var tableSection = GetTableSectionBody(jObject);
+			var tableSection = _GetTableSectionBody(pJObject);
 
 			var htmlTable = new HtmlDocument();
 			htmlTable.Load(new StringReader((string) tableSection["body"]));
@@ -144,26 +171,26 @@ namespace PsrdParser.Serializers.PSRD
 					.Select(td => td.InnerText.Trim()).ToArray())
 					.Select(cells =>
 						new ClassLevel(
-							AsInt(cells[0]),
-							AsEnumerableOfInts(cells[1]),
-							AsInt(cells[2]),
-							AsInt(cells[3]),
-							AsInt(cells[4]),
-							GetSpecials(cells[5]),
-							GetSpellsPerDay(cells.Skip(6).ToArray())))
+							_AsInt(cells[0]),
+							_AsEnumerableOfInts(cells[1]),
+							_AsInt(cells[2]),
+							_AsInt(cells[3]),
+							_AsInt(cells[4]),
+							_GetSpecials(cells[5]),
+							_GetSpellsPerDay(cells.Skip(6).ToArray())))
 					.Cast<IClassLevel>()
 					.ToList();
 		}
 
-		private IDictionary<int, int> GetSpellsPerDay(IEnumerable<string> pValues)
+		private IDictionary<int, int> _GetSpellsPerDay(IEnumerable<string> pValues)
 		{
 			return
 				pValues
-					.Select((x, i) => new { Index = i, Count = AsIntWithDefault(x) })
+					.Select((x, i) => new { Index = i, Count = _AsIntWithDefault(x) })
 					.ToDictionary(k => k.Index, v => v.Count);
 		}
 
-		private static IEnumerable<string> GetSpecials(string pValue)
+		private static IEnumerable<string> _GetSpecials(string pValue)
 		{
 			var textInfo = new CultureInfo("en-US", false).TextInfo;
 			return
@@ -174,27 +201,27 @@ namespace PsrdParser.Serializers.PSRD
 					.ToList();
 		}
 
-		private static int AsInt(string pValue)
+		private static int _AsInt(string pValue)
 		{
 			var stripped = Regex.Replace(pValue, @"(\d+)(?:st|nd|rd|th)", "$1");
 			return int.Parse(stripped);
 		}
 
-		private static int AsIntWithDefault(string pValue)
+		private static int _AsIntWithDefault(string pValue)
 		{
 			int value;
 			return int.TryParse(pValue, out value) ? value : 0;
 		}
 
-		private static IEnumerable<int> AsEnumerableOfInts(string pValue)
+		private static IEnumerable<int> _AsEnumerableOfInts(string pValue)
 		{
-			return pValue.Split('/').Select(AsInt).ToList();
+			return pValue.Split('/').Select(_AsInt).ToList();
 		}
 
 		[NotNull]
-		private static JToken GetTableSectionBody(JObject jObject)
+		private static JToken _GetTableSectionBody(JObject pJObject)
 		{
-			var classSkills = GetClassSkillsSection(jObject);
+			var classSkills = _GetClassSkillsSection(pJObject);
 
 			Assert.IsTrue(classSkills != null, $"{classSkills} != null");
 			var skillsPerRankSection =
@@ -211,19 +238,19 @@ namespace PsrdParser.Serializers.PSRD
 		}
 
 		[NotNull]
-		private static JToken GetClassSkillsSection(JObject jObject)
+		private static JToken _GetClassSkillsSection(JObject pJObject)
 		{
 			var classSkills =
-				jObject[SECTIONS_FIELD]
+				pJObject[SECTIONS_FIELD]
 					.Children()
 					.FirstOrDefault(x => x[NAME_FIELD] != null && ((string) x[NAME_FIELD]).Equals("Class Skills"));
 			return classSkills;
 		}
 
-		private IEnumerable<string> GetClassFeatures(JObject jObject)
+		private IEnumerable<string> _GetClassFeatures(JObject pJObject)
 		{
 			var featuresSection =
-				jObject[SECTIONS_FIELD]
+				pJObject[SECTIONS_FIELD]
 					.Children()
 					.FirstOrDefault(x => x[NAME_FIELD] != null && ((string) x[NAME_FIELD]).Equals("Class Features"));
 

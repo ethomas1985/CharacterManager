@@ -18,22 +18,22 @@ namespace PsrdParser.Serializers.PSRD
 			var jObject = JObject.Parse(pValue);
 
 			return new Skill(
-				GetString(jObject, "name"),
-				GetAbilityType(jObject),
-				GetBoolean(jObject, "trained_only"),
-				GetBoolean(jObject, "armor_check_penalty"),
-				GetString(jObject, "description"),
-				GetCheckString(jObject, "name", "Check"),
-				GetStringFor(jObject, "name", "Action"),
-				GetStringFor(jObject, "name", "Try Again"),
-				GetStringFor(jObject, "name", "Special"),
-				GetStringFor(jObject, "name", "Restriction"),
-				GetStringFor(jObject, "name", "Untrained"));
+				getString(jObject, "name"),
+				_GetAbilityType(jObject),
+				getBoolean(jObject, "trained_only"),
+				getBoolean(jObject, "armor_check_penalty"),
+				getString(jObject, "description"),
+				_GetCheckString(jObject, "name", "Check"),
+				getStringFor(jObject, "name", "Action"),
+				getStringFor(jObject, "name", "Try Again"),
+				getStringFor(jObject, "name", "Special"),
+				getStringFor(jObject, "name", "Restriction"),
+				getStringFor(jObject, "name", "Untrained"));
 		}
 
-		private static string GetCheckString(JObject jObject, string pField, string pValue)
+		private static string _GetCheckString(JObject pJObject, string pField, string pValue)
 		{
-			var section = jObject["sections"].Children().Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
+			var section = pJObject["sections"].Children().Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
 			var mainBody =
 				section
 					.Select(
@@ -60,9 +60,9 @@ namespace PsrdParser.Serializers.PSRD
 			return string.Concat(mainBody);
 		}
 
-		private AbilityType GetAbilityType(JObject jObject)
+		private AbilityType _GetAbilityType(JObject pJObject)
 		{
-			var abilityType = GetString(jObject, "attribute");
+			var abilityType = getString(pJObject, "attribute");
 			switch (abilityType.ToLower())
 			{
 				case "str":

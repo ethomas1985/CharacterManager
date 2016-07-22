@@ -84,7 +84,7 @@ namespace Pathfinder.Interface
 
 		IEnumerable<IWeapon> Weapons { get; }
 
-		IPurse Purse { get; }
+		IMoney Purse { get; }
 
 		IInventory Inventory { get; }
 
@@ -97,7 +97,6 @@ namespace Pathfinder.Interface
 		ICharacter SetAge(int pAge);
 		ICharacter SetAlignment(Alignment pAlignment);
 		ICharacter SetHomeland(string pHomeland);
-		ICharacter IncrementClass(IClass pClass);
 		ICharacter SetDeity(IDeity pDeity);
 		ICharacter SetGender(Gender pGender);
 		ICharacter SetEyes(string pEyes);
@@ -107,18 +106,25 @@ namespace Pathfinder.Interface
 
 		ICharacter AddClass(IClass pClass);
 		ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints);
+		ICharacter IncrementClass(IClass pClass);
 
 		ICharacter SetDamage(int pDamage);
 		ICharacter AddDamage(int pDamage);
 
-		ICharacter AddExperience(IEvent pEvent);
+		ICharacter SetExperience(IExperience pExperience);
+
 		//ICharacter SetSkills(SkillsCollection pSkillsColection);
 		ICharacter SetSkill(ISkill pSkill);
 		ICharacter AssignSkillPoint(ISkill pSkill, int pPoint);
+
 		ICharacter AddFeat(IFeat pFeat);
+
 		ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0);
+
 		ICharacter SetInventory(IItem pItem);
+
 		ICharacter EquipArmor(IArmor pArmor);
+
 		ICharacter ReplaceArmor(IArmor pArmorToReplace, IArmor pArmorToEquip);
 
 		ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0);

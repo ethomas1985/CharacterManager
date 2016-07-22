@@ -12,11 +12,11 @@ namespace PsrdParser.Serializers.PSRD
 		{
 			var jObject = JObject.Parse(pValue);
 
-			var race = GetString(jObject, "subtype");
-			var name = GetString(jObject, "name");
+			var race = getString(jObject, "subtype");
+			var name = getString(jObject, "name");
 
-			var body = GetString(jObject, "body");
-			var description = GetString(jObject, "description");
+			var body = getString(jObject, "body");
+			var description = getString(jObject, "description");
 
 			var text =
 				string.IsNullOrEmpty(description)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
@@ -19,13 +18,7 @@ namespace Pathfinder.Model
 		public int Age { get; private set; }
 		public Alignment Alignment { get; private set; }
 
-		// ReSharper disable once InconsistentNaming 
-		internal ICollection<ICharacterClass> classes { get; set; } = new List<ICharacterClass>();
-		public IEnumerable<ICharacterClass> Classes
-		{
-			get { return classes.ToImmutableList(); }
-			internal set { classes = value.ToList(); }
-		}
+		public IEnumerable<ICharacterClass> Classes { get; private set; } = new List<ICharacterClass>().ToImmutableList();
 
 		public IDeity Deity { get; private set; }
 
@@ -191,8 +184,7 @@ namespace Pathfinder.Model
 				InherentCharisma,
 				TemporaryCharismaModifier);
 
-		public int Initiative => (Dexterity?.Modifier ?? 0) + MiscellaneousInitiativeModifier;
-		private int MiscellaneousInitiativeModifier { get; set; }
+		public int Initiative => (Dexterity?.Modifier ?? 0);
 
 		private int BaseCharisma { get; set; }
 		private int EnhancedCharisma { get; set; }
@@ -243,7 +235,7 @@ namespace Pathfinder.Model
 				ArmorBonus,
 				ShieldBonus,
 				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
-				(int) Size,
+				(int)Size,
 				NaturalBonus,
 				DeflectBonus,
 				DodgeBonus,
@@ -257,7 +249,7 @@ namespace Pathfinder.Model
 				ArmorBonus,
 				ShieldBonus,
 				null,
-				(int) Size,
+				(int)Size,
 				NaturalBonus,
 				DeflectBonus,
 				0,
@@ -271,7 +263,7 @@ namespace Pathfinder.Model
 				0,
 				0,
 				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
-				(int) Size,
+				(int)Size,
 				0,
 				DeflectBonus,
 				DodgeBonus,
@@ -284,7 +276,7 @@ namespace Pathfinder.Model
 				BaseAttackBonus,
 				Strength ?? new AbilityScore(AbilityType.Strength, 0),
 				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
-				(int) Size,
+				(int)Size,
 				DeflectBonus,
 				DodgeBonus,
 				TemporaryBonus,
@@ -435,7 +427,7 @@ namespace Pathfinder.Model
 				OffensiveType.Melee,
 				Strength,
 				BaseAttackBonus,
-				(int) Size,
+				(int)Size,
 				TemporaryMeleeModifier,
 				MiscellaneousMeleeModifier);
 		private int TemporaryMeleeModifier
@@ -454,7 +446,7 @@ namespace Pathfinder.Model
 				OffensiveType.Ranged,
 				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				BaseAttackBonus,
-				(int) Size,
+				(int)Size,
 				TemporaryRangedModifier,
 				MiscellaneousRangedModifier);
 		private int TemporaryRangedModifier
@@ -473,12 +465,12 @@ namespace Pathfinder.Model
 				OffensiveType.CombatManeuverBonus,
 				Strength ?? new AbilityScore(AbilityType.Strength, 0),
 				BaseAttackBonus,
-				(int) Size,
+				(int)Size,
 				TemporaryMeleeModifier,
 				MiscellaneousCombatManeuverBonusModifier);
 		private int MiscellaneousCombatManeuverBonusModifier { get; set; }
 
-		public IExperience Experience { get; }
+		public IExperience Experience { get; private set; }
 		public int ExperiencePoints
 		{
 			get { return Experience?.Sum(x => x.ExperiencePoints) ?? 0; }
@@ -486,13 +478,13 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IDie> HitDice { get { return Classes.Select(x => x.Class.HitDie); } }
 
-		public IEnumerable<IFeat> Feats { get; }
+		public IEnumerable<IFeat> Feats { get; private set; }
 
 		private ILibrary<ISkill> SkillLibrary { get; }
 		private IEnumerable<ISkill> Skills => SkillLibrary;
 
-		private IDictionary<ISkill, int> SkillRanks { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
-		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
+		private IDictionary<ISkill, int> SkillRanks { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
+		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		public IEnumerable<ISkillScore> SkillScores
 		{
 			get
@@ -526,11 +518,11 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IWeapon> Weapons { get; }
 
-		public IInventory Inventory { get; }
-		public IEnumerable<IArmor> EquipedArmor { get; }
-		public IEnumerable<IEffect> Effects { get; }
+		public IInventory Inventory { get; private set; }
+		public IEnumerable<IArmor> EquipedArmor { get; private set; }
+		public IEnumerable<IEffect> Effects { get; private set; }
 
-		public IPurse Purse { get; internal set; }
+		public IMoney Purse { get; internal set; }
 
 		public IEnumerable<ITrait> Traits => Race?.Traits;
 
@@ -583,7 +575,6 @@ namespace Pathfinder.Model
 
 			return newCharacter;
 		}
-
 		public ICharacter SetName(string pName)
 		{
 			var newCharacter = _copy();
@@ -591,100 +582,133 @@ namespace Pathfinder.Model
 
 			return newCharacter;
 		}
-
 		public ICharacter SetAge(int pAge)
 		{
 			var newCharacter = _copy();
 			newCharacter.Age = pAge;
 			return newCharacter;
 		}
-
 		public ICharacter SetAlignment(Alignment pAlignment)
 		{
 			var newCharacter = _copy();
 			newCharacter.Alignment = pAlignment;
 			return newCharacter;
 		}
-
 		public ICharacter SetHomeland(string pHomeland)
 		{
 			var newCharacter = _copy();
 			newCharacter.Homeland = pHomeland;
 			return newCharacter;
 		}
-
-		public ICharacter AddClass(IClass pClass)
-		{
-			Assert.ArgumentNotNull(pClass, nameof(pClass));
-
-			var newCharacter = _copy();
-
-			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
-			var characterClass = new CharacterClass(pClass, true, hitPoints);
-
-			newCharacter.classes.Add(characterClass);
-
-			return newCharacter;
-		}
-		public ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints)
-		{
-			Assert.ArgumentNotNull(pClass, nameof(pClass));
-
-			var newCharacter = _copy();
-
-			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
-			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, pHitPoints);
-
-			newCharacter.classes.Add(characterClass);
-
-			return newCharacter;
-		}
-
-		public ICharacter IncrementClass(IClass pClass)
-		{
-			throw new NotImplementedException();
-		}
-
 		public ICharacter SetDeity(IDeity pDeity)
 		{
 			var newCharacter = _copy();
 			newCharacter.Deity = pDeity;
 			return newCharacter;
 		}
-
 		public ICharacter SetGender(Gender pGender)
 		{
 			var newCharacter = _copy();
 			newCharacter.Gender = pGender;
 			return newCharacter;
 		}
-
 		public ICharacter SetEyes(string pEyes)
 		{
 			var newCharacter = _copy();
 			newCharacter.Eyes = pEyes;
 			return newCharacter;
 		}
-
 		public ICharacter SetHair(string pHair)
 		{
 			var newCharacter = _copy();
 			newCharacter.Hair = pHair;
 			return newCharacter;
 		}
-
 		public ICharacter SetHeight(string pHeight)
 		{
 			var newCharacter = _copy();
 			newCharacter.Height = pHeight;
 			return newCharacter;
 		}
-
 		public ICharacter SetWeight(string pWeight)
 		{
 			var newCharacter = _copy();
 			newCharacter.Weight = pWeight;
 			return newCharacter;
+		}
+
+		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseStrength = pBase;
+			newCharacter.EnhancedStrength = pEnhanced;
+			newCharacter.InherentStrength = pInherent;
+			return newCharacter;
+		}
+		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseDexterity = pBase;
+			newCharacter.EnhancedDexterity = pEnhanced;
+			newCharacter.InherentDexterity = pInherent;
+			return newCharacter;
+		}
+		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseConstitution = pBase;
+			newCharacter.EnhancedConstitution = pEnhanced;
+			newCharacter.InherentConstitution = pInherent;
+			return newCharacter;
+		}
+		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseIntelligence = pBase;
+			newCharacter.EnhancedIntelligence = pEnhanced;
+			newCharacter.InherentIntelligence = pInherent;
+			return newCharacter;
+		}
+		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseWisdom = pBase;
+			newCharacter.EnhancedWisdom = pEnhanced;
+			newCharacter.InherentWisdom = pInherent;
+			return newCharacter;
+		}
+		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
+		{
+			var newCharacter = _copy();
+			newCharacter.BaseCharisma = pBase;
+			newCharacter.EnhancedCharisma = pEnhanced;
+			newCharacter.InherentCharisma = pInherent;
+			return newCharacter;
+		}
+
+		public ICharacter AddClass(IClass pClass)
+		{
+			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
+			return AddClass(pClass, 1, true, new List<int> { hitPoints });
+		}
+		public ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints)
+		{
+			Assert.ArgumentNotNull(pClass, nameof(pClass));
+			Assert.IsTrue(pLevel > 0, nameof(pLevel));
+
+			var hitPoints = pHitPoints?.ToList() ?? new List<int>();
+			Assert.IsTrue(hitPoints.Count > 0, nameof(pHitPoints));
+
+			var newCharacter = _copy();
+
+			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, hitPoints);
+			newCharacter.Classes = Classes.Append(characterClass);
+
+			return newCharacter;
+		}
+		public ICharacter IncrementClass(IClass pClass)
+		{
+			throw new NotImplementedException();
 		}
 
 		public ICharacter SetDamage(int pDamage)
@@ -693,7 +717,6 @@ namespace Pathfinder.Model
 			newCharacter.Damage = pDamage;
 			return newCharacter;
 		}
-
 		public ICharacter AddDamage(int pDamage)
 		{
 			var newCharacter = _copy();
@@ -701,7 +724,7 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		public ICharacter AddExperience(IEvent pEvent)
+		public ICharacter SetExperience(IExperience pExperience)
 		{
 			throw new NotImplementedException();
 		}
@@ -710,7 +733,6 @@ namespace Pathfinder.Model
 		{
 			throw new NotImplementedException();
 		}
-
 		public ICharacter AssignSkillPoint(ISkill pSkill, int pPoint)
 		{
 			throw new NotImplementedException();
@@ -745,60 +767,6 @@ namespace Pathfinder.Model
 			throw new NotImplementedException();
 		}
 
-		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseStrength = pBase;
-			newCharacter.EnhancedStrength = pEnhanced;
-			newCharacter.InherentStrength = pInherent;
-			return newCharacter;
-		}
-
-		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseDexterity = pBase;
-			newCharacter.EnhancedDexterity = pEnhanced;
-			newCharacter.InherentDexterity = pInherent;
-			return newCharacter;
-		}
-
-		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseConstitution = pBase;
-			newCharacter.EnhancedConstitution = pEnhanced;
-			newCharacter.InherentConstitution = pInherent;
-			return newCharacter;
-		}
-
-		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseIntelligence = pBase;
-			newCharacter.EnhancedIntelligence = pEnhanced;
-			newCharacter.InherentIntelligence = pInherent;
-			return newCharacter;
-		}
-
-		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseWisdom = pBase;
-			newCharacter.EnhancedWisdom = pEnhanced;
-			newCharacter.InherentWisdom = pInherent;
-			return newCharacter;
-		}
-
-		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
-		{
-			var newCharacter = _copy();
-			newCharacter.BaseCharisma = pBase;
-			newCharacter.EnhancedCharisma = pEnhanced;
-			newCharacter.InherentCharisma = pInherent;
-			return newCharacter;
-		}
-
 		public ICharacter Copy()
 		{
 			return _copy();
@@ -806,7 +774,7 @@ namespace Pathfinder.Model
 
 		private Character _copy()
 		{
-			return (Character) MemberwiseClone();
+			return (Character)MemberwiseClone();
 		}
 
 		public override bool Equals(object pObj)
@@ -828,7 +796,7 @@ namespace Pathfinder.Model
 			var result = Age == pOther.Age;
 
 			result &= Alignment == pOther.Alignment;
-			result &= classes.SequenceEqual(pOther.Classes);
+			result &= Classes.SequenceEqual(pOther.Classes);
 			result &= Equals(Deity, pOther.Deity);
 			result &= Gender == pOther.Gender;
 			result &= string.Equals(Eyes, pOther.Eyes, StringComparison.InvariantCultureIgnoreCase);
@@ -872,21 +840,20 @@ namespace Pathfinder.Model
 			result &= Equals(Inventory, pOther.Inventory);
 			//result &= Equals(EquipedArmor, other.EquipedArmor);
 			//result &= Equals(Effects, other.Effects);
-			 result &= Equals(Purse, pOther.Purse);
+			result &= Equals(Purse, pOther.Purse);
 
 			return result;
 		}
 
-		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
 		public override int GetHashCode()
 		{
 			unchecked
 			{
 				var hashCode = Age;
-				hashCode = (hashCode * 397) ^ (int) Alignment;
-				hashCode = (hashCode * 397) ^ (classes?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (int)Alignment;
+				hashCode = (hashCode * 397) ^ (Classes?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ Deity.GetHashCode();
-				hashCode = (hashCode * 397) ^ (int) Gender;
+				hashCode = (hashCode * 397) ^ (int)Gender;
 				hashCode = (hashCode * 397) ^ (Eyes != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Eyes) : 0);
 				hashCode = (hashCode * 397) ^ (Hair != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Hair) : 0);
 				hashCode = (hashCode * 397) ^ (Height != null ? StringComparer.InvariantCultureIgnoreCase.GetHashCode(Height) : 0);

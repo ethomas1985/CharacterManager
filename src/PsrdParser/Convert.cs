@@ -31,10 +31,9 @@ namespace PsrdParser
 		[Ignore]
 		public void ConvertSkillsDirectory()
 		{
-
 			var sourceDir = Path.Combine(PsrdDataCore, "skill");
 			var destinationDir = Path.Combine(MyData, "Skills");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles = Directory.EnumerateFiles(sourceDir);
 			foreach (var file in sourceFiles)
@@ -58,15 +57,15 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "racial_trait");
 			var destinationDir = Path.Combine(MyData, "Traits");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
-					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
-			WriteDuplicatesToConsole(sourceFiles);
+			_WriteDuplicatesToConsole(sourceFiles);
 
 			foreach (var file in sourceFiles)
 			{
@@ -83,7 +82,7 @@ namespace PsrdParser
 			}
 		}
 
-		private static bool IsValidTraitFile(string pFilename)
+		private static bool _IsValidTraitFile(string pFilename)
 		{
 			var textInfo = new CultureInfo("en-US", false).TextInfo;
 			Size outSize;
@@ -103,15 +102,15 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
 			var destinationDir = Path.Combine(MyData, "Classes");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
-					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
-			WriteDuplicatesToConsole(sourceFiles);
+			_WriteDuplicatesToConsole(sourceFiles);
 
 			foreach (var file in sourceFiles)
 			{
@@ -134,15 +133,15 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
 			var destinationDir = Path.Combine(MyData, "ClassFeatures");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
-					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
-			WriteDuplicatesToConsole(sourceFiles);
+			_WriteDuplicatesToConsole(sourceFiles);
 
 			foreach (var file in sourceFiles)
 			{
@@ -168,15 +167,15 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "feat");
 			var destinationDir = Path.Combine(MyData, "Feats");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
-					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
-			WriteDuplicatesToConsole(sourceFiles);
+			_WriteDuplicatesToConsole(sourceFiles);
 			foreach (var file in sourceFiles)
 			{
 				var contents = File.ReadAllText(file);
@@ -198,15 +197,15 @@ namespace PsrdParser
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "spell");
 			var destinationDir = Path.Combine(MyData, "Spells");
-			CreateDestinationDirectory(destinationDir);
+			_CreateDestinationDirectory(destinationDir);
 
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
-					.Where(x => IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
-			WriteDuplicatesToConsole(sourceFiles);
+			_WriteDuplicatesToConsole(sourceFiles);
 
 
 			foreach (var file in sourceFiles)
@@ -228,7 +227,43 @@ namespace PsrdParser
 			}
 		}
 
-		private static void CreateDestinationDirectory(string pDestinationDir)
+		[Test]
+		[Ignore]
+		public void ConvertItemsDirectory()
+		{
+			var sourceDir = Path.Combine(PsrdDataCore, "item");
+			var destinationDir = Path.Combine(MyData, "Items");
+			_CreateDestinationDirectory(destinationDir);
+
+			var sourceFiles =
+				Directory
+					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
+					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
+					.OrderBy(x => x);
+
+			_WriteDuplicatesToConsole(sourceFiles);
+
+
+			foreach (var file in sourceFiles)
+			{
+				Console.WriteLine($"Spell: {Path.GetFileNameWithoutExtension(file)}");
+				var contents = File.ReadAllText(file);
+				var jsonSerializer = new ItemJsonSerializer();
+				var result = jsonSerializer.Deserialize(contents);
+
+				var xmlSerializer = new ItemXmlSerializer();
+				var xmlSkill = xmlSerializer.Serialize(result);
+
+				var newPath =
+					Path.Combine(
+						destinationDir,
+						result.Name.Replace(" ", "_").Replace("\\", "_").Replace("/", "_"));
+				newPath = Path.ChangeExtension(newPath, "xml");
+				File.WriteAllText(newPath, xmlSkill);
+			}
+		}
+
+		private static void _CreateDestinationDirectory(string pDestinationDir)
 		{
 			if (!Directory.Exists(pDestinationDir))
 			{
@@ -236,7 +271,7 @@ namespace PsrdParser
 			}
 		}
 
-		private static void WriteDuplicatesToConsole(IEnumerable<string> pSourceFiles)
+		private static void _WriteDuplicatesToConsole(IEnumerable<string> pSourceFiles)
 		{
 			var dups =
 				pSourceFiles

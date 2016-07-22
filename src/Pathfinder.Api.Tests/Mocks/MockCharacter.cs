@@ -61,7 +61,7 @@ namespace Pathfinder.Api.Tests.Mocks
 		}
 
 		public IEnumerable<IWeapon> Weapons { get; }
-		public IPurse Purse { get; }
+		public IMoney Purse { get; }
 		public IInventory Inventory { get; }
 		public IEnumerable<IArmor> EquipedArmor { get; }
 		public IEnumerable<IEffect> Effects { get; }
@@ -145,7 +145,7 @@ namespace Pathfinder.Api.Tests.Mocks
 			return this;
 		}
 
-		public ICharacter AddExperience(IEvent pEvent)
+		public ICharacter SetExperience(IExperience pExperience)
 		{
 			return this;
 		}

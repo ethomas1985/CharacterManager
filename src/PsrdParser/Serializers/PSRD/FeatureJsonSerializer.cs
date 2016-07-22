@@ -32,18 +32,18 @@ namespace PsrdParser.Serializers.PSRD
 					.Children()
 					.Select(
 						x => new Feature(
-							GetName(x),
-							GetBody(x),
-							GetAbilityTypes(x),
-							GetSubFeatures(x)));
+							_GetName(x),
+							_GetBody(x),
+							_GetAbilityTypes(x),
+							_GetSubFeatures(x)));
 		}
 
-		private static string GetName(JToken pToken)
+		private static string _GetName(JToken pToken)
 		{
 			return (string) pToken[NAME_FIELD];
 		}
 
-		private static string GetBody(JToken pToken)
+		private static string _GetBody(JToken pToken)
 		{
 			var body = (string) pToken["body"];
 
@@ -58,27 +58,27 @@ namespace PsrdParser.Serializers.PSRD
 			return htmlTable.DocumentNode.InnerText;
 		}
 
-		private static FeatureAbilityType GetAbilityTypes(JToken pToken)
+		private static FeatureAbilityType _GetAbilityTypes(JToken pToken)
 		{
 			var value = (string) pToken["ability_types"]?["ability_type"];
 			FeatureAbilityType fat; // Stop laughing.
 			return Enum.TryParse(value, out fat) ? fat : FeatureAbilityType.Normal;
 		}
 
-		private static IEnumerable<ISubFeature> GetSubFeatures(JToken pToken)
+		private static IEnumerable<ISubFeature> _GetSubFeatures(JToken pToken)
 		{
 			var subFeatures = 
 				pToken[SECTIONS_FIELD]?
 					.Children();
 			return 
 				subFeatures?
-					.Select(CreateSubFeature)
+					.Select(_CreateSubFeature)
 					.ToList();
 		}
 
-		private static SubFeature CreateSubFeature(JToken pToken)
+		private static SubFeature _CreateSubFeature(JToken pToken)
 		{
-			return new SubFeature(GetName(pToken), GetBody(pToken), GetAbilityTypes(pToken));
+			return new SubFeature(_GetName(pToken), _GetBody(pToken), _GetAbilityTypes(pToken));
 		}
 
 		public override string Serialize(IEnumerable<IFeature> pObject)

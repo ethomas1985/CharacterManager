@@ -2,7 +2,7 @@
 
 namespace Pathfinder.Utilities
 {
-	public static class EnumerableExtensions
+	internal static class EnumerableExtensions
 	{
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> pThis, T pValue)
 		{

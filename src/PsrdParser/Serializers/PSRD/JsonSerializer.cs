@@ -6,21 +6,24 @@ namespace PsrdParser.Serializers.PSRD
 {
 	public abstract class JsonSerializer<TModel, TSerialized> : ISerializer<TModel, TSerialized>
 	{
-		protected static string GetString(JObject jObject, string pField)
+		protected static string getString(JObject pJObject, string pField)
 		{
-			return (string) jObject[pField];
+			return (string) pJObject[pField];
 		}
 
-		protected static string GetStringFor(JObject jObject, string pField, string pValue)
+		protected static string getStringFor(JObject pJObject, string pField, string pValue)
 		{
-			var section = jObject["sections"].Children().Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
+			var sections = pJObject["sections"];
+			var children = sections.Children();
+
+			var section = children.Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
 			return section.Select(x => (string) x["body"]).FirstOrDefault();
 		}
 
-		protected static bool GetBoolean(JObject jObject, string pField)
+		protected static bool getBoolean(JObject pJObject, string pField)
 		{
 			bool value;
-			return bool.TryParse((string) jObject[pField], out value) && value;
+			return bool.TryParse((string) pJObject[pField], out value) && value;
 		}
 
 		public abstract TModel Deserialize(TSerialized pValue);

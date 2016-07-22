@@ -2,13 +2,13 @@
 
 namespace Pathfinder.Model
 {
-	internal class Purse : IPurse
+	internal class Money : IMoney
 	{
 		public const int COPPER_TO_SILVER = 10;
 		public const int COPPER_TO_GOLD = 100;
 		public const int COPPER_TO_PLATINUM = 1000;
 
-		public Purse(int pCopper = 0, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
+		public Money(int pCopper = 0, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
 			Copper = pCopper;
 			Copper += pSilver * COPPER_TO_SILVER;
@@ -22,7 +22,7 @@ namespace Pathfinder.Model
 		public int Gold => Copper / COPPER_TO_GOLD;
 		public int Platinum => Copper / COPPER_TO_PLATINUM;
 
-		public IPurse Add(int pCopper, int pSilver, int pGold, int pPlatinum)
+		public IMoney Add(int pCopper, int pSilver, int pGold, int pPlatinum)
 		{
 			throw new System.NotImplementedException();
 		}

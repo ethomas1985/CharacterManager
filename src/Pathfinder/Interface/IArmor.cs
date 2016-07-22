@@ -9,6 +9,5 @@
 		int ArmorCheckPenalty { get; }
 		decimal ArcaneSpellFailureChance { get; }
 		int Speed { get; }
-		int Weight { get; }
 	}
 }

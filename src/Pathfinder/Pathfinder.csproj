@@ -50,7 +50,12 @@
     <Compile Include="Enums\Alignment.cs" />
     <Compile Include="Enums\BonusType.cs" />
     <Compile Include="Enums\ComponentType.cs" />
+    <Compile Include="Enums\DamageType.cs" />
     <Compile Include="Enums\DefensiveType.cs" />
+    <Compile Include="Enums\Encumbrance.cs" />
+    <Compile Include="Enums\Proficiency.cs" />
+    <Compile Include="Enums\WeaponSize.cs" />
+    <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Interface\IDeity.cs" />
     <Compile Include="Enums\FeatType.cs" />
     <Compile Include="Enums\FeatureAbilityType.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Interface\IClass.cs" />
     <Compile Include="Interface\IClassLevel.cs" />
     <Compile Include="Interface\IFeature.cs" />
+    <Compile Include="Interface\IInventoryItem.cs" />
     <Compile Include="Interface\ILanguage.cs" />
     <Compile Include="Enums\OffensiveType.cs" />
     <Compile Include="Enums\SavingThrowType.cs" />
@@ -72,6 +78,7 @@
     <Compile Include="Interface\ISkillScore.cs" />
     <Compile Include="Interface\ISpell.cs" />
     <Compile Include="Interface\ISubFeature.cs" />
+    <Compile Include="Interface\IWeaponSpecial.cs" />
     <Compile Include="LibraryFactory.cs" />
     <Compile Include="Library\AbstractLibrary.cs" />
     <Compile Include="Library\CharacterLibrary.cs" />
@@ -86,14 +93,19 @@
     <Compile Include="Model\Die.cs" />
     <Compile Include="Model\Feat.cs" />
     <Compile Include="Model\Feature.cs" />
+    <Compile Include="Interface\IWeaponDamage.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\Spell.cs" />
     <Compile Include="Model\SubFeature.cs" />
+    <Compile Include="Model\Weapon.cs" />
+    <Compile Include="Model\WeaponDamage.cs" />
     <Compile Include="Serializers\Json\CharacterJsonSerializer.cs" />
     <Compile Include="Serializers\Xml\ClassXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\FeatureXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\FeatXmlSerializer.cs" />
+    <Compile Include="Serializers\Xml\ItemXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\SpellXmlSerializer.cs" />
     <Compile Include="Utilities\decimalExtensions.cs" />
     <Compile Include="Utilities\enumerableExtensions.cs" />
@@ -119,7 +131,7 @@
     <Compile Include="Interface\IInventory.cs" />
     <Compile Include="Interface\IItem.cs" />
     <Compile Include="Interface\IOffensiveScore.cs" />
-    <Compile Include="Interface\IPurse.cs" />
+    <Compile Include="Interface\IMoney.cs" />
     <Compile Include="Interface\ISavingThrow.cs" />
     <Compile Include="Interface\ISkill.cs" />
     <Compile Include="Interface\IWeapon.cs" />
@@ -129,7 +141,7 @@
     <Compile Include="Interface\ISerializer.cs" />
     <Compile Include="Model\DefenseScore.cs" />
     <Compile Include="Model\OffensiveScore.cs" />
-    <Compile Include="Model\Purse.cs" />
+    <Compile Include="Model\Money.cs" />
     <Compile Include="Model\SavingThrow.cs" />
     <Compile Include="Model\SkillScore.cs" />
     <Compile Include="Model\Trait.cs" />

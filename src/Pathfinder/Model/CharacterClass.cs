@@ -9,17 +9,6 @@ namespace Pathfinder.Model
 {
 	internal class CharacterClass : ICharacterClass, IEquatable<ICharacterClass>
 	{
-		public CharacterClass(IClass pClass, bool pIsFavored, int pHitPoints)
-		{
-			Assert.ArgumentNotNull(pClass, nameof(pClass));
-
-			Class = pClass;
-			Level = 1;
-			IsFavored = pIsFavored;
-
-			_HitPoints = new List<int> { pHitPoints };
-		}
-
 		public CharacterClass(IClass pClass, int pLevel, bool pIsFavored, IEnumerable<int> pHitPoints)
 		{
 			Assert.ArgumentNotNull(pClass, nameof(pClass));
@@ -28,15 +17,18 @@ namespace Pathfinder.Model
 			Level = pLevel;
 			IsFavored = pIsFavored;
 
-			_HitPoints = pHitPoints;
+			var hitPoints = pHitPoints ?? new List<int>();
+			foreach (var hitPoint in hitPoints)
+			{
+				HitPoints = HitPoints.Append(hitPoint);
+			}
 		}
 
 		public IClass Class { get; }
 		public int Level { get; }
 		public bool IsFavored { get; }
 
-		private IEnumerable<int> _HitPoints { get; set; }
-		public IEnumerable<int> HitPoints => _HitPoints.ToImmutableList();
+		public IEnumerable<int> HitPoints { get; private set; }  = new List<int>().ToImmutableList();
 
 		public int SkillAddend => Class.SkillAddend;
 
@@ -49,7 +41,7 @@ namespace Pathfinder.Model
 		{
 			var newCharacterClass = _copy();
 
-			newCharacterClass._HitPoints = HitPoints.Append(pHitPoints);
+			newCharacterClass.HitPoints = HitPoints.Append(pHitPoints);
 
 			return newCharacterClass;
 		}
