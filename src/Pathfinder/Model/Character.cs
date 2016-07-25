@@ -4,6 +4,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Currency;
+using Pathfinder.Model.Currency;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
@@ -522,7 +524,7 @@ namespace Pathfinder.Model
 		public IEnumerable<IArmor> EquipedArmor { get; private set; }
 		public IEnumerable<IEffect> Effects { get; private set; }
 
-		public IMoney Purse { get; internal set; }
+		public IPurse Purse { get; internal set; }
 
 		public IEnumerable<ITrait> Traits => Race?.Traits;
 
@@ -748,7 +750,12 @@ namespace Pathfinder.Model
 		public ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
 			var newCharacter = _copy();
-			newCharacter.Purse = Purse.Add(pCopper, pSilver, pGold, pPlatinum);
+			newCharacter.Purse =
+				Purse.Add(
+					new Copper(pCopper),
+					new Silver(pSilver),
+					new Gold(pGold),
+					new Platinum(pPlatinum));
 			return newCharacter;
 		}
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Currency;
 
 namespace Pathfinder.Api.Tests.Mocks
 {
@@ -61,7 +62,7 @@ namespace Pathfinder.Api.Tests.Mocks
 		}
 
 		public IEnumerable<IWeapon> Weapons { get; }
-		public IMoney Purse { get; }
+		public IPurse Purse { get; }
 		public IInventory Inventory { get; }
 		public IEnumerable<IArmor> EquipedArmor { get; }
 		public IEnumerable<IEffect> Effects { get; }

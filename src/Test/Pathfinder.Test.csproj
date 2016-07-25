@@ -64,6 +64,7 @@
     <Compile Include="Model\AbilityScoreTests.cs" />
     <Compile Include="Model\CharacterTests.cs" />
     <Compile Include="Model\DefenseScoreTests.cs" />
+    <Compile Include="Model\Currency\PurseTests.cs" />
     <Compile Include="Model\OffensiveScoreTests.cs" />
     <Compile Include="Model\SavingThrowTests.cs" />
     <Compile Include="Model\SkillScoreTests.cs" />

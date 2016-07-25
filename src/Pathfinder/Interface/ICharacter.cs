@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
+using Pathfinder.Interface.Currency;
 
 namespace Pathfinder.Interface
 {
@@ -84,7 +85,7 @@ namespace Pathfinder.Interface
 
 		IEnumerable<IWeapon> Weapons { get; }
 
-		IMoney Purse { get; }
+		IPurse Purse { get; }
 
 		IInventory Inventory { get; }
 

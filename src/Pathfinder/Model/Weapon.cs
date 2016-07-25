@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Currency;
 
 namespace Pathfinder.Model
 {
@@ -9,7 +10,7 @@ namespace Pathfinder.Model
 		public Weapon(
 			string pName,
 			string pCategory,
-			IMoney pCost,
+			IPurse pCost,
 			string pWeight,
 			string pDescription,
 			Proficiency pProficiency,
@@ -22,7 +23,7 @@ namespace Pathfinder.Model
 			int pCriticalMultiplier,
 			int pRange,
 			IEnumerable<IWeaponSpecial> pSpecials)
-			: base(pName, pCategory, pCost, pWeight, pDescription)
+			: base(pName, ItemType.Weapon, pCategory, pCost, pWeight, pDescription)
 		{
 			Proficiency = pProficiency;
 			WeaponType = pWeaponType;

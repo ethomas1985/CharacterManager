@@ -246,7 +246,19 @@ namespace PsrdParser
 
 			foreach (var file in sourceFiles)
 			{
-				Console.WriteLine($"Spell: {Path.GetFileNameWithoutExtension(file)}");
+				string filename = Path.GetFileNameWithoutExtension(file);
+				Console.WriteLine($"Item: {filename}");
+				if ("bag_of_holding".Equals(filename))
+				{
+					/*
+					 * The Bag of Holding is a special case as far as items go, as it
+					 * has several tiers that change it's properties.
+					 * 
+					 * TODO: Parse bag_of_holding.json specially to generate a separate IItem for each set of properties.
+					 */
+					continue;
+				}
+				
 				var contents = File.ReadAllText(file);
 				var jsonSerializer = new ItemJsonSerializer();
 				var result = jsonSerializer.Deserialize(contents);

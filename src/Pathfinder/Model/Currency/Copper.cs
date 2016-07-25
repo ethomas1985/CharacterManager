@@ -1,0 +1,38 @@
+using Pathfinder.Interface.Currency;
+
+namespace Pathfinder.Model.Currency
+{
+	internal class Copper : BaseCurrency, ICopper
+	{
+		public Copper(int value) : base(value)
+		{
+		}
+
+		public override string Denomination => "cp";
+
+		public ISilver ToSilver()
+		{
+			return new Silver(Value / 10);
+		}
+
+		public IGold ToGold()
+		{
+			return new Gold(Value / 100);
+		}
+
+		public IPlatinum ToPlatinum()
+		{
+			return new Platinum(Value / 1000);
+		}
+
+		public ICopper Add(ICopper pCopper)
+		{
+			return new Copper(Value + pCopper.Value);
+		}
+
+		public ICopper Subtract(ICopper pCopper)
+		{
+			return new Copper(Value - pCopper.Value);
+		}
+	}
+}
