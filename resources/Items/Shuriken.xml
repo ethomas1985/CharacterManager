@@ -1,0 +1,12 @@
+<Item>
+  <Name>Shuriken</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/2 lb.</Weight>
+  <Description>&lt;p&gt;A shuriken is a small piece of metal with sharpened edges, designed for throwing. A shuriken can't be used as a melee weapon. Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them, crafting masterwork or otherwise special versions of them, and what happens to them after they are thrown.&lt;/p&gt;</Description>
+</Item>

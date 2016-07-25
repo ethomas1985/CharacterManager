@@ -1,0 +1,12 @@
+<Item>
+  <Name>Ranseur</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>12 lbs.</Weight>
+  <Description>&lt;p&gt;Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.&lt;/p&gt;</Description>
+</Item>

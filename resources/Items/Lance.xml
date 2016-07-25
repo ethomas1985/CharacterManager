@@ -1,0 +1,12 @@
+<Item>
+  <Name>Lance</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;A lance deals double damage when used from the back of a charging mount. While mounted, you can wield a lance with one hand.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Dust of Tracelessness</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>250 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash</Weight>
+  <Description />
+</Item>

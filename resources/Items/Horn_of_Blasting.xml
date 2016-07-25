@@ -1,0 +1,12 @@
+<Item>
+  <Name>Horn of Blasting</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>20000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description />
+</Item>

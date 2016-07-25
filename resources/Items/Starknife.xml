@@ -1,0 +1,12 @@
+<Item>
+  <Name>Starknife</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>24 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>3 lbs.</Weight>
+  <Description>&lt;p&gt;From a central metal ring, four tapering metal blades extend like points on a compass rose. A wielder can stab with the starknife or throw it. &lt;/p&gt;</Description>
+</Item>

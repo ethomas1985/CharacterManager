@@ -1,0 +1,12 @@
+<Item>
+  <Name>Morningstar</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>8 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.</Weight>
+  <Description>&lt;p&gt;A morningstar is a spiked metal ball, affixed to the top of a long handle.&lt;/p&gt;</Description>
+</Item>

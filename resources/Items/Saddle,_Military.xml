@@ -1,0 +1,12 @@
+<Item>
+  <Name>Saddle, Military</Name>
+  <Category>Mounts and Related Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>20 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>30 lbs.</Weight>
+  <Description>&lt;p&gt;This saddle braces the rider, providing a +2 circumstance bonus on Ride checks related to staying in the saddle. If you're knocked unconscious while in a military saddle, you have a 75% chance to stay in the saddle.&lt;/p&gt;</Description>
+</Item>

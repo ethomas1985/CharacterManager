@@ -1,0 +1,12 @@
+<Item>
+  <Name>Blowgun Darts</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;The thin, light darts used in a blowgun are usually made of hardwood with a stabilizing fletching of down or fur. A dart is usually loaded from the back end just before firing.&lt;/p&gt;</Description>
+</Item>

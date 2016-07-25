@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rope, Silk</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description>&lt;p&gt;This rope has 4 hit points and can be burst with a DC 24 Strength check.&lt;/p&gt;</Description>
+</Item>

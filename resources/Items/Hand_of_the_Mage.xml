@@ -1,0 +1,12 @@
+<Item>
+  <Name>Hand of the Mage</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>900 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description />
+</Item>

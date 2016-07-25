@@ -1,0 +1,12 @@
+<Item>
+  <Name>Lyre of Building</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>13000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description />
+</Item>

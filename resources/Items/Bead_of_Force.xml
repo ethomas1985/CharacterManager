@@ -1,0 +1,12 @@
+<Item>
+  <Name>Bead of Force</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>3000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash</Weight>
+  <Description />
+</Item>

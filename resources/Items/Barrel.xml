@@ -1,0 +1,12 @@
+<Item>
+  <Name>Barrel</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>30 lbs.</Weight>
+  <Description>&lt;p&gt;This is a sturdy wooden barrel with a tight-fitting lid, banded with metal.&lt;/p&gt;</Description>
+</Item>

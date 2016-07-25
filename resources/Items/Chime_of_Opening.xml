@@ -1,0 +1,12 @@
+<Item>
+  <Name>Chime of Opening</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>3000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description />
+</Item>

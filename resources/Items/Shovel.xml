@@ -1,0 +1,12 @@
+<Item>
+  <Name>Shovel</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description>&lt;p&gt;If a shovel is used in combat, treat it as a one-handed improvised weapon that deals bludgeoning damage equal to that of a club of its size.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Inn</Name>
+  <Category>Food, Drink, and Lodging</Category>
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight />
+  <Description>&lt;p&gt;Poor accommodations at an inn amount to a place on the floor near the hearth. Common accommodations consist of a place on a raised, heated floor and the use of a blanket and a pillow. Good accommodations consist of a small, private room with one bed, some amenities, and a covered chamber pot in the corner.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Bit and Bridle</Name>
+  <Category>Mounts and Related Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;This is headgear used by a rider to control a mount. Bit and bridles for horses, ponies, and riding dogs can be readily purchased in most settlements and bits and bridles can be crafted for any creature that serves as a mount. &lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Greatsword</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description>&lt;p&gt;This immense two-handed sword is about 5 feet in length.&lt;/p&gt;</Description>
+</Item>

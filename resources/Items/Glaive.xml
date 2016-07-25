@@ -1,0 +1,12 @@
+<Item>
+  <Name>Glaive</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>8 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;A glaive is a simple blade, mounted to the end of a pole about 7 feet in length.&lt;/p&gt;</Description>
+</Item>

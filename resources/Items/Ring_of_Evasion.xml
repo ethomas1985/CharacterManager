@@ -1,0 +1,12 @@
+<Item>
+  <Name>Ring of Evasion</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>25000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash</Weight>
+  <Description />
+</Item>

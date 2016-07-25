@@ -1,0 +1,12 @@
+<Item>
+  <Name>Shield, Light; Steel</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>9 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.</Weight>
+  <Description>&lt;p&gt;You strap a shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand, although you cannot use weapons with it.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Shortspear</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>3 lbs.</Weight>
+  <Description>&lt;p&gt;A shortspear is about 3 feet in length, making it a suitable thrown weapon.&lt;/p&gt;</Description>
+</Item>

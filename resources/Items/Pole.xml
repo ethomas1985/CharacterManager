@@ -1,0 +1,12 @@
+<Item>
+  <Name>Pole</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>5 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description>&lt;p&gt;This 10-foot length of wood is useful for probing pits, flagstones, and murky liquids from a safe distance.&lt;/p&gt;</Description>
+</Item>

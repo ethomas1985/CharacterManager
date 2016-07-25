@@ -1,0 +1,12 @@
+<Item>
+  <Name>Spyglass</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;Objects viewed through a spyglass are magnified to twice their size. Characters using a spyglass take a &amp;ndash;1 penalty on Perception skill checks per 20 feet of distance to the target, if the target is visible.&lt;/p&gt;</Description>
+</Item>

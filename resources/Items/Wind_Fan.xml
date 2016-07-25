@@ -1,0 +1,12 @@
+<Item>
+  <Name>Wind Fan</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5500 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash</Weight>
+  <Description />
+</Item>

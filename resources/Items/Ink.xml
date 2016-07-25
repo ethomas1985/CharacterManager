@@ -1,0 +1,12 @@
+<Item>
+  <Name>Ink</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>8 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;Ink in colors other than black costs twice as much.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Heavy Pick</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>8 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.</Weight>
+  <Description>&lt;p&gt;This variant of the light pick has a longer handle and can be used with one or two hands. It is a common, inexpensive weapon for mounted soldiers since it can be used effectively from horseback.&lt;/p&gt;</Description>
+</Item>

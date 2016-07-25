@@ -1,0 +1,12 @@
+<Item>
+  <Name>Noble's Outfit</Name>
+  <Category>Clothing</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>75 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.1</Weight>
+  <Description>&lt;p&gt;These clothes are designed specifically to be expensive and gaudy. Precious metals and gems are worked into the clothing. A would-be noble also needs a signet ring and jewelry (worth at least 100 gp) to accessorize this outfit.&lt;/p&gt;</Description>
+</Item>

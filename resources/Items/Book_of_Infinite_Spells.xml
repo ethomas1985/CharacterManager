@@ -1,0 +1,12 @@
+<Item>
+  <Name>Book of Infinite Spells</Name>
+  <Category />
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight>3 lbs.</Weight>
+  <Description />
+</Item>

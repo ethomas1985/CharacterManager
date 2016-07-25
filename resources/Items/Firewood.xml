@@ -1,0 +1,12 @@
+<Item>
+  <Name>Firewood</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>1 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>20 lbs.</Weight>
+  <Description>&lt;p&gt;This bundle of dry wood includes twigs and logs.&lt;/p&gt;</Description>
+</Item>

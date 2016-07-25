@@ -1,0 +1,12 @@
+<Item>
+  <Name>Bottle of Air</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>7250 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description />
+</Item>

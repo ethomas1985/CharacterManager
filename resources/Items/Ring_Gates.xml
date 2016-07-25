@@ -1,0 +1,12 @@
+<Item>
+  <Name>Ring Gates</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>40000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb. each.</Weight>
+  <Description />
+</Item>

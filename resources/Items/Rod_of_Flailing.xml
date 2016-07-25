@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rod of Flailing</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description />
+</Item>

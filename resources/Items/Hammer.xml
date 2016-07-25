@@ -1,0 +1,12 @@
+<Item>
+  <Name>Hammer</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;If a hammer is used in combat, treat it as a one-handed improvised weapon that deals bludgeoning damage equal to that of a spiked gauntlet of its size.&lt;/p&gt;</Description>
+</Item>

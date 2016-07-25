@@ -1,0 +1,12 @@
+<Item>
+  <Name>Hireling, Trained</Name>
+  <Category>Spellcasting and Services</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>3 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight />
+  <Description>&lt;p&gt;The amount given is the typical daily wage for mercenary warriors, masons, craftsmen, cooks, scribes, teamsters, and other trained hirelings. This value represents a minimum wage; many such hirelings require significantly higher pay.&lt;/p&gt;</Description>
+</Item>

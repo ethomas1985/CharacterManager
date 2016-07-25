@@ -1,0 +1,12 @@
+<Item>
+  <Name>Flail</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>8 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description>&lt;p&gt;A flail consists of a spiked metal ball, connected to a handle by a sturdy chain.&lt;/p&gt;</Description>
+</Item>

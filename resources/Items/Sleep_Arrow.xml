@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sleep Arrow</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>132 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/10 lb.</Weight>
+  <Description />
+</Item>

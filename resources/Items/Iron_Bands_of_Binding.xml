@@ -1,0 +1,12 @@
+<Item>
+  <Name>Iron Bands of Binding</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>26000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description />
+</Item>

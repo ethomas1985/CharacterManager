@@ -1,0 +1,12 @@
+<Item>
+  <Name>Candle of Truth</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2500 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/2 lb.</Weight>
+  <Description />
+</Item>

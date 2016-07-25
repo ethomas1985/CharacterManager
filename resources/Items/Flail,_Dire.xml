@@ -1,0 +1,12 @@
+<Item>
+  <Name>Flail, Dire</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>90 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft.&lt;/p&gt;</Description>
+</Item>

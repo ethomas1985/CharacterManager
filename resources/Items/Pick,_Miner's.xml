@@ -1,0 +1,12 @@
+<Item>
+  <Name>Pick, Miner's</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>3 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;If a miner's pick is used in combat, treat it as a two-handed improvised weapon that deals piercing damage equal to that of a heavy pick of its size. &lt;/p&gt;</Description>
+</Item>

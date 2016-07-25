@@ -1,0 +1,12 @@
+<Item>
+  <Name>Ram, Portable</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>20 lbs.</Weight>
+  <Description>&lt;p&gt;This iron-shod wooden beam gives you a +2 circumstance bonus on Strength checks made to break open a door and allows a second person to help, automatically increasing your bonus by 2.&lt;/p&gt;</Description>
+</Item>

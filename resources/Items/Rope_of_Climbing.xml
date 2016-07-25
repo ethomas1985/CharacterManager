@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rope of Climbing</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>3000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>3 lbs.</Weight>
+  <Description />
+</Item>

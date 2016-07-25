@@ -1,0 +1,12 @@
+<Item>
+  <Name>Thieves' Tools, Masterwork</Name>
+  <Category>Tools and Skill Kits</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>100 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;This kit contains extra tools and tools of better make, which grant a +2 circumstance bonus on Disable Device checks.&lt;/p&gt;</Description>
+</Item>

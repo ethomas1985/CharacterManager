@@ -1,0 +1,12 @@
+<Item>
+  <Name>Saddle, Exotic</Name>
+  <Category>Mounts and Related Gear</Category>
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight />
+  <Description>&lt;p&gt;An exotic saddle is designed for an unusual mount. Exotic saddles come in military, pack, and riding styles.&lt;/p&gt;</Description>
+</Item>

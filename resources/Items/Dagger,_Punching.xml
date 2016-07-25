@@ -1,0 +1,12 @@
+<Item>
+  <Name>Dagger, Punching</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;A punching dagger's blade is attached to a horizontal handle that projects out from the fist when held.&lt;/p&gt;</Description>
+</Item>

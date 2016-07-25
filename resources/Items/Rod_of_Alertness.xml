@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rod of Alertness</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>85000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>4 lbs.</Weight>
+  <Description />
+</Item>

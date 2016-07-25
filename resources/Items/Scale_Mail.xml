@@ -1,0 +1,12 @@
+<Item>
+  <Name>Scale Mail</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>30 lbs.</Weight>
+  <Description>&lt;p&gt;Scale mail is made up of dozens of small overlapping metal plates. The suit includes gauntlets.&lt;/p&gt;</Description>
+</Item>

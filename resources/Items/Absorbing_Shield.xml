@@ -1,0 +1,12 @@
+<Item>
+  <Name>Absorbing Shield</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50170 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>15 lbs.</Weight>
+  <Description />
+</Item>

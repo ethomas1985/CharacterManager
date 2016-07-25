@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sealing Wax</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;This stick of red wax is used to seal envelopes, often using an impression from a signet ring as proof they were sent by you.&lt;/p&gt;</Description>
+</Item>

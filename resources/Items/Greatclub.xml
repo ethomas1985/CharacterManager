@@ -1,0 +1,12 @@
+<Item>
+  <Name>Greatclub</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description>&lt;p&gt;This larger, bulkier version of the common club is heavy enough that you can't wield it with one hand. It may be ornate and carved, reinforced with metal, or a simple branch from a tree. Like simple clubs, greatclubs have many names, such as cudgels, bludgeons, shillelaghs, and more.&lt;/p&gt;</Description>
+</Item>

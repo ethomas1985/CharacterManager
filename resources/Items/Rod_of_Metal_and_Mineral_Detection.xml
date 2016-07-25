@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rod of Metal and Mineral Detection</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10500 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description />
+</Item>

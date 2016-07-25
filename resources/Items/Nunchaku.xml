@@ -1,0 +1,12 @@
+<Item>
+  <Name>Nunchaku</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain.&lt;/p&gt;</Description>
+</Item>

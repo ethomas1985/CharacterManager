@@ -1,0 +1,12 @@
+<Item>
+  <Name>Hourglass</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>25 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;The standard hourglass takes 1 hour to empty the sand from the upper chamber.&lt;/p&gt;</Description>
+</Item>

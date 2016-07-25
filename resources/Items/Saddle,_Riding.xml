@@ -1,0 +1,12 @@
+<Item>
+  <Name>Saddle, Riding</Name>
+  <Category>Mounts and Related Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>25 lbs.</Weight>
+  <Description>&lt;p&gt;If you are knocked unconscious while in a riding saddle, you have a 50% chance to stay in the saddle.&lt;/p&gt;</Description>
+</Item>

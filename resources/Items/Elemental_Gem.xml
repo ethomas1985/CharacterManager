@@ -1,0 +1,12 @@
+<Item>
+  <Name>Elemental Gem</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2250 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash</Weight>
+  <Description />
+</Item>

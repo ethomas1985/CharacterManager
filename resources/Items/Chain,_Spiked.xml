@@ -1,0 +1,12 @@
+<Item>
+  <Name>Chain, Spiked</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>25 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;A spiked chain is about 4 feet in length, covered in wicked barbs. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn't a light weapon.&lt;/p&gt;</Description>
+</Item>

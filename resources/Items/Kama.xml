@@ -1,0 +1,12 @@
+<Item>
+  <Name>Kama</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;Similar to a sickle, a kama is a short, curved blade attached to a simple handle.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Tool, Masterwork</Name>
+  <Category>Tools and Skill Kits</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;This well-made item is the perfect tool for the job. It grants a +2 circumstance bonus on a related skill check (if any). Bonuses provided by multiple masterwork items do not stack.&lt;/p&gt;</Description>
+</Item>

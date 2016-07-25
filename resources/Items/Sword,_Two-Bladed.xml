@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sword, Two-Bladed</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>100 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;A two-bladed sword is a double weapon&amp;mdash;twin blades extend from either side of a central, short haft, allowing the wielder to attack with graceful but deadly flourishes.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Antitoxin</Name>
+  <Category>Special Substances and Items</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>50 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;If you drink a vial of antitoxin, you get a +5 alchemical bonus on Fortitude saving throws against poison for 1 hour.&lt;/p&gt;</Description>
+</Item>

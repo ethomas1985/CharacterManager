@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sword, Bastard</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>35 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.</Weight>
+  <Description>&lt;p&gt;A bastard sword is about 4 feet in length, making it too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon.&lt;/p&gt;</Description>
+</Item>

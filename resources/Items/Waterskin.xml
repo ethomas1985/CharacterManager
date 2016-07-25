@@ -1,0 +1,12 @@
+<Item>
+  <Name>Waterskin</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>4 lbs.1</Weight>
+  <Description>&lt;p&gt;This bag is made of an animal bladder or treated leather. It is watertight and holds about 1/2 gallon of liquid. The listed weight is for a waterskin full of water; empty, it weighs about 2 pounds.&lt;/p&gt;</Description>
+</Item>

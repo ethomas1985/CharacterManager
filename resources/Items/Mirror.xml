@@ -1,0 +1,12 @@
+<Item>
+  <Name>Mirror</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/2 lb.</Weight>
+  <Description>&lt;p&gt;This hand-held mirror is about a foot across. Unlike many higher-quality glass mirrors, this one is made out of polished steel and sturdy enough that you can drop it without risk of breakage.&lt;/p&gt;</Description>
+</Item>

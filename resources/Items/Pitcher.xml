@@ -1,0 +1,12 @@
+<Item>
+  <Name>Pitcher</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>2 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description>&lt;p&gt;This basic clay pitcher has a handle and an open top with a groove for easy pouring. It holds 1/2 gallon of liquid. The listed weight is for a pitcher filled with water, wine, or ale; empty, it weighs about 1/2 pound.&lt;/p&gt;</Description>
+</Item>

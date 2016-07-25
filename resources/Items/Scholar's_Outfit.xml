@@ -1,0 +1,12 @@
+<Item>
+  <Name>Scholar's Outfit</Name>
+  <Category>Clothing</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.1</Weight>
+  <Description>&lt;p&gt;Perfect for a scholar, this outfit includes a robe, a belt, a cap, soft shoes, and possibly a cloak.&lt;/p&gt;</Description>
+</Item>

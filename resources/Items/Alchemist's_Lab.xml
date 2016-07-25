@@ -1,0 +1,12 @@
+<Item>
+  <Name>Alchemist's Lab</Name>
+  <Category>Tools and Skill Kits</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>200 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>40 lbs.</Weight>
+  <Description>&lt;p&gt;This lab is used for making alchemical items, and provides a +2 circumstance bonus on Craft (alchemy) checks. It has no bearing on the costs related to the Craft (alchemy) skill. Without this lab, a character with the Craft (alchemy) skill is assumed to have enough tools to use the skill but not enough to get the +2 bonus that the lab provides.&lt;/p&gt;</Description>
+</Item>

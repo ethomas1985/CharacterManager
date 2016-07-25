@@ -1,0 +1,12 @@
+<Item>
+  <Name>Inkpen</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>1 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This is a wooden stylus with a metal tip that retains a small amount of ink after you dip it in a vial of ink.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Block and Tackle</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description>&lt;p&gt;Whether it is used to hoist treasure from a pit or move supplies, a simple block-and-tackle pulley, when it is properly secured, adds a +5 circumstance bonus on Strength checks to lift heavy objects. Securing the pulley requires 1 minute.&lt;/p&gt;</Description>
+</Item>

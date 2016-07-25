@@ -1,0 +1,12 @@
+<Item>
+  <Name>Backpack</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.1</Weight>
+  <Description>&lt;p&gt;This leather knapsack has one large pocket that closes with a buckled strap and holds about 2 cubic feet of material. Some may have one or more smaller pockets on the sides. &lt;/p&gt;</Description>
+</Item>

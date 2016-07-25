@@ -1,0 +1,12 @@
+<Item>
+  <Name>Rod of Rulership</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>60000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description />
+</Item>

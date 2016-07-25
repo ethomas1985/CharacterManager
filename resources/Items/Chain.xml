@@ -1,0 +1,12 @@
+<Item>
+  <Name>Chain</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>30 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;Chain has hardness 10 and 5 hit points. It can be burst with a DC 26 Strength check.&lt;/p&gt;</Description>
+</Item>

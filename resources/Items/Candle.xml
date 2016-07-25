@@ -1,0 +1,12 @@
+<Item>
+  <Name>Candle</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>1 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;A candle dimly illuminates a small area, increasing the light level in a 5-foot radius by one step (darkness becomes dim light and dim light becomes normal light). A candle cannot increase the light level above normal light. A candle burns for 1 hour.&lt;/p&gt;</Description>
+</Item>

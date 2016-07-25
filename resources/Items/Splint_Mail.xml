@@ -1,0 +1,12 @@
+<Item>
+  <Name>Splint Mail</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>200 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>45 lbs.</Weight>
+  <Description>&lt;p&gt;Splint mail is made up of metal strips, like banded mail. The suit includes gauntlets.&lt;/p&gt;</Description>
+</Item>

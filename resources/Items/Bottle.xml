@@ -1,0 +1,12 @@
+<Item>
+  <Name>Bottle</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;This glass bottle holds about a pint and includes a cork.&lt;/p&gt;</Description>
+</Item>

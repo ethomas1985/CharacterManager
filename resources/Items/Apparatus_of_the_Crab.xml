@@ -1,0 +1,12 @@
+<Item>
+  <Name>Apparatus of the Crab</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>90000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>500 lbs.</Weight>
+  <Description />
+</Item>

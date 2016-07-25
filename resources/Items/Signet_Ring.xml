@@ -1,0 +1,12 @@
+<Item>
+  <Name>Signet Ring</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This ring has an embossed design, typically a family crest or official icon. You press a signet ring into softened wax to leave an impression of this symbol.&lt;/p&gt;</Description>
+</Item>

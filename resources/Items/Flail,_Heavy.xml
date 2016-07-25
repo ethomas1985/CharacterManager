@@ -1,0 +1,12 @@
+<Item>
+  <Name>Flail, Heavy</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>15 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>10 lbs.</Weight>
+  <Description>&lt;p&gt;Similar to a flail, a heavy flail has a larger metal ball and a longer handle. &lt;/p&gt;</Description>
+</Item>

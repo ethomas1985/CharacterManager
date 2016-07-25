@@ -1,0 +1,12 @@
+<Item>
+  <Name>Javelin</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;A javelin is a thin throwing spear . Since it is not designed for melee, you are treated as nonproficient with it and take a &amp;ndash;4 penalty on attack rolls if you use a javelin as a melee weapon.&lt;/p&gt;</Description>
+</Item>

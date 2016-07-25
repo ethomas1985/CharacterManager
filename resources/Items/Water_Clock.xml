@@ -1,0 +1,12 @@
+<Item>
+  <Name>Water Clock</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>200 lbs.</Weight>
+  <Description>&lt;p&gt;This large, bulky contrivance gives the time accurately to within half an hour per day since it was last set. It requires a source of water, and it must be kept still because it marks time by the regulated flow of droplets of water.&lt;/p&gt;</Description>
+</Item>

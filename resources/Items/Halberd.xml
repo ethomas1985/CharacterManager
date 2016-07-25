@@ -1,0 +1,12 @@
+<Item>
+  <Name>Halberd</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>12 lbs.</Weight>
+  <Description>&lt;p&gt;A halberd is similar to a 5-foot-long spear, but it also has a small, axe-like head mounted near the tip.&lt;/p&gt;</Description>
+</Item>

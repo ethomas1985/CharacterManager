@@ -1,0 +1,12 @@
+<Item>
+  <Name>Trail Rations</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.1</Weight>
+  <Description>&lt;p&gt;The listed price is for a day's worth of food. This bland food is usually some kind of hard tack, jerky, and dried fruit, though the contents vary from region to region and the race of those creating it. As long as it stays dry, it can go for months without spoiling.&lt;/p&gt;</Description>
+</Item>

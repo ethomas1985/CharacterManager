@@ -1,0 +1,12 @@
+<Item>
+  <Name>Cart</Name>
+  <Category>Transport</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>15 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>200 lbs.</Weight>
+  <Description>&lt;p&gt;This two-wheeled vehicle can be drawn by a single horse (or other beast of burden). It comes with a harness.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Courtier's Outfit</Name>
+  <Category>Clothing</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>30 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.1</Weight>
+  <Description>&lt;p&gt;This outfit includes fancy, tailored clothes in whatever fashion happens to be the current style in the courts of the nobles. Anyone trying to influence nobles or courtiers while wearing street dress will have a hard time of it (&amp;ndash;2 penalty on Charisma-based skill checks to influence such individuals). If you wear this outfit without jewelry (costing an additional 50 gp), you look like an out-of-place commoner.&lt;/p&gt;</Description>
+</Item>

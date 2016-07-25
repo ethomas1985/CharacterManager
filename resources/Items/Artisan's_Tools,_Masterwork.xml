@@ -1,0 +1,12 @@
+<Item>
+  <Name>Artisan's Tools, Masterwork</Name>
+  <Category>Tools and Skill Kits</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>55 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description>&lt;p&gt;These tools serve the same purpose as artisan's tools, but masterwork artisan's tools are the perfect tools for the job, so you get a +2 circumstance bonus on Craft checks made with them.&lt;/p&gt;</Description>
+</Item>

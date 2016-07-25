@@ -1,0 +1,12 @@
+<Item>
+  <Name>Mace, Heavy</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>12 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>8 lbs.</Weight>
+  <Description>&lt;p&gt;A heavy mace has a larger head and a longer handle than a normal mace.&lt;/p&gt;</Description>
+</Item>

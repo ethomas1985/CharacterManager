@@ -1,0 +1,12 @@
+<Item>
+  <Name>Quarterstaff</Name>
+  <Category />
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight>4 lbs.</Weight>
+  <Description>&lt;p&gt;A quarterstaff is a simple piece of wood, about 5 feet in length.&lt;/p&gt;</Description>
+</Item>

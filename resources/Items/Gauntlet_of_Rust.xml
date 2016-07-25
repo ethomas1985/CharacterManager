@@ -1,0 +1,12 @@
+<Item>
+  <Name>Gauntlet of Rust</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>11500 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description />
+</Item>

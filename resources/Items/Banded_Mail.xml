@@ -1,0 +1,12 @@
+<Item>
+  <Name>Banded Mail</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>250 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>35 lbs.</Weight>
+  <Description>&lt;p&gt;Banded mail is made up of overlapping strips of metal, fastened to a leather backing. The suit includes gauntlets.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Immovable Rod</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>5000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>5 lbs.</Weight>
+  <Description />
+</Item>

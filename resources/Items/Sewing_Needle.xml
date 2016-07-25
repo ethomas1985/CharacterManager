@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sewing Needle</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This needle allows you to stitch together cloth, canvas, or thin leather.&lt;/p&gt;</Description>
+</Item>

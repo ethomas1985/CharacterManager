@@ -1,0 +1,12 @@
+<Item>
+  <Name>Chalk</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>1 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This fat piece of white chalk easily marks wood, metal, or stone. You can write with it for about 24 hours before it is expended. Chalk also comes in other colors, but these are rarer and can be more expensive. &lt;/p&gt;</Description>
+</Item>

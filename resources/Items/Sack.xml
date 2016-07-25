@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sack</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>1 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/2 lb.1</Weight>
+  <Description>&lt;p&gt;This heavy canvas sack, useful for carrying adventuring gear and other supplies, holds about 4 cubic feet. A leather thong threaded through loops at the bag's end allows it to be tied shut easily.&lt;/p&gt;</Description>
+</Item>

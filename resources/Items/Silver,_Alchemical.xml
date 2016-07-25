@@ -1,0 +1,12 @@
+<Item>
+  <Name>Silver, Alchemical</Name>
+  <Category />
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight />
+  <Description>&lt;p id="silver-alchemical"&gt;A complex process involving metallurgy and alchemy can bond silver to a weapon made of steel so that it bypasses the damage reduction of creatures such as lycanthropes.&lt;/p&gt;&lt;p&gt;On a successful attack with a silvered slashing or piercing weapon, the wielder takes a &amp;ndash;1 penalty on the damage roll (with a minimum of 1 point of damage). The alchemical silvering process can't be applied to nonmetal items, and it doesn't work on rare metals such as adamantine, cold iron, and mithral.&lt;/p&gt;&lt;p&gt;Alchemical silver has 10 hit points per inch of thickness and hardness 8.&lt;/p&gt;</Description>
+</Item>

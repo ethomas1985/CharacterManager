@@ -1,0 +1,12 @@
+<Item>
+  <Name>Sailing Ship</Name>
+  <Category>Transport</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This large, seaworthy ship is 75 to 90 feet long and 20 feet wide, and has a crew of 20. It can carry 150 tons of cargo. It has square sails on its two masts and can make sea voyages. It moves about 2 miles per hour.&lt;/p&gt;</Description>
+</Item>

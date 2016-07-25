@@ -1,0 +1,12 @@
+<Item>
+  <Name>Flask</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper>3 cp</Copper>
+    <Silver></Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1-1/2 lbs.</Weight>
+  <Description>&lt;p&gt;This glass bottle holds 1 pint. It is relatively fragile and breaks if thrown at a creature or hard surface. Flasks may be simple blown glass, or they may be elaborate affairs embossed with family crests and other artwork.&lt;/p&gt;</Description>
+</Item>

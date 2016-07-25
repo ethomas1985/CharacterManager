@@ -1,0 +1,12 @@
+<Item>
+  <Name>Guisarme</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>9 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>12 lbs.</Weight>
+  <Description>&lt;p&gt;A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip.&lt;/p&gt;</Description>
+</Item>

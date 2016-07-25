@@ -1,0 +1,12 @@
+<Item>
+  <Name>Blanket</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>3 lbs.1</Weight>
+  <Description>&lt;p&gt;This warm, woven blanket has straps so it can be rolled up and tied. Blankets are often used in conjunction with bedrolls to provide additional warmth or a ground cushion.&lt;/p&gt;</Description>
+</Item>

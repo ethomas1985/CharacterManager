@@ -1,0 +1,12 @@
+<Item>
+  <Name>Studded Leather</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>25 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>20 lbs.</Weight>
+  <Description>&lt;p&gt;Similar to leather armor, this suit is reinforced with small metal studs.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Scale, Merchant's</Name>
+  <Category>Tools and Skill Kits</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;A merchant's scale grants a +2 circumstance bonus on Appraise checks involving items that are valued by weight, including anything made of precious metals.&lt;/p&gt;</Description>
+</Item>

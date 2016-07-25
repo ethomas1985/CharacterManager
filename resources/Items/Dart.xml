@@ -1,0 +1,12 @@
+<Item>
+  <Name>Dart</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1/2 lb.</Weight>
+  <Description>&lt;p&gt;This thrown weapon is larger than an arrow and shorter than a javelin, with a weighted tip and a shorter range than a javelin. Most darts are wooden shafts with a thick metal point.&lt;/p&gt;</Description>
+</Item>

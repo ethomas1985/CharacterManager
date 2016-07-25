@@ -1,0 +1,12 @@
+<Item>
+  <Name>Spiked Shield, Light</Name>
+  <Category />
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight>special</Weight>
+  <Description>&lt;p&gt;You can bash with a spiked shield instead of using it for defense.&lt;/p&gt;</Description>
+</Item>

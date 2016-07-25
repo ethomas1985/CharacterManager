@@ -1,0 +1,12 @@
+<Item>
+  <Name>Light Pick</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>4 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>3 lbs.</Weight>
+  <Description>&lt;p&gt;This weapon, adapted from the pickaxe tool, has a head with a slightly curved, armor-piercing spike and a hammerlike counterweight.&lt;/p&gt;</Description>
+</Item>

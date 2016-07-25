@@ -1,0 +1,12 @@
+<Item>
+  <Name>Bracers of Armor</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description />
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Stone of Alarm</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>2700 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description />
+</Item>

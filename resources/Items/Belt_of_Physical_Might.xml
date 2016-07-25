@@ -1,0 +1,12 @@
+<Item>
+  <Name>Belt of Physical Might</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10000 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description />
+</Item>

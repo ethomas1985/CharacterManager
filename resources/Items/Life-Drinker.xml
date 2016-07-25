@@ -1,0 +1,12 @@
+<Item>
+  <Name>Life-Drinker</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>40320 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>12 lbs.</Weight>
+  <Description />
+</Item>

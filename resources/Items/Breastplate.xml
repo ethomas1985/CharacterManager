@@ -1,0 +1,12 @@
+<Item>
+  <Name>Breastplate</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>200 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>30 lbs.</Weight>
+  <Description>&lt;p&gt;Covering only the torso, a breastplate is made up of a single piece of sculpted metal.&lt;/p&gt;</Description>
+</Item>

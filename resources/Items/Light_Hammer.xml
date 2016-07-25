@@ -1,0 +1,12 @@
+<Item>
+  <Name>Light Hammer</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;A lighter version of a warhammer, this weapon usually has a sleek metal head with one striking surface.&lt;/p&gt;</Description>
+</Item>

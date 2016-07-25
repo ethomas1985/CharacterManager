@@ -1,0 +1,12 @@
+<Item>
+  <Name>Flint and Steel</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;Lighting a torch with flint and steel is a full-round action, and lighting any other fire with them takes at least that long.&lt;/p&gt;</Description>
+</Item>

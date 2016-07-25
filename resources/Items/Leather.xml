@@ -1,0 +1,12 @@
+<Item>
+  <Name>Leather</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>15 lbs.</Weight>
+  <Description>&lt;p&gt;Leather armor is made up of pieces of hard boiled leather carefully sewn together.&lt;/p&gt;</Description>
+</Item>

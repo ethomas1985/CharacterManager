@@ -1,0 +1,12 @@
+<Item>
+  <Name>Dog, Riding</Name>
+  <Category>Mounts and Related Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>150 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This Medium dog is specially trained to carry a Small humanoid rider. It is brave in combat like a combat-trained horse. Due to its smaller stature, you take no damage when you fall from a riding dog.&lt;/p&gt;</Description>
+</Item>

@@ -1,0 +1,12 @@
+<Item>
+  <Name>Grappling Hook</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>1 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>4 lbs.</Weight>
+  <Description>&lt;p&gt;Throwing a grappling hook requires a ranged attack roll, treating the hook as a thrown weapon with a range increment of 10 feet. Objects with ample places to catch the hook are AC 5.&lt;/p&gt;</Description>
+</Item>

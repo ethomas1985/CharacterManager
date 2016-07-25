@@ -1,0 +1,12 @@
+<Item>
+  <Name>Crossbow, Hand</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>100 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>2 lbs.</Weight>
+  <Description>&lt;p&gt;You can draw a hand crossbow back by hand. Loading a hand crossbow is a move action that provokes attacks of opportunity.&lt;/p&gt;&lt;p&gt;You can shoot, but not load, a hand crossbow with one hand at no penalty. You can shoot a hand crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.&lt;/p&gt;</Description>
+</Item>

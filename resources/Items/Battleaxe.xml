@@ -1,0 +1,12 @@
+<Item>
+  <Name>Battleaxe</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>10 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>6 lbs.</Weight>
+  <Description>&lt;p&gt;The handle of this axe is long enough that you can wield it one-handed or two-handed. The head may have one blade or two, with blade shapes ranging from half-moons to squared edges like narrower versions of woodcutting axes. The wooden haft may be protected and strengthened with metal bands called langets.&lt;/p&gt;</Description>
+</Item>

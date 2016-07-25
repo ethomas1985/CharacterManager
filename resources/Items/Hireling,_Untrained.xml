@@ -1,0 +1,12 @@
+<Item>
+  <Name>Hireling, Untrained</Name>
+  <Category>Spellcasting and Services</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>1 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight />
+  <Description>&lt;p&gt;The amount shown is the typical daily wage for laborers, maids, and other menial workers.&lt;/p&gt;</Description>
+</Item>

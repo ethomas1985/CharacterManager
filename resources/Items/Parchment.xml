@@ -1,0 +1,12 @@
+<Item>
+  <Name>Parchment</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>2 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>&amp;mdash;</Weight>
+  <Description>&lt;p&gt;This sheet of thin, treated animal skin is a durable writing surface and is suitable for making magic scrolls. It has hardness 0, 2 hit points, and a break DC of 5.&lt;/p&gt;</Description>
+</Item>

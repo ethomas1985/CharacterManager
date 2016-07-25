@@ -1,0 +1,12 @@
+<Item>
+  <Name>Trident</Name>
+  <Category />
+  <Cost>
+    <Copper></Copper>
+    <Silver></Silver>
+    <Gold>15 gp</Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>4 lbs.</Weight>
+  <Description>&lt;p&gt;A trident has three metal prongs at end of a 4-foot-long shaft. This weapon can be thrown.&lt;/p&gt;</Description>
+</Item>

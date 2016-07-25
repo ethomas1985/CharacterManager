@@ -1,0 +1,12 @@
+<Item>
+  <Name>Soap</Name>
+  <Category>Adventuring Gear</Category>
+  <Cost>
+    <Copper></Copper>
+    <Silver>5 sp</Silver>
+    <Gold></Gold>
+    <Platinum></Platinum>
+  </Cost>
+  <Weight>1 lb.</Weight>
+  <Description>&lt;p&gt;Most soap is made from animal fat and lye derived from ashes. You can use this thick block of soap to scrub clothes, pots, linens, adventurers, or anything else that might be dirty. A bar of soap has approximately 50 uses. &lt;/p&gt;</Description>
+</Item>

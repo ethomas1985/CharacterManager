@@ -1,0 +1,12 @@
+<Item>
+  <Name>Spiked Armor</Name>
+  <Category />
+  <Cost>
+    <Copper />
+    <Silver />
+    <Gold />
+    <Platinum />
+  </Cost>
+  <Weight>special</Weight>
+  <Description>&lt;p&gt;You can outfit your armor with spikes, which can deal damage in a grapple or as a separate attack. See Armor, below, for details.&lt;/p&gt;</Description>
+</Item>
