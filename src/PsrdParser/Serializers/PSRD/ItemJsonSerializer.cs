@@ -1,33 +1,94 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
-using Pathfinder.Model;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
+using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 
 namespace PsrdParser.Serializers.PSRD
 {
 	public class ItemJsonSerializer : JsonSerializer<IItem, string>
 	{
-		private const string NAME_FIELD = "name";
+		private const string _NAME_FIELD = "name";
 
 		public override IItem Deserialize(string pValue)
 		{
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
 
 			var jObject = JObject.Parse(pValue);
-			string itemName = getString(jObject, NAME_FIELD);
+			string itemName = getString(jObject, _NAME_FIELD);
+			ItemType itemType = getItemType(jObject);
+
+			switch (itemType)
+			{
+				case ItemType.None:
+					return CreateItem(jObject, itemName, itemType);
+				case ItemType.Weapon:
+					return CreateWeapon(jObject, itemName);
+				default:
+					return CreateArmor(jObject, itemName, itemType);
+
+			}
+		}
+
+		private IItem CreateArmor(JObject jObject, string itemName, ItemType itemType)
+		{
+			var armorNode = jObject["misc"]["Armor"];
+
+			return new Armor(
+				itemName,
+				itemType,
+				getCategory(jObject),
+				getPrice(jObject),
+				getString(jObject, "weight"),
+				getString(jObject, "body"),
+				getArmorBonus(armorNode),
+				getShieldBonus(armorNode),
+				getMaximumDexterityBonus(armorNode),
+				getArmorCheckPenalty(armorNode),
+				getArcaneSpellFailureChance(armorNode),
+				getSpeedModifier(armorNode)
+				);
+		}
+
+		private IItem CreateWeapon(JObject jObject, string itemName)
+		{
+			var weaponNode = jObject["misc"]["weapon"];
+
+			return new Weapon(
+				itemName,
+				getCategory(jObject),
+				getPrice(jObject),
+				getString(jObject, "weight"),
+				getString(jObject, "body"),
+				getProficiency(weaponNode),
+				getWeaponType(weaponNode),
+				getEncumbrance(weaponNode),
+				getSize(weaponNode),
+				getDamageType(weaponNode),
+				getBaseWeaponDamage(weaponNode),
+				getCriticalThreat(weaponNode),
+				getCriticalMultiplier(weaponNode),
+				getRange(weaponNode),
+				getSpecialText(weaponNode)
+				);
+		}
+
+		private IItem CreateItem(JObject jObject, string itemName, ItemType itemType)
+		{
 			return new Item(
 				itemName,
-				getItemType(jObject),
+				itemType,
 				getCategory(jObject),
 				getPrice(jObject),
 				getString(jObject, "weight"),
 				getString(jObject, "body")
-			);
+				);
 		}
 
 		private ItemType getItemType(JObject pJObject)
@@ -37,7 +98,26 @@ namespace PsrdParser.Serializers.PSRD
 			{
 				return value;
 			}
+
+			var miscNode = (string) pJObject?["misc"]?["Armor"];
+			if (!string.IsNullOrEmpty(miscNode))
+			{
+				return ItemType.Armor;
+			}
+
+			miscNode = (string) pJObject?["misc"]?["Weapon"];
+			if (!string.IsNullOrEmpty(miscNode))
+			{
+				return ItemType.Weapon;
+			}
+
 			return ItemType.None;
+		}
+
+		private string getMiscType(JObject pJObject)
+		{
+			var miscNode = pJObject?["misc"]?["Armor"];
+			return miscNode?.ToString();
 		}
 
 		protected string getCategory(JObject pJObject)
@@ -84,12 +164,107 @@ namespace PsrdParser.Serializers.PSRD
 				case "sp":
 					return new Purse(0, amount);
 				case "gp":
-					return new Purse(0,0,amount);
+					return new Purse(0, 0, amount);
 				case "pp":
-					return new Purse(0,0,0,amount);
+					return new Purse(0, 0, 0, amount);
 			}
 
 			throw new Exception($"Unexpected currency denomination: {denomination}");
+		}
+
+		private int getArmorBonus(JToken pJObject)
+		{
+			var value = (string) pJObject["Armor Bonus"];
+
+			return value.AsInt();
+		}
+		private int getShieldBonus(JToken pJObject)
+		{
+			var value = (string) pJObject["Shield Bonus"];
+
+			return value.AsInt();
+		}
+		private int getArmorCheckPenalty(JToken pJObject)
+		{
+			var value = (string) pJObject["Armor Check Penalty"];
+
+			return value.AsInt();
+		}
+		private int getMaximumDexterityBonus(JToken pJObject)
+		{
+			var value = (string) pJObject["Maximum Dex Bonus"];
+
+			return value.AsInt();
+		}
+		private decimal getArcaneSpellFailureChance(JToken pJObject)
+		{
+			var armorBonusString = (string) pJObject["Arcane Spell Failure Chance"];
+
+			return armorBonusString.AsInt();
+		}
+		private int getSpeedModifier(JToken pJObject)
+		{
+			var armorBonusString = (string) pJObject["Speed (30 ft.)"];
+
+			return armorBonusString.AsInt();
+		}
+
+		private Proficiency getProficiency(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private WeaponType getWeaponType(JToken pJObject)
+		{
+			var strValue = (string) pJObject["Weapon Class"];
+
+			WeaponType value;
+			if (WeaponType.TryParse(strValue, out value))
+			{
+				return value;
+			}
+
+			throw new Exception($"Unknown Weapon Type: {value}");
+		}
+
+		private Encumbrance getEncumbrance(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private WeaponSize getSize(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private DamageType getDamageType(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private IEnumerable<IWeaponDamage> getBaseWeaponDamage(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private int getCriticalThreat(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private int getCriticalMultiplier(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private int getRange(JToken pJObject)
+		{
+			throw new NotImplementedException();
+		}
+
+		private IEnumerable<IWeaponSpecial> getSpecialText(JToken pJObject)
+		{
+			throw new NotImplementedException();
 		}
 
 		public override string Serialize(IItem pObject)

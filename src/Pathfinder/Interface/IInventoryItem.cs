@@ -1,4 +1,6 @@
-﻿namespace Pathfinder.Interface
+﻿using Pathfinder.Interface.Item;
+
+namespace Pathfinder.Interface
 {
 	public interface IInventoryItem
 	{

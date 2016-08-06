@@ -70,23 +70,23 @@ namespace Pathfinder.Serializers.Xml
 		}
 		private static int _GetLevel(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Level)).Select(y => _AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Level)).Select(y => y.Value.AsInt()).FirstOrDefault();
 		}
 		private static IEnumerable<int> _GetBaseAttackBonuses(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.BaseAttackBonus)).Descendants().Select(y => _AsInt(y.Value));
+			return pElement.Descendants(nameof(ClassLevel.BaseAttackBonus)).Descendants().Select(y => y.Value.AsInt());
 		}
 		private static int _GetFortitude(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Fortitude)).Select(y => _AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Fortitude)).Select(y => y.Value.AsInt()).FirstOrDefault();
 		}
 		private static int _GetReflex(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Reflex)).Select(y => _AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Reflex)).Select(y => y.Value.AsInt()).FirstOrDefault();
 		}
 		private static int _GetWill(XContainer pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.Will)).Select(y => _AsInt(y.Value)).FirstOrDefault();
+			return pElement.Descendants(nameof(ClassLevel.Will)).Select(y => y.Value.AsInt()).FirstOrDefault();
 		}
 		private IEnumerable<string> _GetFeatures(XContainer pElement)
 		{
@@ -94,7 +94,7 @@ namespace Pathfinder.Serializers.Xml
 		}
 		private static Dictionary<int, int> _GetSpellsPerDay(XElement pElement)
 		{
-			return pElement.Descendants(nameof(ClassLevel.SpellsPerDay)).ToDictionary(k => k.Name.LocalName.WrittenToInteger(), v => _AsInt(pElement.Value));
+			return pElement.Descendants(nameof(ClassLevel.SpellsPerDay)).ToDictionary(k => k.Name.LocalName.WrittenToInteger(), v => pElement.Value.AsInt());
 		}
 		private Dictionary<int, IEnumerable<string>> _GetSpellsByLevel(XContainer pElement)
 		{
@@ -112,7 +112,7 @@ namespace Pathfinder.Serializers.Xml
 								return match.Success ? match.Groups[1].Value : null;
 							})
 					.Where(x => x != null)
-					.Select(_AsInt)
+					.Select(x => x.AsInt())
 					.Select(x => new Die(x))
 					.FirstOrDefault();
 			return hitDie;
@@ -122,14 +122,8 @@ namespace Pathfinder.Serializers.Xml
 		{
 			return pXDocument
 				.Descendants(nameof(IClass.Features))
-				.Select(x => _AsInt(x.Value))
+				.Select(x => x.Value.AsInt())
 				.FirstOrDefault();
-		}
-
-		private static int _AsInt(string pValue)
-		{
-			int value;
-			return int.TryParse(pValue, out value) ? value : 0;
 		}
 
 		private static HashSet<Alignment> _GetAlignments(XContainer pDocument)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 
 namespace Pathfinder.Interface
 {

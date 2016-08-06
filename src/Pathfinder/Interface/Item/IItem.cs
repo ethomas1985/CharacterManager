@@ -1,7 +1,7 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Interface.Currency;
 
-namespace Pathfinder.Interface
+namespace Pathfinder.Interface.Item
 {
 	public interface IItem : INamed
 	{

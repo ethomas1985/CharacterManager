@@ -73,5 +73,11 @@ namespace Pathfinder.Utilities
 			}
 			return (total + acc) * (pThis.StartsWith("minus", StringComparison.InvariantCultureIgnoreCase) ? -1 : 1);
 		}
+
+		public static int AsInt(this string pThis)
+		{
+			int value;
+			return int.TryParse(pThis, out value) ? value : default(int);
+		}
 	}
 }

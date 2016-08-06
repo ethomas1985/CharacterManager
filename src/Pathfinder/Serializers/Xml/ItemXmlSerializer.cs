@@ -4,8 +4,10 @@ using System.Xml.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
+using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers.Xml
@@ -49,18 +51,12 @@ namespace Pathfinder.Serializers.Xml
 
 		private static Purse _GetCost(XContainer pXDocument)
 		{
-			var copper = _AsInt(_GetElementValue(pXDocument, nameof(IPurse.Copper)));
-			var silver = _AsInt(_GetElementValue(pXDocument, nameof(IPurse.Silver)));
-			var gold = _AsInt(_GetElementValue(pXDocument, nameof(IPurse.Gold)));
-			var platinum = _AsInt(_GetElementValue(pXDocument, nameof(IPurse.Platinum)));
+			var copper = _GetElementValue(pXDocument, nameof(IPurse.Copper)).AsInt();
+			var silver = _GetElementValue(pXDocument, nameof(IPurse.Silver)).AsInt();
+			var gold = _GetElementValue(pXDocument, nameof(IPurse.Gold)).AsInt();
+			var platinum = _GetElementValue(pXDocument, nameof(IPurse.Platinum)).AsInt();
 
 			return new Purse(copper, silver, gold, platinum);
-		}
-
-		private static int _AsInt(string pValue)
-		{
-			int value;
-			return int.TryParse(pValue, out value) ? value : default(int);
 		}
 
 		public string Serialize(IItem pObject)
@@ -74,6 +70,7 @@ namespace Pathfinder.Serializers.Xml
 							{
 								new XElement(nameof(Item.Name), pObject.Name),
 								new XElement(nameof(Item.Category), pObject.Category),
+								new XElement(nameof(Item.ItemType), pObject.ItemType),
 								new XElement(
 									nameof(Item.Cost),
 									new List<XElement>

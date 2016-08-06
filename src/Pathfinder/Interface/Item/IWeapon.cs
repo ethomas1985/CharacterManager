@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
 
-namespace Pathfinder.Interface
+namespace Pathfinder.Interface.Item
 {
 	public interface IWeapon
 	{

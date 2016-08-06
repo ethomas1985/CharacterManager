@@ -1,10 +1,10 @@
-﻿namespace Pathfinder.Interface
+﻿namespace Pathfinder.Interface.Item
 {
 	public interface IArmor : IItem
 	{
-		bool IsShield { get; }
+		int ArmorBonus { get; }
+		int ShieldBonus { get; }
 
-		int Bonus { get; }
 		int MaximumDexterityBonus { get; }
 		int ArmorCheckPenalty { get; }
 		decimal ArcaneSpellFailureChance { get; }

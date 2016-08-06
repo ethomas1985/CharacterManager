@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 
 namespace Pathfinder.Api.Tests.Mocks
 {

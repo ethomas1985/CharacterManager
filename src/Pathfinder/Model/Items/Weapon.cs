@@ -2,8 +2,9 @@
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 
-namespace Pathfinder.Model
+namespace Pathfinder.Model.Items
 {
 	internal class Weapon : Item, IWeapon
 	{

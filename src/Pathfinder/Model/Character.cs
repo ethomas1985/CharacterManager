@@ -5,6 +5,7 @@ using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Utilities;
 
@@ -287,11 +288,11 @@ namespace Pathfinder.Model
 
 		private int ArmorBonus
 		{
-			get { return EquipedArmor?.Where(x => !x.IsShield).Sum(x => x.Bonus) ?? 0; }
+			get { return EquipedArmor?.Where(x => x.ShieldBonus != 0).Sum(x => x.ArmorBonus) ?? 0; }
 		}
 		private int ShieldBonus
 		{
-			get { return EquipedArmor?.Where(x => x.IsShield).Sum(x => x.Bonus) ?? 0; }
+			get { return EquipedArmor?.Where(x => x.ShieldBonus != 0).Sum(x => x.ArmorBonus) ?? 0; }
 		}
 		private int NaturalBonus
 		{
