@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Pathfinder.Enums;
+using Pathfinder.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pathfinder.Enums;
-using Pathfinder.Interface;
 
 namespace Pathfinder.Model
 {
@@ -35,7 +35,18 @@ namespace Pathfinder.Model
 
 		private IDictionary<int, IClassLevel> IndexedClassLevels { get; }
 		public IEnumerable<IClassLevel> ClassLevels => IndexedClassLevels.Values;
-		public IClassLevel this[int pLevel] => IndexedClassLevels?[pLevel];
+		public IClassLevel this[int pLevel]
+		{
+			get
+			{
+				IClassLevel classLevel;
+				if (IndexedClassLevels.TryGetValue(pLevel, out classLevel))
+				{
+					return IndexedClassLevels?[pLevel];
+				}
+				throw new KeyNotFoundException($"The given key was not found in the index. Key was {pLevel}");
+			}
+		}
 
 		public bool TryGetLevel(int pLevel, out IClassLevel pValue)
 		{
@@ -62,13 +73,13 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
+			
 			var result = string.Equals(Name, pOther.Name);
-			result &= Equals(Alignments, pOther.Alignments);
+			result &= Alignments.SetEquals(pOther.Alignments);
 			result &= Equals(HitDie, pOther.HitDie);
 			result &= SkillAddend == pOther.SkillAddend;
 			result &= (Skills != null && pOther.Skills != null) && Skills.SetEquals(pOther.Skills);
-			result &= Equals(Features, pOther.Features);
-
+			result &= Features.SequenceEqual(pOther.Features);
 			return result;
 		}
 

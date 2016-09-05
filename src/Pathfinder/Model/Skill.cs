@@ -1,6 +1,6 @@
-﻿using System;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
+using System;
 
 namespace Pathfinder.Model
 {
@@ -60,18 +60,20 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
-			return 
-				string.Equals(Name, pOther.Name)
-				&& AbilityType == pOther.AbilityType
-				&& TrainedOnly == pOther.TrainedOnly
-				&& ArmorCheckPenalty == pOther.ArmorCheckPenalty
-				&& string.Equals(Description, pOther.Description)
-				&& string.Equals(Check, pOther.Check)
-				&& string.Equals(Action, pOther.Action)
-				&& string.Equals(TryAgain, pOther.TryAgain)
-				&& string.Equals(Special, pOther.Special)
-				&& string.Equals(Restriction, pOther.Restriction)
-				&& string.Equals(Untrained, pOther.Untrained);
+
+			var result = string.Equals(Name, pOther.Name);
+			result &= AbilityType == pOther.AbilityType;
+			result &= TrainedOnly == pOther.TrainedOnly;
+			result &= ArmorCheckPenalty == pOther.ArmorCheckPenalty;
+			result &= string.Equals(Description, pOther.Description);
+			result &= string.Equals(Check, pOther.Check);
+			result &= string.Equals(Action, pOther.Action);
+			result &= string.Equals(TryAgain, pOther.TryAgain);
+			result &= string.Equals(Special, pOther.Special);
+			result &= string.Equals(Restriction, pOther.Restriction);
+			result &= string.Equals(Untrained, pOther.Untrained);
+
+			return result;
 		}
 
 		public override int GetHashCode()

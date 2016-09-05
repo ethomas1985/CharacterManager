@@ -1,8 +1,8 @@
 ﻿{
-  "Age": 0,
+  "Age": 10,
   "Alignment": "Neutral",
   "Gender": "Female",
-  "Race": "Testing Race",
+  "Race": "Test Race",
   "BaseSize": "Medium",
   "Size": "Medium",
   "Languages": [
@@ -11,13 +11,18 @@
   "MaxHealthPoints": 7,
   "Damage": 0,
   "HealthPoints": 7,
-  "BaseSpeed": 10,
+  "BaseSpeed": 30,
   "ArmoredSpeed": 0,
+  "Initiative": 1,
   "Classes": [
     {
-      "Class": "Testing Class",
+      "Class": "Test Class",
       "Level": 1,
       "IsFavored": true,
+      "BaseAttackBonus": 1,
+      "Fortitude": 1,
+      "Reflex": 1,
+      "Will": 1,
       "HitPoints": [
         7
       ]
@@ -85,6 +90,7 @@
   },
   "ArmorClass": {
     "Type": "ArmorClass",
+    "Score": 11,
     "ArmorBonus": 0,
     "ShieldBonus": 0,
     "DexterityModifier": 1,
@@ -99,6 +105,7 @@
   },
   "FlatFooted": {
     "Type": "FlatFooted",
+    "Score": 10,
     "ArmorBonus": 0,
     "ShieldBonus": 0,
     "DexterityModifier": 0,
@@ -113,6 +120,7 @@
   },
   "Touch": {
     "Type": "Touch",
+    "Score": 11,
     "ArmorBonus": 0,
     "ShieldBonus": 0,
     "DexterityModifier": 1,
@@ -127,11 +135,12 @@
   },
   "CombatManeuverDefense": {
     "Type": "CombatManeuverDefense",
+    "Score": 13,
     "ArmorBonus": 0,
     "ShieldBonus": 0,
     "DexterityModifier": 1,
     "StrengthModifier": 1,
-    "BaseAttackBonus": 0,
+    "BaseAttackBonus": 1,
     "SizeModifier": 0,
     "DeflectBonus": 0,
     "DodgeBonus": 0,
@@ -141,9 +150,9 @@
   },
   "Fortitude": {
     "Type": "Fortitude",
-    "Score": 1,
+    "Score": 2,
     "Ability": 2,
-    "Base": 0,
+    "Base": 1,
     "AbilityModifier": 1,
     "Resist": 0,
     "Misc": 0,
@@ -151,9 +160,9 @@
   },
   "Reflex": {
     "Type": "Reflex",
-    "Score": 1,
+    "Score": 2,
     "Ability": 1,
-    "Base": 0,
+    "Base": 1,
     "AbilityModifier": 1,
     "Resist": 0,
     "Misc": 0,
@@ -161,9 +170,9 @@
   },
   "Will": {
     "Type": "Will",
-    "Score": 1,
+    "Score": 2,
     "Ability": 4,
-    "Base": 0,
+    "Base": 1,
     "AbilityModifier": 1,
     "Resist": 0,
     "Misc": 0,
@@ -171,8 +180,8 @@
   },
   "Melee": {
     "Type": "Melee",
-    "Score": 1,
-    "BaseAttackBonus": 0,
+    "Score": 2,
+    "BaseAttackBonus": 1,
     "AbilityModifier": 1,
     "SizeModifier": 0,
     "MiscModifier": 0,
@@ -180,8 +189,8 @@
   },
   "Ranged": {
     "Type": "Ranged",
-    "Score": 1,
-    "BaseAttackBonus": 0,
+    "Score": 2,
+    "BaseAttackBonus": 1,
     "AbilityModifier": 1,
     "SizeModifier": 0,
     "MiscModifier": 0,
@@ -189,29 +198,29 @@
   },
   "CombatManeuverBonus": {
     "Type": "CombatManeuverBonus",
-    "Score": 1,
-    "BaseAttackBonus": 0,
+    "Score": 2,
+    "BaseAttackBonus": 1,
     "AbilityModifier": 1,
     "SizeModifier": 0,
     "MiscModifier": 0,
     "TemporaryModifier": 0
   },
-  "SkillScores": [
-    {
-      "Ability": "Strength",
-      "Ranks": 0,
-      "AbilityModifier": 1,
-      "ClassModifier": 0,
-      "MiscModifier": 0,
-      "TemporaryModifier": 0,
-      "ArmorClassPenalty": 0,
-      "Total": 1,
-      "Skill": {
-        "Name": "Testing Skill",
-        "AbilityType": "Strength",
-        "TrainedOnly": true,
-        "ArmorCheckPenalty": true
-      }
-    }
-  ]
+	"SkillScores": [
+		{
+			"Ability": "Strength",
+			"Ranks": 0,
+			"AbilityModifier": 1,
+			"ClassModifier": 0,
+			"MiscModifier": 0,
+			"TemporaryModifier": 0,
+			"ArmorClassPenalty": 0,
+			"Total": 1,
+			"Skill": {
+				"Name": "Test Skill",
+				"AbilityType": "Strength",
+				"TrainedOnly": false,
+				"ArmorCheckPenalty": false
+			}
+		}
+	]
 }

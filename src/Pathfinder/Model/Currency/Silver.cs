@@ -2,9 +2,9 @@
 
 namespace Pathfinder.Model.Currency
 {
-	internal class Silver : BaseCurrency, ISilver
+	internal class Silver : AbstractCurrency, ISilver
 	{
-		public Silver(int value) : base(value)
+		public Silver(int pValue) : base(pValue)
 		{
 		}
 

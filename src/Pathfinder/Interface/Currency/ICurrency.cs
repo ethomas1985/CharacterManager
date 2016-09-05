@@ -2,6 +2,7 @@
 {
 	public interface ICurrency
 	{
+		string Denomination { get; }
 		int Value { get; }
 	}
 }

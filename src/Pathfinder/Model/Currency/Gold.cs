@@ -2,9 +2,9 @@
 
 namespace Pathfinder.Model.Currency
 {
-	internal class Gold : BaseCurrency, IGold
+	internal class Gold : AbstractCurrency, IGold
 	{
-		public Gold(int value) : base(value)
+		public Gold(int pValue) : base(pValue)
 		{
 		}
 

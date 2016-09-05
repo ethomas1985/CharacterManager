@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Pathfinder.Enums;
+using Pathfinder.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pathfinder.Enums;
-using Pathfinder.Interface;
 
 namespace Pathfinder.Model
 {
@@ -74,8 +74,8 @@ namespace Pathfinder.Model
 			result &= string.Equals(Description, pOther.Description);
 			result &= Size == pOther.Size;
 			result &= BaseSpeed == pOther.BaseSpeed;
-			result &= Equals(AbilityScores, pOther.AbilityScores);
-			result &= Equals(Traits, pOther.Traits);
+			result &= AbilityScores.Count == pOther.AbilityScores.Count && !AbilityScores.Except(pOther.AbilityScores).Any();
+			result &= Traits.SequenceEqual(pOther.Traits);
 			result &= (Languages != null && pOther.Languages != null) && Languages.SequenceEqual(pOther.Languages);
 
 			return result;

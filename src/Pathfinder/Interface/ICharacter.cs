@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
+using System.Collections.Generic;
 
 namespace Pathfinder.Interface
 {
@@ -105,6 +105,9 @@ namespace Pathfinder.Interface
 		ICharacter SetHair(string pHair);
 		ICharacter SetHeight(string pHeight);
 		ICharacter SetWeight(string pWeight);
+
+		ICharacter AddLanguage(ILanguage pLanguage);
+		ICharacter RemoveLanguage(ILanguage pLanguage);
 
 		ICharacter AddClass(IClass pClass);
 		ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints);

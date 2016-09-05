@@ -2,9 +2,9 @@ using Pathfinder.Interface.Currency;
 
 namespace Pathfinder.Model.Currency
 {
-	internal class Copper : BaseCurrency, ICopper
+	internal class Copper : AbstractCurrency, ICopper
 	{
-		public Copper(int value) : base(value)
+		public Copper(int pValue) : base(pValue)
 		{
 		}
 

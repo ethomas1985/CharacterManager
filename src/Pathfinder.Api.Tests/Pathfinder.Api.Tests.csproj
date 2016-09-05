@@ -58,14 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterGeneraterControllerTests.cs" />
-    <Compile Include="Mocks\MockClass.cs" />
-    <Compile Include="Mocks\MockClassLibrary.cs" />
-    <Compile Include="Mocks\MockCharacterLibrary.cs" />
-    <Compile Include="Mocks\MockSkillLibrary.cs" />
-    <Compile Include="Mocks\MockCharacter.cs" />
-    <Compile Include="Mocks\MockRace.cs" />
-    <Compile Include="Mocks\MockRaceLibrary.cs" />
-    <Compile Include="Mocks\MockSkill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +72,10 @@
     <ProjectReference Include="..\Pathfinder\Pathfinder.csproj">
       <Project>{675BD0B4-F7DE-4CCC-8467-821A2F9077CE}</Project>
       <Name>Pathfinder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test\Pathfinder.Test.csproj">
+      <Project>{7BA5B9AA-7794-4A30-9A03-E932AEC61793}</Project>
+      <Name>Pathfinder.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

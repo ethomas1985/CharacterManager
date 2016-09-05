@@ -91,7 +91,7 @@
     <Compile Include="Library\FeatureLibrary.cs" />
     <Compile Include="Library\RaceLibrary.cs" />
     <Compile Include="Library\SpellLibrary.cs" />
-    <Compile Include="Model\Currency\BaseCurrency.cs" />
+    <Compile Include="Model\Currency\AbstractCurrency.cs" />
     <Compile Include="Model\CharacterClass.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\ClassLevel.cs" />
@@ -171,7 +171,6 @@
     <Compile Include="Utilities\stringExtensions.cs" />
     <Compile Include="Utilities\Tracer.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

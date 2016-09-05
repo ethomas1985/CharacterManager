@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Json;
+using System;
+using System.IO;
+using System.Linq;
+using Test.Mocks;
+
 // ReSharper disable ExpressionIsAlwaysNull
 
 namespace Test.Serializers.Json
@@ -203,174 +202,9 @@ namespace Test.Serializers.Json
 				.SetIntelligence(12)
 				.SetWisdom(12)
 				.SetCharisma(12)
+				.SetAge(10)
 				.SetRace(new MockRaceLibrary().Values.First())
 				.AddClass(new MockClassLibrary().Values.First());
-		}
-	}
-
-	public class MockSkillLibrary : ILibrary<ISkill>
-	{
-		private Dictionary<string, ISkill> _library;
-
-		public IEnumerator<ISkill> GetEnumerator()
-		{
-			return Values.GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-
-		private Dictionary<string, ISkill> Library
-		{
-			get
-			{
-				if (_library == null)
-				{
-					_library = new Dictionary<string, ISkill>
-					{
-						["Testing Skill"]
-							= new Skill(
-								"Testing Skill",
-								AbilityType.Strength,
-								true,
-								true,
-								"Testing Description",
-								"Testing Check",
-								"Testing Action",
-								"Testing Try Again",
-								"Testing Special",
-								"Testing Restriction",
-								"Testing Untrained"),
-					};
-				}
-				return _library;
-			}
-		}
-
-		public IEnumerable<string> Keys => Library.Keys;
-		public IEnumerable<ISkill> Values => Library.Values;
-
-		public ISkill this[string pKey] => Library[pKey];
-
-		public bool TryGetValue(string pKey, out ISkill pValue)
-		{
-			return Library.TryGetValue(pKey, out pValue);
-		}
-
-		public void Store(ISkill pValue)
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public class MockRaceLibrary : ILibrary<IRace>
-	{
-		private const string TESTING_RACE = "Testing Race";
-		private Dictionary<string, IRace> _library;
-
-		public IEnumerator<IRace> GetEnumerator()
-		{
-			return Values.GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-
-		private Dictionary<string, IRace> Library
-		{
-			get
-			{
-				if (_library == null)
-				{
-					_library = new Dictionary<string, IRace>
-					{
-						[TESTING_RACE]
-							= new Race(
-								TESTING_RACE,
-								TESTING_RACE,
-								"Testing Description",
-								Size.Medium, 
-								10,
-								null,
-								null,
-								new List<ILanguage> {new Language("Test Language")}),
-					};
-				}
-				return _library;
-			}
-		}
-
-		public IEnumerable<string> Keys => Library.Keys;
-		public IEnumerable<IRace> Values => Library.Values;
-
-		public IRace this[string pKey] => Library[pKey];
-
-		public bool TryGetValue(string pKey, out IRace pValue)
-		{
-			return Library.TryGetValue(pKey, out pValue);
-		}
-
-		public void Store(IRace pValue)
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public class MockClassLibrary : ILibrary<IClass>
-	{
-		private Dictionary<string, IClass> _library;
-
-		public IEnumerator<IClass> GetEnumerator()
-		{
-			return Values.GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-
-		private Dictionary<string, IClass> Library
-		{
-			get
-			{
-				if (_library == null)
-				{
-					_library = new Dictionary<string, IClass>
-					{
-						["Testing Class"]
-							= new Class(
-								"Testing Class",
-								null,
-								new Die(6),
-								0,
-								new HashSet<string>(),
-								null,
-								null
-								),
-					};
-				}
-				return _library;
-			}
-		}
-
-		public IEnumerable<string> Keys => Library.Keys;
-		public IEnumerable<IClass> Values => Library.Values;
-
-		public IClass this[string pKey] => Library[pKey];
-
-		public bool TryGetValue(string pKey, out IClass pValue)
-		{
-			return Library.TryGetValue(pKey, out pValue);
-		}
-
-		public void Store(IClass pValue)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

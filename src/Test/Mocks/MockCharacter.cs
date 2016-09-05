@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
+using System;
+using System.Collections.Generic;
 
-namespace Pathfinder.Api.Tests.Mocks
+namespace Test.Mocks
 {
-	internal class MockCharacter : ICharacter
+	public class MockCharacter : ICharacter
 	{
 		public string Name { get; }
 		public int Age { get; }
@@ -92,6 +92,11 @@ namespace Pathfinder.Api.Tests.Mocks
 			return this;
 		}
 
+		public ICharacter RemoveLanguage(ILanguage pLanguage)
+		{
+			throw new NotImplementedException();
+		}
+
 		public ICharacter AddClass(IClass pClass)
 		{
 			return this;
@@ -135,6 +140,11 @@ namespace Pathfinder.Api.Tests.Mocks
 		public ICharacter SetWeight(string pWeight)
 		{
 			return this;
+		}
+
+		public ICharacter AddLanguage(ILanguage pLanguage)
+		{
+			throw new NotImplementedException();
 		}
 
 		public ICharacter SetDamage(int pDamage)

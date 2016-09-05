@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Pathfinder.Model
 {
@@ -40,7 +40,7 @@ namespace Pathfinder.Model
 		public Size BaseSize => Race?.Size ?? default(Size);
 		public virtual Size Size => BaseSize;// + AnySizeModifier;
 
-		public IEnumerable<ILanguage> Languages { get; private set; }
+		public IEnumerable<ILanguage> Languages { get; private set; } = new List<ILanguage>();
 
 		public int MaxHealthPoints { get { return Classes?.SelectMany(x => x.HitPoints).Sum() ?? 0; } }
 		public int Damage { get; private set; }
@@ -525,7 +525,7 @@ namespace Pathfinder.Model
 		public IEnumerable<IArmor> EquipedArmor { get; private set; }
 		public IEnumerable<IEffect> Effects { get; private set; }
 
-		public IPurse Purse { get; internal set; }
+		public IPurse Purse { get; internal set; } = new Purse(0);
 
 		public IEnumerable<ITrait> Traits => Race?.Traits;
 
@@ -574,12 +574,16 @@ namespace Pathfinder.Model
 			var newCharacter = _copy();
 
 			newCharacter.Race = pRace;
-			newCharacter.Languages = new List<ILanguage>(newCharacter.Race.Languages);
+			newCharacter.Languages =
+				newCharacter.Languages.Except(Race?.Languages ?? new List<ILanguage>())
+					.Union(newCharacter.Race.Languages).ToList();
 
 			return newCharacter;
 		}
 		public ICharacter SetName(string pName)
 		{
+			Assert.ArgumentNotNull(pName, nameof(pName));
+
 			var newCharacter = _copy();
 			newCharacter.Name = pName;
 
@@ -587,6 +591,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetAge(int pAge)
 		{
+			Assert.IsTrue(pAge > 0, $"{nameof(pAge)} cannot be less than 1.");
+
 			var newCharacter = _copy();
 			newCharacter.Age = pAge;
 			return newCharacter;
@@ -599,12 +605,16 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetHomeland(string pHomeland)
 		{
+			Assert.ArgumentNotNull(pHomeland, nameof(pHomeland));
+
 			var newCharacter = _copy();
 			newCharacter.Homeland = pHomeland;
 			return newCharacter;
 		}
 		public ICharacter SetDeity(IDeity pDeity)
 		{
+			Assert.ArgumentNotNull(pDeity, nameof(pDeity));
+
 			var newCharacter = _copy();
 			newCharacter.Deity = pDeity;
 			return newCharacter;
@@ -617,31 +627,65 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetEyes(string pEyes)
 		{
+			Assert.ArgumentNotNull(pEyes, nameof(pEyes));
+
 			var newCharacter = _copy();
 			newCharacter.Eyes = pEyes;
 			return newCharacter;
 		}
 		public ICharacter SetHair(string pHair)
 		{
+			Assert.ArgumentNotNull(pHair, nameof(pHair));
+
 			var newCharacter = _copy();
 			newCharacter.Hair = pHair;
 			return newCharacter;
 		}
 		public ICharacter SetHeight(string pHeight)
 		{
+			Assert.ArgumentNotNull(pHeight, nameof(pHeight));
+
 			var newCharacter = _copy();
 			newCharacter.Height = pHeight;
 			return newCharacter;
 		}
 		public ICharacter SetWeight(string pWeight)
 		{
+			Assert.ArgumentNotNull(pWeight, nameof(pWeight));
+
 			var newCharacter = _copy();
 			newCharacter.Weight = pWeight;
 			return newCharacter;
 		}
 
+		public ICharacter AddLanguage(ILanguage pLanguage)
+		{
+			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
+
+			var newCharacter = _copy();
+
+			newCharacter.Languages = newCharacter.Languages.Append(pLanguage);
+
+			return newCharacter;
+		}
+
+		public ICharacter RemoveLanguage(ILanguage pLanguage)
+		{
+			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
+
+			var newCharacter = _copy();
+
+			newCharacter.Languages = newCharacter.Languages.Where(x => !x.Equals(pLanguage));
+
+			return newCharacter;
+		}
+
 		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseStrength = pBase;
 			newCharacter.EnhancedStrength = pEnhanced;
@@ -650,6 +694,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseDexterity = pBase;
 			newCharacter.EnhancedDexterity = pEnhanced;
@@ -658,6 +706,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseConstitution = pBase;
 			newCharacter.EnhancedConstitution = pEnhanced;
@@ -666,6 +718,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseIntelligence = pBase;
 			newCharacter.EnhancedIntelligence = pEnhanced;
@@ -674,6 +730,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseWisdom = pBase;
 			newCharacter.EnhancedWisdom = pEnhanced;
@@ -682,6 +742,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
+			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
+			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.BaseCharisma = pBase;
 			newCharacter.EnhancedCharisma = pEnhanced;
@@ -691,6 +755,8 @@ namespace Pathfinder.Model
 
 		public ICharacter AddClass(IClass pClass)
 		{
+			Assert.ArgumentNotNull(pClass, nameof(pClass));
+
 			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
 			return AddClass(pClass, 1, true, new List<int> { hitPoints });
 		}
@@ -716,6 +782,8 @@ namespace Pathfinder.Model
 
 		public ICharacter SetDamage(int pDamage)
 		{
+			Assert.IsTrue(pDamage >= 0, $"{nameof(pDamage)} cannot be less than 0.");
+
 			var newCharacter = _copy();
 			newCharacter.Damage = pDamage;
 			return newCharacter;
@@ -802,7 +870,6 @@ namespace Pathfinder.Model
 			}
 
 			var result = Age == pOther.Age;
-
 			result &= Alignment == pOther.Alignment;
 			result &= Classes.SequenceEqual(pOther.Classes);
 			result &= Equals(Deity, pOther.Deity);
@@ -813,7 +880,7 @@ namespace Pathfinder.Model
 			result &= string.Equals(Weight, pOther.Weight, StringComparison.InvariantCultureIgnoreCase);
 			result &= string.Equals(Homeland, pOther.Homeland, StringComparison.InvariantCultureIgnoreCase);
 			result &= string.Equals(Name, pOther.Name, StringComparison.InvariantCultureIgnoreCase);
-			result &= Equals(Race, pOther.Race);
+			result &= Race.Equals(pOther.Race);
 			result &= (Languages != null && pOther.Languages != null) && Languages.SequenceEqual(pOther.Languages);
 			result &= Damage == pOther.Damage;
 			result &= ArmoredSpeed == pOther.ArmoredSpeed;
@@ -837,6 +904,7 @@ namespace Pathfinder.Model
 
 			var skillScoresEqual = SkillScores.SequenceEqual(pOther.SkillScores);
 			result &= skillScoresEqual;
+
 			if (!skillScoresEqual)
 			{
 				Tracer.Message(pMessage: $"{nameof(SkillScores)} :: {string.Join(", ", SkillScores.Select(x => x.ToString()))}");
@@ -844,11 +912,13 @@ namespace Pathfinder.Model
 			}
 
 			result &= Equals(Feats, pOther.Feats);
+
 			//result &= Equals(Weapons, other.Weapons);
 			result &= Equals(Inventory, pOther.Inventory);
+			
 			//result &= Equals(EquipedArmor, other.EquipedArmor);
 			//result &= Equals(Effects, other.Effects);
-			result &= Equals(Purse, pOther.Purse);
+			result &= Purse.Equals(pOther.Purse);
 
 			return result;
 		}

@@ -7,6 +7,9 @@ namespace Pathfinder.Interface
 	{
 		ISet<Alignment> Alignments { get; }
 		IDie HitDie { get; }
+		/// <summary>
+		///	Skill Ranks Per Level.
+		/// </summary>
 		int SkillAddend { get; }
 		ISet<string> Skills { get; }
 		IEnumerable<IClassLevel> ClassLevels { get; }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Pathfinder.Api.Controllers;
 using Pathfinder.Api.Models;
-using Pathfinder.Api.Tests.Mocks;
+using System;
+using Test.Mocks;
+using Test.Model;
 
 namespace Pathfinder.Api.Tests
 {
@@ -37,7 +37,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet());
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = 1,
+						Intelligence = 1,
+						Constitution = 1,
+						Wisdom = 1,
+						Charisma = 1
+					});
 
 				Assert.NotNull(result);
 			}
@@ -51,7 +60,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet {Strength = ABILITY_SCORE});
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = ABILITY_SCORE,
+						Dexterity = 1,
+						Intelligence = 1,
+						Constitution = 1,
+						Wisdom = 1,
+						Charisma = 1
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Strength.Score);
 			}
@@ -65,7 +83,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet { Dexterity = ABILITY_SCORE });
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = ABILITY_SCORE,
+						Intelligence = 1,
+						Constitution = 1,
+						Wisdom = 1,
+						Charisma = 1
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Dexterity.Score);
 			}
@@ -79,7 +106,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet { Constitution = ABILITY_SCORE });
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = 1,
+						Constitution = ABILITY_SCORE,
+						Intelligence = 1,
+						Wisdom = 1,
+						Charisma = 1
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Constitution.Score);
 			}
@@ -93,7 +129,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet { Intelligence = ABILITY_SCORE });
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = 1,
+						Constitution = 1,
+						Intelligence = ABILITY_SCORE,
+						Wisdom = 1,
+						Charisma = 1
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Intelligence.Score);
 			}
@@ -107,7 +152,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet { Wisdom = ABILITY_SCORE });
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = 1,
+						Intelligence = 1,
+						Constitution = 1,
+						Wisdom = ABILITY_SCORE,
+						Charisma = 1
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Wisdom.Score);
 			}
@@ -121,7 +175,16 @@ namespace Pathfinder.Api.Tests
 					new MockSkillLibrary(),
 					new MockClassLibrary());
 
-				var result = charGen.SetAbilityScores(new AbilityScoreSet { Charisma = ABILITY_SCORE});
+				var result = charGen.SetAbilityScores(
+					new AbilityScoreSet
+					{
+						Strength = 1,
+						Dexterity = 1,
+						Intelligence = 1,
+						Constitution = 1,
+						Wisdom = 1,
+						Charisma = ABILITY_SCORE
+					});
 
 				Assert.AreEqual(ABILITY_SCORE, result.Charisma.Score);
 			}
@@ -171,29 +234,6 @@ namespace Pathfinder.Api.Tests
 
 				Assert.NotNull(result);
 			}
-
-			/*
-			 * This is an integration level test that is dependent on the ICharacter
-			 * class's implementation of ICharacter.SetRace(). I don't feel like implementing
-			 * the method on the MockCharacter class nor do I think I should use the Character
-			 * class for this test. 
-			 */
-			//[Test]
-			//public void Expected()
-			//{
-			//	var mockRaceLibrary = new MockRaceLibrary();
-			//	var charGen = new CharacterGeneratorController(
-			//		new MockCharacterLibrary(),
-			//		mockRaceLibrary,
-			//		new MockSkillLibrary(),
-			//		new MockClassLibrary());
-
-			//	var result = charGen.SetRace(TEST_RACE, new MockCharacter());
-
-			//	var expected = mockRaceLibrary[TEST_RACE];
-
-			//	Assert.AreEqual(expected, result.Race);
-			//}
 		}
 
 		[TestFixture]

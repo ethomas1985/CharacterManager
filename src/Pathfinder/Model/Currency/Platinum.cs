@@ -2,9 +2,9 @@ using Pathfinder.Interface.Currency;
 
 namespace Pathfinder.Model.Currency
 {
-	internal class Platinum : BaseCurrency, IPlatinum
+	internal class Platinum : AbstractCurrency, IPlatinum
 	{
-		public Platinum(int value) : base(value)
+		public Platinum(int pValue) : base(pValue)
 		{
 		}
 

@@ -70,7 +70,7 @@ namespace Pathfinder.Api.Controllers
 					.SetCharisma(19)
 					.SetRace(RaceLibrary["Half-Orc"])
 					.AddClass(ClassLibrary["Sorcerer"])
-					//.IncrementClass(ClassLibrary["Sorcerer"])
+					.IncrementClass(ClassLibrary["Sorcerer"])
 					//.IncrementClass(ClassLibrary["Sorcerer"])
 					//.AssignSkillPoint(SkillLibrary["Intimidate"], 1)
 					//.AssignSkillPoint(SkillLibrary["Knowledge (Arcana)"], 1)

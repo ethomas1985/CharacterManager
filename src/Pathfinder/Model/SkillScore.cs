@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pathfinder.Enums;
-using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class SkillScore : ISkillScore, IEquatable<ISkillScore>
 	{
 		public SkillScore(
-			ISkill pSkill, 
+			ISkill pSkill,
 			IAbilityScore pAbilityScore,
 			int pRanks,
 			int pClassModifier,
@@ -85,14 +85,16 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
-			return 
-				Equals(Skill, pOther.Skill)
-				&& AbilityModifier == pOther.AbilityModifier
-				&& Ranks == pOther.Ranks
-				&& ClassModifier == pOther.ClassModifier
-				&& MiscModifier == pOther.MiscModifier
-				&& TemporaryModifier == pOther.TemporaryModifier
-				&& ArmorClassPenalty == pOther.ArmorClassPenalty;
+
+			var result = Skill.Equals(pOther.Skill);
+			result &= AbilityModifier == pOther.AbilityModifier;
+			result &= Ranks == pOther.Ranks;
+			result &= ClassModifier == pOther.ClassModifier;
+			result &= MiscModifier == pOther.MiscModifier;
+			result &= TemporaryModifier == pOther.TemporaryModifier;
+			result &= ArmorClassPenalty == pOther.ArmorClassPenalty;
+
+			return result;
 		}
 
 		public override int GetHashCode()
@@ -100,12 +102,12 @@ namespace Pathfinder.Model
 			unchecked
 			{
 				var hashCode = Skill?.GetHashCode() ?? 0;
-				hashCode = (hashCode*397) ^ (AbilityScore?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ Ranks;
-				hashCode = (hashCode*397) ^ ClassModifier;
-				hashCode = (hashCode*397) ^ MiscModifier;
-				hashCode = (hashCode*397) ^ TemporaryModifier;
-				hashCode = (hashCode*397) ^ ArmorClassPenalty;
+				hashCode = (hashCode * 397) ^ (AbilityScore?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ Ranks;
+				hashCode = (hashCode * 397) ^ ClassModifier;
+				hashCode = (hashCode * 397) ^ MiscModifier;
+				hashCode = (hashCode * 397) ^ TemporaryModifier;
+				hashCode = (hashCode * 397) ^ ArmorClassPenalty;
 				return hashCode;
 			}
 		}

@@ -1,8 +1,9 @@
 ﻿using Pathfinder.Interface.Currency;
+using System;
 
 namespace Pathfinder.Model.Currency
 {
-	internal class Purse : IPurse
+	internal class Purse : IPurse, IEquatable<IPurse>
 	{
 		public Purse(
 			ICopper pCopper = null,
@@ -37,7 +38,7 @@ namespace Pathfinder.Model.Currency
 		}
 		public Purse(int pCopper = 0, int pSilver = 0, int pGold = 0, int pPlatinum = 0) :
 			this(new Copper(pCopper), new Silver(pSilver), new Gold(pGold), new Platinum(pPlatinum))
-		{}
+		{ }
 
 		public ICopper Copper { get; }
 
@@ -65,6 +66,46 @@ namespace Pathfinder.Model.Currency
 			var platinum = Platinum.Subtract(pPlatinum);
 
 			return new Purse(copper, silver, gold, platinum);
+		}
+
+		public override bool Equals(object pObject)
+		{
+			return Equals(pObject as IPurse);
+		}
+
+		public bool Equals(IPurse pOther)
+		{
+			if (ReferenceEquals(null, pOther))
+			{
+				return false;
+			}
+
+			if (ReferenceEquals(this, pOther))
+			{
+				return true;
+			}
+
+			return Copper.Equals(pOther.Copper)
+				&& Silver.Equals(pOther.Silver)
+				&& Gold.Equals(pOther.Gold)
+				&& Platinum.Equals(pOther.Platinum);
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				var hashCode = Copper?.GetHashCode() ?? 0;
+				hashCode = (hashCode * 397) ^ (Silver?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Gold?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Platinum?.GetHashCode() ?? 0);
+				return hashCode;
+			}
+		}
+
+		public override string ToString()
+		{
+			return $"{Copper} {Silver} {Gold} {Platinum}";
 		}
 	}
 }

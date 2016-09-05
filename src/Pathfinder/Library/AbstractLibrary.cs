@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Pathfinder.Interface;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
-using Pathfinder.Interface;
+using System.Threading.Tasks;
 
 namespace Pathfinder.Library
 {
@@ -28,10 +29,7 @@ namespace Pathfinder.Library
 		private void Initialize()
 		{
 			var files = Directory.EnumerateFiles(LibraryDirectory, "*.xml");
-			foreach (var file in files)
-			{
-				LoadFile(Serializer, file);
-			}
+			Parallel.ForEach(files, x => LoadFile(Serializer, x));
 		}
 
 		protected ISerializer<T, string> Serializer { get; }
@@ -83,15 +81,7 @@ namespace Pathfinder.Library
 			var xml = File.ReadAllText(pFile);
 			var deserialize = pSerializer.Deserialize(xml);
 
-			T outRace;
-			if (Library.TryGetValue(deserialize.Name, out outRace))
-			{
-				Library[deserialize.Name] = deserialize;
-			}
-			else
-			{
-				Library.Add(deserialize.Name, deserialize);
-			}
+			Library[deserialize.Name] = deserialize;
 		}
 	}
 }
