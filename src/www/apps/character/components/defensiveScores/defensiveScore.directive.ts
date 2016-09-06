@@ -5,12 +5,12 @@ namespace app.Character.DefensiveScores {
 		tooltip: string;
 	}
 
-	export class defensiveScoreDirective implements ng.IDirective {
+	export class DefensiveScoreDirective implements ng.IDirective {
 		public templateUrl: string;
 		public controller: any;
 		public controllerAs: string = "controller";
 		public scope: Object;
-		public restrict = 'E';
+		public restrict = "E";
 		public replace: boolean = true;
 		public link: (
 			scope: ng.IScope,
@@ -23,7 +23,7 @@ namespace app.Character.DefensiveScores {
 			this.templateUrl = "/apps/character/components/defensiveScores/defensiveScore.tmpl.html";
 			this.scope = {
 				score: "=",
-			}
+			};
 
 			this.link = (
 				scope: IDefensiveScoreScope,
@@ -59,13 +59,16 @@ namespace app.Character.DefensiveScores {
 				// values.push('[Temp.: ' + scope.score.TemporaryBonus + ']');
 
 				// scope.tooltip = values.join(" + ");
-			}
+			};
 		}
 
 		static factory(): ng.IDirectiveFactory {
-			const directive = () => new defensiveScoreDirective();
+			const directive = () => new DefensiveScoreDirective();
 			// directive.$inject = [];
 			return directive;
 		}
 	}
+
+	angular.module("character")
+		.directive("defensiveScore", DefensiveScoreDirective.factory());
 }

@@ -1,8 +1,8 @@
 namespace app.directives {
 	export class LabelValueDirective implements ng.IDirective {
 		public templateUrl: string;
-		public scope:Object;
-		public restrict = 'E';
+		public scope: Object;
+		public restrict = "E";
 
 		constructor() {
 			this.templateUrl = "apps/directives/labelValue.tmpl.html";
@@ -10,7 +10,7 @@ namespace app.directives {
 				label: "@",
 				value: "@",
 				css: "@"
-			}
+			};
 		}
 
 		link() {
@@ -22,4 +22,7 @@ namespace app.directives {
 			return directive;
 		}
 	}
+
+	angular.module("app")
+		.directive("labelValue", app.directives.LabelValueDirective.factory());
 }

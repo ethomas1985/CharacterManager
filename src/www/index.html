@@ -5,31 +5,33 @@
 	<title>Pathfinder Character Manager</title>
 	<meta charset="utf-8" />
 	<base href="/" />
-	<link rel="stylesheet" href=".lib/angular-material/angular-material.css" />
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
-	<link rel="stylesheet" href=".lib/angular-material/layouts/angular-material.layouts.min.css" />
-	<link rel="stylesheet" href=".lib/angular-material-icons/angular-material-icons.css" />
+	<link rel="stylesheet" href="/node_modules/angular-material/angular-material.css" />
+	<link rel="stylesheet" href="/node_modules/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href="/node_modules/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href="/node_modules/angular-material/layouts/angular-material.layouts.min.css" />
+	<link rel="stylesheet" href="/node_modules/angular-material-icons/angular-material-icons.css" />
 
 	<link rel="stylesheet" href="assets/app.css" />
 </head>
 
 <body ng-app="app">
 
-	<script src=".lib/angular/angular.js"></script>
-	<script src=".lib/angular-animate/angular-animate.js"></script>
-	<script src=".lib/angular-aria/angular-aria.js"></script>
-	<script src=".lib/angular-material/angular-material.js"></script>
-	<script src=".lib/angular-material-icons/angular-material-icons.js"></script>
-	<script src=".lib/angular-messages/angular-messages.js"></script>
-	<script src=".lib/angular-route/angular-route.js"></script>
-	<script src=".lib/angular-sanitize/angular-sanitize.js"></script>
+	<script src="/node_modules/angular/angular.js"></script>
+	<script src="/node_modules/angular-animate/angular-animate.js"></script>
+	<script src="/node_modules/angular-aria/angular-aria.js"></script>
+	<script src="/node_modules/angular-material/angular-material.js"></script>
+	<script src="/node_modules/angular-material-icons/angular-material-icons.js"></script>
+	<script src="/node_modules/angular-messages/angular-messages.js"></script>
+	<script src="/node_modules/angular-route/angular-route.js"></script>
+	<script src="/node_modules/angular-sanitize/angular-sanitize.js"></script>
 
 	<script src="apps/shared/character.model.js"></script>
 
+	<script src="apps/character/character.module.js"></script>
+
 	<script src="apps/character/character.component.js"></script>
 
-	<script src="apps/character/components/class/class.directive.js"></script>
+	<script src="apps/character/components/class/class.component.js"></script>
 	<script src="apps/character/components/class/classes.component.js"></script>
 
 	<script src="apps/character/components/savingThrows/savingThrow.directive.js"></script>
@@ -41,25 +43,21 @@
 	<script src="apps/character/components/defensiveScores/defensiveScore.directive.js"></script>
 	<script src="apps/character/components/defensiveScores/defensiveScores.component.js"></script>
 
-	<script src="apps/character/components/abilityScores/abilityScore.directive.js"></script>
+	<script src="apps/character/components/abilityScores/abilityScore.component.js"></script>
 	<script src="apps/character/components/abilityScores/abilityScores.component.js"></script>
 
 	<script src="apps/character/components/status/status.component.js"></script>
 
 	<script src="apps/character/components/main/main.component.js"></script>
 
-	<script src="apps/character/character.module.js"></script>
-
 	<!--<script src="apps/CharacterCreator/components/wizard/wizard.component.js"></script>
 	<script src="apps/CharacterCreator/characterCreator.module.js"></script>-->
 
-	<script src="apps/filters/camelToHuman.filter.js"></script>
-
+	<script src="app.js"></script>
 	<script src="apps/directives/labelValue.directive.js"></script>
-
+	<script src="apps/filters/camelToHuman.filter.js"></script>
 	<script src="apps/components/omnibar.component.js"></script>
 	<script src="apps/components/footer.component.js"></script>
-	<script src="app.js"></script>
 
 	<div layout="column" layout-fill>
 		<omni></omni>

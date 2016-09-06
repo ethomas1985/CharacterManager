@@ -1,4 +1,3 @@
-
 namespace app.components {
 
 	export interface ICommand {
@@ -13,7 +12,7 @@ namespace app.components {
 		public commands: ICommand[];
 
 
-		static $inject = ['$location'];
+		static $inject = ["$location"];
 
 		constructor(private $location: ng.ILocationService) {
 			this.commands = [
@@ -32,12 +31,12 @@ namespace app.components {
 			];
 		}
 
-		newCharacter($location: ng.ILocationService){
+		newCharacter($location: ng.ILocationService) {
 			console.log("Create New Character Action invoked");
 			$location.url("/character");
 		}
 
-		startWizard($location: ng.ILocationService){
+		startWizard($location: ng.ILocationService) {
 			console.log("Start New Character Wizard Action invoked");
 			$location.url("/wizard");
 		}
@@ -48,7 +47,7 @@ namespace app.components {
 		public controllerAs: string = "omniController";
 		public templateUrl: string;
 		public transclude: boolean = true;
-		public bindings : {[binding: string]: string};
+		public bindings: { [binding: string]: string };
 
 		constructor() {
 			this.controller = OmnibarController;
@@ -58,4 +57,7 @@ namespace app.components {
 			// }
 		}
 	}
+
+	angular.module("app")
+		.component("omni", new app.components.OmnibarComponent());
 }

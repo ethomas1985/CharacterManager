@@ -4,6 +4,9 @@ namespace app.filters {
 	}
 
 	export function CamelToHuman(value: string): string {
-		return value.replace(/([A-Z])/g, ' $1');
+		return value.replace(/([A-Z])/g, " $1");
 	}
+
+	angular.module("app")
+		.filter("camelToHuman", CamelToHumanFilter);
 }

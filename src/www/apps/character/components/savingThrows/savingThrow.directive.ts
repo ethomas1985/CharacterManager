@@ -5,25 +5,25 @@ namespace app.Character.SavingThrows {
 		tooltip: string;
 	}
 
-	export class savingThrowDirective implements ng.IDirective {
+	export class SavingThrowDirective implements ng.IDirective {
 		public templateUrl: string;
 		public controller: any;
 		public controllerAs: string = "controller";
 		public scope: Object;
-		public restrict = 'E';
+		public restrict = "E";
 		public replace: boolean = true;
 		public link: (
 			scope: ISavingThrowScope,
 			instanceElement: ng.IAugmentedJQuery,
 			instanceAttributes: ng.IAttributes,
 			controller: {}
-        ) => void;
+		) => void;
 
 		constructor() {
-				this.templateUrl = "/apps/character/components/savingThrows/savingThrow.tmpl.html";
+			this.templateUrl = "/apps/character/components/savingThrows/savingThrow.tmpl.html";
 			this.scope = {
 				score: "=",
-			}
+			};
 
 			this.link = (
 				scope: ISavingThrowScope,
@@ -38,13 +38,16 @@ namespace app.Character.SavingThrows {
 				// 	values.push('[Temp.: '  + scope.score.TemporaryModifier + ']');
 
 				// scope.tooltip = values.join(" + ");
-			}
+			};
 		}
 
 		static factory(): ng.IDirectiveFactory {
-			const directive = () => new savingThrowDirective();
+			const directive = () => new SavingThrowDirective();
 			// directive.$inject = [];
 			return directive;
 		}
 	}
+
+	angular.module("character")
+		.directive("savingThrow", SavingThrowDirective.factory());
 }

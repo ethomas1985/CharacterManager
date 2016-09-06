@@ -1,4 +1,3 @@
-
 namespace app.components {
 
 	export class FooterController {
@@ -6,15 +5,18 @@ namespace app.components {
 		public version: string = "0.0.0.1";
 	}
 
-	export class FooterComponent implements ng.IComponentOptions{
-		public controller:any;
+	export class FooterComponent implements ng.IComponentOptions {
+		public controller: any;
 		public controllerAs: string = "footerController";
 		public templateUrl: string;
 		public transclude: boolean = true;
 
-		constructor(){
+		constructor() {
 			this.controller = FooterController;
 			this.templateUrl = "apps/components/footer.tmpl.html";
 		}
 	}
+
+	angular.module("app")
+		.component("foot", new app.components.FooterComponent());
 }

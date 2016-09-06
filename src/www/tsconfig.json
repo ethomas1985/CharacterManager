@@ -2,9 +2,10 @@
 	"compilerOptions": {
 		"target": "es6",
 		"watch": true,
-		"sourceMap": true
+		"sourceMap": true,
+		"listFiles": true
 	},
-    "exclude": [
-        "typings/*"
-    ]
+	"exclude": [
+		"typings/*"
+	]
 }

@@ -1,13 +1,13 @@
 namespace app.CharacterCreator {
 	angular
-		.module('characterCreator', ['ngRoute'])
-		.component('newWizard', new app.CharacterCreator.WizardComponent())
+		.module("characterCreator", ["ngRoute"])
+		.component("newWizard", new app.CharacterCreator.WizardComponent())
 		.config(configureRouteProvider);
 
-	configureRouteProvider.$inject = ['$routeProvider'];
+	configureRouteProvider.$inject = ["$routeProvider"];
 	function configureRouteProvider($routeProvider: ng.route.IRouteProvider) {
-		console.log('Adding Route for characterCreator Module.');
+		console.log("Adding Route for characterCreator Module.");
 		$routeProvider
-			.when('/wizard', <ng.route.IRoute>{ template: '<new-wizard></new-wizard>' });
+			.when("/wizard", <ng.route.IRoute>{ template: "<new-wizard></new-wizard>" });
 	};
 }

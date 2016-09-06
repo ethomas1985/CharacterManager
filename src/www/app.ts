@@ -1,29 +1,21 @@
-﻿
+﻿/// <reference path="_all.ts" />
+
 namespace app {
 	"use strict";
 
-	var characterManager =
+	let characterManager =
 		angular.module(
-			'app',
-			[
-				'ngRoute',
-				'ngMdIcons',
-				'ngMaterial',
-				'character']);
+			"app",
+			["ngRoute",
+			"ngMdIcons",
+			"ngMaterial",
+			"character"]);
 	characterManager.config(configureRouteProvider);
-
-	characterManager.filter('camelToHuman', app.filters.CamelToHumanFilter);
-	characterManager.filter('initials', app.filters.InitialsFilter);
-
-	characterManager.directive('labelValue', app.directives.LabelValueDirective.factory());
-
-	characterManager.component('omni', new app.components.OmnibarComponent());
-	characterManager.component('foot', new app.components.FooterComponent());
 
 	function configureRouteProvider(
 		$routeProvider: ng.route.IRouteProvider,
 		$locationProvider: ng.ILocationProvider) {
-		console.log('Adding Root Routes');
+		console.log("Adding Root Routes");
 		$routeProvider
 			.otherwise("/");
 

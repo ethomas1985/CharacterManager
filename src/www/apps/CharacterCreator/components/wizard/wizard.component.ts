@@ -10,9 +10,9 @@ namespace app.CharacterCreator {
 	}
 
 	interface IAbilityScore {
-		Name:string,
-		Value: number,
-		Text: string
+		Name: string;
+		Value: number;
+		Text: string;
 	}
 
 	export class WizardController {

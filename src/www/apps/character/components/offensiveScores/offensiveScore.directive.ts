@@ -5,25 +5,25 @@ namespace app.Character.OffensiveScores {
 		tooltip: string;
 	}
 
-	export class offensiveScoreDirective implements ng.IDirective {
+	export class OffensiveScoreDirective implements ng.IDirective {
 		public templateUrl: string;
 		public controller: any;
 		public controllerAs: string = "controller";
 		public scope: Object;
-		public restrict = 'E';
+		public restrict = "E";
 		public replace: boolean = true;
 		public link: (
 			scope: IOffensiveScoreScope,
 			instanceElement: ng.IAugmentedJQuery,
 			instanceAttributes: ng.IAttributes,
 			controller: {}
-        ) => void;
+		) => void;
 
 		constructor() {
 				this.templateUrl = "/apps/character/components/offensiveScores/offensiveScore.tmpl.html";
 			this.scope = {
 				score: "=",
-			}
+			};
 
 			this.link = (
 				scope: IOffensiveScoreScope,
@@ -38,13 +38,16 @@ namespace app.Character.OffensiveScores {
 				// 	values.push('[Temp.: '  + scope.score.TemporaryModifier + ']');
 
 				// scope.tooltip = values.join(" + ");
-			}
+			};
 		}
 
 		static factory(): ng.IDirectiveFactory {
-			const directive = () => new offensiveScoreDirective();
+			const directive = () => new OffensiveScoreDirective();
 			// directive.$inject = [];
 			return directive;
 		}
 	}
+
+	angular.module("character")
+		.directive("offensiveScore", OffensiveScoreDirective.factory());
 }
