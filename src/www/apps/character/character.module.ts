@@ -11,6 +11,6 @@ namespace app.Character {
 	function configureRouteProvider($routeProvider: ng.route.IRouteProvider) {
 		console.log("Adding Routes for character Module.");
 		$routeProvider
-			.when("/character", { template: "<character></character>" });
+			.when("/character", { template: "<character-sheet></character-sheet>" });
 	}
 }

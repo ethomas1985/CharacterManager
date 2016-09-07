@@ -15,8 +15,8 @@
 	<md-divider />
 	<md-card-content ng-show="cardController.viewExpanded" layout="column" layout-fill>
 		<label-value flex="75" class="hoverBold" label="Initiative" value="{{cardController.character.Initiative}}" css="number"></label-value>
-		<offensive-score score="cardController.character.Melee"></offensive-score>
-		<offensive-score score="cardController.character.Ranged"></offensive-score>
-		<offensive-score score="cardController.character.CombatManeuverBonus"></offensive-score>
+		<offensive-score offense="cardController.character.Melee"></offensive-score>
+		<offensive-score offense="cardController.character.Ranged"></offensive-score>
+		<offensive-score offense="cardController.character.CombatManeuverBonus"></offensive-score>
 	</md-card-content>
 </md-card>

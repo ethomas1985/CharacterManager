@@ -14,8 +14,8 @@
 	</md-card-header>
 	<md-divider />
 	<md-card-content ng-show="cardController.viewExpanded" layout="column" layout-fill>
-		<saving-throw score="cardController.character.Fortitude"></saving-throw>
-		<saving-throw score="cardController.character.Reflex"></saving-throw>
-		<saving-throw score="cardController.character.Will"></saving-throw>
+		<saving-throw throw="cardController.character.Fortitude"></saving-throw>
+		<saving-throw throw="cardController.character.Reflex"></saving-throw>
+		<saving-throw throw="cardController.character.Will"></saving-throw>
 	</md-card-content>
 </md-card>

@@ -1,21 +1,15 @@
 namespace app.Character {
 	import Character = app.character.model.ICharacter;
 
-	export class MainCardController {
-		private viewExpanded: boolean;
-
+	export class MainCardController extends app.Character.BaseCardController {
 		character: Character;
 
 		constructor() {
-			this.viewExpanded = false;
+			super();
 		}
 
 		get title(): string {
 			return this.character ? "Main" : "Main | Character was not passed.";
-		}
-
-		expandCard() {
-			this.viewExpanded = !this.viewExpanded;
 		}
 	}
 

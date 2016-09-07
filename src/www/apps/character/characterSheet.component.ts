@@ -5,7 +5,7 @@ namespace app.Character {
 		public viewExpanded: boolean;
 
 		constructor() {
-			this.viewExpanded = false;
+			this.viewExpanded = true;
 		}
 
 		public expandCard() {
@@ -13,7 +13,7 @@ namespace app.Character {
 		}
 	}
 
-	export class CharacterController {
+	class CharacterSheetController {
 		isLoading: boolean;
 		character: ICharacter;
 
@@ -40,7 +40,7 @@ namespace app.Character {
 		}
 	}
 
-	export class CharacterComponent implements ng.IComponentOptions {
+	class CharacterSheetComponent implements ng.IComponentOptions {
 		public controller: any;
 		public controllerAs: string = "characterController";
 		public templateUrl: string;
@@ -48,11 +48,11 @@ namespace app.Character {
 		public bindings: { [binding: string]: string };
 
 		constructor() {
-			this.controller = CharacterController;
+			this.controller = CharacterSheetController;
 			this.templateUrl = "/apps/character/character.tmpl.html";
 		}
 	}
 
 	angular.module("character")
-		.component("character", new CharacterComponent());
+		.component("characterSheet", new CharacterSheetComponent());
 }

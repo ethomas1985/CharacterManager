@@ -15,7 +15,7 @@ namespace app.CharacterCreator {
 		Text: string;
 	}
 
-	export class WizardController {
+	class WizardController {
 		scores: IAbilityScore[];
 		scoreset: IAbilityScoreSet;
 
@@ -64,7 +64,7 @@ namespace app.CharacterCreator {
 		}
 	}
 
-	export class WizardComponent implements ng.IComponentOptions {
+	class WizardComponent implements ng.IComponentOptions {
 		public controller: any;
 		public controllerAs: string = "characterController";
 		public templateUrl: string;
@@ -76,4 +76,6 @@ namespace app.CharacterCreator {
 		}
 	}
 
+	angular.module("characterCreator")
+		.component("newWizard", new WizardComponent());
 }

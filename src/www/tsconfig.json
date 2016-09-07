@@ -3,7 +3,10 @@
 		"target": "es6",
 		"watch": true,
 		"sourceMap": true,
-		"listFiles": true
+		"listFiles": true,
+		"module": "commonjs",
+		"outDir": ".",
+		"outFile": "./pathfinder.character.manager.js"
 	},
 	"exclude": [
 		"typings/*"

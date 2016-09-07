@@ -14,9 +14,9 @@
 	</md-card-header>
 	<md-divider />
 	<md-card-content ng-show="cardController.viewExpanded" layout="column" layout-fill>
-		<defensive-score score="cardController.character.ArmorClass"></defensive-score>
-		<defensive-score score="cardController.character.FlatFooted"></defensive-score>
-		<defensive-score score="cardController.character.Touch"></defensive-score>
-		<defensive-score score="cardController.character.CombatManeuverDefense"></defensive-score>
+		<defensive-score defense="cardController.character.ArmorClass"></defensive-score>
+		<defensive-score defense="cardController.character.FlatFooted"></defensive-score>
+		<defensive-score defense="cardController.character.Touch"></defensive-score>
+		<defensive-score defense="cardController.character.CombatManeuverDefense"></defensive-score>
 	</md-card-content>
 </md-card>

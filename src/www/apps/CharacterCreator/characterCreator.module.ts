@@ -1,7 +1,6 @@
 namespace app.CharacterCreator {
 	angular
 		.module("characterCreator", ["ngRoute"])
-		.component("newWizard", new app.CharacterCreator.WizardComponent())
 		.config(configureRouteProvider);
 
 	configureRouteProvider.$inject = ["$routeProvider"];
