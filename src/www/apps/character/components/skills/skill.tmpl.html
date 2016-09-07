@@ -1,0 +1,17 @@
+<div layout="row" layout-align="space-around end" layout-fill class="hoverBold">
+	<label-value flex="5" label="Ability" value="{{ctrl.Ability}}"></label-value>
+	<label-value flex="20" label="Skill" value="{{ctrl.skill.Skill.Name | camelToHuman}}"></label-value>
+	<label-value flex="5" label="Total" value="{{ctrl.skill.Total}}" css="number"></label-value>
+	<div> = </div>
+	<label-value flex="5" label="Ranks" value="{{ctrl.skill.Ranks}}" css="number"></label-value>
+	<div> + </div>
+	<label-value flex="5" label="Ability" value="{{ctrl.skill.AbilityModifier}}" css="number"></label-value>
+	<div> + </div>
+	<label-value flex="5" label="Class" value="{{ctrl.skill.ClassModifier}}" css="number"></label-value>
+	<div> + </div>
+	<label-value flex="5" label="Misc" value="{{ctrl.skill.MiscModifier}}" css="number"></label-value>
+	<div> + </div>
+	<label-value flex="5" label="Temp" value="{{ctrl.skill.TemporaryModifier}}" css="number"></label-value>
+	<div> + </div>
+	<label-value flex="5" label="ACP" value="{{ctrl.skill.ArmorClassPenalty}}" css="number"></label-value>
+</div>

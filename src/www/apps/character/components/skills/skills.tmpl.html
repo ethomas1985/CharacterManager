@@ -1,0 +1,19 @@
+<md-card>
+	<md-card-header layout-align="space-around center">
+		<md-card-avatar>
+			<ng-md-icon icon="tune" size="32" />
+		</md-card-avatar>
+		<md-card-header-text class="md-title" layout="row" layout-align="space-around center">
+			Skills
+		</md-card-header-text>
+		<md-card-actions layout="row" layout-align="end center">
+			<md-button class="md-icon-button launch" aria-label="{{cardController.viewExpanded ? 'Collapse' : 'Expand'}}" ng-click="cardController.expandCard()">
+				<ng-md-icon class="card-toolbar-view-more-icon" icon="{{cardController.viewExpanded ? 'expand_less' : 'expand_more'}}" />
+			</md-button>
+		</md-card-actions>
+	</md-card-header>
+	<md-divider />
+	<md-card-content ng-show="cardController.viewExpanded" layout="column" layout-fill>
+		<skill ng-repeat="skillScore in cardController.character.SkillScores track by $index" skill="skillScore"></saving-throw>
+	</md-card-content>
+</md-card>
