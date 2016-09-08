@@ -29,14 +29,14 @@
 				<label-value label="Gender" value="{{cardController.character.Gender}}" layout-fill></label-value>
 				<br />
 				<label-value label="Alignment" value="{{cardController.character.Alignment | camelToHuman}}" layout-fill></label-value>
-				<br ng-if="cardController.character.Homeland"/>
+				<br ng-if="cardController.character.Homeland" />
 				<label-value label="Homeland" value="{{cardController.character.Homeland}}" layout-fill></label-value>
 			</div>
 			<div layout="column" layout-align="space-around start" flex="20" layout-fill>
 				<label-value label="Height" value="{{cardController.character.Height}}" css="number" layout-fill></label-value>
 				<br />
 				<label-value label="Hair" value="{{cardController.character.Hair}}" css="number" layout-fill></label-value>
-				<br ng-if="cardController.character.Hair"/>
+				<br ng-if="cardController.character.Hair" />
 				<label-value label="Size" value="{{cardController.character.Size}}" layout-fill></label-value>
 			</div>
 			<div layout="column" layout-align="space-around start" flex="20" layout-fill>
@@ -45,15 +45,13 @@
 				<label-value label="Eyes" value="{{cardController.character.Eyes}}" layout-fill></label-value>
 			</div>
 			<div flex="20" layout="column">
-				<md-list class="md-dense" flex>
-					<md-subheader>
-						Languages
-						<md-divider />
-					</md-subheader>
-					<md-list-item ng-repeat="language in cardController.character.Languages" class="md-list-item-text">
-						<span style="margin-left: 10px" class="hoverBold">{{language}}</span>
-					</md-list-item>
-				</md-list>
+				<div flex>
+					Languages
+				</div>
+				<md-divider />
+				<div ng-repeat="language in cardController.character.Languages">
+					<div style="margin-left: 10px" class="hoverBold">{{language}}</div>
+				</div>
 			</div>
 		</md-card-content>
 		<!--<md-card-actions layout="row" layout-align="end center" style="background-color:whitesmoke">

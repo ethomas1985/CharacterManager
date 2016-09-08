@@ -1,22 +1,11 @@
 <md-card>
-	<md-card-header layout-align="space-around center">
-		<md-card-avatar>
-			<ng-md-icon icon="person" size="32" />
-		</md-card-avatar>
-		<md-card-header-text layout="column" layout-align="space-around start">
-			<md-progress-linear md-mode="determinate" value="{{cardController.getCurrentHealthValue()}}"></md-progress-linear>
-			<br />
-			<div layout="row" layout-align="space-between start" layout-fill>
-				<label-value flex="10" label="Damage" value="{{cardController.character.Damage}}" css="number"></label-value>
-				<label-value flex="65" label="Health" value="{{cardController.character.HealthPoints}} / {{cardController.character.MaxHealthPoints}}"></label-value>
-				<label-value flex="15" label="Percentage" value="{{cardController.getCurrentHealthValue()}} %" css="number"></label-value>
-			</div>
-			<br />
-		</md-card-header-text>
-		<!--<md-card-actions layout="row" layout-align="end center">
-			<md-button class="md-raised md-icon-button launch" aria-label="{{cardController.viewExpanded ? 'Collapse' : 'Expand'}}" ng-click="cardController.expandCard()">
-				<ng-md-icon class="card-toolbar-view-more-icon" icon="{{cardController.viewExpanded ? 'expand_less' : 'expand_more'}}" />
-			</md-button>
-		</md-card-actions>-->
-	</md-card-header>
+	<md-card-content>
+		<md-progress-linear md-mode="determinate" value="{{cardController.getCurrentHealthValue()}}"></md-progress-linear>
+		<br />
+		<div layout="row" layout-align="space-between start" layout-fill>
+			<label-value flex="10" label="Damage" value="{{cardController.character.Damage}}" css="number"></label-value>
+			<label-value flex="65" label="Health" value="{{cardController.character.HealthPoints}} / {{cardController.character.MaxHealthPoints}}"></label-value>
+			<label-value flex="15" label="Percentage" value="{{cardController.getCurrentHealthValue()}} %" css="number"></label-value>
+		</div>
+	</md-card-content>
 </md-card>
