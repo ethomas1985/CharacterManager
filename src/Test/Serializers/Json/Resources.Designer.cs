@@ -62,37 +62,31 @@ namespace Test.Serializers.Json {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///	&quot;Age&quot;: 0,
-        ///	&quot;Alignment&quot;: 0,
-        ///	&quot;Deity&quot;: 0,
-        ///	&quot;Gender&quot;: 0,
-        ///	&quot;Eyes&quot;: null,
-        ///	&quot;Hair&quot;: null,
-        ///	&quot;Height&quot;: 0,
-        ///	&quot;Weight&quot;: 0,
-        ///	&quot;Homeland&quot;: null,
-        ///	&quot;Name&quot;: null,
-        ///	&quot;Race&quot;: null,
-        ///	&quot;BaseSize&quot;: 0,
-        ///	&quot;Size&quot;: 0,
-        ///	&quot;Languages&quot;: null,
-        ///	&quot;MaxHealthPoints&quot;: 0,
-        ///	&quot;Damage&quot;: 0,
-        ///	&quot;HealthPoints&quot;: 0,
-        ///	&quot;BaseSpeed&quot;: 0,
-        ///	&quot;ArmoredSpeed&quot;: 0,
-        ///	&quot;BaseAttackBonus&quot;: 0,
-        ///	&quot;BaseFortitude&quot;: 0,
-        ///	&quot;BaseReflex&quot;: 0,
-        ///	&quot;BaseWill&quot;: 0,
-        ///	&quot;Strength&quot;: {
-        ///		&quot;Type&quot;: &quot;Strength&quot;,
-        ///		&quot;Score&quot;: 12,
-        ///		&quot;Modifier&quot;: 1,
-        ///		&quot;Base&quot;: 12,
-        ///		&quot;Enhanced&quot;: 0,
-        ///		&quot;Inherent&quot;: 0,
-        ///		&quot;Penalty&quot; [rest of string was truncated]&quot;;.
+        ///  &quot;Age&quot;: 10,
+        ///  &quot;Alignment&quot;: &quot;Neutral&quot;,
+        ///  &quot;Gender&quot;: &quot;Female&quot;,
+        ///  &quot;Race&quot;: &quot;Test Race&quot;,
+        ///  &quot;BaseSize&quot;: &quot;Medium&quot;,
+        ///  &quot;Size&quot;: &quot;Medium&quot;,
+        ///  &quot;Languages&quot;: [
+        ///    &quot;Test Language&quot;
+        ///  ],
+        ///  &quot;MaxHealthPoints&quot;: 7,
+        ///  &quot;Damage&quot;: 0,
+        ///  &quot;HealthPoints&quot;: 7,
+        ///  &quot;BaseSpeed&quot;: 30,
+        ///  &quot;ArmoredSpeed&quot;: 0,
+        ///  &quot;Initiative&quot;: 1,
+        ///  &quot;Classes&quot;: [
+        ///    {
+        ///      &quot;Class&quot;: &quot;Test Class&quot;,
+        ///      &quot;Level&quot;: 1,
+        ///      &quot;IsFavored&quot;: true,
+        ///      &quot;BaseAttackBonus&quot;: 1,
+        ///      &quot;Fortitude&quot;: 1,
+        ///      &quot;Reflex&quot;: 1,
+        ///      &quot;Will&quot;: 1,
+        ///      &quot;HitPoints&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TestCharacter {
             get {
