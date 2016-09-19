@@ -1,43 +1,44 @@
-﻿using System;
+﻿using Pathfinder.Interface;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using Pathfinder.Interface;
 
 namespace Pathfinder.Library
 {
+	internal class SpellIndex : ConcurrentDictionary<string, ISpell> { }
+
+	internal class SpellByLevelIndex : ConcurrentDictionary<int, SpellIndex> { }
+
+	internal class SpellByLevelByClassIndex : ConcurrentDictionary<string, SpellByLevelIndex> { }
+
+	internal class SpellByClassIndex : ConcurrentDictionary<string, SpellIndex> { }
+
 	internal class SpellLibrary : AbstractLibrary<ISpell>
 	{
-		private readonly Lazy<IDictionary<string, ISpell>> _library =
-			new Lazy<IDictionary<string, ISpell>>(
-				() => new Dictionary<string, ISpell>());
+		private readonly Lazy<SpellByClassIndex> _spellByClassIndex =
+			new Lazy<SpellByClassIndex>(() => new SpellByClassIndex());
 
-		private readonly Lazy<IDictionary<string, IDictionary<string, ISpell>>> _classIndex =
-			new Lazy<IDictionary<string, IDictionary<string, ISpell>>>(
-				() => new Dictionary<string, IDictionary<string, ISpell>>());
-
-		private readonly Lazy<IDictionary<string, IDictionary<int, IDictionary<string, ISpell>>>> _classLevelIndex =
-			new Lazy<IDictionary<string, IDictionary<int, IDictionary<string, ISpell>>>>(
-				() => new Dictionary<string, IDictionary<int, IDictionary<string, ISpell>>>());
+		private readonly Lazy<SpellByLevelByClassIndex> _spellByLevelByClassIndex =
+			new Lazy<SpellByLevelByClassIndex>(() => new SpellByLevelByClassIndex());
 
 		internal SpellLibrary(ISerializer<ISpell, string> pSerializer, string pLibraryDirectory)
-			: base(pSerializer, pLibraryDirectory)
-		{
-		}
+			: base(pSerializer, pLibraryDirectory) { }
 
-		private IDictionary<string, IDictionary<string, ISpell>> ClassIndex => _classIndex.Value;
-		private IDictionary<string, IDictionary<int, IDictionary<string, ISpell>>> ClassLevelIndex => _classLevelIndex.Value;
+		private SpellByClassIndex SpellByClassIndex => _spellByClassIndex.Value;
+		private SpellByLevelByClassIndex SpellByLevelByClassIndex => _spellByLevelByClassIndex.Value;
 
 		/// <summary>
 		/// Returns the Level Index for the given Class's Spell Library.
 		/// </summary>
 		/// <param name="pClass"></param>
 		/// <returns></returns>
-		public IDictionary<int, IDictionary<string, ISpell>> this[IClass pClass]
+		internal SpellByLevelIndex this[IClass pClass]
 		{
 			get
 			{
-				IDictionary<int, IDictionary<string, ISpell>> value;
-				if (ClassLevelIndex.TryGetValue(pClass.Name, out value))
+				SpellByLevelIndex value;
+				if (SpellByLevelByClassIndex.TryGetValue(pClass.Name, out value))
 				{
 					return value;
 				}
@@ -51,9 +52,9 @@ namespace Pathfinder.Library
 			var xml = File.ReadAllText(pFile);
 			var spell = pSerializer.Deserialize(xml);
 
-			Library[spell.Name] = spell;
+			Library.TryAdd(spell.Name, spell);
 
-			foreach( var keyValue in spell.LevelRequirements)
+			foreach (var keyValue in spell.LevelRequirements)
 			{
 				var classRequirement = keyValue.Key;
 				var levelRequirement = keyValue.Value;
@@ -65,30 +66,21 @@ namespace Pathfinder.Library
 
 		private void AddToClassIndex(string pClassRequirement, ISpell pSpell)
 		{
-			IDictionary<string, ISpell> outClassIndex;
-			if (!ClassIndex.TryGetValue(pClassRequirement, out outClassIndex))
-			{
-				ClassIndex[pClassRequirement] = new Dictionary<string, ISpell>();
-			}
-			ClassIndex[pClassRequirement][pSpell.Name] = pSpell;
+			var classIndex = new SpellIndex();
+			SpellByClassIndex[pClassRequirement] = classIndex;
+
+			classIndex.AddOrUpdate(pSpell.Name, pSpell, (key, existingSpell) => pSpell);
 		}
 
 		private void AddToClassLevelIndex(string pClassRequirement, int pLevelRequirement, ISpell pSpell)
 		{
-			IDictionary<int, IDictionary<string, ISpell>> outClassIndex;
-			if (!ClassLevelIndex.TryGetValue(pClassRequirement, out outClassIndex))
-			{
-				ClassLevelIndex[pClassRequirement] = new Dictionary<int, IDictionary<string, ISpell>>();
-			}
+			var newClassIndex = new SpellByLevelIndex();
+			var classIndex = SpellByLevelByClassIndex.AddOrUpdate(pClassRequirement, newClassIndex, (key, existing) => existing);
 
-			IDictionary<string, ISpell> outLevelIndex;
-			if (!ClassLevelIndex[pClassRequirement].TryGetValue(pLevelRequirement, out outLevelIndex))
-			{
-				ClassLevelIndex[pClassRequirement][pLevelRequirement] = new Dictionary<string, ISpell>();
-			}
+			var newLevelIndex = new SpellIndex();
+			var levelIndex = classIndex.AddOrUpdate(pLevelRequirement, newLevelIndex, (key, existing) => existing);
 
-			ClassLevelIndex[pClassRequirement][pLevelRequirement][pSpell.Name] = pSpell;
+			levelIndex[pSpell.Name] = pSpell;
 		}
-
 	}
 }

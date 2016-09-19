@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Pathfinder.Interface;
+﻿using Pathfinder.Interface;
 using Pathfinder.Model;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Pathfinder.Library
 {
@@ -55,7 +55,7 @@ namespace Pathfinder.Library
 					value.Restriction,
 					value.Untrained);
 
-			Library.Add(skill.Name, skill);
+			Library.TryAdd(skill.Name, skill);
 
 			return skill;
 		}

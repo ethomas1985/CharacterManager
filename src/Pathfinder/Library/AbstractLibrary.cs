@@ -1,6 +1,7 @@
 ﻿using Pathfinder.Interface;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -10,9 +11,9 @@ namespace Pathfinder.Library
 {
 	internal abstract class AbstractLibrary<T> : ILibrary<T> where T : INamed
 	{
-		private readonly Lazy<IDictionary<string, T>> _library =
-			new Lazy<IDictionary<string, T>>(
-				() => new Dictionary<string, T>());
+		private readonly Lazy<ConcurrentDictionary<string, T>> _library =
+			new Lazy<ConcurrentDictionary<string, T>>(
+				() => new ConcurrentDictionary<string, T>());
 
 		internal AbstractLibrary(ISerializer<T, string> pSerializer, string pLibraryDirectory)
 		{
@@ -34,7 +35,7 @@ namespace Pathfinder.Library
 
 		protected ISerializer<T, string> Serializer { get; }
 		protected string LibraryDirectory { get; }
-		internal IDictionary<string, T> Library => _library.Value;
+		internal ConcurrentDictionary<string, T> Library => _library.Value;
 
 		public IEnumerable<string> Keys => Library.Keys.ToImmutableList();
 		public IEnumerable<T> Values => Library.Values.ToImmutableList();
@@ -81,7 +82,7 @@ namespace Pathfinder.Library
 			var xml = File.ReadAllText(pFile);
 			var deserialize = pSerializer.Deserialize(xml);
 
-			Library[deserialize.Name] = deserialize;
+			Library.TryAdd(deserialize.Name, deserialize);
 		}
 	}
 }
