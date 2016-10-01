@@ -128,7 +128,12 @@ namespace Test.Serializers.Json
 					JsonSerializer.CreateDefault());
 
 				var result = JObject.Parse(stringWriter.ToString());
+				File.WriteAllText("result.json", result.ToString());
+
 				var expected = JObject.Parse(Resources.TestCharacter);
+				File.WriteAllText("expected.json", expected.ToString());
+
+
 				Assert.IsTrue(JToken.DeepEquals(expected, result));
 			}
 		}
@@ -195,16 +200,18 @@ namespace Test.Serializers.Json
 
 		protected static ICharacter getTestCharacter()
 		{
-			return new Character(new MockSkillLibrary())
-				.SetStrength(12)
-				.SetDexterity(12)
-				.SetConstitution(12)
-				.SetIntelligence(12)
-				.SetWisdom(12)
-				.SetCharisma(12)
-				.SetAge(10)
-				.SetRace(new MockRaceLibrary().Values.First())
-				.AddClass(new MockClassLibrary().Values.First());
+			var character = new Character(new MockSkillLibrary());
+			var withStrength = character.SetStrength(12);
+			var withDexterity = withStrength.SetDexterity(12);
+			var withConstitution = withDexterity.SetConstitution(12);
+			var withIntelligence = withConstitution.SetIntelligence(12);
+			var withWisdom = withIntelligence.SetWisdom(12);
+			var withCharisma = withWisdom.SetCharisma(12);
+			var withAge = withCharisma.SetAge(10);
+			var withRace = withAge.SetRace(new MockRaceLibrary().Values.First());
+			var withClass = withRace.AddClass(new MockClassLibrary().Values.First());
+
+			return withClass;
 		}
 	}
 }

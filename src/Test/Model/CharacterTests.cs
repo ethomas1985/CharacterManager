@@ -880,15 +880,24 @@ namespace Test.Model
 		[TestFixture]
 		public class AddClassMethod : CharacterTests
 		{
-			private readonly Class _class =
-				new Class(
-					"Testing Class",
-					new HashSet<Alignment>(),
-					new Die(6),
-					1,
-					new HashSet<string>(),
-					new List<IClassLevel>(),
-					new List<string>());
+			private const int SKILL_ADDEND = 5;
+			private const int HIT_DIE_FACES = 6;
+
+			private static MockClass CreateMockClass()
+			{
+				return new MockClass
+				{
+					Name = "Mock Class",
+					Alignments = new HashSet<Alignment>
+										{
+											Alignment.ChaoticGood,
+											Alignment.ChaoticNeutral,
+											Alignment.ChaoticEvil
+										},
+					HitDie = new Die(HIT_DIE_FACES),
+					SkillAddend = SKILL_ADDEND
+				};
+			}
 
 			[Test]
 			public void NullClass()
@@ -903,7 +912,7 @@ namespace Test.Model
 			{
 				var original = createCharacter(new MockSkillLibrary());
 
-				Assert.Throws<Exception>(() => original.AddClass(_class, -1, false, new List<int>()));
+				Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), -1, false, new List<int>()));
 			}
 
 			[Test]
@@ -911,80 +920,123 @@ namespace Test.Model
 			{
 				var original = createCharacter(new MockSkillLibrary());
 
-				Assert.Throws<Exception>(() => original.AddClass(_class, 1, false, null));
+				Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), 1, false, null));
 			}
 
 			[Test]
 			public void Success()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class);
 
-				Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(_class)));
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass);
+
+				Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(mockClass)));
 			}
 
 			[Test]
 			public void Success_Level()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class);
 
-				Assert.AreEqual(1, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.Level);
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass);
+
+				Assert.AreEqual(1, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.Level);
 			}
 
 			[Test]
 			public void Success_IsFavored()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class);
 
-				Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.IsFavored);
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass);
+
+				Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.IsFavored);
 			}
 
 			[Test]
 			public void Success_HitPoints()
 			{
-				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class);
+				var original =
+					createCharacter(new MockSkillLibrary())
+						.SetConstitution(10);
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass);
 
-				var expected = _class.HitDie.Faces + original.Constitution.Modifier;
-				Assert.AreEqual(expected, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.HitPoints.Sum());
+				var expected = mockClass.HitDie.Faces + original.Constitution.Modifier;
+				Assert.AreEqual(expected, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.HitPoints.Sum());
+			}
+
+			[Test]
+			public void Success_MaxSkillRanks()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass);
+
+				var expected = SKILL_ADDEND + original.Intelligence.Modifier;
+				Assert.AreEqual(expected, result.MaxSkillRanks);
 			}
 
 			[Test]
 			public void Success_Overload()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
-				Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(_class)));
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+
+				Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(mockClass)));
 			}
 
 			[Test]
 			public void Success_Overload_Level()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
-				Assert.AreEqual(10, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.Level);
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+
+				Assert.AreEqual(10, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.Level);
 			}
 
 			[Test]
 			public void Success_Overload_IsFavored()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
-				Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.IsFavored);
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+
+				Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.IsFavored);
 			}
 
 			[Test]
 			public void Success_Overload_HitPoints()
 			{
-				var original = createCharacter(new MockSkillLibrary());
-				var result = original.AddClass(_class, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+				var original =
+					createCharacter(new MockSkillLibrary())
+						.SetConstitution(10);
 
-				Assert.AreEqual(30, result.Classes.FirstOrDefault(x => x.Class.Equals(_class))?.HitPoints.Sum());
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+
+				Assert.AreEqual(30, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.HitPoints.Sum());
+			}
+
+			[Test]
+			public void Success_Overload_MaxSkillRanks()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var mockClass = CreateMockClass();
+				var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
+
+				var expected = SKILL_ADDEND + original.Intelligence.Modifier;
+				Assert.AreEqual(expected, result.MaxSkillRanks);
 			}
 
 			[Test]
@@ -992,7 +1044,7 @@ namespace Test.Model
 			{
 				var original = createCharacter(new MockSkillLibrary());
 
-				var result = original.AddClass(_class);
+				var result = original.AddClass(CreateMockClass());
 
 				Assert.AreNotSame(original, result);
 			}
@@ -1001,29 +1053,70 @@ namespace Test.Model
 			public void OriginalUnchanged()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				original.AddClass(_class);
 
-				Assert.IsFalse(original.Classes.Any(x => x.Class.Equals(_class)));
+				var mockClass = CreateMockClass();
+				original.AddClass(mockClass);
+
+				Assert.IsFalse(original.Classes.Any(x => x.Class.Equals(mockClass)));
 			}
 		}
 
-		[Ignore("Method Not Yet Implemented.")]
 		[TestFixture]
 		public class IncrementClassMethod : CharacterTests
 		{
+			private const int SKILL_ADDEND = 5;
+			private const int HIT_DIE_FACES = 6;
+
+			private static MockClass CreateMockClass()
+			{
+				return new MockClass
+				{
+					Name = "Mock Class",
+					Alignments = new HashSet<Alignment>
+										{
+											Alignment.ChaoticGood,
+											Alignment.ChaoticNeutral,
+											Alignment.ChaoticEvil
+										},
+					HitDie = new Die(HIT_DIE_FACES),
+					SkillAddend = SKILL_ADDEND
+				};
+			}
+
+			[Test]
+			public void NullClass()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				Assert.Throws<ArgumentNullException>(() => original.IncrementClass(null));
+			}
+
+			[Test]
+			public void NewClass()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				Assert.Throws<ArgumentException>(() => original.IncrementClass(new MockClass()));
+			}
+
 			[Test]
 			public void Success()
 			{
-				Assert.Fail("Not Yet Implemented");
+				var mockClass = CreateMockClass();
+				var original = createCharacter(new MockSkillLibrary()).AddClass(mockClass);
+
+				var firstClass = original.Classes.Select(x => x.Class).First();
+				var result = original.IncrementClass(firstClass);
+
+				Assert.IsNotNull(result);
 			}
 
 			[Test]
 			public void ReturnsNewInstance()
 			{
-				Assert.Fail("Not Yet Implemented");
-				var original = createCharacter(new MockSkillLibrary());
-
-				var result = original.IncrementClass(null);
+				var mockClass = CreateMockClass();
+				var original = createCharacter(new MockSkillLibrary()).AddClass(mockClass);
+				var result = original.IncrementClass(mockClass);
 
 				Assert.AreNotSame(original, result);
 			}
@@ -1031,11 +1124,88 @@ namespace Test.Model
 			[Test]
 			public void OriginalUnchanged()
 			{
-				Assert.Fail("Not Yet Implemented");
-				var original = createCharacter(new MockSkillLibrary());
-				original.IncrementClass(null);
+				var mockClass = CreateMockClass();
+				var original = createCharacter(new MockSkillLibrary()).AddClass(mockClass);
+				var originalCharacterClass = original.Classes.First();
 
-				Assert.IsNull(original.Name);
+				var result = original.IncrementClass(mockClass);
+				var resultCharacterClass = result.Classes.First();
+
+				Assert.AreEqual(originalCharacterClass.Class, resultCharacterClass.Class);
+				Assert.AreEqual(1, originalCharacterClass.Level);
+			}
+
+			[Test] public void IncrementsLevel()
+			{
+				var mockClass = CreateMockClass();
+				var original = createCharacter(new MockSkillLibrary()).AddClass(mockClass);
+				var originalCharacterClass = original.Classes.First();
+
+				var result = original.IncrementClass(mockClass);
+				var resultCharacterClass = result.Classes.First();
+
+				Assert.AreEqual(originalCharacterClass.Level + 1, resultCharacterClass.Level);
+			}
+
+			[Test]
+			public void UpdatesHitPointsWithDefault()
+			{
+				var mockClass = CreateMockClass();
+				var original = 
+					createCharacter(new MockSkillLibrary())
+						.SetConstitution(10)
+						.AddClass(mockClass);
+				var originalCharacterClass = original.Classes.First();
+
+				var result = original.IncrementClass(mockClass);
+				var resultCharacterClass = result.Classes.First();
+
+				var newHitPoints = mockClass.HitDie.Faces;
+				var originalHitPoints = originalCharacterClass.HitPoints.Sum();
+				var constitutionModifier = original.Constitution.Modifier;
+
+				var expected = originalHitPoints + newHitPoints + constitutionModifier;
+
+				var actual = resultCharacterClass.HitPoints.Sum();
+				Assert.AreEqual(expected, actual);
+			}
+
+			[Test] public void UpdatesHitPoints()
+			{
+				var mockClass = CreateMockClass();
+				var original =
+					createCharacter(new MockSkillLibrary())
+						.SetConstitution(10)
+						.AddClass(mockClass);
+				var originalCharacterClass = original.Classes.First();
+
+				const int newHitPoints = 3;
+				var result = original.IncrementClass(mockClass, newHitPoints);
+				var resultCharacterClass = result.Classes.First();
+
+				var originalHitPoints = originalCharacterClass.HitPoints.Sum();
+				var constitutionModifier = original.Constitution.Modifier;
+
+				var expected = originalHitPoints + newHitPoints + constitutionModifier;
+
+				var actual = resultCharacterClass.HitPoints.Sum();
+				Assert.AreEqual(expected, actual);
+			}
+
+			[Test] public void UpdatesSkillPoints()
+			{
+				var mockClass = CreateMockClass();
+				var original =
+					createCharacter(new MockSkillLibrary())
+					.SetIntelligence(10)
+					.AddClass(mockClass);
+
+				var result = original.IncrementClass(mockClass);
+				var resultCharacterClass = result.Classes.First();
+
+
+				var expected = resultCharacterClass.Level * (SKILL_ADDEND + result.Intelligence.Modifier);
+				Assert.AreEqual(expected, result.MaxSkillRanks);
 			}
 		}
 

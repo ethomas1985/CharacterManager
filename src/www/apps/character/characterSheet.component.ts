@@ -23,7 +23,7 @@ namespace app.Character {
 		constructor(private $http: ng.IHttpService) {
 			this.isLoading = false;
 
-			let url = "http://localhost:8888/api/CharacterGenerator/CreateTyrida";
+			let url = "http://localhost:8888/api/CharacterGenerator/CreatePreBuilt";
 
 			if (!this.character) {
 				this.isLoading = true;

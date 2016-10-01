@@ -70,6 +70,7 @@
     <Compile Include="Model\DefenseScoreTests.cs" />
     <Compile Include="Model\Currency\PurseTests.cs" />
     <Compile Include="Model\MockCharacterLibrary.cs" />
+    <Compile Include="Model\MockClass.cs" />
     <Compile Include="Model\OffensiveScoreTests.cs" />
     <Compile Include="Model\SavingThrowTests.cs" />
     <Compile Include="Model\SkillScoreTests.cs" />

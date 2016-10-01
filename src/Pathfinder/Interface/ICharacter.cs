@@ -81,6 +81,7 @@ namespace Pathfinder.Interface
 		IEnumerable<ITrait> Traits { get; }
 		IEnumerable<IFeat> Feats { get; }
 
+		int MaxSkillRanks { get; }
 		IEnumerable<ISkillScore> SkillScores { get; }
 		ISkillScore this[ISkill pSkill] { get; }
 
@@ -111,7 +112,7 @@ namespace Pathfinder.Interface
 
 		ICharacter AddClass(IClass pClass);
 		ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints);
-		ICharacter IncrementClass(IClass pClass);
+		ICharacter IncrementClass(IClass pClass, int pHitPoints = 0);
 
 		ICharacter SetDamage(int pDamage);
 		ICharacter AddDamage(int pDamage);

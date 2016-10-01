@@ -1,210 +1,210 @@
 ﻿{
-  "Age": 10,
-  "Alignment": "Neutral",
-  "Gender": "Female",
-  "Race": "Test Race",
-  "BaseSize": "Medium",
-  "Size": "Medium",
-  "Languages": [
-    "Test Language"
-  ],
-  "MaxHealthPoints": 7,
-  "Damage": 0,
-  "HealthPoints": 7,
-  "BaseSpeed": 30,
-  "ArmoredSpeed": 0,
-  "Initiative": 1,
-  "Classes": [
-    {
-      "Class": "Test Class",
-      "Level": 1,
-      "IsFavored": true,
-      "BaseAttackBonus": 1,
-      "Fortitude": 1,
-      "Reflex": 1,
-      "Will": 1,
-      "HitPoints": [
-        7
-      ]
-    }
-  ],
-  "Strength": {
-    "Type": "Strength",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "Dexterity": {
-    "Type": "Dexterity",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "Constitution": {
-    "Type": "Constitution",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "Intelligence": {
-    "Type": "Intelligence",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "Wisdom": {
-    "Type": "Wisdom",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "Charisma": {
-    "Type": "Charisma",
-    "Score": 12,
-    "Modifier": 1,
-    "Base": 12,
-    "Enhanced": 0,
-    "Inherent": 0,
-    "Penalty": 0,
-    "Temporary": 0
-  },
-  "ArmorClass": {
-    "Type": "ArmorClass",
-    "Score": 11,
-    "ArmorBonus": 0,
-    "ShieldBonus": 0,
-    "DexterityModifier": 1,
-    "StrengthModifier": 0,
-    "BaseAttackBonus": 0,
-    "SizeModifier": 0,
-    "DeflectBonus": 0,
-    "DodgeBonus": 0,
-    "MiscellaneousBonus": 0,
-    "NaturalBonus": 0,
-    "TemporaryBonus": 0
-  },
-  "FlatFooted": {
-    "Type": "FlatFooted",
-    "Score": 10,
-    "ArmorBonus": 0,
-    "ShieldBonus": 0,
-    "DexterityModifier": 0,
-    "StrengthModifier": 0,
-    "BaseAttackBonus": 0,
-    "SizeModifier": 0,
-    "DeflectBonus": 0,
-    "DodgeBonus": 0,
-    "MiscellaneousBonus": 0,
-    "NaturalBonus": 0,
-    "TemporaryBonus": 0
-  },
-  "Touch": {
-    "Type": "Touch",
-    "Score": 11,
-    "ArmorBonus": 0,
-    "ShieldBonus": 0,
-    "DexterityModifier": 1,
-    "StrengthModifier": 0,
-    "BaseAttackBonus": 0,
-    "SizeModifier": 0,
-    "DeflectBonus": 0,
-    "DodgeBonus": 0,
-    "MiscellaneousBonus": 0,
-    "NaturalBonus": 0,
-    "TemporaryBonus": 0
-  },
-  "CombatManeuverDefense": {
-    "Type": "CombatManeuverDefense",
-    "Score": 13,
-    "ArmorBonus": 0,
-    "ShieldBonus": 0,
-    "DexterityModifier": 1,
-    "StrengthModifier": 1,
-    "BaseAttackBonus": 1,
-    "SizeModifier": 0,
-    "DeflectBonus": 0,
-    "DodgeBonus": 0,
-    "MiscellaneousBonus": 0,
-    "NaturalBonus": 0,
-    "TemporaryBonus": 0
-  },
-  "Fortitude": {
-    "Type": "Fortitude",
-    "Score": 2,
-    "Ability": 2,
-    "Base": 1,
-    "AbilityModifier": 1,
-    "Resist": 0,
-    "Misc": 0,
-    "Temporary": 0
-  },
-  "Reflex": {
-    "Type": "Reflex",
-    "Score": 2,
-    "Ability": 1,
-    "Base": 1,
-    "AbilityModifier": 1,
-    "Resist": 0,
-    "Misc": 0,
-    "Temporary": 0
-  },
-  "Will": {
-    "Type": "Will",
-    "Score": 2,
-    "Ability": 4,
-    "Base": 1,
-    "AbilityModifier": 1,
-    "Resist": 0,
-    "Misc": 0,
-    "Temporary": 0
-  },
-  "Melee": {
-    "Type": "Melee",
-    "Score": 2,
-    "BaseAttackBonus": 1,
-    "AbilityModifier": 1,
-    "SizeModifier": 0,
-    "MiscModifier": 0,
-    "TemporaryModifier": 0
-  },
-  "Ranged": {
-    "Type": "Ranged",
-    "Score": 2,
-    "BaseAttackBonus": 1,
-    "AbilityModifier": 1,
-    "SizeModifier": 0,
-    "MiscModifier": 0,
-    "TemporaryModifier": 0
-  },
-  "CombatManeuverBonus": {
-    "Type": "CombatManeuverBonus",
-    "Score": 2,
-    "BaseAttackBonus": 1,
-    "AbilityModifier": 1,
-    "SizeModifier": 0,
-    "MiscModifier": 0,
-    "TemporaryModifier": 0
-  },
+	"Age": 10,
+	"Alignment": "Neutral",
+	"Gender": "Female",
+	"Race": "Test Race",
+	"BaseSize": "Medium",
+	"Size": "Medium",
+	"Languages": [
+		"Test Language"
+	],
+	"MaxHealthPoints": 7,
+	"Damage": 0,
+	"HealthPoints": 7,
+	"BaseSpeed": 30,
+	"ArmoredSpeed": 0,
+	"Initiative": 1,
+	"Classes": [
+		{
+			"Class": "Test Class",
+			"Level": 1,
+			"IsFavored": true,
+			"BaseAttackBonus": 1,
+			"Fortitude": 1,
+			"Reflex": 1,
+			"Will": 1,
+			"HitPoints": [
+				6
+			]
+		}
+	],
+	"Strength": {
+		"Type": "Strength",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"Dexterity": {
+		"Type": "Dexterity",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"Constitution": {
+		"Type": "Constitution",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"Intelligence": {
+		"Type": "Intelligence",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"Wisdom": {
+		"Type": "Wisdom",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"Charisma": {
+		"Type": "Charisma",
+		"Score": 12,
+		"Modifier": 1,
+		"Base": 12,
+		"Enhanced": 0,
+		"Inherent": 0,
+		"Penalty": 0,
+		"Temporary": 0
+	},
+	"ArmorClass": {
+		"Type": "ArmorClass",
+		"Score": 11,
+		"ArmorBonus": 0,
+		"ShieldBonus": 0,
+		"DexterityModifier": 1,
+		"StrengthModifier": 0,
+		"BaseAttackBonus": 0,
+		"SizeModifier": 0,
+		"DeflectBonus": 0,
+		"DodgeBonus": 0,
+		"MiscellaneousBonus": 0,
+		"NaturalBonus": 0,
+		"TemporaryBonus": 0
+	},
+	"FlatFooted": {
+		"Type": "FlatFooted",
+		"Score": 10,
+		"ArmorBonus": 0,
+		"ShieldBonus": 0,
+		"DexterityModifier": 0,
+		"StrengthModifier": 0,
+		"BaseAttackBonus": 0,
+		"SizeModifier": 0,
+		"DeflectBonus": 0,
+		"DodgeBonus": 0,
+		"MiscellaneousBonus": 0,
+		"NaturalBonus": 0,
+		"TemporaryBonus": 0
+	},
+	"Touch": {
+		"Type": "Touch",
+		"Score": 11,
+		"ArmorBonus": 0,
+		"ShieldBonus": 0,
+		"DexterityModifier": 1,
+		"StrengthModifier": 0,
+		"BaseAttackBonus": 0,
+		"SizeModifier": 0,
+		"DeflectBonus": 0,
+		"DodgeBonus": 0,
+		"MiscellaneousBonus": 0,
+		"NaturalBonus": 0,
+		"TemporaryBonus": 0
+	},
+	"CombatManeuverDefense": {
+		"Type": "CombatManeuverDefense",
+		"Score": 13,
+		"ArmorBonus": 0,
+		"ShieldBonus": 0,
+		"DexterityModifier": 1,
+		"StrengthModifier": 1,
+		"BaseAttackBonus": 1,
+		"SizeModifier": 0,
+		"DeflectBonus": 0,
+		"DodgeBonus": 0,
+		"MiscellaneousBonus": 0,
+		"NaturalBonus": 0,
+		"TemporaryBonus": 0
+	},
+	"Fortitude": {
+		"Type": "Fortitude",
+		"Score": 2,
+		"Ability": 2,
+		"Base": 1,
+		"AbilityModifier": 1,
+		"Resist": 0,
+		"Misc": 0,
+		"Temporary": 0
+	},
+	"Reflex": {
+		"Type": "Reflex",
+		"Score": 2,
+		"Ability": 1,
+		"Base": 1,
+		"AbilityModifier": 1,
+		"Resist": 0,
+		"Misc": 0,
+		"Temporary": 0
+	},
+	"Will": {
+		"Type": "Will",
+		"Score": 2,
+		"Ability": 4,
+		"Base": 1,
+		"AbilityModifier": 1,
+		"Resist": 0,
+		"Misc": 0,
+		"Temporary": 0
+	},
+	"Melee": {
+		"Type": "Melee",
+		"Score": 2,
+		"BaseAttackBonus": 1,
+		"AbilityModifier": 1,
+		"SizeModifier": 0,
+		"MiscModifier": 0,
+		"TemporaryModifier": 0
+	},
+	"Ranged": {
+		"Type": "Ranged",
+		"Score": 2,
+		"BaseAttackBonus": 1,
+		"AbilityModifier": 1,
+		"SizeModifier": 0,
+		"MiscModifier": 0,
+		"TemporaryModifier": 0
+	},
+	"CombatManeuverBonus": {
+		"Type": "CombatManeuverBonus",
+		"Score": 2,
+		"BaseAttackBonus": 1,
+		"AbilityModifier": 1,
+		"SizeModifier": 0,
+		"MiscModifier": 0,
+		"TemporaryModifier": 0
+	},
 	"SkillScores": [
 		{
 			"Ability": "Strength",

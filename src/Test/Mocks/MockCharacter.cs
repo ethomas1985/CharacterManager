@@ -55,6 +55,7 @@ namespace Test.Mocks
 		public IEnumerable<IDie> HitDice { get; }
 		public IEnumerable<ITrait> Traits { get; }
 		public IEnumerable<IFeat> Feats { get; }
+		public int MaxSkillRanks { get; }
 		public IEnumerable<ISkillScore> SkillScores { get; }
 
 		public ISkillScore this[ISkill pSkill]
@@ -107,7 +108,7 @@ namespace Test.Mocks
 			throw new NotImplementedException();
 		}
 
-		public ICharacter IncrementClass(IClass pClass)
+		public ICharacter IncrementClass(IClass pClass, int pHitPoints = 0)
 		{
 			return this;
 		}

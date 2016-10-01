@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Pathfinder.Interface;
+using Pathfinder.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pathfinder.Interface;
-using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
@@ -25,10 +25,10 @@ namespace Pathfinder.Model
 		}
 
 		public IClass Class { get; }
-		public int Level { get; }
+		public int Level { get; private set; }
 		public bool IsFavored { get; }
 
-		public IEnumerable<int> HitPoints { get; private set; }  = new List<int>().ToImmutableList();
+		public IEnumerable<int> HitPoints { get; private set; } = new List<int>().ToImmutableList();
 
 		public int SkillAddend => Class.SkillAddend;
 
@@ -41,6 +41,7 @@ namespace Pathfinder.Model
 		{
 			var newCharacterClass = _copy();
 
+			newCharacterClass.Level++;
 			newCharacterClass.HitPoints = HitPoints.Append(pHitPoints);
 
 			return newCharacterClass;
@@ -53,7 +54,7 @@ namespace Pathfinder.Model
 
 		private CharacterClass _copy()
 		{
-			return (CharacterClass) MemberwiseClone();
+			return (CharacterClass)MemberwiseClone();
 		}
 
 		public override string ToString()
@@ -77,10 +78,14 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = Equals(Class, pOther.Class);
-			result &= Level == pOther.Level;
-			result &= IsFavored == pOther.IsFavored;
-			result &= HitPoints.SequenceEqual(pOther.HitPoints);
+			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(CharacterClass)}es");
+
+			var result = ComparisonUtilities.Compare(GetType().Name, Class, pOther.Class, nameof(Class));
+			result &= ComparisonUtilities.Compare(GetType().Name, Level, pOther.Level, nameof(Level));
+			result &= ComparisonUtilities.Compare(GetType().Name, IsFavored, pOther.IsFavored, nameof(IsFavored));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, HitPoints, pOther.HitPoints, nameof(HitPoints));
+
+			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
 
 			return result;
 		}

@@ -1,5 +1,6 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,13 +74,18 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
-			
-			var result = string.Equals(Name, pOther.Name);
-			result &= Alignments.SetEquals(pOther.Alignments);
-			result &= Equals(HitDie, pOther.HitDie);
-			result &= SkillAddend == pOther.SkillAddend;
-			result &= (Skills != null && pOther.Skills != null) && Skills.SetEquals(pOther.Skills);
-			result &= Features.SequenceEqual(pOther.Features);
+
+			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(Class)}es");
+
+			var result = ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name));
+			result &= ComparisonUtilities.CompareSets(GetType().Name, Alignments, pOther.Alignments, nameof(Alignments));
+			result &= ComparisonUtilities.Compare(GetType().Name, HitDie, pOther.HitDie, nameof(HitDie));
+			result &= ComparisonUtilities.Compare(GetType().Name, SkillAddend, pOther.SkillAddend, nameof(SkillAddend));
+			result &= ComparisonUtilities.CompareSets(GetType().Name, Skills, pOther.Skills, nameof(Skills));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Features, pOther.Features, nameof(Features));
+
+			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
+
 			return result;
 		}
 

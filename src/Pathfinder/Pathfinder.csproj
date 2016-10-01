@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.RegularExpressions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -119,6 +120,7 @@
     <Compile Include="Serializers\Xml\FeatXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\ItemXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\SpellXmlSerializer.cs" />
+    <Compile Include="Utilities\ComparisonUtilities.cs" />
     <Compile Include="Utilities\decimalExtensions.cs" />
     <Compile Include="Utilities\enumerableExtensions.cs" />
     <Compile Include="Utilities\intExtensions.cs" />

@@ -42,7 +42,13 @@ namespace Pathfinder.Model
 
 		public IEnumerable<ILanguage> Languages { get; private set; } = new List<ILanguage>();
 
-		public int MaxHealthPoints { get { return Classes?.SelectMany(x => x.HitPoints).Sum() ?? 0; } }
+		public int MaxHealthPoints
+		{
+			get
+			{
+				return Classes?.SelectMany(x => x.HitPoints).Select(x => x + Constitution.Modifier).Sum() ?? 0;
+			}
+		}
 		public int Damage { get; private set; }
 		public int HealthPoints => MaxHealthPoints - Damage;
 
@@ -483,6 +489,7 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IFeat> Feats { get; private set; }
 
+		public int MaxSkillRanks => Classes.Sum(x => x.Level * (Intelligence.Modifier + x.SkillAddend));
 		private ILibrary<ISkill> SkillLibrary { get; }
 		private IEnumerable<ISkill> Skills => SkillLibrary;
 
@@ -569,6 +576,8 @@ namespace Pathfinder.Model
 
 		public ICharacter SetRace(IRace pRace)
 		{
+			Tracer.Message(pMessage: $"{nameof(pRace)}: {pRace}");
+
 			Assert.ArgumentNotNull(pRace, nameof(pRace));
 
 			var newCharacter = _copy();
@@ -582,6 +591,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetName(string pName)
 		{
+			Tracer.Message(pMessage: $"{nameof(pName)}: {pName}");
+
 			Assert.ArgumentNotNull(pName, nameof(pName));
 
 			var newCharacter = _copy();
@@ -591,6 +602,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetAge(int pAge)
 		{
+			Tracer.Message(pMessage: $"{nameof(pAge)}: {pAge}");
+
 			Assert.IsTrue(pAge > 0, $"{nameof(pAge)} cannot be less than 1.");
 
 			var newCharacter = _copy();
@@ -599,12 +612,16 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetAlignment(Alignment pAlignment)
 		{
+			Tracer.Message(pMessage: $"{nameof(pAlignment)}: {pAlignment}");
+
 			var newCharacter = _copy();
 			newCharacter.Alignment = pAlignment;
 			return newCharacter;
 		}
 		public ICharacter SetHomeland(string pHomeland)
 		{
+			Tracer.Message(pMessage: $"{nameof(pHomeland)}: {pHomeland}");
+
 			Assert.ArgumentNotNull(pHomeland, nameof(pHomeland));
 
 			var newCharacter = _copy();
@@ -613,6 +630,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetDeity(IDeity pDeity)
 		{
+			Tracer.Message(pMessage: $"{nameof(pDeity)}: {pDeity}");
+
 			Assert.ArgumentNotNull(pDeity, nameof(pDeity));
 
 			var newCharacter = _copy();
@@ -621,12 +640,16 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetGender(Gender pGender)
 		{
+			Tracer.Message(pMessage: $"{nameof(pGender)}: {pGender}");
+
 			var newCharacter = _copy();
 			newCharacter.Gender = pGender;
 			return newCharacter;
 		}
 		public ICharacter SetEyes(string pEyes)
 		{
+			Tracer.Message(pMessage: $"{nameof(pEyes)}: {pEyes}");
+
 			Assert.ArgumentNotNull(pEyes, nameof(pEyes));
 
 			var newCharacter = _copy();
@@ -635,6 +658,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetHair(string pHair)
 		{
+			Tracer.Message(pMessage: $"{nameof(pHair)}: {pHair}");
+
 			Assert.ArgumentNotNull(pHair, nameof(pHair));
 
 			var newCharacter = _copy();
@@ -643,6 +668,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetHeight(string pHeight)
 		{
+			Tracer.Message(pMessage: $"{nameof(pHeight)}: {pHeight}");
+
 			Assert.ArgumentNotNull(pHeight, nameof(pHeight));
 
 			var newCharacter = _copy();
@@ -651,6 +678,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetWeight(string pWeight)
 		{
+			Tracer.Message(pMessage: $"{nameof(pWeight)}: {pWeight}");
+
 			Assert.ArgumentNotNull(pWeight, nameof(pWeight));
 
 			var newCharacter = _copy();
@@ -660,6 +689,8 @@ namespace Pathfinder.Model
 
 		public ICharacter AddLanguage(ILanguage pLanguage)
 		{
+			Tracer.Message(pMessage: $"{nameof(pLanguage)}: {pLanguage}");
+
 			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
 
 			var newCharacter = _copy();
@@ -671,6 +702,8 @@ namespace Pathfinder.Model
 
 		public ICharacter RemoveLanguage(ILanguage pLanguage)
 		{
+			Tracer.Message(pMessage: $"{nameof(pLanguage)}: {pLanguage}");
+
 			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
 
 			var newCharacter = _copy();
@@ -682,6 +715,10 @@ namespace Pathfinder.Model
 
 		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -694,6 +731,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -706,6 +747,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -718,6 +763,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -730,6 +779,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -742,6 +795,10 @@ namespace Pathfinder.Model
 		}
 		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
+									 $"{nameof(pEnhanced)}: {pEnhanced}, " +
+									 $"{nameof(pInherent)}: {pInherent}");
+
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
@@ -755,9 +812,11 @@ namespace Pathfinder.Model
 
 		public ICharacter AddClass(IClass pClass)
 		{
+			//Tracer.Message(pMessage: $"{pClass}");
+
 			Assert.ArgumentNotNull(pClass, nameof(pClass));
 
-			var hitPoints = pClass.HitDie.Faces + Constitution.Modifier;
+			var hitPoints = pClass.HitDie.Faces;
 			return AddClass(pClass, 1, true, new List<int> { hitPoints });
 		}
 		public ICharacter AddClass(IClass pClass, int pLevel, bool pIsFavoredClass, IEnumerable<int> pHitPoints)
@@ -765,23 +824,48 @@ namespace Pathfinder.Model
 			Assert.ArgumentNotNull(pClass, nameof(pClass));
 			Assert.IsTrue(pLevel > 0, nameof(pLevel));
 
-			var hitPoints = pHitPoints?.ToList() ?? new List<int>();
-			Assert.IsTrue(hitPoints.Count > 0, nameof(pHitPoints));
+			var hitPointsList = pHitPoints as int[] ?? (pHitPoints?.ToArray() ?? new int[0]);
+			Assert.IsTrue(hitPointsList.Length > 0, nameof(pHitPoints));
+
+			Tracer.Message(pMessage: $"{nameof(pClass)}: {pClass}, " +
+									 $"{nameof(pLevel)}: {pLevel}, " +
+									 $"{nameof(pIsFavoredClass)}: {pIsFavoredClass}, " +
+									 $"{nameof(pHitPoints)}: [ {string.Join(", ", hitPointsList)} ]");
+
 
 			var newCharacter = _copy();
 
-			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, hitPoints);
+			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, hitPointsList);
 			newCharacter.Classes = Classes.Append(characterClass);
 
 			return newCharacter;
 		}
-		public ICharacter IncrementClass(IClass pClass)
+		public ICharacter IncrementClass(IClass pClass, int pHitPoints = 0)
 		{
-			throw new NotImplementedException();
+			Tracer.Message(pMessage: $"{nameof(pClass)}: {pClass}, " +
+									 $"{nameof(pHitPoints)}: {pHitPoints}");
+
+			Assert.ArgumentNotNull(pClass, nameof(pClass));
+
+			var characterClass = Classes.FirstOrDefault(x => x.Class.Equals(pClass));
+			if (characterClass == null)
+			{
+				throw new ArgumentException($"Class not found. Class name was {pClass.Name}");
+			}
+
+			var hitPoints = pHitPoints > 0 ? pHitPoints : pClass.HitDie.Faces;
+			var newCharacterClass = characterClass.IncrementLevel(hitPoints);
+
+			var newCharacter = _copy();
+			newCharacter.Classes = Classes.Where(x => !x.Equals(characterClass)).Append(newCharacterClass);
+
+			return newCharacter;
 		}
 
 		public ICharacter SetDamage(int pDamage)
 		{
+			Tracer.Message(pMessage: $"{nameof(pDamage)}: {pDamage}");
+
 			Assert.IsTrue(pDamage >= 0, $"{nameof(pDamage)} cannot be less than 0.");
 
 			var newCharacter = _copy();
@@ -790,6 +874,8 @@ namespace Pathfinder.Model
 		}
 		public ICharacter AddDamage(int pDamage)
 		{
+			Tracer.Message(pMessage: $"{nameof(pDamage)}: {pDamage}");
+
 			var newCharacter = _copy();
 			newCharacter.Damage += pDamage;
 			return newCharacter;
@@ -797,20 +883,29 @@ namespace Pathfinder.Model
 
 		public ICharacter SetExperience(IExperience pExperience)
 		{
+			Tracer.Message(pMessage: $"{nameof(pExperience)}: {pExperience}");
+
 			throw new NotImplementedException();
 		}
 
 		public ICharacter SetSkill(ISkill pSkill)
 		{
+			Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}");
+
 			throw new NotImplementedException();
 		}
 		public ICharacter AssignSkillPoint(ISkill pSkill, int pPoint)
 		{
+			Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}, " +
+									 $"{nameof(pPoint)}: {pPoint}");
+
 			throw new NotImplementedException();
 		}
 
 		public ICharacter AddFeat(IFeat pFeat)
 		{
+			Tracer.Message(pMessage: $"{nameof(pFeat)}: {pFeat}");
+
 			throw new NotImplementedException();
 		}
 
@@ -818,6 +913,11 @@ namespace Pathfinder.Model
 
 		public ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
+			Tracer.Message(pMessage: $"{nameof(pCopper)}: {pCopper}, " +
+									 $"{nameof(pSilver)}: {pSilver}, " +
+									 $"{nameof(pGold)}: {pGold}, " +
+									 $"{nameof(pPlatinum)}: {pPlatinum}");
+
 			var newCharacter = _copy();
 			newCharacter.Purse =
 				Purse.Add(
@@ -830,16 +930,23 @@ namespace Pathfinder.Model
 
 		public ICharacter SetInventory(IItem pItem)
 		{
+			Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
+
 			throw new NotImplementedException();
 		}
 
 		public ICharacter EquipArmor(IArmor pArmor)
 		{
+			Tracer.Message(pMessage: $"{nameof(pArmor)}: {pArmor}");
+
 			throw new NotImplementedException();
 		}
 
 		public ICharacter ReplaceArmor(IArmor pArmorToReplace, IArmor pArmorToEquip)
 		{
+			Tracer.Message(pMessage: $"{nameof(pArmorToReplace)}: {pArmorToReplace}, " +
+									 $"{nameof(pArmorToEquip)}: {pArmorToEquip}");
+
 			throw new NotImplementedException();
 		}
 
@@ -869,56 +976,58 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = Age == pOther.Age;
-			result &= Alignment == pOther.Alignment;
-			result &= Classes.SequenceEqual(pOther.Classes);
-			result &= Equals(Deity, pOther.Deity);
-			result &= Gender == pOther.Gender;
-			result &= string.Equals(Eyes, pOther.Eyes, StringComparison.InvariantCultureIgnoreCase);
-			result &= string.Equals(Hair, pOther.Hair, StringComparison.InvariantCultureIgnoreCase);
-			result &= string.Equals(Height, pOther.Height, StringComparison.InvariantCultureIgnoreCase);
-			result &= string.Equals(Weight, pOther.Weight, StringComparison.InvariantCultureIgnoreCase);
-			result &= string.Equals(Homeland, pOther.Homeland, StringComparison.InvariantCultureIgnoreCase);
-			result &= string.Equals(Name, pOther.Name, StringComparison.InvariantCultureIgnoreCase);
-			result &= Race.Equals(pOther.Race);
-			result &= (Languages != null && pOther.Languages != null) && Languages.SequenceEqual(pOther.Languages);
-			result &= Damage == pOther.Damage;
-			result &= ArmoredSpeed == pOther.ArmoredSpeed;
-			result &= Equals(Strength, pOther.Strength);
-			result &= Equals(Dexterity, pOther.Dexterity);
-			result &= Equals(Constitution, pOther.Constitution);
-			result &= Equals(Intelligence, pOther.Intelligence);
-			result &= Equals(Wisdom, pOther.Wisdom);
-			result &= Equals(Charisma, pOther.Charisma);
-			result &= Equals(Fortitude, pOther.Fortitude);
-			result &= Equals(Reflex, pOther.Reflex);
-			result &= Equals(Will, pOther.Will);
-			result &= Equals(ArmorClass, pOther.ArmorClass);
-			result &= Equals(FlatFooted, pOther.FlatFooted);
-			result &= Equals(Touch, pOther.Touch);
-			result &= Equals(CombatManeuverDefense, pOther.CombatManeuverDefense);
-			result &= Equals(Melee, pOther.Melee);
-			result &= Equals(Ranged, pOther.Ranged);
-			result &= Equals(CombatManeuverBonus, pOther.CombatManeuverBonus);
-			result &= Equals(Experience, pOther.Experience);
+			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(Character)}s");
 
-			var skillScoresEqual = SkillScores.SequenceEqual(pOther.SkillScores);
-			result &= skillScoresEqual;
+			var result = ComparisonUtilities.Compare(GetType().Name, Age, pOther.Age, nameof(Age));
+			result &= ComparisonUtilities.Compare(GetType().Name, Alignment, pOther.Alignment, nameof(Alignment));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Classes, pOther.Classes, nameof(Classes));
+			result &= ComparisonUtilities.Compare(GetType().Name, Deity, pOther.Deity, nameof(Deity));
+			result &= ComparisonUtilities.Compare(GetType().Name, Gender, pOther.Gender, nameof(Gender));
 
-			if (!skillScoresEqual)
-			{
-				Tracer.Message(pMessage: $"{nameof(SkillScores)} :: {string.Join(", ", SkillScores.Select(x => x.ToString()))}");
-				Tracer.Message(pMessage: $"{nameof(pOther)}.{nameof(SkillScores)} :: {string.Join(", ", pOther.SkillScores.Select(x => x.ToString()))}");
-			}
+			result &= ComparisonUtilities.CompareString(GetType().Name, Eyes, pOther.Eyes, nameof(Eyes));
+			result &= ComparisonUtilities.CompareString(GetType().Name, Hair, pOther.Hair, nameof(Hair));
+			result &= ComparisonUtilities.CompareString(GetType().Name, Height, pOther.Height, nameof(Height));
+			result &= ComparisonUtilities.CompareString(GetType().Name, Weight, pOther.Weight, nameof(Weight));
+			result &= ComparisonUtilities.CompareString(GetType().Name, Homeland, pOther.Homeland, nameof(Homeland));
+			result &= ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name));
 
-			result &= Equals(Feats, pOther.Feats);
+			result &= ComparisonUtilities.Compare(GetType().Name, Race, pOther.Race, nameof(Race));
+
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Languages, pOther.Languages, nameof(Languages));
+
+			result &= ComparisonUtilities.Compare(GetType().Name, Damage, pOther.Damage, nameof(Damage));
+			result &= ComparisonUtilities.Compare(GetType().Name, ArmoredSpeed, pOther.ArmoredSpeed, nameof(ArmoredSpeed));
+
+			result &= ComparisonUtilities.Compare(GetType().Name, Strength, pOther.Strength, nameof(Strength));
+			result &= ComparisonUtilities.Compare(GetType().Name, Dexterity, pOther.Dexterity, nameof(Dexterity));
+			result &= ComparisonUtilities.Compare(GetType().Name, Constitution, pOther.Constitution, nameof(Constitution));
+			result &= ComparisonUtilities.Compare(GetType().Name, Intelligence, pOther.Intelligence, nameof(Intelligence));
+			result &= ComparisonUtilities.Compare(GetType().Name, Wisdom, pOther.Wisdom, nameof(Wisdom));
+			result &= ComparisonUtilities.Compare(GetType().Name, Charisma, pOther.Charisma, nameof(Charisma));
+			result &= ComparisonUtilities.Compare(GetType().Name, Fortitude, pOther.Fortitude, nameof(Fortitude));
+			result &= ComparisonUtilities.Compare(GetType().Name, Reflex, pOther.Reflex, nameof(Reflex));
+			result &= ComparisonUtilities.Compare(GetType().Name, Will, pOther.Will, nameof(Will));
+			result &= ComparisonUtilities.Compare(GetType().Name, ArmorClass, pOther.ArmorClass, nameof(ArmorClass));
+			result &= ComparisonUtilities.Compare(GetType().Name, FlatFooted, pOther.FlatFooted, nameof(FlatFooted));
+			result &= ComparisonUtilities.Compare(GetType().Name, Touch, pOther.Touch, nameof(Touch));
+			result &= ComparisonUtilities.Compare(GetType().Name, CombatManeuverDefense, pOther.CombatManeuverDefense, nameof(CombatManeuverDefense));
+			result &= ComparisonUtilities.Compare(GetType().Name, Melee, pOther.Melee, nameof(Melee));
+			result &= ComparisonUtilities.Compare(GetType().Name, Ranged, pOther.Ranged, nameof(Ranged));
+			result &= ComparisonUtilities.Compare(GetType().Name, CombatManeuverBonus, pOther.CombatManeuverBonus, nameof(CombatManeuverBonus));
+			result &= ComparisonUtilities.Compare(GetType().Name, Experience, pOther.Experience, nameof(Experience));
+
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, SkillScores, pOther.SkillScores, nameof(SkillScores));
+
+			result &= ComparisonUtilities.Compare(GetType().Name, Feats, pOther.Feats, nameof(Feats));
 
 			//result &= Equals(Weapons, other.Weapons);
-			result &= Equals(Inventory, pOther.Inventory);
-			
+			result &= ComparisonUtilities.Compare(GetType().Name, Inventory, pOther.Inventory, nameof(Inventory));
+
 			//result &= Equals(EquipedArmor, other.EquipedArmor);
 			//result &= Equals(Effects, other.Effects);
-			result &= Purse.Equals(pOther.Purse);
+			result &= ComparisonUtilities.Compare(GetType().Name, Purse, pOther.Purse, nameof(Purse));
+
+			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
 
 			return result;
 		}

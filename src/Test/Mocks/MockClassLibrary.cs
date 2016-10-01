@@ -15,15 +15,15 @@ namespace Test.Mocks
 			{
 				[TEST_CLASS] =
 					new Class(
-						TEST_CLASS,
-						new HashSet<Alignment>
+						pName:TEST_CLASS,
+						pAlignments:new HashSet<Alignment>
 						{
 							Alignment.Neutral
 						},
-						new Die(6),
-						4,
-						new HashSet<string>(),
-						new List<IClassLevel>
+						pHitDie:new Die(6),
+						pSkillAddend:4,
+						pSkills:new HashSet<string>(),
+						pClassLevels:new List<IClassLevel>
 						{
 							new ClassLevel(
 								pLevel: 1,
@@ -39,7 +39,7 @@ namespace Test.Mocks
 								pSpellsKnown: new Dictionary<int, int>(),
 								pSpells: new Dictionary<int, IEnumerable<string>>())
 						},
-						new List<string>())
+						pFeatures:new List<string>())
 			};
 
 		public IEnumerable<string> Keys => _library.Keys;
