@@ -7,10 +7,6 @@ namespace app.Character.Skills {
 		constructor() {
 			super();
 		}
-
-		$onInit() {
-			console.log(this);
-		}
 	}
 
 	export class SkillsComponent implements ng.IComponentOptions {

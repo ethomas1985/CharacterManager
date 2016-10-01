@@ -26,10 +26,6 @@ namespace app.Character.Skills {
 		constructor() {
 		}
 
-		$onInit() {
-			console.log(this);
-		}
-
 		get Ability(): string {
 			return this.skill.Ability.substring(0, 3);
 		}
