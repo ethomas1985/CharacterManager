@@ -3,25 +3,25 @@
   <Profiles />
   <Settings>
     <Setting Name="TraitLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Traits</Value>
+      <Value Profile="(Default)">..\..\resources\Traits</Value>
     </Setting>
     <Setting Name="SkillLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Skills</Value>
+      <Value Profile="(Default)">..\..\resources\Skills</Value>
     </Setting>
     <Setting Name="RaceLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Races</Value>
+      <Value Profile="(Default)">..\..\resources\Races</Value>
     </Setting>
     <Setting Name="ClassLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Classes</Value>
+      <Value Profile="(Default)">..\..\resources\Classes</Value>
     </Setting>
     <Setting Name="ClassFeatureLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\ClassFeatures</Value>
+      <Value Profile="(Default)">..\..\resources\ClassFeatures</Value>
     </Setting>
     <Setting Name="SpellLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Spells</Value>
+      <Value Profile="(Default)">..\..\resources\Spells</Value>
     </Setting>
     <Setting Name="CharacterLibrary" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\thean\Documents\GitHub\CharacterManager\resources\Characters</Value>
+      <Value Profile="(Default)">..\..\resources\Characters</Value>
     </Setting>
   </Settings>
 </SettingsFile>
