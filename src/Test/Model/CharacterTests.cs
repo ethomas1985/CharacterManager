@@ -1,12 +1,13 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Test.Mocks;
+// ReSharper disable ExpressionIsAlwaysNull
 
 namespace Test.Model
 {
@@ -1293,33 +1294,108 @@ namespace Test.Model
 			}
 		}
 
-		[Ignore("Method Not Yet Implemented.")]
 		[TestFixture]
-		public class SetExperienceMethod : CharacterTests
+		public class AppendExperienceMethod : CharacterTests
 		{
 			[Test]
-			public void Success()
-			{
-				Assert.Fail("Not Yet Implemented");
-			}
-
-			[Test]
-			public void ReturnsNewInstance()
+			public void NotNull()
 			{
 				var original = createCharacter(new MockSkillLibrary());
 
-				var result = original.SetExperience(null);
+				Assert.IsNotNull(original.Experience);
+			}
+
+			[Test]
+			public void InitializedToZero()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				Assert.AreEqual(0, original.Experience.Total);
+			}
+
+			[Test]
+			public void FailWithNullEvent()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				IEvent nullEvent = null;
+				Assert.Throws<ArgumentNullException>(() => original.AppendExperience(nullEvent));
+			}
+
+			[Test]
+			public void SuccessWithEvent()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var result = original.AppendExperience(new Event("Test", "Test", 10));
+
+				Assert.AreEqual(10, result.Experience.Total);
+			}
+
+			[Test]
+			public void ReturnsNewInstanceWithEvent()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var experience = new Event("Test", "Test", 10);
+				var result = original.AppendExperience(experience);
 
 				Assert.AreNotSame(original, result);
 			}
 
 			[Test]
-			public void OriginalUnchanged()
+			public void OriginalUnchangedWithEvent()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				original.SetExperience(null);
+				var experience = new Event("Test", "Test", 10);
+				original.AppendExperience(experience);
 
-				Assert.IsNull(original.Name);
+				Assert.AreEqual(0, original.Experience.Total);
+			}
+
+			[Test]
+			public void FailWithNullExperience()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				IExperience nullExperience = null;
+				Assert.Throws<ArgumentNullException>(() => original.AppendExperience(nullExperience));
+			}
+
+			[Test]
+			public void SuccessWithExperience()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var experience = new Experience()
+					.Append(new Event("Test", "Test", 10));
+				var result = original.AppendExperience(experience);
+
+				Assert.AreEqual(10, result.Experience.Total);
+			}
+
+			[Test]
+			public void ReturnsNewInstanceWithEmptyExperience()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var experience = new Experience()
+					.Append(new Event("Test", "Test", 10));
+				var result = original.AppendExperience(experience);
+
+				Assert.AreNotSame(original, result);
+			}
+
+			[Test]
+			public void OriginalUnchangedWithEmptyExperience()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var experience = new Experience()
+					.Append(new Event("Test", "Test", 10));
+				var result = original.AppendExperience(experience);
+
+				Assert.AreEqual(0, original.Experience.Count());
 			}
 		}
 

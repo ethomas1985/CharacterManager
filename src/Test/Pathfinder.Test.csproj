@@ -69,6 +69,10 @@
     <Compile Include="Model\CharacterTests.cs" />
     <Compile Include="Model\DefenseScoreTests.cs" />
     <Compile Include="Model\Currency\PurseTests.cs" />
+    <Compile Include="Model\ExperienceTests\AddMethod_Experience.cs" />
+    <Compile Include="Model\ExperienceTests\AddMethod_Event.cs" />
+    <Compile Include="Model\EventTests\EqualsMethod.cs" />
+    <Compile Include="Model\ExperienceTests\TotalPropertyTests.cs" />
     <Compile Include="Model\MockCharacterLibrary.cs" />
     <Compile Include="Model\MockClass.cs" />
     <Compile Include="Model\OffensiveScoreTests.cs" />

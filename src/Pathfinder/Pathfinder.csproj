@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterFactory.cs" />
+    <Compile Include="Commands\AddExperienceCommand.cs" />
     <Compile Include="Enums\AbilityType.cs" />
     <Compile Include="Enums\Alignment.cs" />
     <Compile Include="Enums\BonusType.cs" />
@@ -99,6 +100,8 @@
     <Compile Include="Model\Currency\Copper.cs" />
     <Compile Include="Model\Deity.cs" />
     <Compile Include="Model\Die.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Experience.cs" />
     <Compile Include="Model\Feat.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Interface\IWeaponDamage.cs" />

@@ -1,9 +1,9 @@
-﻿using Pathfinder.Enums;
+﻿using System;
+using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
-using System;
-using System.Collections.Generic;
 
 namespace Test.Mocks
 {
@@ -156,6 +156,16 @@ namespace Test.Mocks
 		public ICharacter AddDamage(int pDamage)
 		{
 			return this;
+		}
+
+		public ICharacter AppendExperience(IEvent pEvent)
+		{
+			throw new NotImplementedException();
+		}
+
+		public ICharacter AppendExperience(IExperience pExperience)
+		{
+			throw new NotImplementedException();
 		}
 
 		public ICharacter SetExperience(IExperience pExperience)

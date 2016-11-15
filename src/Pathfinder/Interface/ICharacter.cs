@@ -1,7 +1,7 @@
-﻿using Pathfinder.Enums;
+﻿using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
-using System.Collections.Generic;
 
 namespace Pathfinder.Interface
 {
@@ -117,7 +117,8 @@ namespace Pathfinder.Interface
 		ICharacter SetDamage(int pDamage);
 		ICharacter AddDamage(int pDamage);
 
-		ICharacter SetExperience(IExperience pExperience);
+		ICharacter AppendExperience(IEvent pEvent);
+		ICharacter AppendExperience(IExperience pExperience);
 
 		//ICharacter SetSkills(SkillsCollection pSkillsColection);
 		ICharacter SetSkill(ISkill pSkill);

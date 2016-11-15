@@ -12,6 +12,18 @@ namespace Pathfinder.Utilities
 			}
 			yield return pValue;
 		}
+		public static IEnumerable<T> Append<T>(this IEnumerable<T> pThis, IEnumerable<T> pEnumerable)
+		{
+			foreach (var value in pThis)
+			{
+				yield return value;
+			}
+
+			foreach (var value in pEnumerable)
+			{
+				yield return value;
+			}
+		}
 
 		public static IEnumerable<T> Prepend<T>(this IEnumerable<T> pThis, T pValue)
 		{

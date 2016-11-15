@@ -1,13 +1,13 @@
-﻿using Pathfinder.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
 
 namespace Pathfinder.Model
 {
@@ -479,7 +479,7 @@ namespace Pathfinder.Model
 				MiscellaneousCombatManeuverBonusModifier);
 		private int MiscellaneousCombatManeuverBonusModifier { get; set; }
 
-		public IExperience Experience { get; private set; }
+		public IExperience Experience { get; private set; } = new Experience();
 		public int ExperiencePoints
 		{
 			get { return Experience?.Sum(x => x.ExperiencePoints) ?? 0; }
@@ -881,11 +881,26 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		public ICharacter SetExperience(IExperience pExperience)
+		public ICharacter AppendExperience(IEvent pEvent)
+		{
+			Tracer.Message(pMessage: $"{nameof(pEvent)}: {pEvent}");
+			Assert.ArgumentNotNull(pEvent, nameof(pEvent));
+
+			var newCharacter = _copy();
+			newCharacter.Experience = Experience.Append(pEvent);
+
+			return newCharacter;
+		}
+
+		public ICharacter AppendExperience(IExperience pExperience)
 		{
 			Tracer.Message(pMessage: $"{nameof(pExperience)}: {pExperience}");
+			Assert.ArgumentNotNull(pExperience, nameof(pExperience));
 
-			throw new NotImplementedException();
+			var newCharacter = _copy();
+			newCharacter.Experience = Experience.Append(pExperience);
+
+			return newCharacter;
 		}
 
 		public ICharacter SetSkill(ISkill pSkill)

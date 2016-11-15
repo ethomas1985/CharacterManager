@@ -6,7 +6,5 @@
 		string Description { get; }
 
 		int ExperiencePoints { get; }
-
-		IExperience Detail { get; }
 	}
 }
