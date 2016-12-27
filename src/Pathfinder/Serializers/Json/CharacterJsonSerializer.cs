@@ -50,78 +50,23 @@ namespace Pathfinder.Serializers.Json
 
 			var jObject = JObject.Load(pReader);
 
-			var name = getString(jObject, nameof(ICharacter.Name));
-			if (!string.IsNullOrWhiteSpace(name))
-			{
-				character = character.SetName(name);
-			}
-
-			var age = getInt(jObject, nameof(ICharacter.Age));
-			character = character.SetAge(age);
-
-			var parsedAlignment = getString(jObject, nameof(ICharacter.Alignment));
-			Alignment alignment;
-			if (Enum.TryParse(parsedAlignment, out alignment))
-			{
-				character = character.SetAlignment(alignment);
-			}
-
-			var parsedDeity = getString(jObject, nameof(ICharacter.Deity));
-			if (!string.IsNullOrWhiteSpace(parsedDeity))
-			{
-				character = character.SetDeity(new Deity(parsedDeity));
-			}
-
-			var parsedGender = getString(jObject, nameof(ICharacter.Gender));
-			Gender gender;
-			if (Enum.TryParse(parsedGender, out gender))
-			{
-				character = character.SetGender(gender);
-			}
-
-			var eyes = getString(jObject, nameof(ICharacter.Eyes));
-			if (!string.IsNullOrWhiteSpace(eyes))
-			{
-				character = character.SetEyes(eyes);
-			}
-
-			var hair = getString(jObject, nameof(ICharacter.Hair));
-			if (!string.IsNullOrWhiteSpace(hair))
-			{
-				character = character.SetHair(hair);
-			}
-
-			var height = getString(jObject, nameof(ICharacter.Height));
-			if (!string.IsNullOrWhiteSpace(height))
-			{
-				character = character.SetHeight(height);
-			}
-
-			var weight = getString(jObject, nameof(ICharacter.Weight));
-			if (!string.IsNullOrWhiteSpace(weight))
-			{
-				character = character.SetWeight(weight);
-			}
-
-			var homeland = getString(jObject, nameof(ICharacter.Homeland));
-			if (!string.IsNullOrWhiteSpace(homeland))
-			{
-				character = character.SetHomeland(homeland);
-			}
-
-			var parsedRace = getString(jObject, nameof(ICharacter.Race));
-			IRace race;
-			if (parsedRace != null && RaceLibrary.TryGetValue(parsedRace, out race))
-			{
-				character = character.SetRace(race);
-			}
+			character = parseName(jObject, character);
+			character = parseAge(jObject, character);
+			character = parseAlignment(jObject, character);
+			character = parseDeity(jObject, character);
+			character = parseGender(jObject, character);
+			character = parseEyes(jObject, character);
+			character = parseHair(jObject, character);
+			character = parseHeight(jObject, character);
+			character = parseWeight(jObject, character);
+			character = parseHomeland(jObject, character);
+			character = parseRace(jObject, character);
 
 			//Todo: Parse non-starting languages
 			//var languages = getString(jObject, nameof(ICharacter.Languages));
 			//character = character.AddLanguages(name);
 
-			var damage = getInt(jObject, nameof(ICharacter.Damage));
-			character = character.SetDamage(damage);
+			character = parseDamage(jObject, character);
 
 			character = parseAbilityScore(jObject, nameof(ICharacter.Strength), character.SetStrength);
 			character = parseAbilityScore(jObject, nameof(ICharacter.Dexterity), character.SetDexterity);
@@ -134,7 +79,156 @@ namespace Pathfinder.Serializers.Json
 
 			character = parseClasses(jObject, character, nameof(ICharacter.Classes));
 
+			character = parseExperience(jObject, character, nameof(ICharacter.Experience));
+
 			return character;
+		}
+
+		private static ICharacter parseDamage(JObject jObject, ICharacter character)
+		{
+			var damage = getInt(jObject, nameof(ICharacter.Damage));
+			character = character.SetDamage(damage);
+			return character;
+		}
+
+		private ICharacter parseRace(JObject jObject, ICharacter character)
+		{
+			var parsedRace = getString(jObject, nameof(ICharacter.Race));
+			IRace race;
+			if (parsedRace != null && RaceLibrary.TryGetValue(parsedRace, out race))
+			{
+				character = character.SetRace(race);
+			}
+			return character;
+		}
+
+		private static ICharacter parseHomeland(JObject jObject, ICharacter character)
+		{
+			var homeland = getString(jObject, nameof(ICharacter.Homeland));
+			if (!string.IsNullOrWhiteSpace(homeland))
+			{
+				character = character.SetHomeland(homeland);
+			}
+			return character;
+		}
+
+		private static ICharacter parseWeight(JObject jObject, ICharacter character)
+		{
+			var weight = getString(jObject, nameof(ICharacter.Weight));
+			if (!string.IsNullOrWhiteSpace(weight))
+			{
+				character = character.SetWeight(weight);
+			}
+			return character;
+		}
+
+		private static ICharacter parseHeight(JObject jObject, ICharacter character)
+		{
+			var height = getString(jObject, nameof(ICharacter.Height));
+			if (!string.IsNullOrWhiteSpace(height))
+			{
+				character = character.SetHeight(height);
+			}
+			return character;
+		}
+
+		private static ICharacter parseHair(JObject jObject, ICharacter character)
+		{
+			var hair = getString(jObject, nameof(ICharacter.Hair));
+			if (!string.IsNullOrWhiteSpace(hair))
+			{
+				character = character.SetHair(hair);
+			}
+			return character;
+		}
+
+		private static ICharacter parseEyes(JObject jObject, ICharacter character)
+		{
+			var eyes = getString(jObject, nameof(ICharacter.Eyes));
+			if (!string.IsNullOrWhiteSpace(eyes))
+			{
+				character = character.SetEyes(eyes);
+			}
+			return character;
+		}
+
+		private static ICharacter parseGender(JObject jObject, ICharacter character)
+		{
+			var parsedGender = getString(jObject, nameof(ICharacter.Gender));
+			Gender gender;
+			if (Enum.TryParse(parsedGender, out gender))
+			{
+				character = character.SetGender(gender);
+			}
+			return character;
+		}
+
+		private static ICharacter parseDeity(JObject jObject, ICharacter character)
+		{
+			var parsedDeity = getString(jObject, nameof(ICharacter.Deity));
+			if (!string.IsNullOrWhiteSpace(parsedDeity))
+			{
+				character = character.SetDeity(new Deity(parsedDeity));
+			}
+			return character;
+		}
+
+		private static ICharacter parseAlignment(JObject jObject, ICharacter character)
+		{
+			var parsedAlignment = getString(jObject, nameof(ICharacter.Alignment));
+			Alignment alignment;
+			if (Enum.TryParse(parsedAlignment, out alignment))
+			{
+				character = character.SetAlignment(alignment);
+			}
+			return character;
+		}
+
+		private static ICharacter parseAge(JObject jObject, ICharacter character)
+		{
+			var age = getInt(jObject, nameof(ICharacter.Age));
+			character = character.SetAge(age);
+			return character;
+		}
+
+		private static ICharacter parseName(JObject jObject, ICharacter character)
+		{
+			var name = getString(jObject, nameof(ICharacter.Name));
+			if (!string.IsNullOrWhiteSpace(name))
+			{
+				character = character.SetName(name);
+			}
+			return character;
+		}
+
+		private ICharacter parseExperience(JObject pJObject, ICharacter pCharacter, string pFieldName)
+		{
+			var tokens = pJObject.SelectTokens(pFieldName).Children();
+
+
+			var character = pCharacter;
+			foreach (var token in tokens)
+			{
+				character = parseEvent(token, character);
+			}
+
+			return character;
+		}
+
+		private ICharacter parseEvent(JToken pToken, ICharacter pCharacter)
+		{
+			string title = pToken.SelectToken(nameof(IEvent.Title))?.ToString();
+
+			string description = pToken.SelectToken(nameof(IEvent.Description))?.ToString();
+
+			int xp;
+			var xpText = pToken.SelectToken(nameof(IEvent.ExperiencePoints))?.ToString();
+			if (!int.TryParse(xpText, out xp))
+			{
+				xp = 0;
+			}
+
+			return pCharacter.AppendExperience(new Event(title, description, xp));
 		}
 
 		protected ICharacter parseAbilityScore(JObject pJObject, string pAbilityName, Func<int, int, int, ICharacter> pSetAbilityScore)
@@ -298,6 +392,8 @@ namespace Pathfinder.Serializers.Json
 
 			_writeSkillScores(pWriter, character.SkillScores, nameof(ICharacter.SkillScores));
 
+			_writeExperience(pWriter, character.Experience, nameof(ICharacter.Experience));
+
 			pWriter.WriteEndObject();
 		}
 
@@ -459,6 +555,30 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ISkill.AbilityType), pSkill.AbilityType.ToString());
 			_writeProperty(pWriter, nameof(ISkill.TrainedOnly), pSkill.TrainedOnly);
 			_writeProperty(pWriter, nameof(ISkill.ArmorCheckPenalty), pSkill.ArmorCheckPenalty);
+
+			pWriter.WriteEndObject();
+		}
+
+		private void _writeExperience(JsonWriter pWriter, IExperience pExperience, string pPropertyName)
+		{
+			pWriter.WritePropertyName(pPropertyName);
+			pWriter.WriteStartArray();
+
+			foreach (var experienceEvent in pExperience)
+			{
+				_writeEvent(pWriter, experienceEvent);
+			}
+
+			pWriter.WriteEndArray();
+		}
+
+		private void _writeEvent(JsonWriter pWriter, IEvent experienceEvent)
+		{
+			pWriter.WriteStartObject();
+
+			_writeProperty(pWriter, nameof(IEvent.Title), experienceEvent.Title);
+			_writeProperty(pWriter, nameof(IEvent.Description), experienceEvent.Description);
+			_writeProperty(pWriter, nameof(IEvent.ExperiencePoints), experienceEvent.ExperiencePoints);
 
 			pWriter.WriteEndObject();
 		}

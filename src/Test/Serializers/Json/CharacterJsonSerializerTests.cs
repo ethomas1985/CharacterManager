@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using Pathfinder.Commands;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Json;
-using System;
-using System.IO;
-using System.Linq;
 using Test.Mocks;
 
 // ReSharper disable ExpressionIsAlwaysNull
@@ -210,8 +211,10 @@ namespace Test.Serializers.Json
 			var withAge = withCharisma.SetAge(10);
 			var withRace = withAge.SetRace(new MockRaceLibrary().Values.First());
 			var withClass = withRace.AddClass(new MockClassLibrary().Values.First());
-
-			return withClass;
+			
+			var withExperience = AddExperienceCommand.Execute(withClass, "Event 1", "Freebie", 2000);
+			
+			return withExperience;
 		}
 	}
 }

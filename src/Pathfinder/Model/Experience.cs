@@ -57,6 +57,11 @@ namespace Pathfinder.Model
 
 		public int Total => this.Sum(x => x.ExperiencePoints);
 
+		public override string ToString()
+		{
+			return $"Experience: {Total}";
+		}
+
 		public override bool Equals(object pOther)
 		{
 			return Equals(pOther as IExperience);

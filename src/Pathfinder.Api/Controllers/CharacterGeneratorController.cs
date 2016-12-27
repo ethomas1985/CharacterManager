@@ -104,14 +104,14 @@ namespace Pathfinder.Api.Controllers
 					.AddDamage(30) // = 1 + 1 + 3 + 6 - 7 + 8 + 9 + 8 + 7 + 30
 					;
 
-			AddExperienceCommand.Execute(preBuilt, "Event 1", "Freebie", 2000);
-			AddExperienceCommand.Execute(preBuilt, "Event 2", "Defeated Bugbear, killed some spiders", 1200);
-			AddExperienceCommand.Execute(preBuilt, "Event 3", "Killed 1 Spider and 2 Gnomes", 290);
-			AddExperienceCommand.Execute(preBuilt, "Event 4", "Killed 4 bandits", 667);
-			AddExperienceCommand.Execute(preBuilt, "Event 5", "Killed 1 mouthy ozee thing, and 6 humans", 660);
-			AddExperienceCommand.Execute(preBuilt, "Event 6", "Killed 2 Humans, and 1 Wight", 350);
-			AddExperienceCommand.Execute(preBuilt, "Event 7", "Killed Jaris Phenogian and his Iron Cobra", 400);
-			AddExperienceCommand.Execute(preBuilt, "Event 8", "Killed an Automaton, Tarrin and 2 bandits", 440);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 1", "Freebie", 2000);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 2", "Defeated Bugbear, killed some spiders", 1200);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 3", "Killed 1 Spider and 2 Gnomes", 290);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 4", "Killed 4 bandits", 667);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 5", "Killed 1 mouthy ozee thing, and 6 humans", 660);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 6", "Killed 2 Humans, and 1 Wight", 350);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 7", "Killed Jaris Phenogian and his Iron Cobra", 400);
+			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 8", "Killed an Automaton, Tarrin and 2 bandits", 440);
 
 			return preBuilt;
 		}
