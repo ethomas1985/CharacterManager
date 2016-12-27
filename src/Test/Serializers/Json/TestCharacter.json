@@ -222,5 +222,12 @@
 				"ArmorCheckPenalty": false
 			}
 		}
+	],
+	"Experience": [
+		{
+			"Title": "Event 1",
+			"Description": "Freebie",
+			"ExperiencePoints": 2000
+		}
 	]
 }
