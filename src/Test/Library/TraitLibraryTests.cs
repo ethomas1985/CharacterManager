@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Library;
-using Pathfinder.Properties;
-using Pathfinder.Serializers;
 using Pathfinder.Serializers.Xml;
 
 namespace Test.Library
@@ -13,13 +11,13 @@ namespace Test.Library
 		[Test]
 		public void Singleton()
 		{
-			Assert.IsNotNull(new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary));
+			Assert.IsNotNull(new TraitLibrary(new TraitXmlSerializer(), "../../../../resources/Traits/"));
 		}
 
 		[Test]
 		public void LoadsFiles()
 		{
-			var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+			var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), "../../../../resources/Traits/");
 			Assert.IsTrue(traitLibrary.Library.Any());
 		}
 	}

@@ -8,12 +8,12 @@ namespace Pathfinder.Api.Controllers
 	{
 		public ICharacter New()
 		{
+			var libraryFactory = new LibraryFactory();
 			return
 				new CharacterFactory(
-					new LibraryFactory().GetCharacterLibrary(),
-					new LibraryFactory().GetSkillLibrary())
+					libraryFactory.GetCharacterLibrary(),
+					libraryFactory.GetSkillLibrary())
 				.Create();
-
 		}
 
 		// GET: api/Character
@@ -25,10 +25,11 @@ namespace Pathfinder.Api.Controllers
 		// GET: api/Character/5
 		public ICharacter Get(string pName)
 		{
+			var libraryFactory = new LibraryFactory();
 			return
 				new CharacterFactory(
-					new LibraryFactory().GetCharacterLibrary(),
-					new LibraryFactory().GetSkillLibrary())
+					libraryFactory.GetCharacterLibrary(),
+					libraryFactory.GetSkillLibrary())
 				.Get(pName);
 		}
 

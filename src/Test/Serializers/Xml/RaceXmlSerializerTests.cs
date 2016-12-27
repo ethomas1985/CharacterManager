@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Library;
 using Pathfinder.Model;
-using Pathfinder.Properties;
 using Pathfinder.Serializers.Xml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Test.Serializers
 {
 	[TestFixture]
-	public class RaceXmlSerializerTests
+	public abstract class RaceXmlSerializerTests
 	{
 		const string RACE_NAME = "Race";
 		const string DESCRIPTION = "Description";
@@ -73,7 +72,7 @@ namespace Test.Serializers
 			[Test]
 			public void Expected()
 			{
-				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), Settings.Default.TraitLibrary);
+				var traitLibrary = new TraitLibrary(new TraitXmlSerializer(), "../../../../resources/Traits/");
 				var serializer = new RaceXmlSerializer(traitLibrary);
 				var xml = serializer.Serialize(_race);
 
@@ -87,7 +86,7 @@ namespace Test.Serializers
 			private readonly TraitLibrary _traitLibrary =
 				new TraitLibrary(
 					new TraitXmlSerializer(),
-					Settings.Default.TraitLibrary);
+					"../../../../resources/Traits/");
 
 			[Test]
 			public void ThrowsForNullString()

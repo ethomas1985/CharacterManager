@@ -14,7 +14,7 @@ using Test.Mocks;
 namespace Test.Serializers.Json
 {
 	[TestFixture]
-	public class CharacterJsonSerializerTests
+	public abstract class CharacterJsonSerializerTests
 	{
 		[TestFixture]
 		public class CanConvertMethod : CharacterJsonSerializerTests

@@ -14,11 +14,13 @@ namespace Pathfinder.Api.Controllers
 
 		public CharacterGeneratorController()
 		{
-			CharacterLibrary = new LibraryFactory().GetCharacterLibrary();
-			SkillLibrary = new LibraryFactory().GetSkillLibrary();
-			RaceLibrary = new LibraryFactory().GetRaceLibrary();
-			ClassLibrary = new LibraryFactory().GetClassLibrary();
-			//FeatLibrary = new LibraryFactory().GetFeatLibrary();
+			var libraryFactory = new LibraryFactory();
+
+			CharacterLibrary = libraryFactory.GetCharacterLibrary();
+			SkillLibrary = libraryFactory.GetSkillLibrary();
+			RaceLibrary = libraryFactory.GetRaceLibrary();
+			ClassLibrary = libraryFactory.GetClassLibrary();
+			//FeatLibrary = libraryFactory.GetFeatLibrary();
 		}
 
 		/// <summary>
