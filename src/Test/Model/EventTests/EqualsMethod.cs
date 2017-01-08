@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Pathfinder.Model;
 
-namespace Test.Model.EventTests
+namespace Pathfinder.Test.Model.EventTests
 {
 	[TestFixture]
 	public class EqualsMethod

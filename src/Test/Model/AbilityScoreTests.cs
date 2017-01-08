@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Model;
-using System.Collections;
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	[TestFixture]
 	public class AbilityScoreTests

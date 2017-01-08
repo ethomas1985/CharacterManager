@@ -1,8 +1,8 @@
-﻿using Pathfinder.Enums;
+﻿using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
-using System.Collections.Generic;
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	internal class MockClass : IClass
 	{

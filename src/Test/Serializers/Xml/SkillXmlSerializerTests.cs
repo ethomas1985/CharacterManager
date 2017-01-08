@@ -4,10 +4,9 @@ using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Serializers;
 using Pathfinder.Serializers.Xml;
 
-namespace Test.Serializers
+namespace Pathfinder.Test.Serializers.Xml
 {
 	[TestFixture]
 	public class SkillXmlSerializerTests

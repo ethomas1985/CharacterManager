@@ -8,7 +8,7 @@ using Pathfinder.Library;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Xml;
 
-namespace Test.Serializers
+namespace Pathfinder.Test.Serializers.Xml
 {
 	[TestFixture]
 	public abstract class RaceXmlSerializerTests

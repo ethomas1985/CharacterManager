@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Pathfinder.Interface;
 
-namespace Test.Mocks
+namespace Pathfinder.Test.Mocks
 {
 	internal class MockCharacterLibrary : ILibrary<ICharacter>
 	{

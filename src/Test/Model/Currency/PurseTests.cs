@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Pathfinder.Model.Currency;
 
-namespace Test.Model.Currency
+namespace Pathfinder.Test.Model.Currency
 {
 	[TestFixture]
 	public class PurseTests

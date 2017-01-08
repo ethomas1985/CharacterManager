@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Currency;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
@@ -313,48 +314,16 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ICharacter.Age), character.Age);
 			_writeProperty(pWriter, nameof(ICharacter.Alignment), character.Alignment.ToString());
 
-			if (character.Deity != null)
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Deity), character.Deity.ToString());
-			}
+			_writeDeity(pWriter, character);
 
 			_writeProperty(pWriter, nameof(ICharacter.Gender), character.Gender.ToString());
-
-			if (!string.IsNullOrEmpty(character.Eyes))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Eyes), character.Eyes);
-			}
-
-			if (!string.IsNullOrEmpty(character.Hair))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Hair), character.Hair);
-			}
-
-			if (!string.IsNullOrEmpty(character.Height))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Height), character.Height);
-			}
-
-			if (!string.IsNullOrEmpty(character.Weight))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Weight), character.Weight);
-			}
-
-			if (!string.IsNullOrEmpty(character.Homeland))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Homeland), character.Homeland);
-			}
-
-			if (!string.IsNullOrEmpty(character.Name))
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Name), character.Name);
-			}
-
-			if (character.Race != null)
-			{
-				_writeProperty(pWriter, nameof(ICharacter.Race), character.Race.Name);
-			}
-
+			_writeProperty(pWriter, nameof(ICharacter.Eyes), character.Eyes);
+			_writeProperty(pWriter, nameof(ICharacter.Hair), character.Hair);
+			_writeProperty(pWriter, nameof(ICharacter.Height), character.Height);
+			_writeProperty(pWriter, nameof(ICharacter.Weight), character.Weight);
+			_writeProperty(pWriter, nameof(ICharacter.Homeland), character.Homeland);
+			_writeProperty(pWriter, nameof(ICharacter.Name), character.Name);
+			_writeProperty(pWriter, nameof(ICharacter.Race), character.Race?.Name);
 			_writeProperty(pWriter, nameof(ICharacter.BaseSize), character.BaseSize.ToString());
 			_writeProperty(pWriter, nameof(ICharacter.Size), character.Size.ToString());
 
@@ -365,6 +334,8 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ICharacter.HealthPoints), character.HealthPoints);
 			_writeProperty(pWriter, nameof(ICharacter.BaseSpeed), character.BaseSpeed);
 			_writeProperty(pWriter, nameof(ICharacter.ArmoredSpeed), character.ArmoredSpeed);
+
+			_writePurse(pWriter, character.Purse);
 
 			_writeProperty(pWriter, nameof(ICharacter.Initiative), character.Initiative);
 
@@ -393,6 +364,39 @@ namespace Pathfinder.Serializers.Json
 			_writeSkillScores(pWriter, character.SkillScores, nameof(ICharacter.SkillScores));
 
 			_writeExperience(pWriter, character.Experience, nameof(ICharacter.Experience));
+
+			pWriter.WriteEndObject();
+		}
+
+		private void _writePurse(JsonWriter pWriter, IPurse pPurse)
+		{
+			if (pPurse == null)
+			{
+				return;
+			}
+
+			pWriter.WritePropertyName(nameof(ICharacter.Purse));
+			pWriter.WriteStartObject();
+
+			_writeProperty(pWriter, nameof(IPurse.Copper), pPurse.Copper.Value);
+			_writeProperty(pWriter, nameof(IPurse.Silver), pPurse.Silver.Value);
+			_writeProperty(pWriter, nameof(IPurse.Gold), pPurse.Gold.Value);
+			_writeProperty(pWriter, nameof(IPurse.Platinum), pPurse.Platinum.Value);
+			
+			pWriter.WriteEndObject();
+		}
+
+		private static void _writeDeity(JsonWriter pWriter, ICharacter character)
+		{
+			if (character.Deity == null)
+			{
+				return;
+			}
+
+			pWriter.WritePropertyName(nameof(ICharacter.Deity));
+			pWriter.WriteStartObject();
+
+			_writeProperty(pWriter, nameof(IDeity.Name), character.Deity.Name);
 
 			pWriter.WriteEndObject();
 		}
@@ -585,6 +589,11 @@ namespace Pathfinder.Serializers.Json
 
 		private static void _writeProperty(JsonWriter pWriter, string pName, object pValue)
 		{
+			if (pValue == null)
+			{
+				return;
+			}
+
 			pWriter.WritePropertyName(pName);
 			pWriter.WriteValue(pValue);
 		}

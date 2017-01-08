@@ -3,9 +3,10 @@ using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
+
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace Test.Model.ExperienceTests
+namespace Pathfinder.Test.Model.ExperienceTests
 {
 	[TestFixture]
 	public class AddMethod_Experience

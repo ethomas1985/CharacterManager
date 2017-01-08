@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using System.Collections;
-using Pathfinder.Enums;
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	[TestFixture]
 	public class DefenseScoreTests

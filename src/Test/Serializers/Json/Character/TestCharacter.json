@@ -13,6 +13,12 @@
 	"HealthPoints": 7,
 	"BaseSpeed": 30,
 	"ArmoredSpeed": 0,
+	"Purse": {
+		"Copper": 0,
+		"Silver": 0,
+		"Gold": 0,
+		"Platinum": 0
+	},
 	"Initiative": 1,
 	"Classes": [
 		{

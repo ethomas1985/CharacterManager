@@ -2,8 +2,8 @@
 using Pathfinder.Api.Controllers;
 using Pathfinder.Api.Models;
 using System;
-using Test.Mocks;
-using Test.Model;
+using Pathfinder.Test.Mocks;
+using Pathfinder.Test.Model;
 
 namespace Pathfinder.Api.Tests
 {

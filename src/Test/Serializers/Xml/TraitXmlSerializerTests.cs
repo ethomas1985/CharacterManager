@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Pathfinder.Serializers;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Xml;
 
-namespace Test.Serializers
+namespace Pathfinder.Test.Serializers.Xml
 {
 	[TestFixture]
 	public class TraitXmlSerializerTests

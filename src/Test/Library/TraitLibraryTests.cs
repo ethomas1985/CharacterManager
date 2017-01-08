@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Pathfinder.Library;
 using Pathfinder.Serializers.Xml;
 
-namespace Test.Library
+namespace Pathfinder.Test.Library
 {
 	[TestFixture]
 	public class TraitLibraryTests

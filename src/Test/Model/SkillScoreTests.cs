@@ -5,7 +5,7 @@ using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	[TestFixture]
 	public class SkillScoreTests

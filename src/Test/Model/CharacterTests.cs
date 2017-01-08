@@ -6,10 +6,11 @@ using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
-using Test.Mocks;
+using Pathfinder.Test.Mocks;
+
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	[TestFixture]
 	public class CharacterTests

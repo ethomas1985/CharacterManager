@@ -1,10 +1,10 @@
-﻿using Pathfinder.Enums;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using System.Collections;
-using System.Collections.Generic;
 
-namespace Test.Mocks
+namespace Pathfinder.Test.Mocks
 {
 	public class MockClassLibrary : ILibrary<IClass>
 	{

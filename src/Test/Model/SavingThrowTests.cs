@@ -2,7 +2,7 @@
 using Pathfinder.Enums;
 using Pathfinder.Model;
 
-namespace Test.Model
+namespace Pathfinder.Test.Model
 {
 	[TestFixture]
 	public class SavingThrowTests
