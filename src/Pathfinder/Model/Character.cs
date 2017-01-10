@@ -903,12 +903,6 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		public ICharacter SetSkill(ISkill pSkill)
-		{
-			Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}");
-
-			throw new NotImplementedException();
-		}
 		public ICharacter AssignSkillPoint(ISkill pSkill, int pPoint)
 		{
 			Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}, " +

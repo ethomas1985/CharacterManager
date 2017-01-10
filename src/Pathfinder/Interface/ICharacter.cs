@@ -120,8 +120,6 @@ namespace Pathfinder.Interface
 		ICharacter AppendExperience(IEvent pEvent);
 		ICharacter AppendExperience(IExperience pExperience);
 
-		//ICharacter SetSkills(SkillsCollection pSkillsColection);
-		ICharacter SetSkill(ISkill pSkill);
 		ICharacter AssignSkillPoint(ISkill pSkill, int pPoint);
 
 		ICharacter AddFeat(IFeat pFeat);
