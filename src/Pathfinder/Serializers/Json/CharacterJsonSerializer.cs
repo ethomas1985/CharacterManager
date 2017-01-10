@@ -363,7 +363,7 @@ namespace Pathfinder.Serializers.Json
 
 			_writeSkillScores(pWriter, character.SkillScores, nameof(ICharacter.SkillScores));
 
-			_writeExperience(pWriter, character.Experience, nameof(ICharacter.Experience));
+			_writeExperience(pWriter, character.Experience);
 
 			pWriter.WriteEndObject();
 		}
@@ -382,7 +382,7 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(IPurse.Silver), pPurse.Silver.Value);
 			_writeProperty(pWriter, nameof(IPurse.Gold), pPurse.Gold.Value);
 			_writeProperty(pWriter, nameof(IPurse.Platinum), pPurse.Platinum.Value);
-			
+
 			pWriter.WriteEndObject();
 		}
 
@@ -563,9 +563,9 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteEndObject();
 		}
 
-		private void _writeExperience(JsonWriter pWriter, IExperience pExperience, string pPropertyName)
+		private void _writeExperience(JsonWriter pWriter, IExperience pExperience)
 		{
-			pWriter.WritePropertyName(pPropertyName);
+			pWriter.WritePropertyName(nameof(ICharacter.Experience));
 			pWriter.WriteStartArray();
 
 			foreach (var experienceEvent in pExperience)

@@ -108,7 +108,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetAge(expectedAge);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Age)]?.Value<int>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Age)]?.Value<int>();
 
 			Assert.AreEqual(expectedAge, result);
 		}
@@ -122,7 +122,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetHomeland(expectedHomeland);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Homeland)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Homeland)]?.Value<string>();
 
 			Assert.AreEqual(expectedHomeland, result);
 		}
@@ -139,7 +139,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetDeity(mock.Object);
 
-			var result = serializeAndParseToJson(testCharacter)
+			var result = SerializeAndParseToJson(testCharacter)
 				.SelectToken($"{nameof(ICharacter.Deity)}.{nameof(IDeity.Name)}")?.Value<string>();
 
 			Assert.AreEqual(expectedDeity, result);
@@ -153,7 +153,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetGender(Gender.Male);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Gender)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Gender)]?.Value<string>();
 
 			Assert.AreEqual(Gender.Male.ToString(), result);
 		}
@@ -167,7 +167,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetEyes(expectedEyes);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Eyes)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Eyes)]?.Value<string>();
 
 			Assert.AreEqual(expectedEyes, result);
 		}
@@ -181,7 +181,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetHair(expected);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Hair)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Hair)]?.Value<string>();
 
 			Assert.AreEqual(expected, result);
 		}
@@ -195,7 +195,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetHeight(expected);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Height)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Height)]?.Value<string>();
 
 			Assert.AreEqual(expected, result);
 		}
@@ -209,7 +209,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetWeight(expected);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Weight)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Weight)]?.Value<string>();
 
 			Assert.AreEqual(expected, result);
 		}
@@ -222,7 +222,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetAlignment(Alignment.LawfulGood);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Alignment)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Alignment)]?.Value<string>();
 
 			Assert.AreEqual(Alignment.LawfulGood.ToString(), result);
 		}
@@ -237,7 +237,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetRace(race);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Race)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Race)]?.Value<string>();
 
 			Assert.AreEqual(race.Name, result);
 		}
@@ -252,7 +252,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetRace(race);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Size)]?.Value<string>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Size)]?.Value<string>();
 
 			Assert.AreEqual(race.Size.ToString(), result);
 		}
@@ -267,7 +267,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetRace(race);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.BaseSpeed)]?.Value<int>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.BaseSpeed)]?.Value<int>();
 
 			Assert.AreEqual(race.BaseSpeed, result);
 		}
@@ -282,7 +282,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetRace(race);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var jsonLanguages = json[nameof(ICharacter.Languages)];
 			var result = jsonLanguages?.Values<string>();
 
@@ -302,7 +302,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.AddLanguage(mockLanguage.Object);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var jsonLanguages = json[nameof(ICharacter.Languages)];
 			var result = jsonLanguages?.Values<string>();
 
@@ -319,7 +319,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.AddClass(mockClass.Object);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var jsonClasses = json[nameof(ICharacter.Classes)];
 			var children = jsonClasses?.Children();
 			var result = children?[nameof(ICharacterClass.Class)].Select(x => x.Value<string>());
@@ -337,7 +337,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.AddClass(mockClass.Object);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json[nameof(ICharacter.MaxHealthPoints)].Value<int>();
 
 			Assert.That(result, Is.EqualTo(1));
@@ -353,7 +353,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.AddClass(mockClass.Object);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json[nameof(ICharacter.HealthPoints)].Value<int>();
 
 			Assert.That(result, Is.EqualTo(1));
@@ -368,7 +368,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetDamage(expected);
 
-			var result = serializeAndParseToJson(testCharacter)[nameof(ICharacter.Damage)]?.Value<int>();
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Damage)]?.Value<int>();
 
 			Assert.AreEqual(expected, result);
 		}
@@ -383,7 +383,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetStrength(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Strength)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -400,7 +400,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Dexterity)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -417,7 +417,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(dexterityBase);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Initiative)}")
 					?.Value<int>();
 
@@ -434,7 +434,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetConstitution(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Constitution)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -451,7 +451,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetIntelligence(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Intelligence)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -468,7 +468,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetWisdom(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Wisdom)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -485,7 +485,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetCharisma(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Charisma)}.{nameof(IAbilityScore.Score)}")
 					?.Value<int>();
 
@@ -502,7 +502,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.ArmorClass)}.{nameof(IDefenseScore.Score)}")
 					?.Value<int>();
 
@@ -519,7 +519,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.FlatFooted)}.{nameof(IDefenseScore.Score)}")
 					?.Value<int>();
 
@@ -536,7 +536,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.Touch)}.{nameof(IDefenseScore.Score)}")
 					?.Value<int>();
 
@@ -554,7 +554,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.SetDexterity(expected);
 
 			var result =
-				serializeAndParseToJson(testCharacter)
+				SerializeAndParseToJson(testCharacter)
 					.SelectToken($"{nameof(ICharacter.CombatManeuverDefense)}.{nameof(IDefenseScore.Score)}")
 					?.Value<int>();
 
@@ -568,7 +568,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.Fortitude)}.{nameof(ISavingThrow.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -581,7 +581,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.Reflex)}.{nameof(ISavingThrow.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -594,7 +594,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.Will)}.{nameof(ISavingThrow.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -607,7 +607,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.Melee)}.{nameof(IOffensiveScore.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -620,7 +620,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.Ranged)}.{nameof(IOffensiveScore.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -633,7 +633,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var result = json.SelectToken($"{nameof(ICharacter.CombatManeuverBonus)}.{nameof(IOffensiveScore.Score)}").Value<int>();
 
 			Assert.That(result, Is.EqualTo(-5));
@@ -652,7 +652,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 					.CreateNewCharacter()
 					.SetPurse(copperValue, silverValue, goldValue, platinumValue);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var jsonPurse = json[$"{nameof(ICharacter.Purse)}"];
 
 			/*
@@ -689,7 +689,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(testCharacter);
 			var jsonSkillScores = json[nameof(ICharacter.SkillScores)];
 			var children = jsonSkillScores?.Children();
 
@@ -705,14 +705,15 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter();
+			var withExperience = AddExperienceCommand.Execute(testCharacter, "Event 1", "Freebie", 100);
 
-			var json = serializeAndParseToJson(testCharacter);
+			var json = SerializeAndParseToJson(withExperience);
 			var jsonExperience = json[nameof(ICharacter.Experience)];
 			var children = jsonExperience?.Children();
 
 			var result = children?.Select(x => x.SelectToken($"{nameof(IEvent.Title)}").Value<string>());
 
-			var expected = testCharacter.Experience.Select(x => x.Title);
+			var expected = withExperience.Experience.Select(x => x.Title);
 			Assert.That(result, new CollectionEquivalentConstraint(expected));
 		}
 
@@ -745,7 +746,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			return mockClass;
 		}
 
-		private static string serialize(ICharacter testCharacter)
+		private static string Serialize(ICharacter testCharacter)
 		{
 			var converter =
 				new CharacterJsonSerializer(
@@ -763,21 +764,21 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 
 			var result = stringWriter.ToString();
 
-			Console.WriteLine($"Result: {result}");
+			//Console.WriteLine($@"Result: {result}");
 
 			return result;
 		}
 
-		private static JObject parseJson(string text)
+		private static JObject ParseJson(string text)
 		{
 			var jsonTextReader = new JsonTextReader(new StringReader(text));
 			var jObject = JObject.Load(jsonTextReader);
 			return jObject;
 		}
 
-		private static JObject serializeAndParseToJson(ICharacter pCharacter)
+		private static JObject SerializeAndParseToJson(ICharacter pCharacter)
 		{
-			return parseJson(serialize(pCharacter));
+			return ParseJson(Serialize(pCharacter));
 		}
 	}
 }
