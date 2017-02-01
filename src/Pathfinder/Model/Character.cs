@@ -487,7 +487,7 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IDie> HitDice { get { return Classes.Select(x => x.Class.HitDie); } }
 
-		public IEnumerable<IFeat> Feats { get; private set; }
+		public IEnumerable<IFeat> Feats { get; private set; } = ImmutableList.Create<IFeat>();
 
 		public int MaxSkillRanks => Classes.Sum(x => x.Level * (Intelligence.Modifier + x.SkillAddend));
 		private ILibrary<ISkill> SkillLibrary { get; }
@@ -914,8 +914,12 @@ namespace Pathfinder.Model
 		public ICharacter AddFeat(IFeat pFeat)
 		{
 			Tracer.Message(pMessage: $"{nameof(pFeat)}: {pFeat}");
+			Assert.ArgumentNotNull(pFeat, nameof(pFeat));
 
-			throw new NotImplementedException();
+			var newCharacter = _copy();
+			newCharacter.Feats = Feats.Append(pFeat);
+
+			return newCharacter;
 		}
 
 		//internal Character SetWeapons() { throw new NotImplementedException(); }
@@ -1027,10 +1031,10 @@ namespace Pathfinder.Model
 
 			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, SkillScores, pOther.SkillScores, nameof(SkillScores));
 
-			result &= ComparisonUtilities.Compare(GetType().Name, Feats, pOther.Feats, nameof(Feats));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Feats, pOther.Feats, nameof(Feats));
 
 			//result &= Equals(Weapons, other.Weapons);
-			result &= ComparisonUtilities.Compare(GetType().Name, Inventory, pOther.Inventory, nameof(Inventory));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Inventory, pOther.Inventory, nameof(Inventory));
 
 			//result &= Equals(EquipedArmor, other.EquipedArmor);
 			//result &= Equals(Effects, other.Effects);

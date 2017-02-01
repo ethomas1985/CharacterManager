@@ -235,5 +235,17 @@
 			"Description": "Freebie",
 			"ExperiencePoints": 2000
 		}
+	],
+	"Feats": [
+		{
+			"Name": "Feat 2",
+			"FeatType": "General",
+			"Description": "Testing Description",
+			"Benefit": "Testing Benefit",
+			"Special": "Testing Special",
+			"Prerequisites": [
+				"Feat 1"
+			]
+		}
 	]
 }

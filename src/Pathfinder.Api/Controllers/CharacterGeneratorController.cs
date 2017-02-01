@@ -20,7 +20,7 @@ namespace Pathfinder.Api.Controllers
 			SkillLibrary = libraryFactory.GetSkillLibrary();
 			RaceLibrary = libraryFactory.GetRaceLibrary();
 			ClassLibrary = libraryFactory.GetClassLibrary();
-			//FeatLibrary = libraryFactory.GetFeatLibrary();
+			FeatLibrary = libraryFactory.GetFeatLibrary();
 		}
 
 		/// <summary>
@@ -102,6 +102,7 @@ namespace Pathfinder.Api.Controllers
 					.AddDamage(8)
 					.AddDamage(7)
 					.AddDamage(30) // = 1 + 1 + 3 + 6 - 7 + 8 + 9 + 8 + 7 + 30
+					.AddFeat(FeatLibrary["Dodge"])
 					;
 
 			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 1", "Freebie", 2000);

@@ -3,9 +3,8 @@ using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
 {
-	public interface IFeat
+	public interface IFeat: INamed
 	{
-		string Name { get; }
 		FeatType FeatType { get; }
 		IEnumerable<string> Prerequisites { get; }
 		string Description { get; }

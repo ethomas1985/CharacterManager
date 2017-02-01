@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Pathfinder.Commands;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Model;
 using Pathfinder.Test.Mocks;
 using CharacterImpl = Pathfinder.Model.Character;
 
@@ -25,12 +28,25 @@ namespace Pathfinder.Test.Serializers.Json.Character
 
 			var withExperience = AddExperienceCommand.Execute(withClass, "Event 1", "Freebie", 2000);
 
-			return withExperience;
+			var withFeat = withExperience.AddFeat(CreateTestingFeat());
+
+			return withFeat;
 		}
 
 		public static ICharacter CreateNewCharacter()
 		{
 			return new CharacterImpl(new MockSkillLibrary());
+		}
+
+		public static IFeat CreateTestingFeat()
+		{
+			return new Feat(
+				"Feat 2",
+				FeatType.General,
+				new List<string> { "Feat 1" },
+				"Testing Description",
+				"Testing Benefit",
+				"Testing Special");
 		}
 	}
 }

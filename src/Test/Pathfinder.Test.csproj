@@ -100,6 +100,10 @@
     <Compile Include="Serializers\Xml\SkillXmlSerializerTests.cs" />
     <Compile Include="Serializers\Xml\TraitXmlSerializerTests.cs" />
     <Compile Include="Serializers\Xml\RaceXmlSerializerTests.cs" />
+    <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareString.cs" />
+    <Compile Include="Utilities\ComparisonUtilitiesMethods\Compare.cs" />
+    <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareSet.cs" />
+    <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareEnumerables.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

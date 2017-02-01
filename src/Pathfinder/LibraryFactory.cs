@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Web;
 using Newtonsoft.Json;
 using Pathfinder.Interface;
@@ -12,7 +11,7 @@ namespace Pathfinder
 	{
 		private LibraryPath _libraryPath;
 		private  readonly ILibrary<IClass> _classLibrary;
-		//private  readonly ILibrary<IFeat> FeatLibrary;
+		private  readonly ILibrary<IFeat> _featLibrary;
 		private  readonly ILibrary<IFeature> _featureLibrary;
 		private  readonly ILibrary<IRace> _raceLibrary;
 		private  readonly ILibrary<ISkill> _skillLibrary;
@@ -27,8 +26,8 @@ namespace Pathfinder
 			var classSerializer = new ClassXmlSerializer();
 			_classLibrary = new ClassLibrary(classSerializer, ClassLibrary);
 
-			//var _featSerializer = new FeatXmlSerializer();
-			//_featLibrary = new FeatLibrary(_featSerializer, Settings.Default.FeatLibrary);
+			var featSerializer = new FeatXmlSerializer();
+			_featLibrary = new FeatLibrary(featSerializer, FeatLibrary);
 
 			var featureSerializer = new FeatureXmlSerializer();
 			_featureLibrary = new FeatureLibrary(featureSerializer, ClassFeatureLibrary);
@@ -69,6 +68,8 @@ namespace Pathfinder
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.ClassLibrary));
 		public string ClassFeatureLibrary =>
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.ClassFeatureLibrary));
+		public string FeatLibrary =>
+			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.FeatLibrary));
 		public string SpellLibrary =>
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.SpellLibrary));
 		public string CharacterLibrary =>
@@ -81,7 +82,7 @@ namespace Pathfinder
 
 		public ILibrary<IFeat> GetFeatLibrary()
 		{
-			throw new NotImplementedException();
+			return _featLibrary;
 		}
 
 		public ILibrary<IFeature> GetFeatureLibrary()
@@ -123,6 +124,7 @@ namespace Pathfinder
 		public string ClassLibrary { get; set; } = "../Classes/";
 		public string ClassFeatureLibrary { get; set; } = "../ClassFeatures/";
 		public string SpellLibrary { get; set; } = "../Spells/";
+		public string FeatLibrary { get; set; } = "../Feats/";
 		public string CharacterLibrary { get; set; } = "../Characters/";
 	}
 }

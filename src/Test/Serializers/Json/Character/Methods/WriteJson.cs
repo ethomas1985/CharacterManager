@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
+using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
@@ -94,7 +95,6 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 
 			var expected = JObject.Parse(Resources.TestCharacter);
 			File.WriteAllText("expected.json", expected.ToString());
-
 
 			Assert.IsTrue(JToken.DeepEquals(expected, result));
 		}
@@ -642,10 +642,10 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		[Test]
 		public void WithPurse()
 		{
-			int copperValue = 1;
-			int silverValue = 2;
-			int goldValue = 3;
-			int platinumValue = 4;
+			const int copperValue = 1;
+			const int silverValue = 2;
+			const int goldValue = 3;
+			const int platinumValue = 4;
 
 			var testCharacter =
 				CharacterJsonSerializerUtils
@@ -654,20 +654,6 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var jsonPurse = json[$"{nameof(ICharacter.Purse)}"];
-
-			/*
-			var copper = json.SelectToken($"{nameof(ICharacter.Purse)}.{nameof(IPurse.Copper)}").Value<int>();
-			Assert.That(copper, Is.EqualTo(copperValue));
-
-			var silver = json.SelectToken($"{nameof(ICharacter.Purse)}.{nameof(IPurse.Silver)}").Value<int>();
-			Assert.That(silver, Is.EqualTo(silverValue));
-
-			var gold = json.SelectToken($"{nameof(ICharacter.Purse)}.{nameof(IPurse.Gold)}").Value<int>();
-			Assert.That(gold, Is.EqualTo(goldValue));
-
-			var platinum = json.SelectToken($"{nameof(ICharacter.Purse)}.{nameof(IPurse.Platinum)}").Value<int>();
-			Assert.That(platinum, Is.EqualTo(platinumValue));
-			 */
 
 			var copper = jsonPurse[$"{nameof(IPurse.Copper)}"]?.Value<int>();
 			Assert.That(copper, Is.EqualTo(copperValue));
@@ -718,10 +704,21 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		}
 
 		[Test]
-		[Ignore("Feats have not been implemented yet.")]
 		public void WithFeats()
 		{
-			Assert.Fail("Not Yet Implemented.");
+			var testCharacter =
+				CharacterJsonSerializerUtils
+					.CreateNewCharacter()
+					.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat());
+
+			var json = SerializeAndParseToJson(testCharacter);
+			var jsonFeats = json[nameof(ICharacter.Feats)];
+			var children = jsonFeats?.Children();
+
+			var result = children?.Select(x => x.SelectToken($"{nameof(IFeat.Name)}").Value<string>());
+
+			var expected = testCharacter.Feats.Count();
+			Assert.That(result?.Count(), Is.EqualTo(expected));
 		}
 
 		private static Mock<IClass> CreateMockClass()

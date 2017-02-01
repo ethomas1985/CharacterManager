@@ -82,6 +82,8 @@ namespace Pathfinder.Serializers.Json
 
 			character = parseExperience(jObject, character, nameof(ICharacter.Experience));
 
+			character = parseFeats(jObject, character, nameof(ICharacter.Feats));
+
 			return character;
 		}
 
@@ -232,6 +234,40 @@ namespace Pathfinder.Serializers.Json
 			return pCharacter.AppendExperience(new Event(title, description, xp));
 		}
 
+		private ICharacter parseFeats(JObject pJObject, ICharacter pCharacter, string pFieldName)
+		{
+			var tokens = pJObject.SelectTokens(pFieldName).Children();
+
+			var character = pCharacter;
+			foreach (var token in tokens)
+			{
+				character = parseFeat(token, character);
+			}
+
+			return character;
+		}
+
+		private ICharacter parseFeat(JToken pToken, ICharacter pCharacter)
+		{
+			string name = pToken.SelectToken(nameof(IFeat.Name))?.ToString();
+
+			var parsedAlignment = getString(pToken, nameof(IFeat.FeatType));
+			FeatType featType;
+			if (!Enum.TryParse(parsedAlignment, out featType))
+			{
+				featType = FeatType.General;
+			}
+
+			string description = pToken.SelectToken(nameof(IFeat.Description))?.ToString();
+			string benefit = pToken.SelectToken(nameof(IFeat.Benefit))?.ToString();
+			string special = pToken.SelectToken(nameof(IFeat.Special))?.ToString();
+
+			var prerequisites = pToken[nameof(IFeat.Prerequisites)]?.Children().Select(x => x.Value<string>());
+
+			return pCharacter.AddFeat(new Feat(name, featType,prerequisites, description, benefit, special));
+		}
+
+
 		protected ICharacter parseAbilityScore(JObject pJObject, string pAbilityName, Func<int, int, int, ICharacter> pSetAbilityScore)
 		{
 			var baseValue = getInt(pJObject, $"{pAbilityName}.{nameof(IAbilityScore.Base)}");
@@ -273,6 +309,11 @@ namespace Pathfinder.Serializers.Json
 			}
 
 			return character;
+		}
+
+		protected static string getString(JToken pJObject, string pField)
+		{
+			return pJObject.SelectToken(pField)?.ToString();
 		}
 
 		protected static string getString(JObject pJObject, string pField)
@@ -364,6 +405,8 @@ namespace Pathfinder.Serializers.Json
 			_writeSkillScores(pWriter, character.SkillScores, nameof(ICharacter.SkillScores));
 
 			_writeExperience(pWriter, character.Experience);
+
+			_writeFeats(pWriter, character.Feats);
 
 			pWriter.WriteEndObject();
 		}
@@ -583,6 +626,42 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(IEvent.Title), experienceEvent.Title);
 			_writeProperty(pWriter, nameof(IEvent.Description), experienceEvent.Description);
 			_writeProperty(pWriter, nameof(IEvent.ExperiencePoints), experienceEvent.ExperiencePoints);
+
+			pWriter.WriteEndObject();
+		}
+
+		private void _writeFeats(JsonWriter pWriter, IEnumerable<IFeat> pFeats)
+		{
+			pWriter.WritePropertyName(nameof(ICharacter.Feats));
+			pWriter.WriteStartArray();
+
+			foreach (var feat in pFeats)
+			{
+				_writeFeat(pWriter, feat);
+			}
+
+			pWriter.WriteEndArray();
+		}
+
+		private void _writeFeat(JsonWriter pWriter, IFeat pFeat)
+		{
+			pWriter.WriteStartObject();
+
+			_writeProperty(pWriter, nameof(IFeat.Name), pFeat.Name);
+			_writeProperty(pWriter, nameof(IFeat.FeatType), pFeat.FeatType.ToString());
+			_writeProperty(pWriter, nameof(IFeat.Description), pFeat.Description);
+			_writeProperty(pWriter, nameof(IFeat.Benefit), pFeat.Benefit);
+			_writeProperty(pWriter, nameof(IFeat.Special), pFeat.Special);
+
+			pWriter.WritePropertyName(nameof(IFeat.Prerequisites));
+			pWriter.WriteStartArray();
+
+			foreach (var prerequisites in pFeat.Prerequisites)
+			{
+				pWriter.WriteValue(prerequisites);
+			}
+
+			pWriter.WriteEndArray();
 
 			pWriter.WriteEndObject();
 		}

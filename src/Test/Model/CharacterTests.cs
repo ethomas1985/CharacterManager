@@ -1402,36 +1402,6 @@ namespace Pathfinder.Test.Model
 
 		[Ignore("Method Not Yet Implemented.")]
 		[TestFixture]
-		public class SetSkillMethod : CharacterTests
-		{
-			[Test]
-			public void Success()
-			{
-				Assert.Fail("Not Yet Implemented");
-			}
-
-			[Test]
-			public void ReturnsNewInstance()
-			{
-				var original = createCharacter(new MockSkillLibrary());
-
-				var result = original.SetSkill(null);
-
-				Assert.AreNotSame(original, result);
-			}
-
-			[Test]
-			public void OriginalUnchanged()
-			{
-				var original = createCharacter(new MockSkillLibrary());
-				original.SetSkill(null);
-
-				Assert.IsNull(original.Name);
-			}
-		}
-
-		[Ignore("Method Not Yet Implemented.")]
-		[TestFixture]
 		public class AssignSkillPointMethod : CharacterTests
 		{
 			[Test]
@@ -1460,14 +1430,15 @@ namespace Pathfinder.Test.Model
 			}
 		}
 
-		[Ignore("Method Not Yet Implemented.")]
 		[TestFixture]
 		public class AddFeatMethod : CharacterTests
 		{
 			[Test]
-			public void Success()
+			public void FailsWithNullFeat()
 			{
-				Assert.Fail("Not Yet Implemented");
+				var original = createCharacter(new MockSkillLibrary());
+
+				Assert.Throws<ArgumentNullException>(() => original.AddFeat(null));
 			}
 
 			[Test]
@@ -1475,7 +1446,7 @@ namespace Pathfinder.Test.Model
 			{
 				var original = createCharacter(new MockSkillLibrary());
 
-				var result = original.AddFeat(null);
+				var result = original.AddFeat(CreateTestingFeat());
 
 				Assert.AreNotSame(original, result);
 			}
@@ -1484,9 +1455,30 @@ namespace Pathfinder.Test.Model
 			public void OriginalUnchanged()
 			{
 				var original = createCharacter(new MockSkillLibrary());
-				original.AddFeat(null);
+				original.AddFeat(CreateTestingFeat());
 
-				Assert.IsNull(original.Name);
+				Assert.That(original.Feats, Is.Empty);
+			}
+
+			[Test]
+			public void Success()
+			{
+				var original = createCharacter(new MockSkillLibrary());
+
+				var result = original.AddFeat(CreateTestingFeat());
+
+				Assert.That(result.Feats.Count(), Is.EqualTo(1));
+			}
+
+			private static Feat CreateTestingFeat()
+			{
+				return new Feat(
+					"Feat 2",
+					FeatType.General, 
+					new List<string> {"Feat 1"},
+					"Testing Description",
+					"Testing Benefit",
+					"Testing Special");
 			}
 		}
 

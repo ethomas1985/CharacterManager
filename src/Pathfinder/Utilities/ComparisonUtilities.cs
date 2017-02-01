@@ -11,8 +11,13 @@ namespace Pathfinder.Utilities
 	{
 		public static bool CompareEnumerables<T>(string pClass, IEnumerable<T> pThis, IEnumerable<T> pOther, string pFieldName, [CallerMemberName] string pCallerName = null)
 		{
-			var thisArray = pThis as T[] ?? pThis?.ToArray() ?? new T[0];
-			var otherArray = pOther as T[] ?? pOther?.ToArray() ?? new T[0];
+			if (ReferenceEquals(null, pThis) || ReferenceEquals(null, pOther))
+			{
+				return ReferenceEquals(null, pThis) && ReferenceEquals(null, pOther);
+			}
+
+			var thisArray = pThis as T[] ?? pThis.ToArray();
+			var otherArray = pOther as T[] ?? pOther.ToArray();
 			if (thisArray.SequenceEqual(otherArray))
 			{
 				return true;
@@ -23,8 +28,14 @@ namespace Pathfinder.Utilities
 				pCallerName: pCallerName);
 			return false;
 		}
+
 		public static bool CompareSets<T>(string pClass, ISet<T> pThis, ISet<T> pOther, string pFieldName, [CallerMemberName] string pCallerName = null)
 		{
+			if (ReferenceEquals(null, pThis) || ReferenceEquals(null, pOther))
+			{
+				return ReferenceEquals(null, pThis) && ReferenceEquals(null, pOther);
+			}
+
 			if (pThis.SetEquals(pOther))
 			{
 				return true;

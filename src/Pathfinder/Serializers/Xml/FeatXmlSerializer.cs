@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers.Xml
 {
@@ -10,7 +12,47 @@ namespace Pathfinder.Serializers.Xml
 	{
 		public IFeat Deserialize(string pValue)
 		{
-			throw new System.NotImplementedException();
+			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
+
+			var xDocument = XDocument.Parse(pValue);
+
+			return new Feat(
+				_GetElementValue(xDocument, nameof(IFeat.Name)),
+				_GetFeatType(xDocument),
+				_GetPrerequisites(xDocument),
+				_GetElementValue(xDocument, nameof(IFeat.Description)),
+				_GetElementValue(xDocument, nameof(IFeat.Benefit)),
+				_GetElementValue(xDocument, nameof(IFeat.Special))
+			);
+		}
+
+		private static string _GetElementValue(XContainer pXDocument, string pName)
+		{
+			return pXDocument
+				.Descendants(pName)
+				.Select(x => x.Value)
+				.FirstOrDefault();
+		}
+
+		private static FeatType _GetFeatType(XContainer pXDocument)
+		{
+			var itemType = _GetElementValue(pXDocument, nameof(IFeat.FeatType));
+			FeatType value;
+			if (FeatType.TryParse(itemType, out value))
+			{
+				return value;
+			}
+			return FeatType.General;
+		}
+
+		private IEnumerable<string> _GetPrerequisites(XContainer pXDocument)
+		{
+			var prerequisites =
+				new List<string>(
+					pXDocument
+						.Descendants(nameof(IFeat.Prerequisites))
+						.Select(x => x.Value));
+			return prerequisites;
 		}
 
 		public string Serialize(IFeat pObject)
