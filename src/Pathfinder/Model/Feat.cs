@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Utilities;
+using System;
+using System.Collections.Generic;
 
 namespace Pathfinder.Model
 {
@@ -51,8 +51,6 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
-
-			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(Feat)}s");
 
 			return ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name))
 				&& ComparisonUtilities.Compare(GetType().Name, FeatType, pOther.FeatType, nameof(FeatType))

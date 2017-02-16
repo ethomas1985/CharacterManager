@@ -1,28 +1,38 @@
 ﻿{
 	"Age": 10,
-	"Alignment": "Neutral",
-	"Gender": "Female",
+	"Alignment": "LawfulGood",
+	"Deity": {
+		"Name": "Deity"
+	},
+	"Gender": "Male",
+	"Eyes": "Blue",
+	"Hair": "Blue",
+	"Height": "9' 6\"",
+	"Weight": "180 lbs.",
+	"Homeland": "Homeland",
+	"Name": "Unit McTesterFace",
 	"Race": "Test Race",
 	"BaseSize": "Medium",
 	"Size": "Medium",
 	"Languages": [
-		"Test Language"
+		"Test Language",
+		"Mock Language"
 	],
 	"MaxHealthPoints": 7,
-	"Damage": 0,
-	"HealthPoints": 7,
+	"Damage": 2,
+	"HealthPoints": 5,
 	"BaseSpeed": 30,
 	"ArmoredSpeed": 0,
 	"Purse": {
-		"Copper": 0,
-		"Silver": 0,
-		"Gold": 0,
-		"Platinum": 0
+		"Copper": 1,
+		"Silver": 2,
+		"Gold": 3,
+		"Platinum": 4
 	},
 	"Initiative": 1,
 	"Classes": [
 		{
-			"Class": "Test Class",
+			"Class": "Mock Class",
 			"Level": 1,
 			"IsFavored": true,
 			"BaseAttackBonus": 1,
@@ -97,11 +107,9 @@
 	"ArmorClass": {
 		"Type": "ArmorClass",
 		"Score": 11,
-		"ArmorBonus": 0,
 		"ShieldBonus": 0,
+		"ArmorBonus": 0,
 		"DexterityModifier": 1,
-		"StrengthModifier": 0,
-		"BaseAttackBonus": 0,
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
@@ -112,11 +120,9 @@
 	"FlatFooted": {
 		"Type": "FlatFooted",
 		"Score": 10,
-		"ArmorBonus": 0,
 		"ShieldBonus": 0,
+		"ArmorBonus": 0,
 		"DexterityModifier": 0,
-		"StrengthModifier": 0,
-		"BaseAttackBonus": 0,
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
@@ -127,11 +133,9 @@
 	"Touch": {
 		"Type": "Touch",
 		"Score": 11,
-		"ArmorBonus": 0,
 		"ShieldBonus": 0,
+		"ArmorBonus": 0,
 		"DexterityModifier": 1,
-		"StrengthModifier": 0,
-		"BaseAttackBonus": 0,
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
@@ -142,11 +146,9 @@
 	"CombatManeuverDefense": {
 		"Type": "CombatManeuverDefense",
 		"Score": 13,
-		"ArmorBonus": 0,
-		"ShieldBonus": 0,
-		"DexterityModifier": 1,
 		"StrengthModifier": 1,
 		"BaseAttackBonus": 1,
+		"DexterityModifier": 1,
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using Pathfinder.Enums;
 using Pathfinder.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Pathfinder.Model
 {
@@ -47,7 +47,17 @@ namespace Pathfinder.Model
 			Natural = pNaturalBonus;
 			Dodge = pDodgeBonus;
 		}
-
+		/// <summary>
+		/// Creates a DefenseScore for <c>DefensiveType.CombatManeuverDefense</c>
+		/// </summary>
+		/// <param name="pBaseAttackBonus"></param>
+		/// <param name="pStrength"></param>
+		/// <param name="pDexterity"></param>
+		/// <param name="pSize"></param>
+		/// <param name="pDeflectBonus"></param>
+		/// <param name="pDodgeBonus"></param>
+		/// <param name="pTemporaryBonus"></param>
+		/// <param name="pMiscellaneousModifier"></param>
 		public DefenseScore(
 			int pBaseAttackBonus,
 			IAbilityScore pStrength,

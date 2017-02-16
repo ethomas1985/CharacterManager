@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Pathfinder.Model
 {
@@ -989,8 +989,6 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(Character)}s");
-
 			var result = ComparisonUtilities.Compare(GetType().Name, Age, pOther.Age, nameof(Age));
 			result &= ComparisonUtilities.Compare(GetType().Name, Alignment, pOther.Alignment, nameof(Alignment));
 			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Classes, pOther.Classes, nameof(Classes));
@@ -1040,7 +1038,7 @@ namespace Pathfinder.Model
 			//result &= Equals(Effects, other.Effects);
 			result &= ComparisonUtilities.Compare(GetType().Name, Purse, pOther.Purse, nameof(Purse));
 
-			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
+			//Tracer.Message(pMessage: $"\tComparison resulted with {result}");
 
 			return result;
 		}

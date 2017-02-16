@@ -75,16 +75,12 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(Class)}es");
-
 			var result = ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name));
 			result &= ComparisonUtilities.CompareSets(GetType().Name, Alignments, pOther.Alignments, nameof(Alignments));
 			result &= ComparisonUtilities.Compare(GetType().Name, HitDie, pOther.HitDie, nameof(HitDie));
 			result &= ComparisonUtilities.Compare(GetType().Name, SkillAddend, pOther.SkillAddend, nameof(SkillAddend));
 			result &= ComparisonUtilities.CompareSets(GetType().Name, Skills, pOther.Skills, nameof(Skills));
 			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Features, pOther.Features, nameof(Features));
-
-			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
 
 			return result;
 		}

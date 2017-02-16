@@ -1,5 +1,6 @@
-﻿using System;
-using Pathfinder.Interface;
+﻿using Pathfinder.Interface;
+using Pathfinder.Utilities;
+using System;
 
 namespace Pathfinder.Model
 {
@@ -34,7 +35,7 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			return string.Equals(Name, pOther.Name);
+			return ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
 		}
 
 		public override int GetHashCode()

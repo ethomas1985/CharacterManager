@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Pathfinder.Test.Mocks
 {
@@ -53,7 +53,7 @@ namespace Pathfinder.Test.Mocks
 
 		public void Store(IClass pValue)
 		{
-			throw new System.NotImplementedException();
+			_library[pValue.Name] = pValue;
 		}
 
 		public IEnumerator<IClass> GetEnumerator()

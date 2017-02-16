@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pathfinder.Serializers.Json
 {
@@ -47,185 +47,214 @@ namespace Pathfinder.Serializers.Json
 				throw new ArgumentException($"{nameof(pObjectType)} MUST be an implementation of {nameof(ICharacter)}");
 			}
 
-			ICharacter character = new Character(SkillLibrary);
-
 			var jObject = JObject.Load(pReader);
 
-			character = parseName(jObject, character);
-			character = parseAge(jObject, character);
-			character = parseAlignment(jObject, character);
-			character = parseDeity(jObject, character);
-			character = parseGender(jObject, character);
-			character = parseEyes(jObject, character);
-			character = parseHair(jObject, character);
-			character = parseHeight(jObject, character);
-			character = parseWeight(jObject, character);
-			character = parseHomeland(jObject, character);
-			character = parseRace(jObject, character);
+			ICharacter character = new Character(SkillLibrary);
 
-			//Todo: Parse non-starting languages
-			//var languages = getString(jObject, nameof(ICharacter.Languages));
-			//character = character.AddLanguages(name);
+			character = ParseRace(jObject, character);
+			character = ParseClasses(jObject, character);
 
-			character = parseDamage(jObject, character);
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Strength), character.SetStrength) ?? character;
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Dexterity), character.SetDexterity) ?? character;
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Constitution), character.SetConstitution) ?? character;
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Intelligence), character.SetIntelligence) ?? character;
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Wisdom), character.SetWisdom) ?? character;
+			character = ParseAbilityScore(jObject, nameof(ICharacter.Charisma), character.SetCharisma) ?? character;
 
-			character = parseAbilityScore(jObject, nameof(ICharacter.Strength), character.SetStrength);
-			character = parseAbilityScore(jObject, nameof(ICharacter.Dexterity), character.SetDexterity);
-			character = parseAbilityScore(jObject, nameof(ICharacter.Constitution), character.SetConstitution);
-			character = parseAbilityScore(jObject, nameof(ICharacter.Intelligence), character.SetIntelligence);
-			character = parseAbilityScore(jObject, nameof(ICharacter.Wisdom), character.SetWisdom);
-			character = parseAbilityScore(jObject, nameof(ICharacter.Charisma), character.SetCharisma);
+			character = ParseName(jObject, character);
+			character = ParseAlignment(jObject, character);
+			character = ParseGender(jObject, character);
 
-			// TODO = DefensiveScores, OffensiveScores, SavingThrows, Effects, Classes, etc
+			character = ParseAge(jObject, character);
+			character = ParseDeity(jObject, character);
+			character = ParseEyes(jObject, character);
+			character = ParseHair(jObject, character);
+			character = ParseHeight(jObject, character);
+			character = ParseWeight(jObject, character);
+			character = ParseHomeland(jObject, character);
 
-			character = parseClasses(jObject, character, nameof(ICharacter.Classes));
+			character = ParseLanguages(jObject, character);
 
-			character = parseExperience(jObject, character, nameof(ICharacter.Experience));
+			character = ParseDamage(jObject, character);
 
-			character = parseFeats(jObject, character, nameof(ICharacter.Feats));
+			// TODO = Effects, etc
+
+
+			character = ParseExperience(jObject, character);
+
+			character = ParsePurse(jObject, character);
+
+			character = ParseFeats(jObject, character);
 
 			return character;
 		}
 
-		private static ICharacter parseDamage(JObject jObject, ICharacter character)
+		private ICharacter ParseRace(JToken pJToken, ICharacter pCharacter)
 		{
-			var damage = getInt(jObject, nameof(ICharacter.Damage));
-			character = character.SetDamage(damage);
-			return character;
-		}
-
-		private ICharacter parseRace(JObject jObject, ICharacter character)
-		{
-			var parsedRace = getString(jObject, nameof(ICharacter.Race));
+			var parsedRace = GetString(pJToken, nameof(ICharacter.Race));
 			IRace race;
 			if (parsedRace != null && RaceLibrary.TryGetValue(parsedRace, out race))
 			{
-				character = character.SetRace(race);
+				return pCharacter.SetRace(race);
 			}
-			return character;
+			return pCharacter;
 		}
 
-		private static ICharacter parseHomeland(JObject jObject, ICharacter character)
+		private ICharacter ParseClasses(JToken pJToken, ICharacter pCharacter)
 		{
-			var homeland = getString(jObject, nameof(ICharacter.Homeland));
-			if (!string.IsNullOrWhiteSpace(homeland))
-			{
-				character = character.SetHomeland(homeland);
-			}
-			return character;
-		}
-
-		private static ICharacter parseWeight(JObject jObject, ICharacter character)
-		{
-			var weight = getString(jObject, nameof(ICharacter.Weight));
-			if (!string.IsNullOrWhiteSpace(weight))
-			{
-				character = character.SetWeight(weight);
-			}
-			return character;
-		}
-
-		private static ICharacter parseHeight(JObject jObject, ICharacter character)
-		{
-			var height = getString(jObject, nameof(ICharacter.Height));
-			if (!string.IsNullOrWhiteSpace(height))
-			{
-				character = character.SetHeight(height);
-			}
-			return character;
-		}
-
-		private static ICharacter parseHair(JObject jObject, ICharacter character)
-		{
-			var hair = getString(jObject, nameof(ICharacter.Hair));
-			if (!string.IsNullOrWhiteSpace(hair))
-			{
-				character = character.SetHair(hair);
-			}
-			return character;
-		}
-
-		private static ICharacter parseEyes(JObject jObject, ICharacter character)
-		{
-			var eyes = getString(jObject, nameof(ICharacter.Eyes));
-			if (!string.IsNullOrWhiteSpace(eyes))
-			{
-				character = character.SetEyes(eyes);
-			}
-			return character;
-		}
-
-		private static ICharacter parseGender(JObject jObject, ICharacter character)
-		{
-			var parsedGender = getString(jObject, nameof(ICharacter.Gender));
-			Gender gender;
-			if (Enum.TryParse(parsedGender, out gender))
-			{
-				character = character.SetGender(gender);
-			}
-			return character;
-		}
-
-		private static ICharacter parseDeity(JObject jObject, ICharacter character)
-		{
-			var parsedDeity = getString(jObject, nameof(ICharacter.Deity));
-			if (!string.IsNullOrWhiteSpace(parsedDeity))
-			{
-				character = character.SetDeity(new Deity(parsedDeity));
-			}
-			return character;
-		}
-
-		private static ICharacter parseAlignment(JObject jObject, ICharacter character)
-		{
-			var parsedAlignment = getString(jObject, nameof(ICharacter.Alignment));
-			Alignment alignment;
-			if (Enum.TryParse(parsedAlignment, out alignment))
-			{
-				character = character.SetAlignment(alignment);
-			}
-			return character;
-		}
-
-		private static ICharacter parseAge(JObject jObject, ICharacter character)
-		{
-			var age = getInt(jObject, nameof(ICharacter.Age));
-			character = character.SetAge(age);
-			return character;
-		}
-
-		private static ICharacter parseName(JObject jObject, ICharacter character)
-		{
-			var name = getString(jObject, nameof(ICharacter.Name));
-			if (!string.IsNullOrWhiteSpace(name))
-			{
-				character = character.SetName(name);
-			}
-			return character;
-		}
-
-		private ICharacter parseExperience(JObject pJObject, ICharacter pCharacter, string pFieldName)
-		{
-			var tokens = pJObject.SelectTokens(pFieldName).Children();
-
+			var tokens = pJToken.SelectTokens(nameof(ICharacter.Classes)).Children();
 
 			var character = pCharacter;
 			foreach (var token in tokens)
 			{
-				character = parseEvent(token, character);
+				character = ParseCharacterClass(token, character);
 			}
 
 			return character;
 		}
 
-		private ICharacter parseEvent(JToken pToken, ICharacter pCharacter)
+		private ICharacter ParseCharacterClass(JToken pToken, ICharacter pCharacter)
 		{
-			string title = pToken.SelectToken(nameof(IEvent.Title))?.ToString();
+			var className =  GetString(pToken, nameof(ICharacterClass.Class));
 
-			string description = pToken.SelectToken(nameof(IEvent.Description))?.ToString();
+			var level = GetInt(pToken, nameof(ICharacterClass.Level));
+			var isFavored = GetBoolean(pToken, nameof(ICharacterClass.IsFavored));
+
+			var hitPointTokens = pToken.SelectToken(nameof(ICharacterClass.HitPoints));
+			var hitPoints = hitPointTokens.Values<int>();
+
+			var @class = ClassLibrary[className];
+
+			pCharacter = pCharacter.AddClass(@class, level, isFavored, hitPoints);
+			return pCharacter;
+		}
+
+		private static ICharacter ParseHomeland(JToken pJToken, ICharacter pCharacter)
+		{
+			var homeland = GetString(pJToken, nameof(ICharacter.Homeland));
+			if (!string.IsNullOrWhiteSpace(homeland))
+			{
+				pCharacter = pCharacter.SetHomeland(homeland);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseWeight(JToken pJToken, ICharacter pCharacter)
+		{
+			var weight = GetString(pJToken, nameof(ICharacter.Weight));
+			if (!string.IsNullOrWhiteSpace(weight))
+			{
+				pCharacter = pCharacter.SetWeight(weight);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseHeight(JToken pJToken, ICharacter pCharacter)
+		{
+			var height = GetString(pJToken, nameof(ICharacter.Height));
+			if (!string.IsNullOrWhiteSpace(height))
+			{
+				pCharacter = pCharacter.SetHeight(height);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseHair(JToken pJToken, ICharacter pCharacter)
+		{
+			var hair = GetString(pJToken, nameof(ICharacter.Hair));
+			if (!string.IsNullOrWhiteSpace(hair))
+			{
+				pCharacter = pCharacter.SetHair(hair);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseEyes(JToken pJToken, ICharacter pCharacter)
+		{
+			var eyes = GetString(pJToken, nameof(ICharacter.Eyes));
+			if (!string.IsNullOrWhiteSpace(eyes))
+			{
+				pCharacter = pCharacter.SetEyes(eyes);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseGender(JToken pJToken, ICharacter pCharacter)
+		{
+			var parsedGender = GetString(pJToken, nameof(ICharacter.Gender));
+			Gender gender;
+			if (Enum.TryParse(parsedGender, out gender))
+			{
+				pCharacter = pCharacter.SetGender(gender);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseDeity(JToken pJToken, ICharacter pCharacter)
+		{
+			var title = pJToken.SelectToken($"{nameof(ICharacter.Deity)}.{nameof(IDeity.Name)}")?.ToString();
+			if (!string.IsNullOrWhiteSpace(title))
+			{
+				pCharacter = pCharacter.SetDeity(new Deity(title));
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseAlignment(JToken pJToken, ICharacter pCharacter)
+		{
+			var parsedAlignment = GetString(pJToken, nameof(ICharacter.Alignment));
+			Alignment alignment;
+			if (Enum.TryParse(parsedAlignment, out alignment))
+			{
+				pCharacter = pCharacter.SetAlignment(alignment);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseAge(JToken pJToken, ICharacter pCharacter)
+		{
+			var age = GetInt(pJToken, nameof(ICharacter.Age));
+			return age > 0 ? pCharacter.SetAge(age) : pCharacter;
+		}
+
+		private static ICharacter ParseName(JToken pJToken, ICharacter pCharacter)
+		{
+			var name = GetString(pJToken, nameof(ICharacter.Name));
+			if (!string.IsNullOrWhiteSpace(name))
+			{
+				pCharacter = pCharacter.SetName(name);
+			}
+			return pCharacter;
+		}
+
+		private static ICharacter ParseDamage(JToken pJToken, ICharacter pCharacter)
+		{
+			var damage = GetInt(pJToken, nameof(ICharacter.Damage));
+			pCharacter = pCharacter.SetDamage(damage);
+			return pCharacter;
+		}
+
+		private ICharacter ParseExperience(JToken pJToken, ICharacter pCharacter)
+		{
+			var tokens = pJToken.SelectTokens(nameof(ICharacter.Experience)).Children();
+
+			var character = pCharacter;
+			foreach (var token in tokens)
+			{
+				character = ParseEvent(token, character);
+			}
+
+			return character;
+		}
+
+		private ICharacter ParseEvent(JToken pToken, ICharacter pCharacter)
+		{
+			string title =  GetString(pToken, nameof(IEvent.Title));
+
+			string description =  GetString(pToken, nameof(IEvent.Description));
 
 			int xp;
-			var xpText = pToken.SelectToken(nameof(IEvent.ExperiencePoints))?.ToString();
+			var xpText =  GetString(pToken, nameof(IEvent.ExperiencePoints));
 			if (!int.TryParse(xpText, out xp))
 			{
 				xp = 0;
@@ -234,110 +263,103 @@ namespace Pathfinder.Serializers.Json
 			return pCharacter.AppendExperience(new Event(title, description, xp));
 		}
 
-		private ICharacter parseFeats(JObject pJObject, ICharacter pCharacter, string pFieldName)
+		private ICharacter ParsePurse(JToken pJToken, ICharacter pCharacter)
 		{
-			var tokens = pJObject.SelectTokens(pFieldName).Children();
+			var purseToken = pJToken.SelectToken(nameof(ICharacter.Purse));
+			if (purseToken == null)
+			{
+				return pCharacter;
+			}
+
+			var copper = (int)purseToken.SelectToken(nameof(IPurse.Copper));
+			var silver = (int)purseToken.SelectToken(nameof(IPurse.Silver));
+			var gold = (int)purseToken.SelectToken(nameof(IPurse.Gold));
+			var platinum = (int)purseToken.SelectToken(nameof(IPurse.Platinum));
+
+			return pCharacter.SetPurse(copper, silver, gold, platinum);
+		}
+
+		private ICharacter ParseFeats(JToken pJToken, ICharacter pCharacter)
+		{
+			var tokens = pJToken.SelectTokens(nameof(ICharacter.Feats)).Children();
 
 			var character = pCharacter;
 			foreach (var token in tokens)
 			{
-				character = parseFeat(token, character);
+				character = ParseFeat(token, character);
 			}
 
 			return character;
 		}
 
-		private ICharacter parseFeat(JToken pToken, ICharacter pCharacter)
+		private ICharacter ParseFeat(JToken pToken, ICharacter pCharacter)
 		{
-			string name = pToken.SelectToken(nameof(IFeat.Name))?.ToString();
+			string name =  GetString(pToken, nameof(IFeat.Name));
 
-			var parsedAlignment = getString(pToken, nameof(IFeat.FeatType));
+			var parsedAlignment = GetString(pToken, nameof(IFeat.FeatType));
 			FeatType featType;
 			if (!Enum.TryParse(parsedAlignment, out featType))
 			{
 				featType = FeatType.General;
 			}
 
-			string description = pToken.SelectToken(nameof(IFeat.Description))?.ToString();
-			string benefit = pToken.SelectToken(nameof(IFeat.Benefit))?.ToString();
-			string special = pToken.SelectToken(nameof(IFeat.Special))?.ToString();
+			string description = GetString(pToken, nameof(IFeat.Description));
+			string benefit =  GetString(pToken, nameof(IFeat.Benefit));
+			string special =  GetString(pToken, nameof(IFeat.Special));
 
 			var prerequisites = pToken[nameof(IFeat.Prerequisites)]?.Children().Select(x => x.Value<string>());
 
-			return pCharacter.AddFeat(new Feat(name, featType,prerequisites, description, benefit, special));
+			return pCharacter.AddFeat(new Feat(name, featType, prerequisites, description, benefit, special));
 		}
-
-
-		protected ICharacter parseAbilityScore(JObject pJObject, string pAbilityName, Func<int, int, int, ICharacter> pSetAbilityScore)
+		private ICharacter ParseLanguages(JToken pJToken, ICharacter pCharacter)
 		{
-			var baseValue = getInt(pJObject, $"{pAbilityName}.{nameof(IAbilityScore.Base)}");
-			var enhancedValue = getInt(pJObject, $"{pAbilityName}.{nameof(IAbilityScore.Enhanced)}");
-			var inherentValue = getInt(pJObject, $"{pAbilityName}.{nameof(IAbilityScore.Inherent)}");
-
-			return pSetAbilityScore(baseValue, enhancedValue, inherentValue);
-		}
-
-		protected ICharacter parseClasses(JObject pJObject, ICharacter pCharacter, string pFieldName)
-		{
-			var tokens = pJObject.SelectTokens(pFieldName).Children();
+			var tokens = pJToken.SelectTokens(nameof(ICharacter.Languages)).Values<string>();
 
 			var character = pCharacter;
 			foreach (var token in tokens)
 			{
-				var className = token.SelectToken(nameof(ICharacterClass.Class))?.ToString();
-
-				var levelText = token.SelectToken(nameof(ICharacterClass.Level))?.ToString();
-				int level;
-				if (!int.TryParse(levelText, out level))
+				if (string.IsNullOrWhiteSpace(token) || character.Languages.Any(x => token.Equals(x.Name)))
 				{
-					level = 0;
+					continue;
 				}
 
-				var isFavoredText = token.SelectToken(nameof(ICharacterClass.IsFavored))?.ToString();
-				bool isFavored;
-				if (!bool.TryParse(isFavoredText, out isFavored))
-				{
-					isFavored = false;
-				}
-
-				var hitPointTokens = token.SelectToken(nameof(ICharacterClass.HitPoints));
-				var hitPoints = hitPointTokens.Values<int>();
-
-				var @class = ClassLibrary[className];
-
-				character = character.AddClass(@class, level, isFavored, hitPoints);
+				character = character.AddLanguage(new Language(token));
 			}
 
 			return character;
 		}
 
-		protected static string getString(JToken pJObject, string pField)
+		private ICharacter ParseAbilityScore(JObject pJToken, string pAbilityName, Func<int, int, int, ICharacter> pSetAbilityScore)
 		{
-			return pJObject.SelectToken(pField)?.ToString();
+			var token = pJToken.SelectToken(pAbilityName);
+			if (token == null)
+			{
+				return null;
+			}
+			var baseValue = GetInt(token, nameof(IAbilityScore.Base));
+			var enhancedValue = GetInt(token, nameof(IAbilityScore.Enhanced));
+			var inherentValue = GetInt(token, nameof(IAbilityScore.Inherent));
+
+			return pSetAbilityScore(baseValue, enhancedValue, inherentValue);
 		}
 
-		protected static string getString(JObject pJObject, string pField)
+
+		private static string GetString(JToken pJToken, string pField)
 		{
-			return pJObject.SelectToken(pField)?.ToString();
+			return pJToken.SelectToken(pField)?.ToString();
 		}
 
-		protected static int getInt(JObject pJObject, string pField)
+		private static int GetInt(JToken pJToken, string pField)
 		{
-			var parsedValue = pJObject.SelectToken(pField).ToString();
+			var parsedValue = GetString(pJToken, pField);
 			int value;
 			return int.TryParse(parsedValue, out value) ? value : 0;
 		}
 
-		protected static string getStringFor(JObject pJObject, string pField, string pValue)
-		{
-			var section = pJObject["sections"].Children().Where(x => x[pField] != null && ((string) x[pField]).Equals(pValue));
-			return section.Select(x => (string) x["body"]).FirstOrDefault();
-		}
-
-		protected static bool getBoolean(JObject pJObject, string pField)
+		private static bool GetBoolean(JToken pJToken, string pField)
 		{
 			bool value;
-			return bool.TryParse((string) pJObject[pField], out value) && value;
+			return bool.TryParse(GetString(pJToken, pField), out value) && value;
 		}
 
 		public override void WriteJson(
@@ -429,9 +451,9 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteEndObject();
 		}
 
-		private static void _writeDeity(JsonWriter pWriter, ICharacter character)
+		private static void _writeDeity(JsonWriter pWriter, ICharacter pCharacter)
 		{
-			if (character.Deity == null)
+			if (pCharacter.Deity == null)
 			{
 				return;
 			}
@@ -439,7 +461,7 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WritePropertyName(nameof(ICharacter.Deity));
 			pWriter.WriteStartObject();
 
-			_writeProperty(pWriter, nameof(IDeity.Name), character.Deity.Name);
+			_writeProperty(pWriter, nameof(IDeity.Name), pCharacter.Deity.Name);
 
 			pWriter.WriteEndObject();
 		}
@@ -514,11 +536,27 @@ namespace Pathfinder.Serializers.Json
 
 			_writeProperty(pWriter, nameof(IDefenseScore.Type), pDefenseScore.Type.ToString());
 			_writeProperty(pWriter, nameof(IDefenseScore.Score), pDefenseScore.Score);
-			_writeProperty(pWriter, nameof(IDefenseScore.ArmorBonus), pDefenseScore.ArmorBonus);
-			_writeProperty(pWriter, nameof(IDefenseScore.ShieldBonus), pDefenseScore.ShieldBonus);
+
+			if (pDefenseScore.Type == DefensiveType.CombatManeuverDefense)
+			{
+				_writeProperty(pWriter, nameof(IDefenseScore.StrengthModifier), pDefenseScore.StrengthModifier);
+			}
+			else
+			{
+				_writeProperty(pWriter, nameof(IDefenseScore.ShieldBonus), pDefenseScore.ShieldBonus);
+			}
+
+			if (pDefenseScore.Type == DefensiveType.CombatManeuverDefense)
+			{
+				_writeProperty(pWriter, nameof(IDefenseScore.BaseAttackBonus), pDefenseScore.BaseAttackBonus);
+			}
+			else
+			{
+				_writeProperty(pWriter, nameof(IDefenseScore.ArmorBonus), pDefenseScore.ArmorBonus);
+			}
+
+
 			_writeProperty(pWriter, nameof(IDefenseScore.DexterityModifier), pDefenseScore.DexterityModifier);
-			_writeProperty(pWriter, nameof(IDefenseScore.StrengthModifier), pDefenseScore.StrengthModifier);
-			_writeProperty(pWriter, nameof(IDefenseScore.BaseAttackBonus), pDefenseScore.BaseAttackBonus);
 			_writeProperty(pWriter, nameof(IDefenseScore.SizeModifier), pDefenseScore.SizeModifier);
 			_writeProperty(pWriter, nameof(IDefenseScore.DeflectBonus), pDefenseScore.DeflectBonus);
 			_writeProperty(pWriter, nameof(IDefenseScore.DodgeBonus), pDefenseScore.DodgeBonus);
@@ -619,13 +657,13 @@ namespace Pathfinder.Serializers.Json
 			pWriter.WriteEndArray();
 		}
 
-		private void _writeEvent(JsonWriter pWriter, IEvent experienceEvent)
+		private void _writeEvent(JsonWriter pWriter, IEvent pExperienceEvent)
 		{
 			pWriter.WriteStartObject();
 
-			_writeProperty(pWriter, nameof(IEvent.Title), experienceEvent.Title);
-			_writeProperty(pWriter, nameof(IEvent.Description), experienceEvent.Description);
-			_writeProperty(pWriter, nameof(IEvent.ExperiencePoints), experienceEvent.ExperiencePoints);
+			_writeProperty(pWriter, nameof(IEvent.Title), pExperienceEvent.Title);
+			_writeProperty(pWriter, nameof(IEvent.Description), pExperienceEvent.Description);
+			_writeProperty(pWriter, nameof(IEvent.ExperiencePoints), pExperienceEvent.ExperiencePoints);
 
 			pWriter.WriteEndObject();
 		}

@@ -78,14 +78,10 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			Tracer.Message(pMessage: $"Comparing Two Non-null {nameof(CharacterClass)}es");
-
 			var result = ComparisonUtilities.Compare(GetType().Name, Class, pOther.Class, nameof(Class));
 			result &= ComparisonUtilities.Compare(GetType().Name, Level, pOther.Level, nameof(Level));
 			result &= ComparisonUtilities.Compare(GetType().Name, IsFavored, pOther.IsFavored, nameof(IsFavored));
 			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, HitPoints, pOther.HitPoints, nameof(HitPoints));
-
-			Tracer.Message(pMessage: $"\tComparison resulted with {result}");
 
 			return result;
 		}

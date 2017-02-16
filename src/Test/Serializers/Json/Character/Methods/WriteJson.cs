@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,8 +7,12 @@ using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Model;
 using Pathfinder.Serializers.Json;
 using Pathfinder.Test.Mocks;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Pathfinder.Test.Serializers.Json.Character.Methods
 {
@@ -85,9 +85,13 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			var stringWriter = new StringWriter();
 			var jsonTextWriter = new JsonTextWriter(stringWriter);
 
+			var testCharacter =
+				CharacterJsonSerializerUtils
+					.GetTestCharacter();
+
 			converter.WriteJson(
 				jsonTextWriter,
-				CharacterJsonSerializerUtils.getTestCharacter(),
+				testCharacter,
 				JsonSerializer.CreateDefault());
 
 			var result = JObject.Parse(stringWriter.ToString());
@@ -97,6 +101,21 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			File.WriteAllText("expected.json", expected.ToString());
 
 			Assert.IsTrue(JToken.DeepEquals(expected, result));
+		}
+
+		[Test]
+		public void WithName()
+		{
+			const string name = "Unit McTesterFace";
+
+			var testCharacter =
+				CharacterJsonSerializerUtils
+					.CreateNewCharacter()
+					.SetName(name);
+
+			var result = SerializeAndParseToJson(testCharacter)[nameof(ICharacter.Name)]?.Value<string>();
+
+			Assert.AreEqual(name, result);
 		}
 
 		[Test]
@@ -292,15 +311,12 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		[Test]
 		public void WithLanguages()
 		{
-			const string languageName = "Mock Language";
-			var mockLanguage = new Mock<ILanguage>();
-			mockLanguage.SetupGet(x => x.Name).Returns(languageName);
-			mockLanguage.Setup(x => x.ToString()).Returns(languageName);
+			const string languageName = "Test Language";
 
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter()
-					.AddLanguage(mockLanguage.Object);
+					.AddLanguage(new Language(languageName));
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var jsonLanguages = json[nameof(ICharacter.Languages)];
@@ -312,30 +328,30 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		[Test]
 		public void WithClass()
 		{
-			var mockClass = CreateMockClass();
+			var mockClass = CharacterJsonSerializerUtils.CreateTestingClass();
 
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter()
-					.AddClass(mockClass.Object);
+					.AddClass(mockClass);
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var jsonClasses = json[nameof(ICharacter.Classes)];
 			var children = jsonClasses?.Children();
 			var result = children?[nameof(ICharacterClass.Class)].Select(x => x.Value<string>());
 
-			Assert.That(result, new CollectionEquivalentConstraint(new[] { mockClass.Object.Name }));
+			Assert.That(result, new CollectionEquivalentConstraint(new[] { mockClass.Name }));
 		}
 
 		[Test]
 		public void WithMaxHealthPointsFromClass()
 		{
-			var mockClass = CreateMockClass();
+			var mockClass = CharacterJsonSerializerUtils.CreateTestingClass();
 
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter()
-					.AddClass(mockClass.Object);
+					.AddClass(mockClass);
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var result = json[nameof(ICharacter.MaxHealthPoints)].Value<int>();
@@ -346,12 +362,12 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		[Test]
 		public void WithHealthPointsFromClass()
 		{
-			var mockClass = CreateMockClass();
+			var mockClass = CharacterJsonSerializerUtils.CreateTestingClass();
 
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter()
-					.AddClass(mockClass.Object);
+					.AddClass(mockClass);
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var result = json[nameof(ICharacter.HealthPoints)].Value<int>();
@@ -721,29 +737,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			Assert.That(result?.Count(), Is.EqualTo(expected));
 		}
 
-		private static Mock<IClass> CreateMockClass()
-		{
-			const string className = "Mock Class";
-
-			var mockHitDie = new Mock<IDie>();
-			mockHitDie.SetupGet(x => x.Faces).Returns(6);
-
-			var mockClassLevel = new Mock<IClassLevel>();
-			mockClassLevel.SetupGet(x => x.Level).Returns(1);
-			mockClassLevel.SetupGet(x => x.Fortitude).Returns(1);
-			mockClassLevel.SetupGet(x => x.Reflex).Returns(1);
-			mockClassLevel.SetupGet(x => x.Will).Returns(1);
-
-			var mockClass = new Mock<IClass>();
-			mockClass.SetupGet(x => x.Name).Returns(className);
-			mockClass.SetupGet(x => x.HitDie).Returns(mockHitDie.Object);
-			mockClass.SetupGet(x => x.ClassLevels).Returns(new[] { mockClassLevel.Object });
-			mockClass.SetupGet(x => x.Skills).Returns(new HashSet<string>());
-			mockClass.Setup(x => x.ToString()).Returns(className);
-			return mockClass;
-		}
-
-		private static string Serialize(ICharacter testCharacter)
+		private static string Serialize(ICharacter pTestCharacter)
 		{
 			var converter =
 				new CharacterJsonSerializer(
@@ -756,7 +750,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 
 			converter.WriteJson(
 				jsonTextWriter,
-				testCharacter,
+				pTestCharacter,
 				JsonSerializer.CreateDefault());
 
 			var result = stringWriter.ToString();
