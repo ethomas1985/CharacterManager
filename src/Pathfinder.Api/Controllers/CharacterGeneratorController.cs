@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using Pathfinder.Api.Models;
+﻿using Pathfinder.Api.Models;
 using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Utilities;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace Pathfinder.Api.Controllers
 {
@@ -85,12 +85,12 @@ namespace Pathfinder.Api.Controllers
 					//.AddFeat(FeatLibrary["Spell Focus (Evocation)"])
 					.IncrementClass(ClassLibrary["Sorcerer"], 6) // Lvl 4 -> 6 = 4+2
 
-					//.AssignSkillPoint(SkillLibrary["Bluff"], 1)
-					//.AssignSkillPoint(SkillLibrary["Escape Artist"], 1)
-					//.AssignSkillPoint(SkillLibrary["Perception"], 2)
-					//.AssignSkillPoint(SkillLibrary["Spellcraft"], 2)
-					//.AssignSkillPoint(SkillLibrary["Stealth"], 2)
-					//.AssignSkillPoint(SkillLibrary["Use Magic Device"], 1)
+					.AssignSkillPoint(SkillLibrary["Bluff"], 1)
+					.AssignSkillPoint(SkillLibrary["Escape Artist"], 1)
+					.AssignSkillPoint(SkillLibrary["Perception"], 2)
+					.AssignSkillPoint(SkillLibrary["Spellcraft"], 2)
+					.AssignSkillPoint(SkillLibrary["Stealth"], 2)
+					.AssignSkillPoint(SkillLibrary["Use Magic Device"], 1)
 
 					.SetDamage(1)
 					.AddDamage(1)

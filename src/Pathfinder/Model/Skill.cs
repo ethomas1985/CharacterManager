@@ -7,17 +7,17 @@ namespace Pathfinder.Model
 	internal class Skill : ISkill, IEquatable<ISkill>
 	{
 		public Skill(
-			string pName, 
-			AbilityType pAbilityType, 
-			bool pTrainedOnly, 
-			bool pArmorCheckPenalty, 
-			string pDescription, 
-			string pCheck, 
-			string pAction, 
-			string pTryAgain, 
-			string pSpecial, 
-			string pRestriction, 
-			string pUntrained)
+			string pName,
+			AbilityType pAbilityType,
+			bool pTrainedOnly,
+			bool pArmorCheckPenalty,
+			string pDescription,
+			string pCheck = null,
+			string pAction = null,
+			string pTryAgain = null,
+			string pSpecial = null,
+			string pRestriction = null,
+			string pUntrained = null)
 		{
 			Name = pName;
 			AbilityType = pAbilityType;
@@ -81,16 +81,16 @@ namespace Pathfinder.Model
 			unchecked
 			{
 				var hashCode = Name?.GetHashCode() ?? 0;
-				hashCode = (hashCode*397) ^ (int) AbilityType;
-				hashCode = (hashCode*397) ^ TrainedOnly.GetHashCode();
-				hashCode = (hashCode*397) ^ ArmorCheckPenalty.GetHashCode();
-				hashCode = (hashCode*397) ^ (Description?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (Check?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (Action?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (TryAgain?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (Special?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (Restriction?.GetHashCode() ?? 0);
-				hashCode = (hashCode*397) ^ (Untrained?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (int)AbilityType;
+				hashCode = (hashCode * 397) ^ TrainedOnly.GetHashCode();
+				hashCode = (hashCode * 397) ^ ArmorCheckPenalty.GetHashCode();
+				hashCode = (hashCode * 397) ^ (Description?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Check?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Action?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (TryAgain?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Special?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Restriction?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (Untrained?.GetHashCode() ?? 0);
 				return hashCode;
 			}
 		}

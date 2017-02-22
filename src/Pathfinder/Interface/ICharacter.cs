@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
+using System.Collections.Generic;
 
 namespace Pathfinder.Interface
 {
@@ -84,6 +84,7 @@ namespace Pathfinder.Interface
 		int MaxSkillRanks { get; }
 		IEnumerable<ISkillScore> SkillScores { get; }
 		ISkillScore this[ISkill pSkill] { get; }
+		ISkillScore this[string pSkillName] { get; }
 
 		IEnumerable<IWeapon> Weapons { get; }
 

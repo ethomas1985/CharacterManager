@@ -73,7 +73,36 @@
     <Compile Include="Mocks\MockClassLibrary.cs" />
     <Compile Include="Mocks\MockRaceLibrary.cs" />
     <Compile Include="Model\AbilityScoreTests.cs" />
-    <Compile Include="Model\CharacterTests.cs" />
+    <Compile Include="Model\CharacterMethods\AddClassMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AddDamageMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AddFeatMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AddLanguageMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AppendExperienceMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AssignSkillPointMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetRaceMethod.cs" />
+    <Compile Include="Model\CharacterMethods\EquipArmorMethod.cs" />
+    <Compile Include="Model\CharacterMethods\IncrementClassMethod.cs" />
+    <Compile Include="Model\CharacterMethods\RemoveLanguageMethod.cs" />
+    <Compile Include="Model\CharacterMethods\ReplaceArmorMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetAgeMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetAlignmentMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetCharismaMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetConstitutionMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetDamageMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetDeityMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetDexterityMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetEyesMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetGenderMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetHairMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetHeightMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetHomelandMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetIntelligenceMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetInventoryMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetNameMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetPurseMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetStrengthMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetWeightMethod.cs" />
+    <Compile Include="Model\CharacterMethods\SetWisdomMethod.cs" />
     <Compile Include="Model\DefenseScoreTests.cs" />
     <Compile Include="Model\Currency\PurseTests.cs" />
     <Compile Include="Model\ExperienceTests\AddMethod_Experience.cs" />
@@ -120,6 +149,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

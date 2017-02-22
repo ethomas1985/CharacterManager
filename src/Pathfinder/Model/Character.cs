@@ -493,7 +493,7 @@ namespace Pathfinder.Model
 		private ILibrary<ISkill> SkillLibrary { get; }
 		private IEnumerable<ISkill> Skills => SkillLibrary;
 
-		private IDictionary<ISkill, int> SkillRanks { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
+		private ImmutableDictionary<ISkill, int> SkillRanks { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		public IEnumerable<ISkillScore> SkillScores
 		{
@@ -523,6 +523,15 @@ namespace Pathfinder.Model
 						misc,
 						temp,
 						armorClassPenalty);
+			}
+		}
+
+		public ISkillScore this[string pSkillName]
+		{
+			get
+			{
+				var skill = Skills.FirstOrDefault(x => x.Name.Equals(pSkillName));
+				return this[skill];
 			}
 		}
 
@@ -908,7 +917,17 @@ namespace Pathfinder.Model
 			Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}, " +
 									 $"{nameof(pPoint)}: {pPoint}");
 
-			throw new NotImplementedException();
+			Assert.ArgumentNotNull(pSkill, nameof(pSkill));
+
+			var newCharacter = _copy();
+
+			int originalRank = 
+				SkillRanks.TryGetValue(pSkill, out originalRank) ? originalRank : 0;
+			int rank = pPoint + originalRank;
+
+			newCharacter.SkillRanks = newCharacter.SkillRanks.Add(pSkill, rank);
+
+			return newCharacter;
 		}
 
 		public ICharacter AddFeat(IFeat pFeat)

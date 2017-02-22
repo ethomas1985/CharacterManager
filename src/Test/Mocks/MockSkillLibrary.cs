@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Pathfinder.Test.Mocks
 {
@@ -18,13 +18,7 @@ namespace Pathfinder.Test.Mocks
 				AbilityType.Strength,
 				false,
 				false,
-				"This is a testing Skill",
-				null,
-				null,
-				null,
-				null,
-				null,
-				null)
+				"This is a testing Skill")
 		};
 
 		public IEnumerable<string> Keys => _library.Keys;
@@ -38,7 +32,7 @@ namespace Pathfinder.Test.Mocks
 
 		public void Store(ISkill pValue)
 		{
-			throw new System.NotImplementedException();
+			_library[pValue.Name] = pValue;
 		}
 
 		public IEnumerator<ISkill> GetEnumerator()
