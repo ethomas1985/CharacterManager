@@ -960,7 +960,7 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		public ICharacter SetInventory(IItem pItem)
+		public ICharacter AddToInventory(IItem pItem)
 		{
 			Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
 

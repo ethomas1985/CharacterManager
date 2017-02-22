@@ -7,7 +7,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[Ignore("Method Not Yet Implemented.")]
 	[TestFixture]
-	public class SetInventoryMethod
+	public class AddToInventoryMethod
 	{
 		[Test]
 		public void Success()
@@ -20,7 +20,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var original = (ICharacter) new Character(new MockSkillLibrary());
 
-			var result = original.SetInventory(null);
+			var result = original.AddToInventory(null);
 
 			Assert.AreNotSame(original, result);
 		}
@@ -29,7 +29,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void OriginalUnchanged()
 		{
 			var original = (ICharacter) new Character(new MockSkillLibrary());
-			original.SetInventory(null);
+			original.AddToInventory(null);
 
 			Assert.IsNull(original.Name);
 		}

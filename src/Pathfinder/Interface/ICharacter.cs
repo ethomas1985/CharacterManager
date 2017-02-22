@@ -127,7 +127,7 @@ namespace Pathfinder.Interface
 
 		ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0);
 
-		ICharacter SetInventory(IItem pItem);
+		ICharacter AddToInventory(IItem pItem);
 
 		ICharacter EquipArmor(IArmor pArmor);
 
