@@ -69,7 +69,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Library\TraitLibraryTests.cs" />
-    <Compile Include="Mocks\MockCharacter.cs" />
     <Compile Include="Mocks\MockCharacterLibrary.cs" />
     <Compile Include="Mocks\MockClassLibrary.cs" />
     <Compile Include="Mocks\MockRaceLibrary.cs" />

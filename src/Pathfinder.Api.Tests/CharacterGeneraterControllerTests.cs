@@ -1,9 +1,10 @@
 ﻿using NUnit.Framework;
 using Pathfinder.Api.Controllers;
 using Pathfinder.Api.Models;
-using System;
+using Pathfinder.Model;
 using Pathfinder.Test.Mocks;
 using Pathfinder.Test.Model;
+using System;
 
 namespace Pathfinder.Api.Tests
 {
@@ -224,13 +225,15 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void ReturnsNotNull()
 			{
+				var skillLibrary = new MockSkillLibrary();
+
 				var charGen = new CharacterGeneratorController(
 					new MockCharacterLibrary(),
 					new MockRaceLibrary(),
-					new MockSkillLibrary(),
+					skillLibrary,
 					new MockClassLibrary());
 
-				var result = charGen.SetRace(TEST_RACE, new MockCharacter());
+				var result = charGen.SetRace(TEST_RACE, new Character(skillLibrary));
 
 				Assert.NotNull(result);
 			}
@@ -268,13 +271,15 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void ReturnsNotNull()
 			{
+				var skillLibrary = new MockSkillLibrary();
+
 				var charGen = new CharacterGeneratorController(
 					new MockCharacterLibrary(),
 					new MockRaceLibrary(),
-					new MockSkillLibrary(),
+					skillLibrary,
 					new MockClassLibrary());
 
-				var result = charGen.SetClass("Test Class", new MockCharacter());
+				var result = charGen.SetClass("Test Class", new Character(skillLibrary));
 
 				Assert.NotNull(result);
 			}
