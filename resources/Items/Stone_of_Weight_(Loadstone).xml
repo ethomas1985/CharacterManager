@@ -1,12 +1,13 @@
 <Item>
   <Name>Stone of Weight (Loadstone)</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

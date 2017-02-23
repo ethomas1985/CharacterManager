@@ -1,12 +1,13 @@
 <Item>
   <Name>Pot</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>8 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>4 lbs.</Weight>
+  <Weight>4</Weight>
   <Description>&lt;p class="stat-block"&gt;This 8-inch-diameter iron pot is sturdy and has feet, a lid, and a rounded handle. It can hold enough stew to feed one hungry human for one meal. A mithral pot is lighter and food rarely sticks to it.&lt;/p&gt;</Description>
 </Item>

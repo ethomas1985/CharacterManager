@@ -1,12 +1,13 @@
 <Item>
   <Name>Canvas</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>1 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;This square yard of heavy cloth is suitable for painting, for covering items in a rainstorm, for creating a sail, or as an improvised bag. It is not waterproof but can be treated with oil, wax, or resin to make it water-resistant.&lt;/p&gt;</Description>
 </Item>

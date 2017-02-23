@@ -1,12 +1,13 @@
 <Item>
   <Name>Messenger</Name>
   <Category>Spellcasting and Services</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper>2 cp</Copper>
-    <Silver></Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Silver>0 sp</Silver>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;This includes horse-riding messengers and runners. Those willing to carry a message to a place they were going anyway may ask for only half the indicated amount.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Trident of Warning</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>10115 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>4 lbs.</Weight>
+  <Weight>4</Weight>
   <Description />
 </Item>

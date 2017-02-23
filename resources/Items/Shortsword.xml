@@ -1,12 +1,13 @@
 <Item>
   <Name>Shortsword</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>10 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>2 lbs.</Weight>
+  <Weight>2</Weight>
   <Description>&lt;p&gt;This sword is about 2 feet in length.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Feed</Name>
   <Category>Mounts and Related Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper>5 cp</Copper>
-    <Silver></Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Silver>0 sp</Silver>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>10 lbs.</Weight>
+  <Weight>10</Weight>
   <Description>&lt;p&gt;Horses, donkeys, mules, and ponies can graze to sustain themselves, but providing feed for them is better. If you have a riding dog, you have to feed it meat.&lt;/p&gt;</Description>
 </Item>

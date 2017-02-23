@@ -1,12 +1,13 @@
 <Item>
   <Name>Buckler</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>5 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description>&lt;p&gt;This small metal shield is worn strapped to your forearm. You can use a bow or crossbow without penalty while carrying it. You can also use your shield arm to wield a weapon (whether you are using an off-hand weapon or using your off hand to help wield a two-handed weapon), but you take a &amp;ndash;1 penalty on attack rolls while doing so. This penalty stacks with those that may apply for fighting with your off hand and for fighting with two weapons. In any case, if you use a weapon in your off hand, you lose the buckler's AC bonus until your next turn. You can cast a spell with somatic components using your shield arm, but you lose the buckler's AC bonus until your next turn. You can't make a shield bash with a buckler.&lt;/p&gt;</Description>
 </Item>

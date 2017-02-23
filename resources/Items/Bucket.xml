@@ -1,12 +1,13 @@
 <Item>
   <Name>Bucket</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>5 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>2 lbs.</Weight>
+  <Weight>2</Weight>
   <Description>&lt;p&gt;A typical bucket has a rope handle and can hold 1&amp;ndash;2 gallons of liquid.&lt;/p&gt;</Description>
 </Item>

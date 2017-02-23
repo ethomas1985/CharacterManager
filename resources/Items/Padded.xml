@@ -1,12 +1,13 @@
 <Item>
   <Name>Padded</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>5 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>10 lbs.</Weight>
+  <Weight>10</Weight>
   <Description>&lt;p&gt;Little more than heavy, quilted cloth, this armor provides only the most basic protection.&lt;/p&gt;</Description>
 </Item>

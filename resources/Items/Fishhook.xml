@@ -1,12 +1,13 @@
 <Item>
   <Name>Fishhook</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>1 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;This metal hook is little more than a stiff, bent needle.&lt;/p&gt;</Description>
 </Item>

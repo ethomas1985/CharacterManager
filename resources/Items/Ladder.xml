@@ -1,12 +1,13 @@
 <Item>
   <Name>Ladder</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>2 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>20 lbs.</Weight>
+  <Weight>20</Weight>
   <Description>&lt;p&gt;This simple 10-foot ladder consists of two long boards with wooden steps nailed into them at 1-foot increments.&lt;/p&gt;</Description>
 </Item>

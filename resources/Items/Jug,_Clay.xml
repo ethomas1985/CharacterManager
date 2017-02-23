@@ -1,12 +1,13 @@
 <Item>
   <Name>Jug, Clay</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper>3 cp</Copper>
-    <Silver></Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Silver>0 sp</Silver>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>9 lbs.</Weight>
+  <Weight>9</Weight>
   <Description>&lt;p&gt;This basic jug is fitted with a stopper and holds 1 gallon of liquid.&lt;/p&gt;</Description>
 </Item>

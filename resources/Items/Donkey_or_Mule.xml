@@ -1,12 +1,13 @@
 <Item>
   <Name>Donkey or Mule</Name>
   <Category>Mounts and Related Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>8 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;Donkeys and mules are stolid in the face of danger, hardy, surefooted, and capable of carrying heavy loads over vast distances. Unlike a horse, a donkey or a mule is willing (though not eager) to enter dungeons and other strange or threatening places.&lt;/p&gt;</Description>
 </Item>

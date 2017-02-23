@@ -1,12 +1,13 @@
 <Item>
   <Name>Tome of Leadership and Influence</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>27500 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description />
 </Item>

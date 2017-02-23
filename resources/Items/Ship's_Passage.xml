@@ -1,12 +1,13 @@
 <Item>
   <Name>Ship's Passage</Name>
   <Category>Spellcasting and Services</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>1 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;Most ships do not specialize in passengers, but many have the capability to take a few along when transporting cargo. Double the given cost for creatures larger than Medium or creatures that are otherwise difficult to bring aboard a ship.&lt;/p&gt;</Description>
 </Item>

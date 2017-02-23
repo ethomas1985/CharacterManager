@@ -1,12 +1,13 @@
 <Item>
   <Name>Cleric's Vestments</Name>
   <Category>Clothing</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>5 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>6 lbs.1</Weight>
+  <Weight>6</Weight>
   <Description>&lt;p&gt;These clothes are for performing priestly functions, not for adventuring. Cleric's vestments typically include a cassock, stole, and surplice. &lt;/p&gt;</Description>
 </Item>

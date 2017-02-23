@@ -1,12 +1,13 @@
 <Item>
   <Name>Chime of Interruption</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>16800 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

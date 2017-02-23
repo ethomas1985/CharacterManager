@@ -1,12 +1,13 @@
 <Item>
   <Name>Rod of the Python</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>13000 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>10w lbs.</Weight>
+  <Weight>0</Weight>
   <Description />
 </Item>

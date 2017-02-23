@@ -1,12 +1,13 @@
 <Item>
   <Name>Sled</Name>
   <Category>Transport</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>20 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>300 lbs.</Weight>
+  <Weight>300</Weight>
   <Description>&lt;p&gt;This is a wagon on runners for snow and ice travel. In general, two horses (or other beasts of burden) draw it. A sled comes with the harness needed to pull it.&lt;/p&gt;</Description>
 </Item>

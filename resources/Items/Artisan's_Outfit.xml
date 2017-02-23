@@ -1,12 +1,13 @@
 <Item>
   <Name>Artisan's Outfit</Name>
   <Category>Clothing</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>1 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>4 lbs.1</Weight>
+  <Weight>4</Weight>
   <Description>&lt;p&gt;This outfit includes a shirt with buttons, a skirt or pants with a drawstring, shoes, and perhaps a cap or hat. It may also include a belt or a leather or cloth apron for carrying tools.&lt;/p&gt;</Description>
 </Item>

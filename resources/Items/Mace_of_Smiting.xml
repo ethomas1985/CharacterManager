@@ -1,12 +1,13 @@
 <Item>
   <Name>Mace of Smiting</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>75312 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>8 lbs.</Weight>
+  <Weight>8</Weight>
   <Description />
 </Item>

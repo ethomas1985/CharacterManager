@@ -1,12 +1,13 @@
 <Item>
   <Name>Blowgun</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>2 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired. For a list of appropriate poisons, see Poison.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Handaxe</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>6 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>3 lbs.</Weight>
+  <Weight>3</Weight>
   <Description>&lt;p&gt;This one-handed axe is short (roughly 1 foot long) and designed for use with one hand. Unlike throwing axes, it is not well balanced for a graceful tumbling motion, and is instead heavier at its head. Tomahawks, war hatchets, and other such names usually refer to hand axes.&lt;/p&gt;</Description>
 </Item>

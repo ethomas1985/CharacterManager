@@ -1,12 +1,13 @@
 <Item>
   <Name>Sling</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;A sling is little more than a leather cup attached to a pair of strings. Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand. Loading a sling is a move action that requires two hands and provokes attacks of opportunity.&lt;/p&gt;&lt;p&gt;You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a &amp;ndash;1 penalty on attack rolls.&lt;/p&gt;</Description>
 </Item>

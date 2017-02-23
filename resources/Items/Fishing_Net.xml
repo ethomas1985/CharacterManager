@@ -1,12 +1,13 @@
 <Item>
   <Name>Fishing Net</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>4 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description>&lt;p&gt;This net measures 5 feet by 5 feet, and can be used to cover a pit or to block Tiny or larger creatures from entering an area.&lt;/p&gt;</Description>
 </Item>

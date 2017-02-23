@@ -1,12 +1,13 @@
 <Item>
   <Name>Spear</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>2 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>6 lbs.</Weight>
+  <Weight>6</Weight>
   <Description>&lt;p&gt;A spear is 5 feet in length and can be thrown. &lt;/p&gt;</Description>
 </Item>

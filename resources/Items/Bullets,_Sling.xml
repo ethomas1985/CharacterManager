@@ -1,12 +1,13 @@
 <Item>
   <Name>Bullets, Sling</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>1 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description>&lt;p&gt;Bullets are shaped metal balls, designed to be used by a sling or halfling sling staff. Bullets come in a leather pouch that holds 10 bullets.&lt;/p&gt;</Description>
 </Item>

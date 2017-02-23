@@ -1,12 +1,13 @@
 <Item>
   <Name>Horse</Name>
   <Category>Mounts and Related Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;A horse is suitable as a mount for a human, dwarf, elf, half-elf, or half-orc. A pony is smaller than a horse and is a suitable mount for a gnome or halfling.&lt;/p&gt;&lt;p&gt;A war-trained horse can be ridden into combat without danger. See the Handle Animal skill for a list of tricks known by horses and ponies with combat training.&lt;/p&gt;</Description>
 </Item>

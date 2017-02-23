@@ -1,12 +1,13 @@
 <Item>
   <Name>Ring of Clumsiness</Name>
   <Category />
+  <ItemType>Ring</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>&amp;mdash</Weight>
+  <Weight>0</Weight>
   <Description />
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Robe of Powerlessness</Name>
   <Category />
+  <ItemType>Body</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

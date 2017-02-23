@@ -1,12 +1,13 @@
 <Item>
   <Name>Basket</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>4 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;This large basket has a lid and holds about 2 cubic feet.&lt;/p&gt;</Description>
 </Item>

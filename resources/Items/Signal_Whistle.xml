@@ -1,12 +1,13 @@
 <Item>
   <Name>Signal Whistle</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>8 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;With a DC 5 Perform (wind instruments) check, you can use a whistle to signal the same sorts of situations as signal horns. A whistle's piercing report can be clearly heard (Perception DC 0) up to a quarter-mile away. For each quarter-mile beyond, Perception checks to hear a whistle take a &amp;ndash;2 penalty. Silent whistles that only animals and other creatures with keen hearing can hear also exist. &lt;/p&gt;</Description>
 </Item>

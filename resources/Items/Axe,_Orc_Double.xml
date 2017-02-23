@@ -1,12 +1,13 @@
 <Item>
   <Name>Axe, Orc Double</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>60 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>15 lbs.</Weight>
+  <Weight>15</Weight>
   <Description>&lt;p&gt;A cruel weapon with blades placed at opposite ends of a long haft, an orc double axe is a double weapon.&lt;/p&gt;</Description>
 </Item>

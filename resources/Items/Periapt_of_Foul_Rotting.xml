@@ -1,12 +1,13 @@
 <Item>
   <Name>Periapt of Foul Rotting</Name>
   <Category />
+  <ItemType>Neck</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>&amp;mdash</Weight>
+  <Weight>0</Weight>
   <Description />
 </Item>

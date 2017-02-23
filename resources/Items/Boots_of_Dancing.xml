@@ -1,12 +1,13 @@
 <Item>
   <Name>Boots of Dancing</Name>
   <Category />
+  <ItemType>Feet</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

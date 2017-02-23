@@ -1,12 +1,13 @@
 <Item>
   <Name>Codex of the Infinite Planes</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>300 lbs.</Weight>
+  <Weight>300</Weight>
   <Description />
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Holy Symbol, Silver or Wooden</Name>
   <Category>Tools and Skill Kits</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;A holy symbol focuses positive energy and is used by good clerics and paladins (or by neutral clerics who want to cast good spells or channel positive energy). Each religion has its own holy symbol.&lt;/p&gt;</Description>
 </Item>

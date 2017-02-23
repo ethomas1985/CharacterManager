@@ -1,12 +1,13 @@
 <Item>
   <Name>Ranseur</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>10 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>12 lbs.</Weight>
+  <Weight>12</Weight>
   <Description>&lt;p&gt;Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Armor of Rage</Name>
   <Category />
+  <ItemType>Body</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>50 lbs.</Weight>
+  <Weight>50</Weight>
   <Description />
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Spear, Cursed Backbiter</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>3 lbs.</Weight>
+  <Weight>3</Weight>
   <Description />
 </Item>

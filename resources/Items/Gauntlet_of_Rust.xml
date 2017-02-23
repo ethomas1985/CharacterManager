@@ -1,12 +1,13 @@
 <Item>
   <Name>Gauntlet of Rust</Name>
   <Category />
+  <ItemType>Hands</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>11500 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>2 lbs.</Weight>
+  <Weight>2</Weight>
   <Description />
 </Item>

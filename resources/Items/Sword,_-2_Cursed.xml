@@ -1,12 +1,13 @@
 <Item>
   <Name>Sword, -2 Cursed</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>4 lbs.</Weight>
+  <Weight>4</Weight>
   <Description />
 </Item>

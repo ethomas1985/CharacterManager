@@ -1,12 +1,13 @@
 <Item>
   <Name>Deck of Many Things</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>&amp;mdash</Weight>
+  <Weight>0</Weight>
   <Description />
 </Item>

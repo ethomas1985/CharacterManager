@@ -1,12 +1,13 @@
 <Item>
   <Name>Rod of Lordly Might</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>70000 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>10 lbs.</Weight>
+  <Weight>10</Weight>
   <Description />
 </Item>

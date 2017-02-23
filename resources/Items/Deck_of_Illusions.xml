@@ -1,12 +1,13 @@
 <Item>
   <Name>Deck of Illusions</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>8100 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1/2 lb.</Weight>
+  <Weight>2</Weight>
   <Description />
 </Item>

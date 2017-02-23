@@ -1,12 +1,13 @@
 <Item>
   <Name>Belt Pouch</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>1 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1/2 lb.1</Weight>
+  <Weight>2</Weight>
   <Description>&lt;p&gt;A typical leather or cloth belt pouch has a leather cord to cinch it shut and another to tie it to your belt. It is large enough to hold 100&amp;ndash;200 coins or two apples.&lt;/p&gt;</Description>
 </Item>

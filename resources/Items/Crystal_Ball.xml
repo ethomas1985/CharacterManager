@@ -1,12 +1,13 @@
 <Item>
   <Name>Crystal Ball</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>7 lbs.</Weight>
+  <Weight>7</Weight>
   <Description />
 </Item>

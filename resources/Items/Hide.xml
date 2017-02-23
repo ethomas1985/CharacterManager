@@ -1,12 +1,13 @@
 <Item>
   <Name>Hide</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>15 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>25 lbs.</Weight>
+  <Weight>25</Weight>
   <Description>&lt;p&gt;Hide armor is made up of the tanned and preserved skin of any thick-hided beast.&lt;/p&gt;</Description>
 </Item>

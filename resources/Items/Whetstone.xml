@@ -1,12 +1,13 @@
 <Item>
   <Name>Whetstone</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper>2 cp</Copper>
-    <Silver></Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Silver>0 sp</Silver>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;A whetstone allows you to sharpen a blade by sliding it against the stone at a precise angle. Honing a blade with a whetstone requires about 15 minutes of work and grants the weapon a +1 bonus on your damage roll the first time you hit with it. This only works on nonmagical blades. &lt;/p&gt;</Description>
 </Item>

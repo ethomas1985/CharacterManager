@@ -1,12 +1,13 @@
 <Item>
   <Name>Mattock of the Titans</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>23348 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>120 lbs.</Weight>
+  <Weight>120</Weight>
   <Description />
 </Item>

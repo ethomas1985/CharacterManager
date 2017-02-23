@@ -1,12 +1,13 @@
 <Item>
   <Name>Barding, Medium Creature and Large Creature</Name>
   <Category>Mounts and Related Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;Barding is a type of armor that covers the head, neck, chest, body, and possibly legs of a horse or other mount. Barding made of medium or heavy armor provides better protection than light barding, but at the expense of speed. Barding can be made of any of the armor types found on Table: Armor and Shields.&lt;/p&gt;&lt;p&gt;Armor for a horse (a Large nonhumanoid creature) costs four times as much as human armor (a Medium humanoid creature) and also weighs twice as much (see Table: Armor for Unusual Creatures). If the barding is for a pony or other Medium mount, the cost is only double, and the weight is the same as for Medium armor worn by a humanoid. Medium or heavy barding slows a mount that wears it, as shown on the table below.&lt;/p&gt;&lt;p&gt;Flying mounts can't fly in medium or heavy barding.&lt;/p&gt;&lt;p&gt;Removing and fitting barding takes five times as long as the figures given on Table: Donning Armor. A barded animal cannot be used to carry any load other than a rider and normal saddlebags.&lt;/p&gt;</Description>
 </Item>

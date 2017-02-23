@@ -1,12 +1,13 @@
 <Item>
   <Name>Coach Cab</Name>
   <Category>Spellcasting and Services</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper>3 cp</Copper>
-    <Silver></Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Silver>0 sp</Silver>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;The price given is for a ride in a coach that transports people (and light cargo) between towns. For a ride in a cab that transports passengers within a city, 1 copper piece usually takes you anywhere you need to go.&lt;/p&gt;</Description>
 </Item>

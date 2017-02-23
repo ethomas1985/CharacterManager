@@ -1,12 +1,13 @@
 <Item>
   <Name>Shield Spikes</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>10 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>+5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description>&lt;p id="shield-spikes"&gt;These spikes turn a shield into a martial piercing weapon and increase the damage dealt by a shield bash as if the shield were designed for a creature one size category larger than you (see &amp;ldquo;spiked shields&amp;rdquo; on Table: Weapons). You can't put spikes on a buckler or a tower shield. Otherwise, attacking with a spiked shield is like making a shield bash attack.&lt;/p&gt;&lt;p&gt;An enhancement bonus on a spiked shield does not improve the effectiveness of a shield bash made with it, but a spiked shield can be made into a magic weapon in its own right.&lt;/p&gt;</Description>
 </Item>

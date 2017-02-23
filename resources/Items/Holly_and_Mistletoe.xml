@@ -1,12 +1,13 @@
 <Item>
   <Name>Holly and Mistletoe</Name>
   <Category>Tools and Skill Kits</Category>
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;Druids commonly use these plants as divine focuses when casting spells.&lt;/p&gt;</Description>
 </Item>

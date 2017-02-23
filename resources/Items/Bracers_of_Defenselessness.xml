@@ -1,12 +1,13 @@
 <Item>
   <Name>Bracers of Defenselessness</Name>
   <Category />
+  <ItemType>Arms</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

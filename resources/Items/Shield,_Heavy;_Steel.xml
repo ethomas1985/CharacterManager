@@ -1,12 +1,13 @@
 <Item>
   <Name>Shield, Heavy; Steel</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>20 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>15 lbs.</Weight>
+  <Weight>15</Weight>
   <Description>&lt;p&gt;You strap a shield to your forearm and grip it with your hand. A heavy shield is so heavy that you can't use your shield hand for anything else.&lt;/p&gt;</Description>
 </Item>

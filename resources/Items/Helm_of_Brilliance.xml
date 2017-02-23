@@ -1,12 +1,13 @@
 <Item>
   <Name>Helm of Brilliance</Name>
   <Category />
+  <ItemType>Head</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>125000 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>3 lbs.</Weight>
+  <Weight>3</Weight>
   <Description />
 </Item>

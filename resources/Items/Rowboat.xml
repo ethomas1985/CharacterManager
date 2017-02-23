@@ -1,12 +1,13 @@
 <Item>
   <Name>Rowboat</Name>
   <Category>Transport</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>50 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>100 lbs.</Weight>
+  <Weight>100</Weight>
   <Description>&lt;p&gt;This 8- to 12-foot-long boat with two oars holds two or three Medium passengers. It moves about 1-1/2 miles per hour.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Hireling, Untrained</Name>
   <Category>Spellcasting and Services</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>1 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight />
+  <Weight>0</Weight>
   <Description>&lt;p&gt;The amount shown is the typical daily wage for laborers, maids, and other menial workers.&lt;/p&gt;</Description>
 </Item>

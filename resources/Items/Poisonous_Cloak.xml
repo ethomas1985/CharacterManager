@@ -1,12 +1,13 @@
 <Item>
   <Name>Poisonous Cloak</Name>
   <Category />
+  <ItemType>Shoulders</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description />
 </Item>

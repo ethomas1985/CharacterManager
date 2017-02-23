@@ -1,12 +1,13 @@
 <Item>
   <Name>Net of Snaring</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>6 lbs.</Weight>
+  <Weight>6</Weight>
   <Description />
 </Item>

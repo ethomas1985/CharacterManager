@@ -1,12 +1,13 @@
 <Item>
   <Name>Chest</Name>
   <Category>Adventuring Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>2 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>25 lbs.</Weight>
+  <Weight>25</Weight>
   <Description>&lt;p&gt;A common small wooden chest (2 cubic feet, 1 hit point, break DC 17). Most include a simple inset lock. &lt;/p&gt;</Description>
 </Item>

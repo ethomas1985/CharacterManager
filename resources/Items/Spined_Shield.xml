@@ -1,12 +1,13 @@
 <Item>
   <Name>Spined Shield</Name>
   <Category />
+  <ItemType>Shield</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>5580 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>15 lbs.</Weight>
+  <Weight>15</Weight>
   <Description />
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Mace of Blood</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>8 lbs.</Weight>
+  <Weight>8</Weight>
   <Description />
 </Item>

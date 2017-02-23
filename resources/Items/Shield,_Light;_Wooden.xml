@@ -1,12 +1,13 @@
 <Item>
   <Name>Shield, Light; Wooden</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>3 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>5 lbs.</Weight>
+  <Weight>5</Weight>
   <Description>&lt;p&gt;You strap a shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand, although you cannot use weapons with it.&lt;/p&gt;</Description>
 </Item>

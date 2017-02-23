@@ -1,12 +1,13 @@
 <Item>
   <Name>Bolts</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>1 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;A crossbow bolt used as a melee weapon is treated as a light improvised weapon (&amp;ndash;4 penalty on attack rolls) and deals damage as a dagger of its size (crit &amp;times;2). Bolts come in a case or quiver that holds 10 bolts (or 5, for a repeating crossbow). &lt;/p&gt;</Description>
 </Item>

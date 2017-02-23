@@ -1,12 +1,13 @@
 <Item>
   <Name>Stabling</Name>
   <Category>Mounts and Related Gear</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
+    <Copper>0 cp</Copper>
     <Silver>5 sp</Silver>
-    <Gold></Gold>
-    <Platinum></Platinum>
+    <Gold>0 gp</Gold>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>&amp;mdash;</Weight>
+  <Weight>0</Weight>
   <Description>&lt;p&gt;This is the amount it costs to stable a single creature that is Large or smaller for one day, at a typical stable or hostler. Particularly fancy stables may cost more, and larger or more exotic creatures cost double.&lt;/p&gt;</Description>
 </Item>

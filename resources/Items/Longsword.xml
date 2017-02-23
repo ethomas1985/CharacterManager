@@ -1,12 +1,13 @@
 <Item>
   <Name>Longsword</Name>
   <Category />
+  <ItemType>Weapon</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>15 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>4 lbs.</Weight>
+  <Weight>4</Weight>
   <Description>&lt;p&gt;This sword is about 3-1/2 feet in length.&lt;/p&gt;</Description>
 </Item>

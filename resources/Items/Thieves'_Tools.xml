@@ -1,12 +1,13 @@
 <Item>
   <Name>Thieves' Tools</Name>
   <Category>Tools and Skill Kits</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>30 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>1 lb.</Weight>
+  <Weight>1</Weight>
   <Description>&lt;p&gt;This kit contains lockpicks and other tools you need to use the Disable Device skill. Without these tools, you must use improvised tools, and you take a &amp;ndash;2 circumstance penalty on Disable Device checks.&lt;/p&gt;</Description>
 </Item>

@@ -1,12 +1,13 @@
 <Item>
   <Name>Axe of the Dwarvish Lords</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>12 lbs.</Weight>
+  <Weight>12</Weight>
   <Description />
 </Item>

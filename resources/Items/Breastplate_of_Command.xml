@@ -1,12 +1,13 @@
 <Item>
   <Name>Breastplate of Command</Name>
   <Category />
+  <ItemType>Armor</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>25400 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>30 lbs.</Weight>
+  <Weight>30</Weight>
   <Description />
 </Item>

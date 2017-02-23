@@ -1,12 +1,13 @@
 <Item>
   <Name>Bag of Devouring</Name>
   <Category />
+  <ItemType>None</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>15 lbs.</Weight>
+  <Weight>15</Weight>
   <Description />
 </Item>

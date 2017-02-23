@@ -1,12 +1,13 @@
 <Item>
   <Name>Gauntlets of Fumbling</Name>
   <Category />
+  <ItemType>Hands</ItemType>
   <Cost>
     <Copper />
     <Silver />
     <Gold />
     <Platinum />
   </Cost>
-  <Weight>2 lbs.</Weight>
+  <Weight>2</Weight>
   <Description />
 </Item>

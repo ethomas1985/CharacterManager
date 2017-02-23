@@ -1,12 +1,13 @@
 <Item>
   <Name>Wagon</Name>
   <Category>Transport</Category>
+  <ItemType>None</ItemType>
   <Cost>
-    <Copper></Copper>
-    <Silver></Silver>
+    <Copper>0 cp</Copper>
+    <Silver>0 sp</Silver>
     <Gold>35 gp</Gold>
-    <Platinum></Platinum>
+    <Platinum>0 pp</Platinum>
   </Cost>
-  <Weight>400 lbs.</Weight>
+  <Weight>400</Weight>
   <Description>&lt;p&gt;A four-wheeled, open vehicle for transporting heavy loads. Two horses (or other beasts of burden) must draw it. A wagon comes with the harness needed to pull it.&lt;/p&gt;</Description>
 </Item>
