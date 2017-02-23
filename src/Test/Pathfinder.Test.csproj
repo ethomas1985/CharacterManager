@@ -77,6 +77,8 @@
     <Compile Include="Model\CharacterMethods\AddDamageMethod.cs" />
     <Compile Include="Model\CharacterMethods\AddFeatMethod.cs" />
     <Compile Include="Model\CharacterMethods\AddLanguageMethod.cs" />
+    <Compile Include="Model\CharacterMethods\UpdateInventoryMethod.cs" />
+    <Compile Include="Model\CharacterMethods\RemoveFromInventoryMethod.cs" />
     <Compile Include="Model\CharacterMethods\AppendExperienceMethod.cs" />
     <Compile Include="Model\CharacterMethods\AssignSkillPointMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetRaceMethod.cs" />
@@ -97,7 +99,7 @@
     <Compile Include="Model\CharacterMethods\SetHeightMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetHomelandMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetIntelligenceMethod.cs" />
-    <Compile Include="Model\CharacterMethods\SetInventoryMethod.cs" />
+    <Compile Include="Model\CharacterMethods\AddToInventoryMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetNameMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetPurseMethod.cs" />
     <Compile Include="Model\CharacterMethods\SetStrengthMethod.cs" />

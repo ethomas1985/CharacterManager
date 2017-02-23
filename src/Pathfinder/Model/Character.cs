@@ -3,6 +3,7 @@ using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
+using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
@@ -537,7 +538,7 @@ namespace Pathfinder.Model
 
 		public IEnumerable<IWeapon> Weapons { get; }
 
-		public IInventory Inventory { get; private set; }
+		public IInventory Inventory { get; private set; } = new Inventory();
 		public IEnumerable<IArmor> EquipedArmor { get; private set; }
 		public IEnumerable<IEffect> Effects { get; private set; }
 
@@ -961,6 +962,28 @@ namespace Pathfinder.Model
 		}
 
 		public ICharacter AddToInventory(IItem pItem)
+		{
+			Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
+			Assert.ArgumentNotNull(pItem, nameof(pItem));
+
+			var newCharacter = _copy();
+			newCharacter.Inventory = Inventory.Add(pItem);
+
+			return newCharacter;
+		}
+
+		public ICharacter RemoveFromInventory(IItem pItem)
+		{
+			Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
+			Assert.ArgumentNotNull(pItem, nameof(pItem));
+
+			var newCharacter = _copy();
+			newCharacter.Inventory = Inventory.Remove(pItem);
+
+			return newCharacter;
+		}
+
+		public ICharacter UpdateInventory(IItem pItem)
 		{
 			Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
 

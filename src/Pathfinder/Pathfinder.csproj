@@ -113,6 +113,8 @@
     <Compile Include="Model\Currency\Gold.cs" />
     <Compile Include="Interface\Currency\ICurrency.cs" />
     <Compile Include="Model\Items\Armor.cs" />
+    <Compile Include="Model\Items\Inventory.cs" />
+    <Compile Include="Model\Items\InventoryItem.cs" />
     <Compile Include="Model\Items\Item.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\Currency\Platinum.cs" />
