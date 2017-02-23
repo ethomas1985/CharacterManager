@@ -1,9 +1,10 @@
 ﻿namespace Pathfinder.Enums
 {
-    public enum Proficiency
-    {
-        Simple,
-        Martial,
-        Exotic
-    }
+	public enum Proficiency
+	{
+		None,
+		Simple,
+		Martial,
+		Exotic
+	}
 }

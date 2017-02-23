@@ -1,6 +1,6 @@
 ﻿namespace Pathfinder.Interface
 {
-	public interface IWeaponDamage
+	public interface IDice
 	{
 		int DieCount { get; }
 		IDie Die { get; }

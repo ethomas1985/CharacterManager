@@ -2,9 +2,9 @@
 
 namespace Pathfinder.Model
 {
-	internal class WeaponDamage : IWeaponDamage
+	internal class Dice: IDice
 	{
-		public WeaponDamage(int pDieCount, IDie pDie)
+		public Dice(int pDieCount, IDie pDie)
 		{
 			DieCount = pDieCount;
 			Die = pDie;

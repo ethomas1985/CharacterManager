@@ -1,8 +1,12 @@
 ﻿namespace Pathfinder.Enums
 {
-    public enum WeaponType
-    {
-        Melee,
-        Ranged
-    }
+	public enum WeaponType
+	{
+		None,
+		Unarmed,
+		LightMelee,
+		OneHandedMelee,
+		TwoHandedMelee,
+		Ranged,
+	}
 }

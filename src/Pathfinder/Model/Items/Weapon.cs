@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
+using System.Collections.Generic;
 
 namespace Pathfinder.Model.Items
 {
@@ -12,14 +12,14 @@ namespace Pathfinder.Model.Items
 			string pName,
 			string pCategory,
 			IPurse pCost,
-			string pWeight,
+			decimal pWeight,
 			string pDescription,
 			Proficiency pProficiency,
 			WeaponType pWeaponType,
 			Encumbrance pEncumbrance,
 			WeaponSize pSize,
 			DamageType pDamageType,
-			IEnumerable<IWeaponDamage> pBaseWeaponDamage,
+			IEnumerable<IDice> pBaseWeaponDamage,
 			int pCriticalThreat,
 			int pCriticalMultiplier,
 			int pRange,
@@ -43,7 +43,7 @@ namespace Pathfinder.Model.Items
 		public Encumbrance Encumbrance { get; }
 		public WeaponSize Size { get; }
 		public DamageType DamageType { get; }
-		public IEnumerable<IWeaponDamage> BaseWeaponDamage { get; }
+		public IEnumerable<IDice> BaseWeaponDamage { get; }
 		public int CriticalThreat { get; }
 		public int CriticalMultiplier { get; }
 		public int Range { get; }

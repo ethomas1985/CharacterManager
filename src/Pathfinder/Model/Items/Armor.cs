@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 
@@ -12,7 +11,7 @@ namespace Pathfinder.Model.Items
 			ItemType pItemType,
 			string pCategory,
 			IPurse pCost,
-			string pWeight,
+			decimal pWeight,
 			string pDescription,
 			int pArmorBonus,
 			int pShieldBonus,

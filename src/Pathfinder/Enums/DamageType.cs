@@ -2,20 +2,23 @@
 
 namespace Pathfinder.Enums
 {
+
+	[Flags]
 	public enum DamageType
 	{
+		None,
 		Bludgeoning,
 		Piercing,
 		Slashing,
 
-		BludgeoningAndPiercing,
-		BludgeoningAndSlashing,
+		//BludgeoningAndPiercing, // Bludgeoning & Piercing
+		//BludgeoningAndSlashing, // Bludgeoning & Slashing
 
-		PiercingAndSlashing,
+		//PiercingAndSlashing, // Piercing & Slashing
 
-		BludgeoningOrPiercing,
-		BludgeoningOrSlashing,
+		//BludgeoningOrPiercing, //Bludgeoning | Piercing
+		//BludgeoningOrSlashing, //Bludgeoning |Slashing
 
-		PiercingOrSlashing,
+		//PiercingOrSlashing, //Piercing | Slashing
 	}
 }

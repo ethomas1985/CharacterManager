@@ -2,6 +2,7 @@
 {
 	public enum Encumbrance
 	{
+		None,
 		Light,
 		OneHanded,
 		TwoHanded

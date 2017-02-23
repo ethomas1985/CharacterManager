@@ -10,7 +10,7 @@ namespace Pathfinder.Interface.Item
 		Encumbrance Encumbrance { get; }
 		WeaponSize Size { get; }
 		DamageType DamageType { get; }
-		IEnumerable<IWeaponDamage> BaseWeaponDamage { get; }
+		IEnumerable<IDice> BaseWeaponDamage { get; }
 		int CriticalThreat { get; }
 		int CriticalMultiplier { get; }
 		int Range { get; }

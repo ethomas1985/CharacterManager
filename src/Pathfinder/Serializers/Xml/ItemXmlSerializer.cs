@@ -1,33 +1,49 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
-using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace Pathfinder.Serializers.Xml
 {
 	internal class ItemXmlSerializer : ISerializer<IItem, string>
 	{
+		private static readonly Regex WeightPattern = new Regex(@"(\d+) lbs?\..*");
+
 		public IItem Deserialize(string pValue)
 		{
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
 
 			var xDocument = XDocument.Parse(pValue);
 
+			decimal weight = decimal.TryParse(_GetElementValue(xDocument, nameof(IItem.Weight)), out weight) ? weight : 0;
 			return new Item(
 				_GetElementValue(xDocument, nameof(IItem.Name)),
 				_GetItemType(xDocument),
 				_GetElementValue(xDocument, nameof(IItem.Category)),
 				_GetCost(xDocument),
-				_GetElementValue(xDocument, nameof(IItem.Weight)),
+				_GetWeightValue(xDocument),
 				_GetElementValue(xDocument, nameof(IItem.Description))
 				);
+		}
+
+		private static decimal _GetWeightValue(XContainer pXDocument)
+		{
+			var weightText = WeightPattern.Matches(_GetElementValue(pXDocument, nameof(IItem.Weight)))[1].Value;
+
+			decimal weight;
+			if (!decimal.TryParse(weightText, out weight))
+			{
+				weight = 0;
+			}
+
+			return weight;
 		}
 
 		private static string _GetElementValue(XContainer pXDocument, string pName)

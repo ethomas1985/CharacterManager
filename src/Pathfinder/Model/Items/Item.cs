@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Interface.Item;
 
@@ -11,7 +10,7 @@ namespace Pathfinder.Model.Items
 					ItemType pItemType,
 					string pCategory,
 					IPurse pCost,
-					string pWeight,
+					decimal pWeight,
 					string pDescription)
 		{
 			Name = pName;
@@ -25,7 +24,7 @@ namespace Pathfinder.Model.Items
 		public string Name { get; }
 		public string Category { get; }
 		public IPurse Cost { get; }
-		public string Weight { get; }
+		public decimal Weight { get; }
 		public string Description { get; }
 		public ItemType ItemType { get; set; }
 	}
