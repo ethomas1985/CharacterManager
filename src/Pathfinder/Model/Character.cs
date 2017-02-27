@@ -931,13 +931,18 @@ namespace Pathfinder.Model
 			return newCharacter;
 		}
 
-		public ICharacter AddFeat(IFeat pFeat)
+		public ICharacter AddFeat(IFeat pFeat, string pSpecialization = null)
 		{
 			Tracer.Message(pMessage: $"{nameof(pFeat)}: {pFeat}");
 			Assert.ArgumentNotNull(pFeat, nameof(pFeat));
 
+			if (pFeat.IsSpecialized)
+			{
+				Assert.ArgumentIsNotEmpty(pSpecialization, nameof(pSpecialization));
+			}
+
 			var newCharacter = _copy();
-			newCharacter.Feats = Feats.Append(pFeat);
+			newCharacter.Feats = Feats.Append(new Feat(pFeat, pSpecialization));
 
 			return newCharacter;
 		}

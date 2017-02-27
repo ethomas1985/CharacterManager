@@ -240,14 +240,43 @@
 	],
 	"Feats": [
 		{
+			"Name": "Feat 1",
+			"FeatType": "General",
+			"IsSpecialized": "True",
+			"Specialization": "user-choice",
+			"Description": "Testing Description",
+			"Benefit": "Testing Benefit",
+			"Special": "Testing Special",
+			"Prerequisites": []
+		},
+		{
 			"Name": "Feat 2",
 			"FeatType": "General",
+			"IsSpecialized": "False",
 			"Description": "Testing Description",
 			"Benefit": "Testing Benefit",
 			"Special": "Testing Special",
 			"Prerequisites": [
 				"Feat 1"
 			]
+		}
+	],
+	"Inventory": [
+		{
+			"Item": {
+				"Name": "Testing Item",
+				"ItemType": "None",
+				"Category": "Unit Testing",
+				"Description": "For Unit Testing",
+				"Weight": 12.0,
+				"Cost": {
+					"Copper": 1,
+					"Silver": 1,
+					"Gold": 1,
+					"Platinum": 1
+				}
+			},
+			"Quantity": 1
 		}
 	]
 }

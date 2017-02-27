@@ -1,10 +1,9 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Test.Mocks;
+using Pathfinder.Test.Serializers.Json.Character;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -15,7 +14,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void FailsWithNullFeat()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(new MockSkillLibrary());
 
 			Assert.Throws<ArgumentNullException>(() => original.AddFeat(null));
 		}
@@ -23,9 +22,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(new MockSkillLibrary());
 
-			var result = original.AddFeat(CreateTestingFeat());
+			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
 			Assert.AreNotSame(original, result);
 		}
@@ -33,8 +32,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
-			original.AddFeat(CreateTestingFeat());
+			var original = (ICharacter)new Character(new MockSkillLibrary());
+			original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
 			Assert.That(original.Feats, Is.Empty);
 		}
@@ -42,22 +41,33 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(new MockSkillLibrary());
 
-			var result = original.AddFeat(CreateTestingFeat());
+			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
 			Assert.That(result.Feats.Count(), Is.EqualTo(1));
 		}
 
-		private static Feat CreateTestingFeat()
+		[Test]
+		public void Fails_When_Is_Specialized_And_Specialization_Is_Null()
 		{
-			return new Feat(
-						    "Feat 2",
-						    FeatType.General, 
-						    new List<string> {"Feat 1"},
-						    "Testing Description",
-						    "Testing Benefit",
-						    "Testing Special");
+			var original = (ICharacter)new Character(new MockSkillLibrary());
+
+			Assert.That(
+				() => original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(true)),
+				Throws.Exception.InstanceOf(typeof(ArgumentException)));
+		}
+
+		[Test]
+		public void When_Is_Specialized()
+		{
+			const string specialization = "user-choice";
+
+			var original = (ICharacter)new Character(new MockSkillLibrary());
+
+			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(true), specialization);
+
+			Assert.That(result.Feats.First().Specialization, Is.EqualTo(specialization));
 		}
 	}
 }

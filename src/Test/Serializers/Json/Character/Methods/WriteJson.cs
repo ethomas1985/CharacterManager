@@ -7,6 +7,7 @@ using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Json;
 using Pathfinder.Test.Mocks;
@@ -725,7 +726,7 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			var testCharacter =
 				CharacterJsonSerializerUtils
 					.CreateNewCharacter()
-					.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat());
+					.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
 			var json = SerializeAndParseToJson(testCharacter);
 			var jsonFeats = json[nameof(ICharacter.Feats)];
@@ -734,6 +735,26 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			var result = children?.Select(x => x.SelectToken($"{nameof(IFeat.Name)}").Value<string>());
 
 			var expected = testCharacter.Feats.Count();
+			Assert.That(result?.Count(), Is.EqualTo(expected));
+		}
+
+		[Test]
+		public void WithInventory()
+		{
+			var testCharacter =
+				CharacterJsonSerializerUtils
+					.CreateNewCharacter()
+					.AddToInventory(CharacterJsonSerializerUtils.CreateTestingItem());
+
+			var json = SerializeAndParseToJson(testCharacter);
+			var jsonInventory = json[nameof(ICharacter.Inventory)];
+			var children = jsonInventory?.Children();
+			var items = children?.Select(x => x[nameof(IInventoryItem.Item)]);
+			var itemNames = items?.Select(x => x[nameof(IItem.Name)]);
+
+			var result = itemNames?.Values<string>();
+
+			var expected = testCharacter.Inventory.Count();
 			Assert.That(result?.Count(), Is.EqualTo(expected));
 		}
 
@@ -760,9 +781,9 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 			return result;
 		}
 
-		private static JObject ParseJson(string text)
+		private static JObject ParseJson(string pText)
 		{
-			var jsonTextReader = new JsonTextReader(new StringReader(text));
+			var jsonTextReader = new JsonTextReader(new StringReader(pText));
 			var jObject = JObject.Load(jsonTextReader);
 			return jObject;
 		}

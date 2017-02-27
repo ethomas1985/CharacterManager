@@ -1,6 +1,9 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using Pathfinder.Api.Controllers;
 using Pathfinder.Api.Models;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Test.Mocks;
 using Pathfinder.Test.Model;
@@ -11,6 +14,22 @@ namespace Pathfinder.Api.Tests
 	[TestFixture]
 	public class CharacterGeneraterControllerTests
 	{
+		protected static CharacterGeneratorController createCharacterGeneratorController()
+		{
+			var mockFeatLibrary = new Mock<ILibrary<IFeat>>();
+			var mockItemLibrary = new Mock<ILibrary<IItem>>();
+
+			var charGen =
+				new CharacterGeneratorController(
+					new MockCharacterLibrary(),
+					new MockRaceLibrary(),
+					new MockSkillLibrary(),
+					new MockClassLibrary(),
+					mockFeatLibrary.Object,
+					mockItemLibrary.Object);
+			return charGen;
+		}
+
 		[TestFixture]
 		public class SetAbilityScoresMethod : CharacterGeneraterControllerTests
 		{
@@ -19,11 +38,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void NullParameter()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				Assert.Throws<ArgumentNullException>(
 					() => charGen.SetAbilityScores(null));
@@ -32,11 +47,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void ReturnsNotNull()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -55,11 +66,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsStrength()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -78,11 +85,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsDexterity()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -101,11 +104,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsConstitution()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -124,11 +123,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsIntelligence()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -147,11 +142,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsWisdom()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -170,11 +161,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void SetsCharisma()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetAbilityScores(
 					new AbilityScoreSet
@@ -199,11 +186,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void NullRace()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				Assert.Throws<ArgumentNullException>(
 					() => charGen.SetRace(null, null));
@@ -212,11 +195,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void NullCharacter()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				Assert.Throws<ArgumentNullException>(
 					() => charGen.SetRace(string.Empty, null));
@@ -227,11 +206,7 @@ namespace Pathfinder.Api.Tests
 			{
 				var skillLibrary = new MockSkillLibrary();
 
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					skillLibrary,
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetRace(TEST_RACE, new Character(skillLibrary));
 
@@ -245,11 +220,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void NullRace()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				Assert.Throws<ArgumentNullException>(
 					() => charGen.SetClass(null, null));
@@ -258,11 +229,7 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void NullCharacter()
 			{
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				Assert.Throws<ArgumentNullException>(
 					() => charGen.SetClass(string.Empty, null));
@@ -273,11 +240,7 @@ namespace Pathfinder.Api.Tests
 			{
 				var skillLibrary = new MockSkillLibrary();
 
-				var charGen = new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					skillLibrary,
-					new MockClassLibrary());
+				var charGen = createCharacterGeneratorController();
 
 				var result = charGen.SetClass("Test Class", new Character(skillLibrary));
 

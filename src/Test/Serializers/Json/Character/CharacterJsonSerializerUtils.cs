@@ -1,7 +1,10 @@
 ﻿using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model;
+using Pathfinder.Model.Currency;
+using Pathfinder.Model.Items;
 using Pathfinder.Test.Mocks;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,7 @@ using CharacterImpl = Pathfinder.Model.Character;
 
 namespace Pathfinder.Test.Serializers.Json.Character
 {
-	public static class CharacterJsonSerializerUtils
+	internal static class CharacterJsonSerializerUtils
 	{
 		public static ICharacter GetTestCharacter()
 		{
@@ -48,12 +51,19 @@ namespace Pathfinder.Test.Serializers.Json.Character
 					.SetWisdom(12)
 					.SetCharisma(12)
 					.SetPurse(copperValue, silverValue, goldValue, platinumValue)
-					.AddFeat(CreateTestingFeat());
+					.AddFeat(CreateTestingFeat1(), "user-choice")
+					.AddFeat(CreateTestingFeat2())
+					.AddToInventory(CreateTestingItem());
 
 			testCharacter = AddExperienceCommand.Execute(testCharacter, "Event 1", "Freebie", 2000);
 
 
 			return testCharacter;
+		}
+
+		public static IItem CreateTestingItem()
+		{
+			return new Item("Testing Item", ItemType.None, "Unit Testing", new Purse(1,1,1,1), 12, "For Unit Testing");
 		}
 
 		public static ICharacter CreateNewCharacter()
@@ -76,15 +86,30 @@ namespace Pathfinder.Test.Serializers.Json.Character
 				new List<string>());
 		}
 
-		public static IFeat CreateTestingFeat()
+		public static IFeat CreateTestingFeat1()
 		{
 			return new Feat(
-				"Feat 2",
+				"Feat 1",
 				FeatType.General,
-				new List<string> { "Feat 1" },
+				new List<string>(),
 				"Testing Description",
 				"Testing Benefit",
-				"Testing Special");
+				"Testing Special",
+				true);
+		}
+
+		public static IFeat CreateTestingFeat2(bool pIsSpecialized = false, string pSpecialization = null)
+		{
+			return
+				new Feat(
+					"Feat 2",
+					FeatType.General,
+					new List<string> { "Feat 1" },
+					"Testing Description",
+					"Testing Benefit",
+					"Testing Special",
+					pIsSpecialized,
+					pSpecialization);
 		}
 	}
 }

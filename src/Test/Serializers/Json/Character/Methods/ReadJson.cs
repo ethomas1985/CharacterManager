@@ -335,7 +335,14 @@ namespace Pathfinder.Test.Serializers.Json.Character.Methods
 		public void WithFeats()
 		{
 			var result = GenerateTestCharacter(Resources.TestCharacter);
-			Assert.AreEqual(1, result.Feats.Count());
+			Assert.AreEqual(2, result.Feats.Count());
+		}
+
+		[Test]
+		public void WithInventory()
+		{
+			var result = GenerateTestCharacter(Resources.TestCharacter);
+			Assert.AreEqual(1, result.Inventory.Count());
 		}
 
 		/**

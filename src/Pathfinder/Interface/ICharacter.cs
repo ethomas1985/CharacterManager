@@ -123,7 +123,7 @@ namespace Pathfinder.Interface
 
 		ICharacter AssignSkillPoint(ISkill pSkill, int pPoint);
 
-		ICharacter AddFeat(IFeat pFeat);
+		ICharacter AddFeat(IFeat pFeat, string pSpecialization = null);
 
 		ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0);
 

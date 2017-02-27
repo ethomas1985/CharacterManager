@@ -79,5 +79,11 @@ namespace Pathfinder.Utilities
 			int value;
 			return int.TryParse(pThis, out value) ? value : default(int);
 		}
+
+		public static decimal AsDecimal(this string pThis)
+		{
+			decimal value;
+			return decimal.TryParse(pThis, out value) ? value : default(decimal);
+		}
 	}
 }

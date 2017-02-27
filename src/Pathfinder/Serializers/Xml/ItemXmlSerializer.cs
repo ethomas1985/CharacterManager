@@ -7,22 +7,18 @@ using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Pathfinder.Serializers.Xml
 {
 	internal class ItemXmlSerializer : ISerializer<IItem, string>
 	{
-		private static readonly Regex WeightPattern = new Regex(@"(\d+) lbs?\..*");
-
 		public IItem Deserialize(string pValue)
 		{
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
 
 			var xDocument = XDocument.Parse(pValue);
 
-			decimal weight = decimal.TryParse(_GetElementValue(xDocument, nameof(IItem.Weight)), out weight) ? weight : 0;
 			return new Item(
 				_GetElementValue(xDocument, nameof(IItem.Name)),
 				_GetItemType(xDocument),
@@ -35,15 +31,7 @@ namespace Pathfinder.Serializers.Xml
 
 		private static decimal _GetWeightValue(XContainer pXDocument)
 		{
-			var weightText = WeightPattern.Matches(_GetElementValue(pXDocument, nameof(IItem.Weight)))[1].Value;
-
-			decimal weight;
-			if (!decimal.TryParse(weightText, out weight))
-			{
-				weight = 0;
-			}
-
-			return weight;
+			return _GetElementValue(pXDocument, nameof(IItem.Weight)).AsDecimal();
 		}
 
 		private static string _GetElementValue(XContainer pXDocument, string pName)

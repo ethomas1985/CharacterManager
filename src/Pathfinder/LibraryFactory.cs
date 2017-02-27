@@ -1,9 +1,10 @@
-﻿using System.IO;
-using System.Web;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Item;
 using Pathfinder.Library;
 using Pathfinder.Serializers.Xml;
+using System.IO;
+using System.Web;
 
 namespace Pathfinder
 {
@@ -17,6 +18,7 @@ namespace Pathfinder
 		private  readonly ILibrary<ISkill> _skillLibrary;
 		private  readonly ILibrary<ISpell> _spellLibrary;
 		private  readonly ILibrary<ITrait> _traitLibrary;
+		private  readonly ILibrary<IItem> _itemLibrary;
 		private  readonly ILibrary<ICharacter> _characterLibrary;
 
 		public LibraryFactory()
@@ -43,6 +45,9 @@ namespace Pathfinder
 
 			var raceSerializer = new RaceXmlSerializer(_traitLibrary);
 			_raceLibrary = new RaceLibrary(raceSerializer, RaceLibrary);
+
+			var itemSerializer = new ItemXmlSerializer();
+			_itemLibrary = new ItemLibrary(itemSerializer, ItemLibrary);
 
 			var characterSerializer = new CharacterXmlSerializer();
 			_characterLibrary = new CharacterLibrary(characterSerializer, CharacterLibrary);
@@ -72,6 +77,8 @@ namespace Pathfinder
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.FeatLibrary));
 		public string SpellLibrary =>
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.SpellLibrary));
+		public string ItemLibrary =>
+			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.ItemLibrary));
 		public string CharacterLibrary =>
 			Path.GetFullPath(Path.Combine(HttpRuntime.BinDirectory, _libraryPath.CharacterLibrary));
 
@@ -110,6 +117,11 @@ namespace Pathfinder
 			return _traitLibrary;
 		}
 
+		public ILibrary<IItem> GetItemLibrary()
+		{
+			return _itemLibrary;
+		}
+
 		public ILibrary<ICharacter> GetCharacterLibrary()
 		{
 			return _characterLibrary;
@@ -125,6 +137,7 @@ namespace Pathfinder
 		public string ClassFeatureLibrary { get; set; } = "../ClassFeatures/";
 		public string SpellLibrary { get; set; } = "../Spells/";
 		public string FeatLibrary { get; set; } = "../Feats/";
+		public string ItemLibrary { get; set; } = "../Items/";
 		public string CharacterLibrary { get; set; } = "../Characters/";
 	}
 }

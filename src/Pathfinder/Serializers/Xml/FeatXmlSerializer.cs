@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using Pathfinder.Enums;
+﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Pathfinder.Serializers.Xml
 {
@@ -16,13 +16,17 @@ namespace Pathfinder.Serializers.Xml
 
 			var xDocument = XDocument.Parse(pValue);
 
+			var description = _GetElementValue(xDocument, nameof(IFeat.Description));
+			var isSpecialized = description.StartsWith("Choose");
+
 			return new Feat(
 				_GetElementValue(xDocument, nameof(IFeat.Name)),
 				_GetFeatType(xDocument),
 				_GetPrerequisites(xDocument),
-				_GetElementValue(xDocument, nameof(IFeat.Description)),
+				description,
 				_GetElementValue(xDocument, nameof(IFeat.Benefit)),
-				_GetElementValue(xDocument, nameof(IFeat.Special))
+				_GetElementValue(xDocument, nameof(IFeat.Special)),
+				isSpecialized
 			);
 		}
 
@@ -65,6 +69,7 @@ namespace Pathfinder.Serializers.Xml
 						{
 									new XElement(nameof(Feat.Name), pObject.Name),
 									new XElement(nameof(Feat.FeatType), pObject.FeatType),
+									new XElement(nameof(Feat.IsSpecialized), pObject.IsSpecialized),
 									new XElement(
 										nameof(Feat.Prerequisites),
 										pObject.Prerequisites?

@@ -3,7 +3,10 @@ using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Item;
 using Pathfinder.Model;
+using Pathfinder.Model.Currency;
+using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
@@ -82,9 +85,11 @@ namespace Pathfinder.Serializers.Json
 
 			character = ParseExperience(jObject, character);
 
-			character = ParsePurse(jObject, character);
+			character = ParseCharacterPurse(jObject, character);
 
 			character = ParseFeats(jObject, character);
+
+			character = ParseInventory(jObject, character);
 
 			return character;
 		}
@@ -263,7 +268,7 @@ namespace Pathfinder.Serializers.Json
 			return pCharacter.AppendExperience(new Event(title, description, xp));
 		}
 
-		private ICharacter ParsePurse(JToken pJToken, ICharacter pCharacter)
+		private ICharacter ParseCharacterPurse(JToken pJToken, ICharacter pCharacter)
 		{
 			var purseToken = pJToken.SelectToken(nameof(ICharacter.Purse));
 			if (purseToken == null)
@@ -271,12 +276,25 @@ namespace Pathfinder.Serializers.Json
 				return pCharacter;
 			}
 
-			var copper = (int)purseToken.SelectToken(nameof(IPurse.Copper));
-			var silver = (int)purseToken.SelectToken(nameof(IPurse.Silver));
-			var gold = (int)purseToken.SelectToken(nameof(IPurse.Gold));
-			var platinum = (int)purseToken.SelectToken(nameof(IPurse.Platinum));
+			var purse = ParsePurse(purseToken);
 
-			return pCharacter.SetPurse(copper, silver, gold, platinum);
+			return pCharacter.SetPurse(purse.Copper.Value, purse.Silver.Value, purse.Gold.Value, purse.Platinum.Value);
+		}
+
+		private static IPurse ParsePurse(JToken pJToken)
+		{
+			if (pJToken == null)
+			{
+				return null;
+			}
+
+			var copper = (int) pJToken.SelectToken(nameof(IPurse.Copper));
+			var silver = (int) pJToken.SelectToken(nameof(IPurse.Silver));
+			var gold = (int) pJToken.SelectToken(nameof(IPurse.Gold));
+			var platinum = (int) pJToken.SelectToken(nameof(IPurse.Platinum));
+
+			var purse = new Purse(copper, silver, gold, platinum);
+			return purse;
 		}
 
 		private ICharacter ParseFeats(JToken pJToken, ICharacter pCharacter)
@@ -291,7 +309,6 @@ namespace Pathfinder.Serializers.Json
 
 			return character;
 		}
-
 		private ICharacter ParseFeat(JToken pToken, ICharacter pCharacter)
 		{
 			string name =  GetString(pToken, nameof(IFeat.Name));
@@ -309,8 +326,57 @@ namespace Pathfinder.Serializers.Json
 
 			var prerequisites = pToken[nameof(IFeat.Prerequisites)]?.Children().Select(x => x.Value<string>());
 
-			return pCharacter.AddFeat(new Feat(name, featType, prerequisites, description, benefit, special));
+			bool isSpecialized = GetBoolean(pToken, nameof(IFeat.IsSpecialized));
+			string specialization = isSpecialized ? GetString(pToken, nameof(IFeat.Specialization)) : null;
+
+			return pCharacter.AddFeat(new Feat(name, featType, prerequisites, description, benefit, special, isSpecialized), specialization);
 		}
+
+		private ICharacter ParseInventory(JToken pJToken, ICharacter pCharacter)
+		{
+			var tokens = pJToken.SelectTokens(nameof(ICharacter.Inventory)).Children();
+
+			var character = pCharacter;
+			foreach (var token in tokens)
+			{
+				character = ParseInventoryItem(token, character);
+			}
+
+			return character;
+		}
+		private ICharacter ParseInventoryItem(JToken pToken, ICharacter pCharacter)
+		{
+			var item = ParseItem(pToken[nameof(IInventoryItem.Item)]);
+
+			var quantity = GetInt(pToken, nameof(IInventoryItem.Quantity));
+
+			var character = pCharacter;
+			for (int i = 0; i < quantity; i++)
+			{
+				character = character.AddToInventory(item);
+			}
+
+			return character;
+		}
+		private IItem ParseItem(JToken pToken)
+		{
+			string name = GetString(pToken, nameof(IItem.Name));
+
+			var parsedAlignment = GetString(pToken, nameof(IItem.ItemType));
+			ItemType itemType;
+			if (!Enum.TryParse(parsedAlignment, out itemType))
+			{
+				itemType = ItemType.None;
+			}
+
+			string description = GetString(pToken, nameof(IItem.Description));
+			string category = GetString(pToken, nameof(IItem.Category));
+			var purse = ParsePurse(pToken[nameof(IItem.Cost)]);
+			decimal weight = GetString(pToken, nameof(IItem.Weight)).AsDecimal();
+
+			return new Item(name, itemType, category, purse, weight, description);
+		}
+
 		private ICharacter ParseLanguages(JToken pJToken, ICharacter pCharacter)
 		{
 			var tokens = pJToken.SelectTokens(nameof(ICharacter.Languages)).Values<string>();
@@ -398,7 +464,7 @@ namespace Pathfinder.Serializers.Json
 			_writeProperty(pWriter, nameof(ICharacter.BaseSpeed), character.BaseSpeed);
 			_writeProperty(pWriter, nameof(ICharacter.ArmoredSpeed), character.ArmoredSpeed);
 
-			_writePurse(pWriter, character.Purse);
+			_writePurse(pWriter, nameof(ICharacter.Purse), character.Purse);
 
 			_writeProperty(pWriter, nameof(ICharacter.Initiative), character.Initiative);
 
@@ -430,17 +496,19 @@ namespace Pathfinder.Serializers.Json
 
 			_writeFeats(pWriter, character.Feats);
 
+			_writeInventory(pWriter, character.Inventory);
+
 			pWriter.WriteEndObject();
 		}
 
-		private void _writePurse(JsonWriter pWriter, IPurse pPurse)
+		private void _writePurse(JsonWriter pWriter, string pPropertyName, IPurse pPurse)
 		{
 			if (pPurse == null)
 			{
 				return;
 			}
 
-			pWriter.WritePropertyName(nameof(ICharacter.Purse));
+			pWriter.WritePropertyName(pPropertyName);
 			pWriter.WriteStartObject();
 
 			_writeProperty(pWriter, nameof(IPurse.Copper), pPurse.Copper.Value);
@@ -687,6 +755,13 @@ namespace Pathfinder.Serializers.Json
 
 			_writeProperty(pWriter, nameof(IFeat.Name), pFeat.Name);
 			_writeProperty(pWriter, nameof(IFeat.FeatType), pFeat.FeatType.ToString());
+			_writeProperty(pWriter, nameof(IFeat.IsSpecialized), pFeat.IsSpecialized.ToString());
+
+			if (pFeat.IsSpecialized)
+			{
+				_writeProperty(pWriter, nameof(IFeat.Specialization), pFeat.Specialization);
+			}
+
 			_writeProperty(pWriter, nameof(IFeat.Description), pFeat.Description);
 			_writeProperty(pWriter, nameof(IFeat.Benefit), pFeat.Benefit);
 			_writeProperty(pWriter, nameof(IFeat.Special), pFeat.Special);
@@ -700,6 +775,44 @@ namespace Pathfinder.Serializers.Json
 			}
 
 			pWriter.WriteEndArray();
+
+			pWriter.WriteEndObject();
+		}
+
+		private void _writeInventory(JsonWriter pWriter, IInventory pInventory)
+		{
+			pWriter.WritePropertyName(nameof(ICharacter.Inventory));
+			pWriter.WriteStartArray();
+
+			foreach (var feat in pInventory)
+			{
+				_writeInventoryItem(pWriter, feat);
+			}
+
+			pWriter.WriteEndArray();
+		}
+
+		private void _writeInventoryItem(JsonWriter pWriter, IInventoryItem pInventoryItem)
+		{
+			pWriter.WriteStartObject();
+
+			_writeItem(pWriter, pInventoryItem.Item);
+			_writeProperty(pWriter, nameof(IInventoryItem.Quantity), pInventoryItem.Quantity);
+
+			pWriter.WriteEndObject();
+		}
+
+		private void _writeItem(JsonWriter pWriter, IItem pItem)
+		{
+			pWriter.WritePropertyName(nameof(IInventoryItem.Item));
+			pWriter.WriteStartObject();
+
+			_writeProperty(pWriter, nameof(IItem.Name), pItem.Name);
+			_writeProperty(pWriter, nameof(IItem.ItemType), pItem.ItemType.ToString());
+			_writeProperty(pWriter, nameof(IItem.Category), pItem.Category);
+			_writeProperty(pWriter, nameof(IItem.Description), pItem.Description);
+			_writeProperty(pWriter, nameof(IItem.Weight), pItem.Weight);
+			_writePurse(pWriter, nameof(IItem.Cost), pItem.Cost);
 
 			pWriter.WriteEndObject();
 		}

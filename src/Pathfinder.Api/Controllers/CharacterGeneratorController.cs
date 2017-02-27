@@ -2,6 +2,7 @@
 using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Item;
 using Pathfinder.Utilities;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -21,6 +22,7 @@ namespace Pathfinder.Api.Controllers
 			RaceLibrary = libraryFactory.GetRaceLibrary();
 			ClassLibrary = libraryFactory.GetClassLibrary();
 			FeatLibrary = libraryFactory.GetFeatLibrary();
+			ItemLibrary = libraryFactory.GetItemLibrary();
 		}
 
 		/// <summary>
@@ -32,23 +34,30 @@ namespace Pathfinder.Api.Controllers
 		/// <param name="pLibrary"></param>
 		/// <param name="pSkillLibrary"></param>
 		/// <param name="pClassLibrary"></param>
+		/// <param name="pFeatLibrary"></param>
+		/// <param name="pItemLibrary"></param>
 		internal CharacterGeneratorController(
 			ILibrary<ICharacter> pCharacterLibrary,
 			ILibrary<IRace> pLibrary,
 			ILibrary<ISkill> pSkillLibrary,
-			ILibrary<IClass> pClassLibrary)
+			ILibrary<IClass> pClassLibrary,
+			ILibrary<IFeat> pFeatLibrary,
+			ILibrary<IItem> pItemLibrary)
 		{
 			CharacterLibrary = pCharacterLibrary;
 			RaceLibrary = pLibrary;
 			SkillLibrary = pSkillLibrary;
 			ClassLibrary = pClassLibrary;
+			FeatLibrary = pFeatLibrary;
+			ItemLibrary = pItemLibrary;
 		}
 
 		internal ILibrary<ICharacter> CharacterLibrary { get; }
 		internal ILibrary<IRace> RaceLibrary { get; }
 		internal ILibrary<ISkill> SkillLibrary { get; }
 		internal ILibrary<IClass> ClassLibrary { get; }
-		internal ILibrary<IFeat> FeatLibrary { get; set; }
+		internal ILibrary<IFeat> FeatLibrary { get; }
+		internal ILibrary<IItem> ItemLibrary { get; }
 
 		public ICharacter Create()
 		{
@@ -98,11 +107,33 @@ namespace Pathfinder.Api.Controllers
 					.AddDamage(6)
 					.AddDamage(-7)
 					.AddDamage(8)
-					.AddDamage(9)
-					.AddDamage(8)
-					.AddDamage(7)
-					.AddDamage(30) // = 1 + 1 + 3 + 6 - 7 + 8 + 9 + 8 + 7 + 30
+					//.AddDamage(9)
+					//.AddDamage(8)
+					//.AddDamage(7)
+					//.AddDamage(30) // = 1 + 1 + 3 + 6 - 7 + 8 + 9 + 8 + 7 + 30
+					
 					.AddFeat(FeatLibrary["Dodge"])
+					.AddFeat(FeatLibrary["Eschew Materials"])
+					.AddFeat(FeatLibrary["Toughness"])
+					.AddFeat(FeatLibrary["Spell Focus"], "Evocation")
+
+					.AddToInventory(ItemLibrary["Quarterstaff"])
+					
+					.AddToInventory(ItemLibrary["Crossbow, Light"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+					.AddToInventory(ItemLibrary["Bolts"])
+
+					.AddToInventory(ItemLibrary["Dagger"])
+
 					;
 
 			preBuilt = AddExperienceCommand.Execute(preBuilt, "Event 1", "Freebie", 2000);

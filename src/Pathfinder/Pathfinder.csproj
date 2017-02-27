@@ -90,6 +90,7 @@
     <Compile Include="LibraryFactory.cs" />
     <Compile Include="Library\AbstractLibrary.cs" />
     <Compile Include="Library\CharacterLibrary.cs" />
+    <Compile Include="Library\ItemLibrary.cs" />
     <Compile Include="Library\ClassLibrary.cs" />
     <Compile Include="Library\FeatLibrary.cs" />
     <Compile Include="Library\FeatureLibrary.cs" />
