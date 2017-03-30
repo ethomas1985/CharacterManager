@@ -1,8 +1,0 @@
-<Feat>
-  <Name>Simple Weapon Proficiency</Name>
-  <FeatType>Combat</FeatType>
-  <Prerequisites />
-  <Description>You are trained in the use of basic weapons.</Description>
-  <Benefit> You make attack rolls with simple weapons without penalty.</Benefit>
-  <Special> All characters except for druids, monks, and wizards are automatically proficient with all simple weapons. They need not select this feat.</Special>
-</Feat>

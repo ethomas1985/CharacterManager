@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Maneuver Training</Name>
-  <Body>At 3rd level, a monk uses his monk level in place of his base attack bonus when calculating his Combat Maneuver Bonus. Base attack bonuses granted from other classes are unaffected and are added normally.</Body>
-  <AbilityType>Extraordinary</AbilityType>
-  <SubFeatures />
-</Feature>

@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Camouflage</Name>
-  <Body>A ranger of 12th level or higher can use the Stealth skill to hide in any of his favored terrains, even if the terrain doesn't grant cover or concealment.</Body>
-  <AbilityType>Extraordinary</AbilityType>
-  <SubFeatures />
-</Feature>

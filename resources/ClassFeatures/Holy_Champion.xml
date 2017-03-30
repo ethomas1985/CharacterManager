@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Holy Champion</Name>
-  <Body>At 20th level, a paladin becomes a conduit for the power of her god. Her DR increases to 10/evil. Whenever she uses smite evil and successfully strikes an evil outsider, the outsider is also subject to a banishment, using her paladin level as the caster level (her weapon and holy symbol automatically count as objects that the subject hates). After the banishment effect and the damage from the attack is resolved, the smite immediately ends. In addition, whenever she channels positive energy or uses lay on hands to heal a creature, she heals the maximum possible amount.</Body>
-  <AbilityType>Supernatural</AbilityType>
-  <SubFeatures />
-</Feature>

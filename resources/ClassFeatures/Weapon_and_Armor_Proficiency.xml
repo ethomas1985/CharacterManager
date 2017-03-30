@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Weapon and Armor Proficiency</Name>
-  <Body>Wizards are proficient with the club, dagger, heavy crossbow, light crossbow, and quarterstaff, but not with any type of armor or shield. Armor interferes with a wizard's movements, which can cause his spells with somatic components to fail.</Body>
-  <AbilityType>Normal</AbilityType>
-  <SubFeatures />
-</Feature>

@@ -1,8 +1,0 @@
-<Feat>
-  <Name>Shield Proficiency</Name>
-  <FeatType>Combat</FeatType>
-  <Prerequisites />
-  <Description>You are trained in how to properly use a shield.</Description>
-  <Benefit> When you use a shield (except a tower shield), the shield's armor check penalty only applies to Strength- and Dexterity-based skills.</Benefit>
-  <Special> Barbarians, bards, clerics, druids, fighters, paladins, and rangers all automatically have Shield Proficiency as a bonus feat. They need not select it.</Special>
-</Feat>

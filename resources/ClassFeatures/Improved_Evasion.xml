@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Improved Evasion</Name>
-  <Body>At 16th level, a ranger's evasion improves. This ability works like evasion, except that while the ranger still takes no damage on a successful Reflex saving throw against attacks, he henceforth takes only half damage on a failed save. A helpless ranger does not gain the benefit of improved evasion.</Body>
-  <AbilityType>Extraordinary</AbilityType>
-  <SubFeatures />
-</Feature>

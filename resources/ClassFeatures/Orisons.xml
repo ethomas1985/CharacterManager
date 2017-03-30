@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Orisons</Name>
-  <Body>Druids can prepare a number of orisons, or 0-level spells, each day, as noted on Table: Druid under &amp;ldquo;Spells per Day.&amp;rdquo; These spells are cast like any other spell, but they are not expended when cast and may be used again.</Body>
-  <AbilityType>Normal</AbilityType>
-  <SubFeatures />
-</Feature>

@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Trap Sense</Name>
-  <Body>At 3rd level, a rogue gains an intuitive sense that alerts her to danger from traps, giving her a +1 bonus on Reflex saves made to avoid traps and a +1 dodge bonus to AC against attacks made by traps. These bonuses rise to +2 when the rogue reaches 6th level, to +3 when she reaches 9th level, to +4 when she reaches 12th level, to +5 at 15th, and to +6 at 18th level.Trap sense bonuses gained from multiple classes stack.</Body>
-  <AbilityType>Extraordinary</AbilityType>
-  <SubFeatures />
-</Feature>

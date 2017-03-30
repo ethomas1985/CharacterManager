@@ -1,5 +1,0 @@
-<Trait>
-  <Name>Weapon Familiarity (Halfling)</Name>
-  <Text> {{Race | Plural}} treat any weapon with the word "halfling" in its name as a martial weapon.</Text>
-  <PropertyModifiers />
-</Trait>

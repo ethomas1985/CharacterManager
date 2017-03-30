@@ -1,8 +1,0 @@
-<Feat>
-  <Name>Point-Blank Shot</Name>
-  <FeatType>Combat</FeatType>
-  <Prerequisites />
-  <Description>You are especially accurate when making ranged attacks against close targets.</Description>
-  <Benefit> You get a +1 bonus on attack and damage rolls with ranged weapons at ranges of up to 30 feet.</Benefit>
-  <Special />
-</Feat>

@@ -1,8 +1,0 @@
-<Feat>
-  <Name>Improved Unarmed Strike</Name>
-  <FeatType>Combat</FeatType>
-  <Prerequisites />
-  <Description>You are skilled at fighting while unarmed.</Description>
-  <Benefit> You are considered to be armed even when unarmed&amp;mdash;you do not provoke attacks of opportunity when you attack foes while unarmed. Your unarmed strikes can deal lethal or nonlethal damage, at your choice.</Benefit>
-  <Special />
-</Feat>

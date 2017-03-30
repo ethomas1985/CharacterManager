@@ -1,5 +1,0 @@
-<Trait>
-  <Name>Weapon Familiarity (Orc)</Name>
-  <Text> {{Race | Plural}} treat any weapon with the word "orc" in its name as a martial weapon.</Text>
-  <PropertyModifiers />
-</Trait>

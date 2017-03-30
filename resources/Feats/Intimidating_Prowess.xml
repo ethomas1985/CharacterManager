@@ -1,8 +1,0 @@
-<Feat>
-  <Name>Intimidating Prowess</Name>
-  <FeatType>Combat</FeatType>
-  <Prerequisites />
-  <Description>Your physical might is intimidating to others.</Description>
-  <Benefit> Add your Strength modifier to Intimidate skill checks in addition to your Charisma modifier.</Benefit>
-  <Special />
-</Feat>

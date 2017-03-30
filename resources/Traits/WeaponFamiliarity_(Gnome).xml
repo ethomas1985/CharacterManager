@@ -1,5 +1,0 @@
-<Trait>
-  <Name>Weapon Familiarity (Gnome)</Name>
-  <Text> {{Race | Plural}} treat any weapon with the word "gnome" in its name as a martial weapon.</Text>
-  <PropertyModifiers />
-</Trait>

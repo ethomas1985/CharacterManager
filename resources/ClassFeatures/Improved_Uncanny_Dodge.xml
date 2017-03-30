@@ -1,6 +1,0 @@
-<Feature>
-  <Name>Improved Uncanny Dodge</Name>
-  <Body>A rogue of 8th level or higher can no longer be flanked.This defense denies another rogue the ability to sneak attack the character by flanking her, unless the attacker has at least four more rogue levels than the target does.If a character already has uncanny dodge (see above) from another class, the levels from the classes that grant uncanny dodge stack to determine the minimum rogue level required to flank the character.</Body>
-  <AbilityType>Extraordinary</AbilityType>
-  <SubFeatures />
-</Feature>
