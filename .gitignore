@@ -235,6 +235,7 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
+resources/*
 
 src/www/.lib/*
 src/www/typings/*
