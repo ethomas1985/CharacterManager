@@ -168,12 +168,6 @@ namespace Pathfinder.Model
 				&& SizeModifier == pOther.SizeModifier
 				&& MiscellaneousBonus == pOther.MiscellaneousBonus;
 
-			if (!equal)
-			{
-				Tracer.Message(pMessage: $"{Type} :: this :: {ToString()}");
-				Tracer.Message(pMessage: $"{Type} :: that :: {pOther.ToString()}");
-			}
-
 			return equal;
 		}
 

@@ -8,12 +8,15 @@ namespace Pathfinder.Model.Items
 {
 	internal class Item : IItem, IEquatable<IItem>
 	{
-		public Item(string pName,
-					ItemType pItemType,
-					string pCategory,
-					IPurse pCost,
-					decimal pWeight,
-					string pDescription)
+		public Item(
+			string pName,
+			ItemType pItemType,
+			string pCategory,
+			IPurse pCost,
+			decimal pWeight,
+			string pDescription,
+			IWeaponComponent pWeaponComponent = null,
+			IArmorComponent pArmorComponent = null)
 		{
 			Name = pName;
 			ItemType = pItemType;
@@ -21,6 +24,9 @@ namespace Pathfinder.Model.Items
 			Cost = pCost;
 			Weight = pWeight;
 			Description = pDescription;
+
+			WeaponComponent = pWeaponComponent;
+			ArmorComponent = pArmorComponent;
 		}
 
 		public string Name { get; }
@@ -28,7 +34,14 @@ namespace Pathfinder.Model.Items
 		public IPurse Cost { get; }
 		public decimal Weight { get; }
 		public string Description { get; }
-		public ItemType ItemType { get; set; }
+		public ItemType ItemType { get; }
+		public IWeaponComponent WeaponComponent { get; }
+		public IArmorComponent ArmorComponent { get; }
+
+		public override string ToString()
+		{
+			return ItemType != ItemType.None ? $"{ItemType}: {Name}" : $"{Name}";
+		}
 
 		public override bool Equals(object pOther)
 		{
@@ -47,12 +60,16 @@ namespace Pathfinder.Model.Items
 				return true;
 			}
 
-			return ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name))
-				&& ComparisonUtilities.Compare(GetType().Name, Category, pOther.Category, nameof(Category))
-				&& ComparisonUtilities.Compare(GetType().Name, Cost, pOther.Cost, nameof(Cost))
-				&& ComparisonUtilities.Compare(GetType().Name, Weight, pOther.Weight, nameof(Weight))
-				&& ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description))
-				&& ComparisonUtilities.Compare(GetType().Name, ItemType, pOther.ItemType, nameof(ItemType));
+			var result = ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
+			result &= ComparisonUtilities.Compare(GetType().Name, Category, pOther.Category, nameof(Category));
+			result &= ComparisonUtilities.Compare(GetType().Name, Cost, pOther.Cost, nameof(Cost));
+			result &= ComparisonUtilities.Compare(GetType().Name, Weight, pOther.Weight, nameof(Weight));
+			result &= ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description));
+			result &= ComparisonUtilities.Compare(GetType().Name, ItemType, pOther.ItemType, nameof(ItemType));
+			result &= ComparisonUtilities.Compare(GetType().Name, WeaponComponent, pOther.WeaponComponent, nameof(WeaponComponent));
+			result &= ComparisonUtilities.Compare(GetType().Name, ArmorComponent, pOther.ArmorComponent, nameof(ArmorComponent));
+
+			return result;
 		}
 
 		public override int GetHashCode()
@@ -64,7 +81,7 @@ namespace Pathfinder.Model.Items
 				hashCode = (hashCode * 397) ^ (Cost?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ Weight.GetHashCode();
 				hashCode = (hashCode * 397) ^ (Description?.GetHashCode() ?? 0);
-				hashCode = (hashCode * 397) ^ (int) ItemType;
+				hashCode = (hashCode * 397) ^ (int)ItemType;
 				return hashCode;
 			}
 		}

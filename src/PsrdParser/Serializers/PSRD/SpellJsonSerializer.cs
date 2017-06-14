@@ -153,9 +153,9 @@ namespace PsrdParser.Serializers.PSRD
 			return getString(pJObject, "duration");
 		}
 
-		private static ISet<Tuple<ComponentType, string>> _GetComponents(JObject pJObject)
+		private static ISet<ISpellComponent> _GetComponents(JObject pJObject)
 		{
-			var values = new HashSet<Tuple<ComponentType, string>>();
+			var values = new HashSet<ISpellComponent>();
 
 			var token = pJObject["components"];
 			if (token == null)
@@ -183,7 +183,7 @@ namespace PsrdParser.Serializers.PSRD
 					}
 				}
 
-				values.Add(new Tuple<ComponentType, string>(componentType, component.Text));
+				values.Add(new SpellComponent(componentType, component.Text));
 			}
 
 			return values;

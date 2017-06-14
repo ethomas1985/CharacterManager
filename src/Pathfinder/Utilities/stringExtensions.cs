@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Pathfinder.Utilities
 {
@@ -84,6 +86,42 @@ namespace Pathfinder.Utilities
 		{
 			decimal value;
 			return decimal.TryParse(pThis, out value) ? value : default(decimal);
+		}
+
+		public static string SplitCamelCase(this string pThis)
+		{
+			return
+				Regex.Replace(
+							  Regex.Replace(pThis, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"),
+							  @"(\p{Ll})(\P{Ll})",
+							  "$1 $2"
+							 );
+		}
+
+		// Convert the string to Pascal case.
+		public static string ToPascalCase(this string pThis)
+		{
+			if (string.IsNullOrWhiteSpace(pThis))
+			{
+				return pThis;
+			}
+
+			pThis = new CultureInfo("en-US", false).TextInfo.ToTitleCase(pThis.SplitCamelCase());
+			var parts = pThis.Split(new char[] { }, StringSplitOptions.RemoveEmptyEntries);
+			var result = string.Join(string.Empty, parts);
+			return result;
+		}
+
+		// Convert the string to camel case.
+		public static string ToCamelCase(this string pThis)
+		{
+			if (string.IsNullOrWhiteSpace(pThis))
+			{
+				return pThis;
+			}
+
+			pThis = pThis.ToPascalCase();
+			return pThis.Substring(0, 1).ToLower() + pThis.Substring(1);
 		}
 	}
 }

@@ -3,6 +3,7 @@
 	public enum ItemType
 	{
 		None,
+		Material,
 		Armor,
 		Belt,
 		Body,
@@ -14,11 +15,10 @@
 		Headband,
 		Neck,
 		Ring,
-		Shield,
 		Shoulders,
 		Wrist,
-		Material,
 		Arms,
+		Shield,
 		Weapon,
 	}
 }

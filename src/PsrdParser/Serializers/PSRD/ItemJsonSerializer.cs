@@ -26,6 +26,7 @@ namespace PsrdParser.Serializers.PSRD
 		private const string MISC_JSON_ATTRIBUTE = "misc";
 		private const string WEAPON_JSON_ATTRIBUTE = "Weapon";
 		private const string ARMOR_JSON_ATTRIBUTE = "Armor";
+		private const string HTML_DASH = "&mdash;";
 
 		private static readonly Regex WeightPattern = new Regex(@"(\d+) lbs?\..*");
 		private static readonly WeaponSpecialsLibrary WeaponSpecialsLibrary = new WeaponSpecialsLibrary();
@@ -35,51 +36,49 @@ namespace PsrdParser.Serializers.PSRD
 			Assert.ArgumentIsNotEmpty(pValue, nameof(pValue));
 
 			var jObject = JObject.Parse(pValue);
-			string itemName = getString(jObject, NAME_JSON_ATTRIBUTE);
-			ItemType itemType = GetItemType(jObject);
 
-			switch (itemType)
-			{
-				case ItemType.None:
-					return CreateItem(jObject, itemName, itemType);
-				case ItemType.Weapon:
-					return CreateWeapon(jObject, itemName);
-				default:
-					return CreateArmor(jObject, itemName, itemType);
-
-			}
+			return CreateItem(jObject);
 		}
 
-		private IItem CreateArmor(JObject pJObject, string pItemName, ItemType pItemType)
+		private IItem CreateItem(JObject pJObject)
 		{
-			var armorNode = pJObject[MISC_JSON_ATTRIBUTE]?[ARMOR_JSON_ATTRIBUTE];
-
-			return new Armor(
-				pItemName,
-				pItemType,
+			return new Item(
+				getString(pJObject, NAME_JSON_ATTRIBUTE),
+				GetItemType(pJObject),
 				getCategory(pJObject),
 				getPrice(pJObject),
 				_GetWeightValue(pJObject),
 				getString(pJObject, FIELD_JSON_ATTRIBUTE),
+				CreateWeapon(pJObject),
+				CreateArmor(pJObject));
+		}
+
+		private IArmorComponent CreateArmor(JObject pJObject)
+		{
+			var armorNode = pJObject[MISC_JSON_ATTRIBUTE]?[ARMOR_JSON_ATTRIBUTE];
+			if (armorNode == null)
+			{
+				return null;
+			}
+
+			return new ArmorComponent(
 				GetArmorBonus(armorNode),
 				GetShieldBonus(armorNode),
 				GetMaximumDexterityBonus(armorNode),
 				GetArmorCheckPenalty(armorNode),
 				GetArcaneSpellFailureChance(armorNode),
-				GetSpeedModifier(armorNode)
-				);
+				GetSpeedModifier(armorNode));
 		}
 
-		private IItem CreateWeapon(JObject pJObject, string pItemName)
+		private IWeaponComponent CreateWeapon(JObject pJObject)
 		{
 			var weaponNode = pJObject[MISC_JSON_ATTRIBUTE]?[WEAPON_JSON_ATTRIBUTE];
+			if (weaponNode == null)
+			{
+				return null;
+			}
 
-			return new Weapon(
-				pItemName,
-				getCategory(pJObject),
-				getPrice(pJObject),
-				_GetWeightValue(pJObject),
-				getString(pJObject, FIELD_JSON_ATTRIBUTE),
+			return new WeaponComponent(
 				GetProficiency(weaponNode),
 				GetWeaponType(weaponNode),
 				GetEncumbrance(weaponNode),
@@ -89,20 +88,7 @@ namespace PsrdParser.Serializers.PSRD
 				GetCriticalThreat(weaponNode),
 				GetCriticalMultiplier(weaponNode),
 				GetRange(weaponNode),
-				GetSpecialText(weaponNode)
-				);
-		}
-
-		private IItem CreateItem(JObject pJObject, string pItemName, ItemType pItemType)
-		{
-			return new Item(
-				pItemName,
-				pItemType,
-				getCategory(pJObject),
-				getPrice(pJObject),
-				_GetWeightValue(pJObject),
-				getString(pJObject, FIELD_JSON_ATTRIBUTE)
-				);
+				GetSpecialText(weaponNode));
 		}
 
 		private ItemType GetItemType(JObject pJObject)
@@ -116,14 +102,19 @@ namespace PsrdParser.Serializers.PSRD
 				return value;
 			}
 
-			var miscNode = pJObject?[MISC_JSON_ATTRIBUTE]?[ARMOR_JSON_ATTRIBUTE]?.ToString();
-			if (!string.IsNullOrEmpty(miscNode))
+			var hasArmorNode = !string.IsNullOrEmpty(pJObject?[MISC_JSON_ATTRIBUTE]?[ARMOR_JSON_ATTRIBUTE]?.ToString());
+			var hasWeaponNode = !string.IsNullOrEmpty(pJObject?[MISC_JSON_ATTRIBUTE]?[WEAPON_JSON_ATTRIBUTE]?.ToString());
+			if (hasArmorNode && hasWeaponNode)
+			{
+				Console.WriteLine("\tWeaponized Armor!!!");
+			}
+
+			if (hasArmorNode)
 			{
 				return ItemType.Armor;
 			}
 
-			miscNode = pJObject?[MISC_JSON_ATTRIBUTE]?[WEAPON_JSON_ATTRIBUTE]?.ToString();
-			if (!string.IsNullOrEmpty(miscNode))
+			if (hasWeaponNode)
 			{
 				return ItemType.Weapon;
 			}
@@ -165,7 +156,7 @@ namespace PsrdParser.Serializers.PSRD
 				return null;
 			}
 
-			return (string) nullNode["Gear Type"];
+			return (string)nullNode["Gear Type"];
 		}
 
 		protected IPurse getPrice(JObject pJObject)
@@ -173,7 +164,7 @@ namespace PsrdParser.Serializers.PSRD
 			var rawValue = getString(pJObject, "price");
 			if (string.IsNullOrEmpty(rawValue)
 				|| "varies".Equals(rawValue)
-				 || "&mdash;".Equals(rawValue)
+				 || HTML_DASH.Equals(rawValue)
 				 || "special".Equals(rawValue))
 			{
 				return null;
@@ -215,7 +206,7 @@ namespace PsrdParser.Serializers.PSRD
 				return 0;
 			}
 
-			var value = (string) pJObject["Armor Bonus"];
+			var value = (string)pJObject["Armor Bonus"];
 
 			return value.AsInt();
 		}
@@ -226,7 +217,7 @@ namespace PsrdParser.Serializers.PSRD
 				return 0;
 			}
 
-			var value = (string) pJObject["Shield Bonus"];
+			var value = (string)pJObject["Shield Bonus"];
 
 			return value.AsInt();
 		}
@@ -237,9 +228,9 @@ namespace PsrdParser.Serializers.PSRD
 				return 0;
 			}
 
-			var value = (string) pJObject["Armor Check Penalty"];
+			var value = (string)pJObject["Armor Check Penalty"];
 
-			return value.AsInt();
+			return value.Replace(HTML_DASH, "-").AsInt();
 		}
 		private int GetMaximumDexterityBonus(JToken pJObject)
 		{
@@ -248,7 +239,7 @@ namespace PsrdParser.Serializers.PSRD
 				return 0;
 			}
 
-			var value = (string) pJObject["Maximum Dex Bonus"];
+			var value = (string)pJObject["Maximum Dex Bonus"];
 
 			return value.AsInt();
 		}
@@ -259,9 +250,9 @@ namespace PsrdParser.Serializers.PSRD
 				return 0;
 			}
 
-			var armorBonusString = (string) pJObject["Arcane Spell Failure Chance"];
+			var armorBonusString = (string)pJObject["Arcane Spell Failure Chance"];
 
-			return armorBonusString.AsInt();
+			return armorBonusString.Replace("%", string.Empty).AsInt();
 		}
 		private int GetSpeedModifier(JToken pJObject)
 		{
@@ -269,10 +260,22 @@ namespace PsrdParser.Serializers.PSRD
 			{
 				return 0;
 			}
+			var pattern = new Regex(@"(\d+).*");
 
-			var armorBonusString = (string) pJObject["Speed (30 ft.)"];
+			var speedModifierString = (string)pJObject["Speed (30 ft.)"];
+			if (HTML_DASH.Equals(speedModifierString))
+			{
+				return 0;
+			}
 
-			return armorBonusString.AsInt();
+			var match = pattern.Match(speedModifierString);
+			if (!match.Success)
+			{
+				throw new Exception($"Parsing error");
+			}
+
+			var speedModifier = match.Groups[1].Value.AsInt();
+			return speedModifier;
 		}
 
 		private Proficiency GetProficiency(JToken pJObject)
@@ -287,17 +290,16 @@ namespace PsrdParser.Serializers.PSRD
 					return Proficiency.Martial;
 				case "Exotic Weapons":
 					return Proficiency.Exotic;
-				default: 
+				default:
 					return Proficiency.None;
 			}
 		}
 
 		private WeaponType GetWeaponType(JToken pJObject)
 		{
-			var strValue = (string) pJObject["Weapon Class"];
+			var strValue = (string)pJObject["Weapon Class"];
 
-			WeaponType value = WeaponType.None;
-			switch(strValue)
+			switch (strValue)
 			{
 				case "Unarmed Attacks":
 					return WeaponType.Unarmed;
@@ -326,8 +328,8 @@ namespace PsrdParser.Serializers.PSRD
 
 		private DamageType GetDamageType(JToken pJObject)
 		{
-			var types = pJObject["Type"]?.Value<string>()?.Split(new [] {" or "}, StringSplitOptions.RemoveEmptyEntries);
-			
+			var types = pJObject["Type"]?.Value<string>()?.Split(new[] { " or " }, StringSplitOptions.RemoveEmptyEntries);
+
 			var weaponType = DamageType.None;
 			if (types == null)
 			{
@@ -357,7 +359,7 @@ namespace PsrdParser.Serializers.PSRD
 		{
 			var pattern = new Regex(@"(\d+)d(\d+)");
 
-			var values = pJObject["Dmg (M)"]?.Value<string>()?.Split(new [] {"/"}, StringSplitOptions.RemoveEmptyEntries);
+			var values = pJObject["Dmg (M)"]?.Value<string>()?.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
 
 			var list = new List<IDice>();
 			if (values == null)
@@ -386,7 +388,7 @@ namespace PsrdParser.Serializers.PSRD
 		{
 			const int defaultCriticalThreat = 20;
 
-			var pattern = new Regex(@"(\d+)&ndash;\d+");
+			var pattern = new Regex(@"(\d+)&mdash;\d+");
 
 			var values = pJObject["Critical"]?.Value<string>();
 			if (string.IsNullOrEmpty(values))
@@ -413,7 +415,7 @@ namespace PsrdParser.Serializers.PSRD
 		{
 			const int defaultCriticalMultiplier = 2;
 
-			var pattern = new Regex(@"(?:\d+&ndash;\d+/)&times;(\d+)");
+			var pattern = new Regex(@"(?:\d+&&mdash;\d+/)&times;(\d+)");
 
 			var values = pJObject["Critical"]?.Value<string>();
 			if (string.IsNullOrEmpty(values))

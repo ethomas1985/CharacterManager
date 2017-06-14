@@ -9,16 +9,24 @@ namespace Pathfinder.Test.Mocks
 	public class MockSkillLibrary : ILibrary<ISkill>
 	{
 		public const string TEST_SKILL = "Test Skill";
-
-		private readonly Dictionary<string, ISkill> _library =
-		new Dictionary<string, ISkill>
-		{
-			[TEST_SKILL] = new Skill(
+		internal static readonly Skill TestSkill = 
+			new Skill(
 				TEST_SKILL,
 				AbilityType.Strength,
 				false,
 				false,
-				"This is a testing Skill")
+				"Testing Description",
+				"Testing Check",
+				"Testing Action",
+				"Testing Try Again",
+				"Testing Special",
+				"Testing Restriction",
+				"Testing Untrained");
+
+		private readonly Dictionary<string, ISkill> _library =
+		new Dictionary<string, ISkill>
+		{
+			[TEST_SKILL] = TestSkill
 		};
 
 		public IEnumerable<string> Keys => _library.Keys;

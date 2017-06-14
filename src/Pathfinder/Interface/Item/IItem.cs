@@ -9,6 +9,9 @@ namespace Pathfinder.Interface.Item
 		IPurse Cost { get; }
 		decimal Weight { get; }
 		string Description { get; }
-		ItemType ItemType { get; set; }
+		ItemType ItemType { get; }
+
+		IWeaponComponent WeaponComponent { get; }
+		IArmorComponent ArmorComponent { get; }
 	}
 }

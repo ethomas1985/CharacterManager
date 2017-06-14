@@ -14,5 +14,7 @@ namespace Pathfinder.Interface
 		int Inherent { get; }
 		int Temporary { get; }
 		int Penalty { get; }
+
+		int MaximumBound { get; }
 	}
 }

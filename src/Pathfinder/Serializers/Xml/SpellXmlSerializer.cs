@@ -170,7 +170,7 @@ namespace Pathfinder.Serializers.Xml
 				.FirstOrDefault();
 		}
 
-		private ISet<Tuple<ComponentType, string>> GetComponents(XDocument pDocument)
+		private ISet<ISpellComponent> GetComponents(XDocument pDocument)
 		{
 			var components = 
 				pDocument
@@ -185,12 +185,12 @@ namespace Pathfinder.Serializers.Xml
 			var tuples =
 				components
 					.Select(
-						x => new Tuple<ComponentType, string>(
+						x => new SpellComponent(
 							x.Descendants("Type").Select(y => ToComponentType(y.Value)).First(),
 							x.Descendants("Text").Select(y => y.Value).First()
 							))
 					.ToList();
-			return tuples.Any() ? new HashSet<Tuple<ComponentType, string>>(tuples) : null;
+			return tuples.Any() ? new HashSet<ISpellComponent>(tuples) : null;
 		}
 
 		private static ComponentType ToComponentType(string y)
@@ -228,7 +228,7 @@ namespace Pathfinder.Serializers.Xml
 							new XElement(
 								nameof(ISpell.Components),
 								pObject.Components?.Select(
-									x => new XElement("Component", new XElement("Type", x.Item1), new XElement("Text", x.Item2))))
+									x => new XElement("Component", new XElement("Type", x.ComponentType), new XElement("Text", x.Description))))
 						}.ToArray<object>()));
 
 			return xDocument.ToString();

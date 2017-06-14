@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Pathfinder.Enums;
 
 namespace Pathfinder.Interface
@@ -19,6 +18,6 @@ namespace Pathfinder.Interface
 		IDictionary<string, int> LevelRequirements { get; }
 
 		string Duration { get; }
-		ISet<Tuple<ComponentType, string>> Components { get; }
+		ISet<ISpellComponent> Components { get; }
 	}
 }

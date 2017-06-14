@@ -1,6 +1,7 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using System;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
@@ -61,17 +62,17 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = string.Equals(Name, pOther.Name);
-			result &= AbilityType == pOther.AbilityType;
-			result &= TrainedOnly == pOther.TrainedOnly;
-			result &= ArmorCheckPenalty == pOther.ArmorCheckPenalty;
-			result &= string.Equals(Description, pOther.Description);
-			result &= string.Equals(Check, pOther.Check);
-			result &= string.Equals(Action, pOther.Action);
-			result &= string.Equals(TryAgain, pOther.TryAgain);
-			result &= string.Equals(Special, pOther.Special);
-			result &= string.Equals(Restriction, pOther.Restriction);
-			result &= string.Equals(Untrained, pOther.Untrained);
+			var result = ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
+			result &= ComparisonUtilities.Compare(GetType().Name, AbilityType, pOther.AbilityType, nameof(AbilityType));
+			result &= ComparisonUtilities.Compare(GetType().Name, TrainedOnly, pOther.TrainedOnly, nameof(TrainedOnly));
+			result &= ComparisonUtilities.Compare(GetType().Name, ArmorCheckPenalty, pOther.ArmorCheckPenalty, nameof(ArmorCheckPenalty));
+			result &= ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description));
+			result &= ComparisonUtilities.Compare(GetType().Name, Check, pOther.Check, nameof(Check));
+			result &= ComparisonUtilities.Compare(GetType().Name, Action, pOther.Action, nameof(Action));
+			result &= ComparisonUtilities.Compare(GetType().Name, TryAgain, pOther.TryAgain, nameof(TryAgain));
+			result &= ComparisonUtilities.Compare(GetType().Name, Special, pOther.Special, nameof(Special));
+			result &= ComparisonUtilities.Compare(GetType().Name, Restriction, pOther.Restriction, nameof(Restriction));
+			result &= ComparisonUtilities.Compare(GetType().Name, Untrained, pOther.Untrained, nameof(Untrained));
 
 			return result;
 		}

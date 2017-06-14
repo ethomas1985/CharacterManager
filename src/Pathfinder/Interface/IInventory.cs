@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Pathfinder.Interface
 {
-	public interface IInventory : IEnumerable<IInventoryItem>
+	public interface IInventory : IDictionary<IItem, int>
 	{
-		IInventory Add(IItem pItem, int pCount = 1);
-		IInventory Remove(IItem pItem, int pQuantity = 1);
+		new IInventory Add(IItem pItem, int pCount);
+		IInventory Remove(IItem pItem, int pQuantity);
 
 		decimal Load { get; }
 	}

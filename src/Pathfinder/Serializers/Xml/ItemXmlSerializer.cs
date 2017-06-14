@@ -5,9 +5,9 @@ using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Pathfinder.Model;
 
 namespace Pathfinder.Serializers.Xml
 {
@@ -65,29 +65,53 @@ namespace Pathfinder.Serializers.Xml
 
 		public string Serialize(IItem pObject)
 		{
+			var weapon = pObject.WeaponComponent;
+			var armor = pObject.ArmorComponent;
+
 			var xDocument =
 					new XDocument(
 						new XDeclaration("1.0", "utf-8", "yes"),
 						new XElement(
 							nameof(Item),
-							new List<XElement>
-							{
-								new XElement(nameof(Item.Name), pObject.Name),
-								new XElement(nameof(Item.Category), pObject.Category),
-								new XElement(nameof(Item.ItemType), pObject.ItemType),
-								new XElement(
-									nameof(Item.Cost),
-									new List<XElement>
-									{
-										new XElement(nameof(IPurse.Copper), pObject.Cost?.Copper),
-										new XElement(nameof(IPurse.Silver), pObject.Cost?.Silver),
-										new XElement(nameof(IPurse.Gold), pObject.Cost?.Gold),
-										new XElement(nameof(IPurse.Platinum), pObject.Cost?.Platinum),
-									}),
-								new XElement(nameof(Item.Weight), pObject.Weight),
-								new XElement(nameof(Item.Description), pObject.Description),
+							new XElement(nameof(IItem.Name), pObject.Name),
+							new XElement(nameof(IItem.Category), pObject.Category),
+							new XElement(nameof(IItem.ItemType), pObject.ItemType),
+							new XElement(
+								nameof(IItem.Cost),
+								new XElement(nameof(IPurse.Copper), pObject.Cost?.Copper),
+								new XElement(nameof(IPurse.Silver), pObject.Cost?.Silver),
+								new XElement(nameof(IPurse.Gold), pObject.Cost?.Gold),
+								new XElement(nameof(IPurse.Platinum), pObject.Cost?.Platinum)
+								),
+							new XElement(nameof(IItem.Weight), pObject.Weight),
+							new XElement(nameof(IItem.Description), pObject.Description),
+							weapon == null
+								? null
+								: new XElement(
+									nameof(IItem.WeaponComponent),
+									new XElement(nameof(IWeaponComponent.Proficiency), weapon.Proficiency),
+									new XElement(nameof(IWeaponComponent.WeaponType), weapon.WeaponType),
+									new XElement(nameof(IWeaponComponent.Encumbrance), weapon.Encumbrance),
+									new XElement(nameof(IWeaponComponent.Size), weapon.Size),
+									new XElement(nameof(IWeaponComponent.DamageType), weapon.DamageType),
+									new XElement(nameof(IWeaponComponent.BaseWeaponDamage), weapon.BaseWeaponDamage.Select(x => new XElement(nameof(Die), $"{x.DieCount}d{x.Die.Faces}"))),
+									new XElement(nameof(IWeaponComponent.CriticalThreat), weapon.CriticalThreat),
+									new XElement(nameof(IWeaponComponent.CriticalMultiplier), weapon.CriticalMultiplier),
+									new XElement(nameof(IWeaponComponent.Range), weapon.Range),
+									new XElement(nameof(IWeaponComponent.Specials), weapon.Specials)),
+							armor == null
+								? null
+								: new XElement(
+									nameof(IItem.ArmorComponent),
+									new XElement(nameof(IArmorComponent.ArmorBonus), armor.ArmorBonus),
+									new XElement(nameof(IArmorComponent.ShieldBonus), armor.ShieldBonus),
+									new XElement(nameof(IArmorComponent.MaximumDexterityBonus), armor.MaximumDexterityBonus),
+									new XElement(nameof(IArmorComponent.ArmorCheckPenalty), armor.ArmorCheckPenalty),
+									new XElement(nameof(IArmorComponent.ArcaneSpellFailureChance), armor.ArcaneSpellFailureChance),
+									new XElement(nameof(IArmorComponent.SpeedModifier), armor.SpeedModifier))
+						)
+					);
 
-							}.ToArray<object>()));
 			return xDocument.ToString();
 		}
 	}

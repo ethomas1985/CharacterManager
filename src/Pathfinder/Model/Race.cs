@@ -3,6 +3,7 @@ using Pathfinder.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
@@ -69,14 +70,14 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = string.Equals(Name, pOther.Name);
-			result &= string.Equals(Adjective, pOther.Adjective);
-			result &= string.Equals(Description, pOther.Description);
-			result &= Size == pOther.Size;
-			result &= BaseSpeed == pOther.BaseSpeed;
-			result &= AbilityScores.Count == pOther.AbilityScores.Count && !AbilityScores.Except(pOther.AbilityScores).Any();
-			result &= Traits.SequenceEqual(pOther.Traits);
-			result &= (Languages != null && pOther.Languages != null) && Languages.SequenceEqual(pOther.Languages);
+			var result = ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
+			result &= ComparisonUtilities.Compare(GetType().Name, Adjective, pOther.Adjective, nameof(Adjective));
+			result &= ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description));
+			result &= ComparisonUtilities.Compare(GetType().Name, Size, pOther.Size, nameof(Size));
+			result &= ComparisonUtilities.Compare(GetType().Name, BaseSpeed, pOther.BaseSpeed, nameof(BaseSpeed));
+			result &= ComparisonUtilities.CompareDictionaries(GetType().Name, AbilityScores, pOther.AbilityScores, nameof(AbilityScores));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Traits, pOther.Traits, nameof(Traits));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Languages, pOther.Languages, nameof(Languages));
 
 			return result;
 		}
@@ -88,7 +89,7 @@ namespace Pathfinder.Model
 				var hashCode = Name?.GetHashCode() ?? 0;
 				hashCode = (hashCode * 397) ^ (Adjective?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (Description?.GetHashCode() ?? 0);
-				hashCode = (hashCode * 397) ^ (int) Size;
+				hashCode = (hashCode * 397) ^ (int)Size;
 				hashCode = (hashCode * 397) ^ BaseSpeed;
 				hashCode = (hashCode * 397) ^ (AbilityScores?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (Traits?.GetHashCode() ?? 0);

@@ -35,7 +35,7 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			return ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
+			return ComparisonUtilities.Compare<string>(GetType().Name, Name, pOther.Name, nameof(Name));
 		}
 
 		public override int GetHashCode()

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Threading.Tasks;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Library
 {
@@ -17,6 +18,7 @@ namespace Pathfinder.Library
 
 		internal AbstractLibrary(ISerializer<T, string> pSerializer, string pLibraryDirectory)
 		{
+			Tracer.Message($"{GetType().FullName}: Path := \"{Path.GetFullPath(pLibraryDirectory)}\"");
 			if (!Directory.Exists(pLibraryDirectory))
 			{
 				Directory.CreateDirectory(pLibraryDirectory);

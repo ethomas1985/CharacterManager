@@ -5,6 +5,8 @@ using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Serializers.Xml;
+using Pathfinder.Utilities;
+using Assert = NUnit.Framework.Assert;
 
 namespace Pathfinder.Test.Serializers.Xml
 {
@@ -31,8 +33,8 @@ namespace Pathfinder.Test.Serializers.Xml
 			$"<Skill>{Environment.NewLine}" +
 			$"  <Name>{UNIT_TESTING}</Name>{Environment.NewLine}" +
 			$"  <AbilityType>{AbilityType.Intelligence}</AbilityType>{Environment.NewLine}" +
-			$"  <TrainedOnly>{true.ToString().ToLower()}</TrainedOnly>{Environment.NewLine}" +
-			$"  <ArmorCheckPenalty>{true.ToString().ToLower()}</ArmorCheckPenalty>{Environment.NewLine}" +
+			$"  <TrainedOnly>{true.ToString().ToCamelCase()}</TrainedOnly>{Environment.NewLine}" +
+			$"  <ArmorCheckPenalty>{true.ToString().ToCamelCase()}</ArmorCheckPenalty>{Environment.NewLine}" +
 			$"  <Description>{UNIT_TESTING}</Description>{Environment.NewLine}" +
 			$"  <Check>{UNIT_TESTING}</Check>{Environment.NewLine}" +
 			$"  <Action>{UNIT_TESTING}</Action>{Environment.NewLine}" +

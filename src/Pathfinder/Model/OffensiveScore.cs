@@ -86,12 +86,6 @@ namespace Pathfinder.Model
 				&& MiscModifier == pOther.MiscModifier
 				&& TemporaryModifier == pOther.TemporaryModifier;
 
-			if (!equal)
-			{
-				Tracer.Message(pMessage: $"{Type} :: this :: {ToString()}");
-				Tracer.Message(pMessage: $"{Type} :: that :: {pOther.ToString()}");
-			}
-
 			return equal;
 		}
 

@@ -17,7 +17,6 @@ namespace Pathfinder.Serializers.Xml
 			var xDocument = XDocument.Parse(pValue);
 
 			var description = _GetElementValue(xDocument, nameof(IFeat.Description));
-			var isSpecialized = description.StartsWith("Choose");
 
 			return new Feat(
 				_GetElementValue(xDocument, nameof(IFeat.Name)),
@@ -25,8 +24,7 @@ namespace Pathfinder.Serializers.Xml
 				_GetPrerequisites(xDocument),
 				description,
 				_GetElementValue(xDocument, nameof(IFeat.Benefit)),
-				_GetElementValue(xDocument, nameof(IFeat.Special)),
-				isSpecialized
+				_GetElementValue(xDocument, nameof(IFeat.Special))
 			);
 		}
 

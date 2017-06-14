@@ -75,7 +75,7 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name));
+			var result = ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name));
 			result &= ComparisonUtilities.CompareSets(GetType().Name, Alignments, pOther.Alignments, nameof(Alignments));
 			result &= ComparisonUtilities.Compare(GetType().Name, HitDie, pOther.HitDie, nameof(HitDie));
 			result &= ComparisonUtilities.Compare(GetType().Name, SkillAddend, pOther.SkillAddend, nameof(SkillAddend));

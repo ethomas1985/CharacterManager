@@ -68,6 +68,8 @@ namespace Pathfinder.Api.Controllers
 
 		public ICharacter CreatePreBuilt()
 		{
+			var full_plate = ItemLibrary["Full Plate"];
+
 			var preBuilt = 
 				new CharacterFactory(CharacterLibrary, SkillLibrary)
 					.Create()
@@ -117,8 +119,10 @@ namespace Pathfinder.Api.Controllers
 					.AddFeat(FeatLibrary["Toughness"])
 					.AddFeat(FeatLibrary["Spell Focus"], "Evocation")
 
+					.AddToInventory(full_plate)
+					.EquipArmor(full_plate)
 					.AddToInventory(ItemLibrary["Quarterstaff"])
-					
+
 					.AddToInventory(ItemLibrary["Crossbow, Light"])
 					.AddToInventory(ItemLibrary["Bolts"])
 					.AddToInventory(ItemLibrary["Bolts"])

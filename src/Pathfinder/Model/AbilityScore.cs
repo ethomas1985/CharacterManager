@@ -15,7 +15,8 @@ namespace Pathfinder.Model
 			int pEnhanced = 0,
 			int pInherent = 0,
 			int pTemporaryModifier = 0,
-			int pPenalty = 0)
+			int pPenalty = 0,
+			int pMaximumBound = -1)
 		{
 			Type = pAbilityType;
 			Base = pBase;
@@ -23,6 +24,7 @@ namespace Pathfinder.Model
 			Inherent = pInherent;
 			Temporary = pTemporaryModifier;
 			Penalty = pPenalty;
+			MaximumBound = pMaximumBound;
 		}
 
 		public AbilityType Type { get; }
@@ -46,7 +48,11 @@ namespace Pathfinder.Model
 			{
 				var scoreMinusTen = Score - 10;
 				var half = scoreMinusTen / 2.0M;
-				return Math.Max(-5, (int) Math.Floor(half));
+				var modifier = Math.Max(-5, (int)Math.Floor(half));
+
+				return MaximumBound == -1
+					? modifier
+					: Math.Min(modifier, MaximumBound);
 			}
 		}
 
@@ -55,6 +61,8 @@ namespace Pathfinder.Model
 		public int Inherent { get; }
 		public int Penalty { get; }
 		public int Temporary { get; }
+
+		public int MaximumBound { get; }
 
 		private IEnumerable<int> Values
 			=> new List<int>
@@ -108,12 +116,12 @@ namespace Pathfinder.Model
 		{
 			unchecked
 			{
-				var hashCode = (int) Type;
-				hashCode = (hashCode*397) ^ Base;
-				hashCode = (hashCode*397) ^ Enhanced;
-				hashCode = (hashCode*397) ^ Inherent;
-				hashCode = (hashCode*397) ^ Penalty;
-				hashCode = (hashCode*397) ^ Temporary;
+				var hashCode = (int)Type;
+				hashCode = (hashCode * 397) ^ Base;
+				hashCode = (hashCode * 397) ^ Enhanced;
+				hashCode = (hashCode * 397) ^ Inherent;
+				hashCode = (hashCode * 397) ^ Penalty;
+				hashCode = (hashCode * 397) ^ Temporary;
 				return hashCode;
 			}
 		}

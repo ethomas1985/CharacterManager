@@ -4,11 +4,13 @@ namespace Pathfinder.Model.Currency
 {
 	internal class Gold : AbstractCurrency, IGold
 	{
+		internal const string DENOMINATION = "gp";
+
 		public Gold(int pValue) : base(pValue)
 		{
 		}
 
-		public override string Denomination => "gp";
+		public override string Denomination => DENOMINATION;
 
 		public ICopper ToCopper()
 		{

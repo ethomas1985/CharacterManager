@@ -14,8 +14,7 @@ namespace Pathfinder.Model
 			IEnumerable<string> pPrerequisites,
 			string pDescription,
 			string pBenefit,
-			string pSpecial, 
-			bool pIsSpecialized = false,
+			string pSpecial,
 			string pSpecialization = null)
 		{
 			Name = pName;
@@ -24,7 +23,6 @@ namespace Pathfinder.Model
 			Description = pDescription;
 			Benefit = pBenefit;
 			Special = pSpecial;
-			IsSpecialized = pIsSpecialized;
 			Specialization = pSpecialization;
 		}
 
@@ -37,14 +35,13 @@ namespace Pathfinder.Model
 			Description = pFeat.Description;
 			Benefit = pFeat.Benefit;
 			Special = pFeat.Special;
-			IsSpecialized = pFeat.IsSpecialized;
 			Specialization = pSpecialization;
 		}
 
 		public string Name { get; }
 		public FeatType FeatType { get; }
 
-		public bool IsSpecialized { get; }
+		public bool IsSpecialized => !string.IsNullOrWhiteSpace(Specialization);
 		public string Specialization { get; }
 
 		public IEnumerable<string> Prerequisites { get; }
@@ -73,14 +70,14 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			return ComparisonUtilities.CompareString(GetType().Name, Name, pOther.Name, nameof(Name))
+			return ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name))
 				&& ComparisonUtilities.Compare(GetType().Name, IsSpecialized, pOther.IsSpecialized, nameof(IsSpecialized))
-				&& ComparisonUtilities.CompareString(GetType().Name, Specialization, pOther.Specialization, nameof(Specialization))
+				&& ComparisonUtilities.Compare(GetType().Name, Specialization, pOther.Specialization, nameof(Specialization))
 				&& ComparisonUtilities.Compare(GetType().Name, FeatType, pOther.FeatType, nameof(FeatType))
 				&& ComparisonUtilities.CompareEnumerables(GetType().Name, Prerequisites, pOther.Prerequisites, nameof(Prerequisites))
-				&& ComparisonUtilities.CompareString(GetType().Name, Description, pOther.Description, nameof(Description))
-				&& ComparisonUtilities.CompareString(GetType().Name, Benefit, pOther.Benefit, nameof(Benefit))
-				&& ComparisonUtilities.CompareString(GetType().Name, Special, pOther.Special, nameof(Special));
+				&& ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description))
+				&& ComparisonUtilities.Compare(GetType().Name, Benefit, pOther.Benefit, nameof(Benefit))
+				&& ComparisonUtilities.Compare(GetType().Name, Special, pOther.Special, nameof(Special));
 		}
 
 		public override int GetHashCode()

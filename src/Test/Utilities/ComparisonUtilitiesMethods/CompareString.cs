@@ -11,7 +11,7 @@ namespace Pathfinder.Test.Utilities.ComparisonUtilitiesMethods
 		[TestCaseSource(typeof(TestCase), nameof(TestCase.Cases))]
 		public bool Test(string pControl, string pTest)
 		{
-			return ComparisonUtilities.CompareString(nameof(CompareSets), pControl, pTest, nameof(Test));
+			return ComparisonUtilities.Compare(nameof(CompareSets), pControl, pTest, nameof(Test));
 		}
 
 		public static class TestCase

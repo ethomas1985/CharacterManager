@@ -57,12 +57,12 @@ namespace Pathfinder.Model
 		private IEnumerable<int> Values
 			=> new List<int>
 			{
-						Ranks,
-						AbilityModifier,
-						ClassModifier,
-						MiscModifier,
-						TemporaryModifier,
-						ArmorClassPenalty,
+				Ranks,
+				AbilityModifier,
+				ClassModifier,
+				MiscModifier,
+				TemporaryModifier,
+				ArmorClassPenalty,
 			};
 
 		public override string ToString()
@@ -86,13 +86,13 @@ namespace Pathfinder.Model
 				return true;
 			}
 
-			var result = Skill.Equals(pOther.Skill);
-			result &= AbilityModifier == pOther.AbilityModifier;
-			result &= Ranks == pOther.Ranks;
-			result &= ClassModifier == pOther.ClassModifier;
-			result &= MiscModifier == pOther.MiscModifier;
-			result &= TemporaryModifier == pOther.TemporaryModifier;
-			result &= ArmorClassPenalty == pOther.ArmorClassPenalty;
+			var result = ComparisonUtilities.Compare(GetType().Name, Skill, pOther.Skill, nameof(Skill));
+			result &= ComparisonUtilities.Compare(GetType().Name, AbilityModifier, pOther.AbilityModifier, nameof(AbilityModifier));
+			result &= ComparisonUtilities.Compare(GetType().Name, Ranks, pOther.Ranks, nameof(Ranks));
+			result &= ComparisonUtilities.Compare(GetType().Name, ClassModifier, pOther.ClassModifier, nameof(ClassModifier));
+			result &= ComparisonUtilities.Compare(GetType().Name, MiscModifier, pOther.MiscModifier, nameof(MiscModifier));
+			result &= ComparisonUtilities.Compare(GetType().Name, TemporaryModifier, pOther.TemporaryModifier, nameof(TemporaryModifier));
+			result &= ComparisonUtilities.Compare(GetType().Name, ArmorClassPenalty, pOther.ArmorClassPenalty, nameof(ArmorClassPenalty));
 
 			return result;
 		}

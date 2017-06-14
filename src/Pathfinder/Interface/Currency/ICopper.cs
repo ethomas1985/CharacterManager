@@ -1,5 +1,3 @@
-using Pathfinder.Model;
-
 namespace Pathfinder.Interface.Currency
 {
 	public interface ICopper: ICurrency

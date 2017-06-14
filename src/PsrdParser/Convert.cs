@@ -218,9 +218,9 @@ namespace PsrdParser
 				var xmlSerializer = new SpellXmlSerializer();
 				var xmlSkill = xmlSerializer.Serialize(result);
 
-				var newPath = 
+				var newPath =
 					Path.Combine(
-						destinationDir, 
+						destinationDir,
 						result.Name.Replace(" ", "_").Replace("\\", "_").Replace("/", "_"));
 				newPath = Path.ChangeExtension(newPath, "xml");
 				File.WriteAllText(newPath, xmlSkill);
@@ -232,17 +232,19 @@ namespace PsrdParser
 		public void ConvertItemsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "item");
-			var destinationDir = Path.Combine(MyData, "Items");
-			_CreateDestinationDirectory(destinationDir);
-
 			var sourceFiles =
 				Directory
 					.EnumerateFiles(sourceDir, "*.json", SearchOption.AllDirectories)
 					.Where(x => _IsValidTraitFile(Path.GetFileNameWithoutExtension(x)))
 					.OrderBy(x => x);
 
+			var destinationDir = Path.Combine(MyData, "Items");
+			_CreateDestinationDirectory(destinationDir);
+
 			_WriteDuplicatesToConsole(sourceFiles);
 
+			var itemJsonSerializer = new ItemJsonSerializer();
+			var itemXmlSerializer = new ItemXmlSerializer();
 
 			foreach (var file in sourceFiles)
 			{
@@ -258,21 +260,23 @@ namespace PsrdParser
 					 */
 					continue;
 				}
-				
-				var contents = File.ReadAllText(file);
-				var jsonSerializer = new ItemJsonSerializer();
-				var result = jsonSerializer.Deserialize(contents);
-
-				var xmlSerializer = new ItemXmlSerializer();
-				var xmlSkill = xmlSerializer.Serialize(result);
-
-				var newPath =
-					Path.Combine(
-						destinationDir,
-						result.Name.Replace(" ", "_").Replace("\\", "_").Replace("/", "_"));
-				newPath = Path.ChangeExtension(newPath, "xml");
-				File.WriteAllText(newPath, xmlSkill);
+				ConvertItem(itemJsonSerializer, itemXmlSerializer, file, destinationDir);
 			}
+		}
+
+		private static void ConvertItem(ItemJsonSerializer pJsonSerializer, ItemXmlSerializer pXmlSerializer, string pFile, string pDestinationDir)
+		{
+			var contents = File.ReadAllText(pFile);
+			var result = pJsonSerializer.Deserialize(contents);
+
+			var xmlSkill = pXmlSerializer.Serialize(result);
+
+			var newPath =
+				Path.Combine(
+							 pDestinationDir,
+							 result.Name.Replace(" ", "_").Replace("\\", "_").Replace("/", "_"));
+			newPath = Path.ChangeExtension(newPath, "xml");
+			File.WriteAllText(newPath, xmlSkill);
 		}
 
 		private static void _CreateDestinationDirectory(string pDestinationDir)

@@ -2,9 +2,9 @@ using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Test.Mocks;
-using Pathfinder.Test.Serializers.Json.Character;
 using System;
 using System.Linq;
+using Pathfinder.Test.Serializers.Json.CharacterTests;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -49,23 +49,13 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		}
 
 		[Test]
-		public void Fails_When_Is_Specialized_And_Specialization_Is_Null()
-		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
-
-			Assert.That(
-				() => original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(true)),
-				Throws.Exception.InstanceOf(typeof(ArgumentException)));
-		}
-
-		[Test]
 		public void When_Is_Specialized()
 		{
 			const string specialization = "user-choice";
 
 			var original = (ICharacter)new Character(new MockSkillLibrary());
 
-			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(true), specialization);
+			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(), specialization);
 
 			Assert.That(result.Feats.First().Specialization, Is.EqualTo(specialization));
 		}

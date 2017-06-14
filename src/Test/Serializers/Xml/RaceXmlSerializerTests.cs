@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Enums;
@@ -86,7 +87,7 @@ namespace Pathfinder.Test.Serializers.Xml
 			private readonly TraitLibrary _traitLibrary =
 				new TraitLibrary(
 					new TraitXmlSerializer(),
-					"../../../../resources/Traits/");
+					Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../resources/Traits/")));
 
 			[Test]
 			public void ThrowsForNullString()

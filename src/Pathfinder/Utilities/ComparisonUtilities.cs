@@ -9,6 +9,84 @@ namespace Pathfinder.Utilities
 {
 	internal class ComparisonUtilities
 	{
+		public static bool CompareDictionaries<TKey, TValue>(
+			string pClass,
+			IDictionary<TKey, IEnumerable<TValue>> pThis,
+			IDictionary<TKey, IEnumerable<TValue>> pOther,
+			string pFieldName,
+			[CallerMemberName] string pCallerName = null)
+		{
+			if (ReferenceEquals(null, pThis) || ReferenceEquals(null, pOther))
+			{
+				return ReferenceEquals(null, pThis) && ReferenceEquals(null, pOther);
+			}
+
+			if (pThis.Count != pOther.Count)
+			{
+				Tracer.Message(
+					$"{pClass}\t|\t{nameof(pThis)}.{pFieldName}.Count " +
+					$"=/= {nameof(pOther)}.{pFieldName}.Count",
+					pCallerName: pCallerName);
+				return false;
+			}
+
+			bool compare = true;
+			foreach (var key in pThis.Keys)
+			{
+				var theseValues = pThis[key];
+				if (!pOther.TryGetValue(key, out var otherValues))
+				{
+					Tracer.Message(
+						$"{pClass}\t|\t{nameof(pThis)}.{pFieldName}.Keys: [{string.Join(", ", pThis.Keys)}] " +
+						$"=/= {nameof(pOther)}.{pFieldName}.Keys: [{string.Join(", ", pOther.Keys)}]",
+						pCallerName: pCallerName);
+					return false;
+				}
+
+				compare &= CompareEnumerables(pClass, theseValues, otherValues, $"{pFieldName}[{key}]");
+			}
+			return compare;
+		}
+
+		public static bool CompareDictionaries<TKey, TValue>(
+			string pClass,
+			IDictionary<TKey, TValue> pThis,
+			IDictionary<TKey, TValue> pOther,
+			string pFieldName,
+			[CallerMemberName] string pCallerName = null)
+		{
+			if (ReferenceEquals(null, pThis) || ReferenceEquals(null, pOther))
+			{
+				return ReferenceEquals(null, pThis) && ReferenceEquals(null, pOther);
+			}
+
+			if (pThis.Count != pOther.Count)
+			{
+				Tracer.Message(
+					$"{pClass}\t|\t{nameof(pThis)}.{pFieldName}.Count " +
+					$"=/= {nameof(pOther)}.{pFieldName}.Count",
+					pCallerName: pCallerName);
+				return false;
+			}
+
+			bool compare = true;
+			foreach (var key in pThis.Keys)
+			{
+				var theseValues = pThis[key];
+				if (!pOther.TryGetValue(key, out var otherValues))
+				{
+					Tracer.Message(
+						$"{pClass}\t|\t{nameof(pThis)}.{pFieldName}.Keys: [{string.Join(", ", pThis.Keys)}] " +
+						$"=/= {nameof(pOther)}.{pFieldName}.Keys: [{string.Join(", ", pOther.Keys)}]",
+						pCallerName: pCallerName);
+					return false;
+				}
+
+				compare &= Compare(pClass, theseValues, otherValues, $"{pFieldName}[{key}]");
+			}
+			return compare;
+		}
+
 		public static bool CompareEnumerables<T>(string pClass, IEnumerable<T> pThis, IEnumerable<T> pOther, string pFieldName, [CallerMemberName] string pCallerName = null)
 		{
 			if (ReferenceEquals(null, pThis) || ReferenceEquals(null, pOther))
@@ -47,7 +125,7 @@ namespace Pathfinder.Utilities
 			return false;
 		}
 
-		public static bool CompareString(string pClass, string pThis, string pOther, string pFieldName, [CallerMemberName] string pCallerName = null)
+		public static bool Compare(string pClass, string pThis, string pOther, string pFieldName, [CallerMemberName] string pCallerName = null)
 		{
 			if (string.Equals(pThis, pOther, StringComparison.InvariantCultureIgnoreCase))
 			{

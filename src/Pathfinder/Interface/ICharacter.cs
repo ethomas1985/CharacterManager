@@ -35,7 +35,7 @@ namespace Pathfinder.Interface
 		int Damage { get; }
 
 		int BaseSpeed { get; }
-		int ArmoredSpeed { get; }
+		int Speed { get; }
 
 		// Ability Scores
 		IAbilityScore Strength { get; }
@@ -86,13 +86,13 @@ namespace Pathfinder.Interface
 		ISkillScore this[ISkill pSkill] { get; }
 		ISkillScore this[string pSkillName] { get; }
 
-		IEnumerable<IWeapon> Weapons { get; }
-
 		IPurse Purse { get; }
 
 		IInventory Inventory { get; }
+		IEnumerable<IItem> Weapons { get; }
+		IDictionary<ItemType, IItem> EquipedArmor { get; }
+		int ArmorCheckPenalty { get; }
 
-		IEnumerable<IArmor> EquipedArmor { get; }
 		IEnumerable<IEffect> Effects { get; }
 
 		ICharacter SetRace(IRace pRace);
@@ -131,9 +131,9 @@ namespace Pathfinder.Interface
 		ICharacter RemoveFromInventory(IItem pItem);
 		ICharacter UpdateInventory(IItem pItem);
 
-		ICharacter EquipArmor(IArmor pArmor);
+		ICharacter EquipArmor(IItem pArmorComponent);
 
-		ICharacter ReplaceArmor(IArmor pArmorToReplace, IArmor pArmorToEquip);
+		ICharacter ReplaceArmor(IItem pArmorToReplace, IItem pArmorToEquip);
 
 		ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0);
 		ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0);

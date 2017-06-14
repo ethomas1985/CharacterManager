@@ -6,13 +6,13 @@ namespace Pathfinder.Model
 {
 	internal class Event : IEvent, IEquatable<IEvent>
 	{
-		public Event(string title, string description, int experiencePoints)
+		public Event(string pTitle, string pDescription, int pExperiencePoints)
 		{
-			Assert.ArgumentIsNotEmpty(title, nameof(title));
+			Assert.ArgumentIsNotEmpty(pTitle, nameof(pTitle));
 
-			Title = title;
-			Description = description;
-			ExperiencePoints = experiencePoints;
+			Title = pTitle;
+			Description = pDescription;
+			ExperiencePoints = pExperiencePoints;
 		}
 
 		public string Title { get; }
@@ -36,8 +36,8 @@ namespace Pathfinder.Model
 			}
 
 			return 
-				ComparisonUtilities.CompareString(nameof(IEvent), Title, pOther.Title, nameof(Title))
-				&& ComparisonUtilities.CompareString(nameof(IEvent), Description, pOther.Description, nameof(Description))
+				ComparisonUtilities.Compare(nameof(IEvent), Title, pOther.Title, nameof(Title))
+				&& ComparisonUtilities.Compare(nameof(IEvent), Description, pOther.Description, nameof(Description))
 				&& ComparisonUtilities.Compare(nameof(IEvent), ExperiencePoints, pOther.ExperiencePoints, nameof(ExperiencePoints));
 		}
 
