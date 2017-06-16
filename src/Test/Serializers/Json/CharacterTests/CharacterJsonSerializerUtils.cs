@@ -58,9 +58,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests
 					.AddFeat(CreateTestingFeat2())
 					.AssignSkillPoint(skill, 1)
 					.AddToInventory(testingItem)
-					.EquipArmor(testingItem);
-
-			testCharacter = AddExperienceCommand.Execute(testCharacter, "Event 1", "Freebie", 2000);
+					.EquipArmor(testingItem)
+					.AppendExperience(new Event("Event 1", "Freebie", 2000));
 
 			return testCharacter;
 		}

@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterFactory.cs" />
-    <Compile Include="Commands\AddExperienceCommand.cs" />
     <Compile Include="Enums\AbilityType.cs" />
     <Compile Include="Enums\Alignment.cs" />
     <Compile Include="Enums\BonusType.cs" />
