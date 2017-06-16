@@ -5,7 +5,6 @@ using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Utilities;
 using Assert = NUnit.Framework.Assert;
 
 namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods

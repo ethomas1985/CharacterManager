@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace Pathfinder.Utilities
 {
@@ -92,10 +91,9 @@ namespace Pathfinder.Utilities
 		{
 			return
 				Regex.Replace(
-							  Regex.Replace(pThis, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"),
-							  @"(\p{Ll})(\P{Ll})",
-							  "$1 $2"
-							 );
+					Regex.Replace(pThis, @"(\P{Ll})(\P{Ll}\p{Ll})", "$1 $2"),
+					@"(\p{Ll})(\P{Ll})",
+					"$1 $2");
 		}
 
 		// Convert the string to Pascal case.

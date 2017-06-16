@@ -5,7 +5,6 @@ using Pathfinder.Interface;
 using Pathfinder.Interface.Currency;
 using Pathfinder.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Interface.Item;
 using Pathfinder.Utilities;
