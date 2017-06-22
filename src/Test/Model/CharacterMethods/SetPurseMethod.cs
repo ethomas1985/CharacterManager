@@ -1,18 +1,28 @@
+using Moq;
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
-using Pathfinder.Test.Mocks;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetPurseMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.SetPurse(10, 10, 10, 10);
 
@@ -25,7 +35,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.SetPurse(10, 10, 10, 10);
 
@@ -35,7 +45,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			original.SetPurse(10, 10, 10, 10);
 
 			Assert.IsNull(original.Name);

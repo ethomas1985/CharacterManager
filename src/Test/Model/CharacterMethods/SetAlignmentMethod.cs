@@ -1,18 +1,28 @@
+using Moq;
 using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetAlignmentMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			var result = original.SetAlignment(Alignment.LawfulGood);
 
 			Assert.AreEqual(Alignment.LawfulGood, result.Alignment);
@@ -21,7 +31,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.SetAlignment(Alignment.LawfulGood);
 
@@ -31,7 +41,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			original.SetAlignment(Alignment.LawfulGood);
 
 			Assert.AreNotSame(Alignment.Neutral, original.Alignment);

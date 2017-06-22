@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 {
@@ -13,8 +14,12 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void Success()
 		{
-			var classLibrary = new MockClassLibrary();
-			var characterClass = new CharacterClass(classLibrary.Values.First(), 1, false, null);
+			var testClass = ClassMother.Create();
+			var mockClassLibrary = new Mock<ILibrary<IClass>>();
+			mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> {testClass});
+			var classLibrary =mockClassLibrary.Object;
+
+			var characterClass = new CharacterClass(testClass, 1, false, null);
 			Assert.That(
 				() => JsonConvert.SerializeObject(characterClass),
 				Throws.Nothing);
@@ -23,8 +28,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void Expected()
 		{
-			var classLibrary = new MockClassLibrary();
-			var testClass = classLibrary.Values.First();
+			var testClass = ClassMother.Create();
 			var characterClass = new CharacterClass(testClass, 1, false, null);
 			
 			var actual = JsonConvert.SerializeObject(characterClass);

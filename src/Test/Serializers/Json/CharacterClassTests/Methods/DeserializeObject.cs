@@ -20,8 +20,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithClass()
 		{
-			var classLibrary = SetupTestFixtureForJsonSerializers.ClassLibrary;
-			var testClass = classLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
 
 			string value = 
 				"{" +
@@ -34,8 +33,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithLevel()
 		{
-			var classLibrary = SetupTestFixtureForJsonSerializers.ClassLibrary;
-			var testClass = classLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
 
 			string value =
 				"{" +
@@ -49,8 +47,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithIsFavored()
 		{
-			var classLibrary = SetupTestFixtureForJsonSerializers.ClassLibrary;
-			var testClass = classLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
 
 			string value =
 				"{" +
@@ -64,8 +61,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithHitPoints()
 		{
-			var classLibrary = SetupTestFixtureForJsonSerializers.ClassLibrary;
-			var testClass = classLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
 
 			string value =
 				"{" +

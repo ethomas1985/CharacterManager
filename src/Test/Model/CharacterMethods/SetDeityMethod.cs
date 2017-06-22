@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -11,10 +11,20 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	{
 		private readonly Deity _testingDeity = new Deity("Skepticus");
 
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetDeity(null));
 		}
@@ -22,7 +32,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			var result = original.SetDeity(_testingDeity);
 
 			Assert.AreEqual(_testingDeity, result.Deity);
@@ -31,7 +41,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			var result = original.SetDeity(_testingDeity);
 
 			Assert.AreNotSame(original, result);
@@ -40,7 +50,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			original.SetDeity(_testingDeity);
 
 			Assert.IsNull(original.Deity);

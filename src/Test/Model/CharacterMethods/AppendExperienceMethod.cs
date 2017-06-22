@@ -1,19 +1,21 @@
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Linq;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class AppendExperienceMethod
 	{
+		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
+
 		[Test]
 		public void NotNull()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.IsNotNull(original.Experience);
 		}
@@ -21,7 +23,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void InitializedToZero()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.AreEqual(0, original.Experience.Total);
 		}
@@ -29,7 +31,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void FailWithNullEvent()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			IEvent nullEvent = null;
 			Assert.Throws<ArgumentNullException>(() => original.AppendExperience(nullEvent));
@@ -38,7 +40,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SuccessWithEvent()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.AppendExperience(new Event("Test", "Test", 10));
 
@@ -48,7 +50,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstanceWithEvent()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var experience = new Event("Test", "Test", 10);
 			var result = original.AppendExperience(experience);
@@ -59,7 +61,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchangedWithEvent()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			var experience = new Event("Test", "Test", 10);
 			original.AppendExperience(experience);
 
@@ -69,7 +71,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void FailWithNullExperience()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			IExperience nullExperience = null;
 			Assert.Throws<ArgumentNullException>(() => original.AppendExperience(nullExperience));
@@ -78,7 +80,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SuccessWithExperience()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var experience = new Experience()
 				.Append(new Event("Test", "Test", 10));
@@ -90,7 +92,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstanceWithEmptyExperience()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var experience = new Experience()
 				.Append(new Event("Test", "Test", 10));
@@ -102,7 +104,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchangedWithEmptyExperience()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var experience = new Experience()
 				.Append(new Event("Test", "Test", 10));

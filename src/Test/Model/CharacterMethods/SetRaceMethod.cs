@@ -2,10 +2,10 @@
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
 
 // ReSharper disable ExpressionIsAlwaysNull
 
@@ -14,6 +14,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class SetRaceMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		private static IRace SetupMockRace()
 		{
 			var race = new Race(
@@ -36,7 +46,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetRace(null));
 		}
@@ -44,7 +54,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SetsRace()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -57,7 +67,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SetsLanguages()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -70,7 +80,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void RemovedPreviousRaceLanguages()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = ((ICharacter) new Character(skillLibrary))
 					.SetRace(
@@ -97,7 +107,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -110,7 +120,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var originalRace = new Race(
 									    "Test Race",

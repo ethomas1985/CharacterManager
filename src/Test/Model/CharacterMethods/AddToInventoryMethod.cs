@@ -4,9 +4,9 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Linq;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -14,6 +14,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddToInventoryMethod
 	{
+		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
+
 		private static Item CreateTestingItem()
 		{
 			return new Item("Testing Item", ItemType.None, "Category", new Purse(100), 10, "Description");
@@ -25,7 +27,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var original = (ICharacter)new Character(new MockSkillLibrary());
+					var original = (ICharacter)new Character(SkillLibrary);
 					var result = original.AddToInventory(null);
 				},
 				Throws.Exception.InstanceOf(typeof(ArgumentNullException)));
@@ -37,7 +39,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var original = (ICharacter)new Character(new MockSkillLibrary());
+					var original = (ICharacter)new Character(SkillLibrary);
 
 					var item = CreateTestingItem();
 
@@ -49,7 +51,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			var item = CreateTestingItem();
 
 			var result = original.AddToInventory(item);
@@ -60,7 +62,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			var item = CreateTestingItem();
 
 			var result = original.AddToInventory(item);
@@ -71,7 +73,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void IncrementsQuantityOfExistingItem()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			var item = CreateTestingItem();
 
 			var result = original.AddToInventory(item);

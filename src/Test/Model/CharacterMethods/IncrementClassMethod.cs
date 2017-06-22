@@ -2,39 +2,48 @@ using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class IncrementClassMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		private const int SKILL_ADDEND = 5;
 		private const int HIT_DIE_FACES = 6;
 
-		private static MockClass CreateMockClass()
+		private static IClass CreateMockClass()
 		{
-			return new MockClass
-				   {
-					   Name = "Mock Class",
-					   Alignments = new HashSet<Alignment>
-									{
-										Alignment.ChaoticGood,
-										Alignment.ChaoticNeutral,
-										Alignment.ChaoticEvil
-									},
-					   HitDie = new Die(HIT_DIE_FACES),
-					   SkillAddend = SKILL_ADDEND
-				   };
+			return ClassMother.Create(
+				"Mock Class",
+				new HashSet<Alignment>
+				{
+					Alignment.ChaoticGood,
+					Alignment.ChaoticNeutral,
+					Alignment.ChaoticEvil
+				},
+				new Die(HIT_DIE_FACES),
+				SKILL_ADDEND);
 		}
 
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.IncrementClass(null));
 		}
@@ -42,16 +51,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NewClass()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
-			Assert.Throws<ArgumentException>(() => original.IncrementClass(new MockClass()));
+			Assert.Throws<ArgumentException>(() => original.IncrementClass(ClassMother.Create()));
 		}
 
 		[Test]
 		public void Success()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary())).AddClass(mockClass);
+			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
 
 			var firstClass = original.Classes.Select(x => x.Class).First();
 			var result = original.IncrementClass(firstClass);
@@ -63,7 +72,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void ReturnsNewInstance()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary())).AddClass(mockClass);
+			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
 			var result = original.IncrementClass(mockClass);
 
 			Assert.AreNotSame(original, result);
@@ -73,7 +82,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void OriginalUnchanged()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary())).AddClass(mockClass);
+			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
 
 			var result = original.IncrementClass(mockClass);
@@ -86,7 +95,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test] public void IncrementsLevel()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary())).AddClass(mockClass);
+			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
 
 			var result = original.IncrementClass(mockClass);
@@ -99,7 +108,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void UpdatesHitPointsWithDefault()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary()))
+			var original = ((ICharacter) new Character(SkillLibrary))
 				.SetConstitution(10)
 				.AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
@@ -120,7 +129,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test] public void UpdatesHitPoints()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary()))
+			var original = ((ICharacter) new Character(SkillLibrary))
 				.SetConstitution(10)
 				.AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
@@ -141,7 +150,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test] public void UpdatesSkillPoints()
 		{
 			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(new MockSkillLibrary()))
+			var original = ((ICharacter) new Character(SkillLibrary))
 				.SetIntelligence(10)
 				.AddClass(mockClass);
 

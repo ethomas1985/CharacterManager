@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Pathfinder.Commands;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
-using Pathfinder.Test.Mocks;
+using Pathfinder.Test.ObjectMothers;
 using CharacterImpl = Pathfinder.Model.Character;
 
 // ReSharper disable ExpressionIsAlwaysNull
@@ -16,6 +15,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests
 {
 	internal static class CharacterJsonSerializerUtils
 	{
+		private static ILibrary<ISkill> SkillLibrary => SetupTestFixtureForJsonSerializers.SkillLibrary;
+
 		public static ICharacter GetTestCharacter()
 		{
 			const int copperValue = 1;
@@ -27,12 +28,12 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests
 
 			var deity = new Deity("Deity");
 
-			var race = new MockRaceLibrary().Values.First();
-			var skill = new MockSkillLibrary().Values.First();
+			var race = RaceMother.Create();
+			var skill = SkillLibrary.Values.First();
 
 			var testingItem = CreateTestingItem();
 			var testCharacter =
-				CreateNewCharacter()
+				new CharacterImpl(SkillLibrary)
 					.SetName(name)
 					.SetAge(10)
 					.SetHomeland("Homeland")
@@ -45,7 +46,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests
 					.SetAlignment(Alignment.LawfulGood)
 					.SetRace(race)
 					.AddLanguage(new Language("Mock Language"))
-					.AddClass(CreateTestingClass())
+					.AddClass(ClassMother.Create())
 					.SetDamage(2)
 					.SetStrength(12)
 					.SetDexterity(12)
@@ -94,26 +95,6 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests
 					pArmorCheckPenalty: 1,
 					pArcaneSpellFailureChance: 0.20m,
 					pSpeed: 25));
-		}
-
-		public static ICharacter CreateNewCharacter()
-		{
-			return new CharacterImpl(new MockSkillLibrary());
-		}
-
-		public static IClass CreateTestingClass()
-		{
-			const string className = "Mock Class";
-			var classLevel = new ClassLevel(1, new List<int> { 1 }, 1, 1, 1, null);
-
-			return new Class(
-				className,
-				new HashSet<Alignment> { Alignment.Neutral },
-				new Die(6),
-				0,
-				new HashSet<string>(),
-				new IClassLevel[] { classLevel },
-				new List<string>());
 		}
 
 		public static IFeat CreateTestingFeat1()

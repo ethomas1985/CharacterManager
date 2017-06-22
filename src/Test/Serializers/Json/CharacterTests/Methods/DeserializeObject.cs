@@ -7,8 +7,8 @@ using Pathfinder.Interface;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
-using Pathfinder.Test.Mocks;
 using Pathfinder.Model.Items;
+using Pathfinder.Test.ObjectMothers;
 
 // ReSharper disable ExpressionIsAlwaysNull
 
@@ -51,7 +51,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 				"{" +
 				"	Classes: [" +
 				"		{ " +
-				"			\"Class\": \"Mock Class\", " +
+				"			\"Class\": \"Test Class\", " +
 				"			\"Level\": 1," +
 				"			\"IsFavored\": true," +
 				"			\"BaseAttackBonus\": 0," +
@@ -248,7 +248,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		{
 			var skillScore =
 				new SkillScore(
-					MockSkillLibrary.TestSkill,
+					SkillMother.Create(),
 					new AbilityScore(AbilityType.Strength, 0),
 					1, 0, 0, 0, 0);
 

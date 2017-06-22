@@ -8,17 +8,26 @@ using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
-using Pathfinder.Test.Mocks;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class ReplaceArmorMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void RequiresArmorToReplaceNotNull()
 		{
-			ICharacter original = new Character(new MockSkillLibrary());
+			ICharacter original = new Character(SkillLibrary);
 
 			Assert.That(
 				() => original.ReplaceArmor(null, null),
@@ -28,7 +37,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsArmorToEquipNotNull()
 		{
-			ICharacter original = new Character(new MockSkillLibrary());
+			ICharacter original = new Character(SkillLibrary);
 
 			Assert.That(
 				() => original.ReplaceArmor(new Mock<IItem>().Object, null),
@@ -39,7 +48,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void RequiresArmorToReplaceToBeInInventory()
 		{
 			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			ICharacter original = new Character(new MockSkillLibrary());
+			ICharacter original = new Character(SkillLibrary);
 
 			Assert.That(
 				() => original.ReplaceArmor(armorToReplace, new Mock<IItem>().Object),
@@ -54,7 +63,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var armorToReplace = CreateTestingItem($"Armor To Replace");
 			var armorToEquip = CreateTestingItem($"Armor To Equip");
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorToReplace);
 
 			Assert.That(
@@ -70,7 +79,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var armorToReplace = CreateTestingItem($"Armor To Replace");
 			var armorToEquip = CreateTestingItem($"Armor To Equip");
 
-			ICharacter original = new Character(new MockSkillLibrary())
+			ICharacter original = new Character(SkillLibrary)
 				.AddToInventory(armorToReplace)
 				.AddToInventory(armorToEquip);
 
@@ -85,7 +94,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var armorToReplace = CreateTestingItem($"Armor To Replace");
 			var armorToEquip = CreateTestingItem($"Armor To Equip");
 
-			ICharacter original = new Character(new MockSkillLibrary())
+			ICharacter original = new Character(SkillLibrary)
 				.AddToInventory(armorToReplace)
 				.AddToInventory(armorToEquip)
 				.EquipArmor(armorToReplace);
@@ -101,7 +110,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var armorToReplace = CreateTestingItem($"Armor To Replace");
 			var armorToEquip = CreateTestingItem($"Armor To Equip");
 
-			ICharacter original = new Character(new MockSkillLibrary())
+			ICharacter original = new Character(SkillLibrary)
 				.AddToInventory(armorToReplace)
 				.AddToInventory(armorToEquip);
 

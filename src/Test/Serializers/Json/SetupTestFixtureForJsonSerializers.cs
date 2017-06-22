@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
-using Pathfinder.Model;
 using Pathfinder.Serializers.Json;
-using Pathfinder.Test.Mocks;
+using Pathfinder.Test.ObjectMothers;
+
 // ReSharper disable LocalizableElement
 
 namespace Pathfinder.Test.Serializers.Json
@@ -15,7 +15,60 @@ namespace Pathfinder.Test.Serializers.Json
 	[SetUpFixture]
 	public class SetupTestFixtureForJsonSerializers
 	{
-		internal static ILibrary<IClass> ClassLibrary { get; } = new MockClassLibrary();
+		private static readonly Lazy<ILibrary<IClass>> LazyClassLibrary
+			= new Lazy<ILibrary<IClass>>(() =>
+			{
+				var testClass = ClassMother.Create();
+				var mockClassLibrary = new Mock<ILibrary<IClass>>();
+
+				mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> { testClass });
+				mockClassLibrary.Setup(foo => foo[It.IsAny<string>()]).Returns(testClass);
+
+				return mockClassLibrary.Object;
+			});
+
+		public static ILibrary<IClass> ClassLibrary => LazyClassLibrary.Value;
+
+		private static readonly Lazy<ILibrary<IRace>> LazyRaceLibrary
+			= new Lazy<ILibrary<IRace>>(() =>
+				{
+					IRace race;
+					var testRace = RaceMother.Create();
+					var mockRaceLibrary = new Mock<ILibrary<IRace>>();
+
+					mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<IRace> { testRace });
+					mockRaceLibrary.Setup(foo => foo[It.IsAny<string>()]).Returns(testRace);
+					mockRaceLibrary
+						.Setup(foo => foo.TryGetValue(It.IsAny<string>(), out race))
+						.OutCallback((string t, out IRace r) => r = testRace)
+						.Returns(true);
+
+					return mockRaceLibrary.Object;
+				});
+
+		public static ILibrary<IRace> RaceLibrary => LazyRaceLibrary.Value;
+
+		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
+			= new Lazy<ILibrary<ISkill>>(() =>
+				{
+					ISkill race;
+					var testSkill = SkillMother.Create();
+					var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+					var values = new List<ISkill> { testSkill };
+					
+					mockSkillLibrary.Setup(moq => moq.GetEnumerator()).Returns(() => values.GetEnumerator());
+					mockSkillLibrary.Setup(moq => moq.Values).Returns(values);
+					mockSkillLibrary.Setup(moq => moq[It.IsAny<string>()]).Returns(testSkill);
+					mockSkillLibrary
+						.Setup(moq => moq.TryGetValue(It.IsAny<string>(), out race))
+						.OutCallback((string t, out ISkill r) => r = testSkill)
+						.Returns(true);
+
+					return mockSkillLibrary.Object;
+				});
+
+		public static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
 
 		[OneTimeSetUp]
 		public void RunBeforeAnyTests()
@@ -26,8 +79,6 @@ namespace Pathfinder.Test.Serializers.Json
 
 			JsonSerializerSettings GetJsonSerializerSettings()
 			{
-				ClassLibrary.Store(CreateTestingClass());
-
 				return new JsonSerializerSettings
 				{
 					Converters =
@@ -39,7 +90,7 @@ namespace Pathfinder.Test.Serializers.Json
 							new AbilityTypeJsonSerializer(),
 							new ArmorComponentJsonSerializer(),
 							new CharacterClassJsonSerializer(ClassLibrary),
-							new CharacterJsonSerializer(new MockRaceLibrary(), new MockSkillLibrary()),
+							new CharacterJsonSerializer(RaceLibrary, SkillLibrary),
 							new ClassJsonSerializer(),
 							new ClassLevelJsonSerializer(),
 							new CurrencyJsonSerializer(),
@@ -70,22 +121,6 @@ namespace Pathfinder.Test.Serializers.Json
 					//Formatting = Formatting.Indented,
 				};
 			}
-		}
-
-
-		public static IClass CreateTestingClass()
-		{
-			const string className = "Mock Class";
-			var classLevel = new ClassLevel(1, new List<int> { 1 }, 1, 1, 1, null);
-
-			return new Class(
-				className,
-				new HashSet<Alignment> { Alignment.Neutral },
-				new Die(6),
-				0,
-				new HashSet<string>(),
-				new IClassLevel[] { classLevel },
-				new List<string>());
 		}
 	}
 }

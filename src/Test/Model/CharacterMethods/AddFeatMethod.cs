@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Linq;
+using Moq;
 using Pathfinder.Test.Serializers.Json.CharacterTests;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -11,10 +11,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddFeatMethod
 	{
+		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
+
 		[Test]
 		public void FailsWithNullFeat()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.AddFeat(null));
 		}
@@ -22,7 +24,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
@@ -32,7 +34,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
 			Assert.That(original.Feats, Is.Empty);
@@ -41,7 +43,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
 
@@ -53,7 +55,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			const string specialization = "user-choice";
 
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(), specialization);
 

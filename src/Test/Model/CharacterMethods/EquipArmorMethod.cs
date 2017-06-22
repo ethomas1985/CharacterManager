@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Immutable;
+using Moq;
 using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
-using Pathfinder.Test.Mocks;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -14,6 +14,17 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class EquipArmorMethod
 	{
+
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		private static Item CreateTestingItem()
 		{
 			return new Item(
@@ -48,14 +59,14 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.EquipArmor(null));
 		}
 		[Test]
 		public void ItemNotInInventory()
 		{
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 
 			Assert.That(
 				() => original.EquipArmor(CreateTestingItem()),
@@ -67,7 +78,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original = 
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorComponent);
 
 			var result = original.EquipArmor(armorComponent);
@@ -80,7 +91,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorComponent);
 
 			var result = original.EquipArmor(armorComponent);
@@ -93,7 +104,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorComponent);
 			var result = original.EquipArmor(CreateTestingItem());
 
@@ -105,7 +116,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorComponent);
 
 			original.EquipArmor(CreateTestingItem());
@@ -118,7 +129,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.AddToInventory(armorComponent);
 
 			var result = original.EquipArmor(CreateTestingItem());
@@ -131,7 +142,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.SetDexterity(18)
 					.AddToInventory(armorComponent);
 
@@ -145,7 +156,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.SetRace(CreateTestingRace())
 					.AddToInventory(armorComponent);
 
@@ -159,7 +170,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var armorComponent = CreateTestingItem();
 			ICharacter original =
-				new Character(new MockSkillLibrary())
+				new Character(SkillLibrary)
 					.SetRace(CreateTestingRace())
 					.AddToInventory(armorComponent);
 

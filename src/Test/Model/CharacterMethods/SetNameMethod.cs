@@ -1,18 +1,28 @@
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetNameMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetName(null));
 		}
@@ -20,7 +30,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			const string testName = "Test Name";
 			var result = original.SetName(testName);
@@ -31,7 +41,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -44,7 +54,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var skillLibrary = new MockSkillLibrary();
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter) new Character(skillLibrary);
 

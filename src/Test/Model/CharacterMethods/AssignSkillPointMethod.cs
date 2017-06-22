@@ -1,26 +1,38 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
+using System.Collections.Generic;
+using Moq;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class AssignSkillPointMethod
 	{
-		private const string SKILL_NAME = "Unit Testing";
-
-		private static Skill CreateTestingSkill()
+		private static ILibrary<ISkill> SkillLibrary
 		{
-			return new Skill(
-				SKILL_NAME,
-				AbilityType.Intelligence,
-				false,
-				false,
-				"Test all the Units");
+			get
+			{
+				ISkill iSkill;
+				var testSkill = SkillMother.Create();
+
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				mockSkillLibrary.Setup(foo => foo.GetEnumerator()).Returns(new List<ISkill> { testSkill }.GetEnumerator());
+				mockSkillLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
+				mockSkillLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
+				mockSkillLibrary
+					.Setup(foo => foo.TryGetValue(testSkill.Name, out iSkill))
+					.OutCallback((string t, out ISkill r) => r = testSkill)
+					.Returns(true);
+
+				return mockSkillLibrary.Object;
+			}
 		}
+
+		private const string SKILL_NAME = "Test Skill";
 
 		[Test]
 		public void Fails_On_Null_Skill()
@@ -28,7 +40,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var skillLibrary = new MockSkillLibrary();
+					var skillLibrary = SkillLibrary;
 
 					var original = (ICharacter)new Character(skillLibrary);
 
@@ -44,8 +56,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var skillLibrary = new MockSkillLibrary();
-					skillLibrary.Store(CreateTestingSkill());
+					var skillLibrary = SkillLibrary;
 
 					var original = (ICharacter)new Character(skillLibrary);
 
@@ -58,8 +69,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var skillLibrary = new MockSkillLibrary();
-			skillLibrary.Store(CreateTestingSkill());
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter)new Character(skillLibrary);
 
@@ -71,8 +81,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var skillLibrary = new MockSkillLibrary();
-			skillLibrary.Store(CreateTestingSkill());
+			var skillLibrary = SkillLibrary;
 
 			var original = (ICharacter)new Character(skillLibrary);
 
@@ -84,14 +93,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NewInstanceHasRank()
 		{
-			var skillLibrary = new MockSkillLibrary();
-			skillLibrary.Store(CreateTestingSkill());
+			var original = (ICharacter)new Character(SkillLibrary);
 
-			var original = (ICharacter)new Character(skillLibrary);
+			var result = original.AssignSkillPoint(SkillLibrary[SKILL_NAME], 10);
 
-			var reault = original.AssignSkillPoint(skillLibrary[SKILL_NAME], 10);
-
-			Assert.That(reault[SKILL_NAME].Ranks, Is.EqualTo(10));
+			Assert.That(result[SKILL_NAME].Ranks, Is.EqualTo(10));
 		}
 	}
 }

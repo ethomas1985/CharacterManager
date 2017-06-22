@@ -32,7 +32,7 @@
 	"Initiative": 1,
 	"Classes": [
 		{
-			"Class": "Mock Class",
+			"Class": "Test Class",
 			"Level": 1,
 			"IsFavored": true,
 			"BaseAttackBonus": 1,

@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -11,10 +11,20 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	{
 		private const string EYES = "Octarine";
 
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetEyes(null));
 		}
@@ -22,7 +32,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			var result = original.SetHomeland(EYES);
 
 			Assert.AreEqual(EYES, result.Homeland);
@@ -31,7 +41,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.SetEyes(EYES);
 
@@ -41,7 +51,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 			original.SetEyes(EYES);
 
 			Assert.IsNull(original.Name);

@@ -5,26 +5,86 @@ using Pathfinder.Api.Models;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Item;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
-using Pathfinder.Test.Model;
 using System;
+using System.Collections.Generic;
+using Pathfinder.Test;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Api.Tests
 {
 	[TestFixture]
 	public class CharacterGeneraterControllerTests
 	{
+		private static readonly Lazy<ILibrary<IClass>> LazyClassLibrary
+			= new Lazy<ILibrary<IClass>>(() =>
+			{
+				IClass iClass;
+				var testClass = ClassMother.Create();
+				var mockClassLibrary = new Mock<ILibrary<IClass>>();
+
+				mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> { testClass });
+				mockClassLibrary.Setup(foo => foo[testClass.Name]).Returns(testClass);
+				mockClassLibrary
+					.Setup(foo => foo.TryGetValue(testClass.Name, out iClass))
+					.OutCallback((string t, out IClass r) => r = testClass)
+					.Returns(true);
+				return mockClassLibrary.Object;
+			});
+
+		internal static ILibrary<IClass> ClassLibrary => LazyClassLibrary.Value;
+
+		private static readonly Lazy<ILibrary<IRace>> LazyRaceLibrary
+			= new Lazy<ILibrary<IRace>>(() =>
+			{
+				IRace race;
+				var testRace = RaceMother.Create();
+				var mockRaceLibrary = new Mock<ILibrary<IRace>>();
+
+				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<IRace> { testRace });
+				mockRaceLibrary.Setup(foo => foo[testRace.Name]).Returns(testRace);
+				mockRaceLibrary
+					.Setup(foo => foo.TryGetValue(testRace.Name, out race))
+					.OutCallback((string t, out IRace r) => r = testRace)
+					.Returns(true);
+					
+				return mockRaceLibrary.Object;
+			});
+
+		internal static ILibrary<IRace> RaceLibrary => LazyRaceLibrary.Value;
+
+		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
+			= new Lazy<ILibrary<ISkill>>(() =>
+			{
+				ISkill race;
+				var testSkill =SkillMother.Create();
+				var mockRaceLibrary = new Mock<ILibrary<ISkill>>();
+
+				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
+				mockRaceLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
+				mockRaceLibrary
+					.Setup(foo => foo.TryGetValue(testSkill.Name, out race))
+					.OutCallback((string t, out ISkill r) => r = testSkill)
+					.Returns(true);
+					
+				return mockRaceLibrary.Object;
+			});
+
+		internal static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
+
 		protected static CharacterGeneratorController createCharacterGeneratorController()
 		{
+			var mockCharacterLibrary = new Mock<ILibrary<ICharacter>>();
+			
 			var mockFeatLibrary = new Mock<ILibrary<IFeat>>();
 			var mockItemLibrary = new Mock<ILibrary<IItem>>();
+			var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
 
 			var charGen =
 				new CharacterGeneratorController(
-					new MockCharacterLibrary(),
-					new MockRaceLibrary(),
-					new MockSkillLibrary(),
-					new MockClassLibrary(),
+					mockCharacterLibrary.Object,
+					RaceLibrary,
+					mockSkillLibrary.Object,
+					ClassLibrary,
 					mockFeatLibrary.Object,
 					mockItemLibrary.Object);
 			return charGen;
@@ -204,11 +264,9 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void ReturnsNotNull()
 			{
-				var skillLibrary = new MockSkillLibrary();
-
 				var charGen = createCharacterGeneratorController();
 
-				var result = charGen.SetRace(TEST_RACE, new Character(skillLibrary));
+				var result = charGen.SetRace(TEST_RACE, new Character(SkillLibrary));
 
 				Assert.NotNull(result);
 			}
@@ -238,11 +296,9 @@ namespace Pathfinder.Api.Tests
 			[Test]
 			public void ReturnsNotNull()
 			{
-				var skillLibrary = new MockSkillLibrary();
-
 				var charGen = createCharacterGeneratorController();
 
-				var result = charGen.SetClass("Test Class", new Character(skillLibrary));
+				var result = charGen.SetClass("Test Class", new Character(SkillLibrary));
 
 				Assert.NotNull(result);
 			}

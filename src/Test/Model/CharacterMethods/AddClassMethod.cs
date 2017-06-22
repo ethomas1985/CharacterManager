@@ -2,10 +2,11 @@ using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Test.Mocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -15,26 +16,43 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		private const int SKILL_ADDEND = 5;
 		private const int HIT_DIE_FACES = 6;
 
-		private static MockClass CreateMockClass()
+		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
+			= new Lazy<ILibrary<ISkill>>(() =>
+			{
+				ISkill race;
+				var testSkill = SkillMother.Create();
+				var mockRaceLibrary = new Mock<ILibrary<ISkill>>();
+
+				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
+				mockRaceLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
+				mockRaceLibrary
+					.Setup(foo => foo.TryGetValue(testSkill.Name, out race))
+					.OutCallback((string t, out ISkill r) => r = testSkill)
+					.Returns(true);
+					
+				return mockRaceLibrary.Object;
+			});
+
+		internal static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
+
+		private static IClass CreateMockClass()
 		{
-			return new MockClass
-				   {
-					   Name = "Mock Class",
-					   Alignments = new HashSet<Alignment>
-									{
-										Alignment.ChaoticGood,
-										Alignment.ChaoticNeutral,
-										Alignment.ChaoticEvil
-									},
-					   HitDie = new Die(HIT_DIE_FACES),
-					   SkillAddend = SKILL_ADDEND
-				   };
+			return ClassMother.Create(
+				"Mock Class",
+				new HashSet<Alignment>
+					{
+						Alignment.ChaoticGood,
+						Alignment.ChaoticNeutral,
+						Alignment.ChaoticEvil
+					},
+				new Die(HIT_DIE_FACES),
+				SKILL_ADDEND);
 		}
 
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<ArgumentNullException>(() => original.AddClass(null));
 		}
@@ -42,7 +60,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void InvalidLevel()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), -1, false, new List<int>()));
 		}
@@ -50,7 +68,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NullHitPoints()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), 1, false, null));
 		}
@@ -58,7 +76,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass);
@@ -69,7 +87,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Level()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass);
@@ -80,7 +98,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_IsFavored()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass);
@@ -91,7 +109,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_HitPoints()
 		{
-			var original = ((ICharacter) new Character(new MockSkillLibrary()))
+			var original = ((ICharacter) new Character(SkillLibrary))
 				.SetConstitution(10);
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass);
@@ -103,7 +121,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_MaxSkillRanks()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass);
@@ -115,7 +133,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
@@ -126,7 +144,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_Level()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
@@ -137,7 +155,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_IsFavored()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
@@ -148,7 +166,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_HitPoints()
 		{
-			var original = ((ICharacter) new Character(new MockSkillLibrary()))
+			var original = ((ICharacter) new Character(SkillLibrary))
 				.SetConstitution(10);
 
 			var mockClass = CreateMockClass();
@@ -160,7 +178,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_MaxSkillRanks()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
@@ -172,7 +190,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var result = original.AddClass(CreateMockClass());
 
@@ -182,7 +200,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(new MockSkillLibrary());
+			var original = (ICharacter) new Character(SkillLibrary);
 
 			var mockClass = CreateMockClass();
 			original.AddClass(mockClass);

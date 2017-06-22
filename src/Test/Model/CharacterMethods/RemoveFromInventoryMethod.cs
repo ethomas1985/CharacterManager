@@ -4,14 +4,24 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
-using Pathfinder.Test.Mocks;
 using System;
+using Moq;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class RemoveFromInventoryMethod
 	{
+		private static ILibrary<ISkill> SkillLibrary
+		{
+			get
+			{
+				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+
+				return mockSkillLibrary.Object;
+			}
+		}
+
 		private static Item CreateTestingItem()
 		{
 			return new Item("Testing Item", ItemType.None, "Category", new Purse(100), 10, "Description");
@@ -23,7 +33,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var original = (ICharacter)new Character(new MockSkillLibrary());
+					var original = (ICharacter)new Character(SkillLibrary);
 					var result = original.RemoveFromInventory(null);
 				},
 				Throws.Exception.InstanceOf(typeof(ArgumentNullException)));
@@ -37,7 +47,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 				{
 					var item = CreateTestingItem();
 
-					var original = (ICharacter)new Character(new MockSkillLibrary());
+					var original = (ICharacter)new Character(SkillLibrary);
 					original = original.AddToInventory(item);
 
 					var result = original.RemoveFromInventory(item);
@@ -53,7 +63,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 				{
 					var item = CreateTestingItem();
 
-					var original = (ICharacter)new Character(new MockSkillLibrary());
+					var original = (ICharacter)new Character(SkillLibrary);
 
 					var result = original.RemoveFromInventory(item);
 				},
@@ -65,7 +75,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var item = CreateTestingItem();
 
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			original = original.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
@@ -78,7 +88,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var item = CreateTestingItem();
 
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			original = original.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
@@ -91,7 +101,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var item = CreateTestingItem();
 
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			original = original.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
@@ -104,7 +114,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			var item = CreateTestingItem();
 
-			var original = (ICharacter)new Character(new MockSkillLibrary());
+			var original = (ICharacter)new Character(SkillLibrary);
 			original = original.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
