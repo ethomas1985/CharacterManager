@@ -1,11 +1,12 @@
 ﻿using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
+using Pathfinder.Test.ObjectMothers;
 
 // ReSharper disable ExpressionIsAlwaysNull
 
@@ -14,39 +15,20 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class SetRaceMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
 		}
 
-		private static IRace SetupMockRace()
-		{
-			var race = new Race(
-							    "Test Race",
-							    "Testy",
-							    "This is a Test Race",
-							    Size.Medium,
-							    30,
-							    new Dictionary<AbilityType, int>(),
-							    new List<ITrait>(),
-							    new List<ILanguage>
-							    {
-								    new Language("Test-ese"),
-								    new Language("Test-ish")
-							    });
-
-			return race;
-		}
-
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetRace(null));
 		}
@@ -54,11 +36,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SetsRace()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
-			var original = (ICharacter) new Character(skillLibrary);
+			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = SetupMockRace();
+			var race = (IRace) RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.AreEqual(race, result.Race);
@@ -67,11 +49,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void SetsLanguages()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
-			var original = (ICharacter) new Character(skillLibrary);
+			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = SetupMockRace();
+			var race = (IRace) RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.IsTrue(!race.Languages.Except(result.Languages).Any());
@@ -80,25 +62,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void RemovedPreviousRaceLanguages()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
-			var original = ((ICharacter) new Character(skillLibrary))
-					.SetRace(
-							 new Race(
-									  "Test Race",
-									  "Testy",
-									  "This is a Test Race",
-									  Size.Medium,
-									  30,
-									  new Dictionary<AbilityType, int>(),
-									  new List<ITrait>(),
-									  new List<ILanguage>
-									  {
-										  new Language("Old Test-ese"),
-										  new Language("Old Test-ish")
-									  }));
+			var original = new Character(skillLibrary)
+					.SetRace(RaceMother.Create());
 
-			var race = SetupMockRace();
+			var race = (IRace) RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.IsTrue(!race.Languages.Except(result.Languages).Any());
@@ -107,11 +76,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
-			var original = (ICharacter) new Character(skillLibrary);
+			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = SetupMockRace();
+			var race = (IRace) RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.AreNotSame(original, result);
@@ -120,28 +89,33 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
-			var originalRace = new Race(
-									    "Test Race",
-									    "Testy",
-									    "This is a Test Race",
-									    Size.Medium,
-									    30,
-									    new Dictionary<AbilityType, int>(),
-									    new List<ITrait>(),
-									    new List<ILanguage>
-									    {
-										    new Language("Old Test-ese"),
-										    new Language("Old Test-ish")
-									    });
-			var original = ((ICharacter) new Character(skillLibrary))
+			var originalRace = RaceMother.Create();
+			var original = new Character(skillLibrary)
 					.SetRace(originalRace);
 
-			var race = SetupMockRace();
+			var race = (IRace) RaceMother.Create();
 			original.SetRace(race);
 
 			Assert.AreEqual(originalRace, original.Race);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var race = RaceMother.Create();
+			var result = original.SetRace(race);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new RaceSet(original.Id, 1, race),
+					}));
 		}
 	}
 }

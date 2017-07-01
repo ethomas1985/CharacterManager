@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Serializers.Json.AbilityScoreTests.Methods
 {

@@ -9,7 +9,7 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void NotNull()
 		{
-			var original = new Event("Test", "Test", 10);
+			var original = new ExperienceEvent("Test", "Test", 10);
 
 			Assert.IsFalse(original.Equals(null));
 		}
@@ -17,7 +17,7 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void EqualsSelf()
 		{
-			var original = new Event("Test", "Test", 10);
+			var original = new ExperienceEvent("Test", "Test", 10);
 
 			Assert.IsTrue(original.Equals(original));
 		}
@@ -25,8 +25,8 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void AreEqual()
 		{
-			var first = new Event("Test", "Test", 10);
-			var second = new Event("Test", "Test", 10);
+			var first = new ExperienceEvent("Test", "Test", 10);
+			var second = new ExperienceEvent("Test", "Test", 10);
 
 			Assert.IsTrue(first.Equals(second));
 		}
@@ -34,8 +34,8 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void DifferentPoints()
 		{
-			var first = new Event("Test", "Test", 10);
-			var second = new Event("Test", "Test", 5);
+			var first = new ExperienceEvent("Test", "Test", 10);
+			var second = new ExperienceEvent("Test", "Test", 5);
 
 			Assert.IsFalse(first.Equals(second));
 		}
@@ -43,8 +43,8 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void DifferentDescription()
 		{
-			var first = new Event("Test", "First Test", 10);
-			var second = new Event("Test", "Second Test", 10);
+			var first = new ExperienceEvent("Test", "First Test", 10);
+			var second = new ExperienceEvent("Test", "Second Test", 10);
 
 			Assert.IsFalse(first.Equals(second));
 		}
@@ -52,8 +52,8 @@ namespace Pathfinder.Test.Model.EventTests
 		[Test]
 		public void DifferentName()
 		{
-			var first = new Event("First Test", "Test", 10);
-			var second = new Event("Second Test", "Test", 10);
+			var first = new ExperienceEvent("First Test", "Test", 10);
+			var second = new ExperienceEvent("Second Test", "Test", 10);
 
 			Assert.IsFalse(first.Equals(second));
 		}

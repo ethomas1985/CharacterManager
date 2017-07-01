@@ -3,10 +3,11 @@ using NUnit.Framework;
 using Pathfinder.Api.Controllers;
 using Pathfinder.Api.Models;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Item;
 using Pathfinder.Model;
 using System;
 using System.Collections.Generic;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Test;
 using Pathfinder.Test.ObjectMothers;
 
@@ -15,12 +16,12 @@ namespace Pathfinder.Api.Tests
 	[TestFixture]
 	public class CharacterGeneraterControllerTests
 	{
-		private static readonly Lazy<ILibrary<IClass>> LazyClassLibrary
-			= new Lazy<ILibrary<IClass>>(() =>
+		private static readonly Lazy<IRepository<IClass>> LazyClassLibrary
+			= new Lazy<IRepository<IClass>>(() =>
 			{
 				IClass iClass;
-				var testClass = ClassMother.Create();
-				var mockClassLibrary = new Mock<ILibrary<IClass>>();
+				var testClass = ClassMother.Level1Neutral();
+				var mockClassLibrary = new Mock<IRepository<IClass>>();
 
 				mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> { testClass });
 				mockClassLibrary.Setup(foo => foo[testClass.Name]).Returns(testClass);
@@ -31,14 +32,14 @@ namespace Pathfinder.Api.Tests
 				return mockClassLibrary.Object;
 			});
 
-		internal static ILibrary<IClass> ClassLibrary => LazyClassLibrary.Value;
+		internal static IRepository<IClass> ClassRepository => LazyClassLibrary.Value;
 
-		private static readonly Lazy<ILibrary<IRace>> LazyRaceLibrary
-			= new Lazy<ILibrary<IRace>>(() =>
+		private static readonly Lazy<IRepository<IRace>> LazyRaceLibrary
+			= new Lazy<IRepository<IRace>>(() =>
 			{
 				IRace race;
 				var testRace = RaceMother.Create();
-				var mockRaceLibrary = new Mock<ILibrary<IRace>>();
+				var mockRaceLibrary = new Mock<IRepository<IRace>>();
 
 				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<IRace> { testRace });
 				mockRaceLibrary.Setup(foo => foo[testRace.Name]).Returns(testRace);
@@ -50,14 +51,14 @@ namespace Pathfinder.Api.Tests
 				return mockRaceLibrary.Object;
 			});
 
-		internal static ILibrary<IRace> RaceLibrary => LazyRaceLibrary.Value;
+		internal static IRepository<IRace> RaceRepository => LazyRaceLibrary.Value;
 
-		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
-			= new Lazy<ILibrary<ISkill>>(() =>
+		private static readonly Lazy<IRepository<ISkill>> LazySkillLibrary
+			= new Lazy<IRepository<ISkill>>(() =>
 			{
 				ISkill race;
 				var testSkill =SkillMother.Create();
-				var mockRaceLibrary = new Mock<ILibrary<ISkill>>();
+				var mockRaceLibrary = new Mock<IRepository<ISkill>>();
 
 				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
 				mockRaceLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
@@ -69,263 +70,25 @@ namespace Pathfinder.Api.Tests
 				return mockRaceLibrary.Object;
 			});
 
-		internal static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
+		internal static IRepository<ISkill> SkillRepository => LazySkillLibrary.Value;
 
 		protected static CharacterGeneratorController createCharacterGeneratorController()
 		{
-			var mockCharacterLibrary = new Mock<ILibrary<ICharacter>>();
+			var mockCharacterLibrary = new Mock<IRepository<ICharacter>>();
 			
-			var mockFeatLibrary = new Mock<ILibrary<IFeat>>();
-			var mockItemLibrary = new Mock<ILibrary<IItem>>();
-			var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+			var mockFeatLibrary = new Mock<IRepository<IFeat>>();
+			var mockItemLibrary = new Mock<IRepository<IItem>>();
+			var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 			var charGen =
 				new CharacterGeneratorController(
 					mockCharacterLibrary.Object,
-					RaceLibrary,
+					RaceRepository,
 					mockSkillLibrary.Object,
-					ClassLibrary,
+					ClassRepository,
 					mockFeatLibrary.Object,
 					mockItemLibrary.Object);
 			return charGen;
-		}
-
-		[TestFixture]
-		public class SetAbilityScoresMethod : CharacterGeneraterControllerTests
-		{
-			private const int ABILITY_SCORE = 12;
-
-			[Test]
-			public void NullParameter()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				Assert.Throws<ArgumentNullException>(
-					() => charGen.SetAbilityScores(null));
-			}
-
-			[Test]
-			public void ReturnsNotNull()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = 1,
-						Intelligence = 1,
-						Constitution = 1,
-						Wisdom = 1,
-						Charisma = 1
-					});
-
-				Assert.NotNull(result);
-			}
-
-			[Test]
-			public void SetsStrength()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = ABILITY_SCORE,
-						Dexterity = 1,
-						Intelligence = 1,
-						Constitution = 1,
-						Wisdom = 1,
-						Charisma = 1
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Strength.Score);
-			}
-
-			[Test]
-			public void SetsDexterity()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = ABILITY_SCORE,
-						Intelligence = 1,
-						Constitution = 1,
-						Wisdom = 1,
-						Charisma = 1
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Dexterity.Score);
-			}
-
-			[Test]
-			public void SetsConstitution()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = 1,
-						Constitution = ABILITY_SCORE,
-						Intelligence = 1,
-						Wisdom = 1,
-						Charisma = 1
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Constitution.Score);
-			}
-
-			[Test]
-			public void SetsIntelligence()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = 1,
-						Constitution = 1,
-						Intelligence = ABILITY_SCORE,
-						Wisdom = 1,
-						Charisma = 1
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Intelligence.Score);
-			}
-
-			[Test]
-			public void SetsWisdom()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = 1,
-						Intelligence = 1,
-						Constitution = 1,
-						Wisdom = ABILITY_SCORE,
-						Charisma = 1
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Wisdom.Score);
-			}
-
-			[Test]
-			public void SetsCharisma()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetAbilityScores(
-					new AbilityScoreSet
-					{
-						Strength = 1,
-						Dexterity = 1,
-						Intelligence = 1,
-						Constitution = 1,
-						Wisdom = 1,
-						Charisma = ABILITY_SCORE
-					});
-
-				Assert.AreEqual(ABILITY_SCORE, result.Charisma.Score);
-			}
-		}
-
-		[TestFixture]
-		public class SetRaceMethod : CharacterGeneraterControllerTests
-		{
-			private const string TEST_RACE = "Test Race";
-
-			[Test]
-			public void NullRace()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				Assert.Throws<ArgumentNullException>(
-					() => charGen.SetRace(null, null));
-			}
-
-			[Test]
-			public void NullCharacter()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				Assert.Throws<ArgumentNullException>(
-					() => charGen.SetRace(string.Empty, null));
-			}
-
-			[Test]
-			public void ReturnsNotNull()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetRace(TEST_RACE, new Character(SkillLibrary));
-
-				Assert.NotNull(result);
-			}
-		}
-
-		[TestFixture]
-		public class SetClassMethod : CharacterGeneraterControllerTests
-		{
-			[Test]
-			public void NullRace()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				Assert.Throws<ArgumentNullException>(
-					() => charGen.SetClass(null, null));
-			}
-
-			[Test]
-			public void NullCharacter()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				Assert.Throws<ArgumentNullException>(
-					() => charGen.SetClass(string.Empty, null));
-			}
-
-			[Test]
-			public void ReturnsNotNull()
-			{
-				var charGen = createCharacterGeneratorController();
-
-				var result = charGen.SetClass("Test Class", new Character(SkillLibrary));
-
-				Assert.NotNull(result);
-			}
-
-			/*
-			 * This is an integration level test that is dependent on the ICharacter
-			 * class's implementation of ICharacter.SetRace(). I don't feel like implementing
-			 * the method on the MockCharacter class nor do I think I should use the Character
-			 * class for this test. 
-			 */
-			//[Test]
-			//public void Expected()
-			//{
-			//	var mockClassLibrary = new MockClassLibrary();
-
-			//	var charGen = new CharacterGeneratorController(
-			//		new MockCharacterLibrary(),
-			//		new MockRaceLibrary(),
-			//		new MockSkillLibrary(),
-			//		mockClassLibrary);
-
-			//	var result = charGen.SetRace("Test Class", new MockCharacter());
-
-			//	var expected = mockClassLibrary["Test Class"];
-
-			//	Assert.AreEqual(expected, result.Classes.FirstOrDefault());
-			//}
 		}
 	}
 }

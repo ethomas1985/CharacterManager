@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
@@ -11,12 +12,12 @@ namespace Pathfinder.Serializers.Xml
 {
 	internal class RaceXmlSerializer : ISerializer<IRace, string>
 	{
-		public RaceXmlSerializer(ILibrary<ITrait> pTraitLibrary)
+		public RaceXmlSerializer(IRepository<ITrait> pTraitRepository)
 		{
-			TraitLibrary = pTraitLibrary;
+			TraitRepository = pTraitRepository;
 		}
 
-		public ILibrary<ITrait> TraitLibrary { get; }
+		public IRepository<ITrait> TraitRepository { get; }
 
 		public IRace Deserialize(string pValue)
 		{
@@ -30,7 +31,7 @@ namespace Pathfinder.Serializers.Xml
 			var size = GetSize(xDocument);
 			var baseSpeed = GetBaseSpeed(xDocument);
 			var abilities = GetAbilities(xDocument);
-			var traits = GetTraits(xDocument, TraitLibrary);
+			var traits = GetTraits(xDocument, TraitRepository);
 			var languages = GetLanguages(xDocument);
 
 			try
@@ -114,13 +115,13 @@ namespace Pathfinder.Serializers.Xml
 						});
 			return abilities;
 		}
-		private static IEnumerable<ITrait> GetTraits(XDocument xDocument, ILibrary<ITrait> pLibrary)
+		private static IEnumerable<ITrait> GetTraits(XDocument xDocument, IRepository<ITrait> pRepository)
 		{
 			var traits =
 				xDocument
 					.Descendants(nameof(Race.Traits))
 					.Descendants()
-					.Select(x => pLibrary[x.Value]);
+					.Select(x => pRepository[x.Value]);
 			return traits?.ToList();
 		}
 		private static IEnumerable<Language> GetLanguages(XDocument xDocument)

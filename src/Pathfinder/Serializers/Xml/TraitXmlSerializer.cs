@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 

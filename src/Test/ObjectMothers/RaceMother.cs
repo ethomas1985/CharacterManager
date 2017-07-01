@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.ObjectMothers
@@ -9,18 +9,20 @@ namespace Pathfinder.Test.ObjectMothers
 	{
 		public static IRace Create()
 		{
-			return new Race(
-				"Test Race",
-				"Test-ish",
-				"This is a Test Race Description.",
-				Size.Medium,
-				30,
-				new Dictionary<AbilityType, int>(),
-				new List<ITrait>(),
-				new List<ILanguage>
-				{
-					new Language("Test Language")
-				});
+			return
+				new Race(
+					"Test Race",
+					"Testy",
+					"This is a Test Race",
+					Size.Medium,
+					30,
+					new Dictionary<AbilityType, int>(),
+					new List<ITrait>(),
+					new List<ILanguage>
+					{
+						LanguageMother.OldTestese(),
+						LanguageMother.OldTestist()
+					});
 		}
 	}
 }

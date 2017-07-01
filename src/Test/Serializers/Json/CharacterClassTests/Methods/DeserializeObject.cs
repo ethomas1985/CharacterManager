@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 {
@@ -20,7 +21,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithClass()
 		{
-			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassRepository.Values.First();
 
 			string value = 
 				"{" +
@@ -33,7 +34,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithLevel()
 		{
-			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassRepository.Values.First();
 
 			string value =
 				"{" +
@@ -47,7 +48,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithIsFavored()
 		{
-			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassRepository.Values.First();
 
 			string value =
 				"{" +
@@ -61,7 +62,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void WithHitPoints()
 		{
-			var testClass = SetupTestFixtureForJsonSerializers.ClassLibrary.Values.First();
+			var testClass = SetupTestFixtureForJsonSerializers.ClassRepository.Values.First();
 
 			string value =
 				"{" +

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 using Assert = NUnit.Framework.Assert;
 

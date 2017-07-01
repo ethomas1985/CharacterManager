@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 

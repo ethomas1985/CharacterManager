@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Serializers.Json.OffensiveScoreTests.Methods
 {

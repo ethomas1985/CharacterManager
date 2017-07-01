@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model.Items;
 
 namespace Pathfinder.Test.Serializers.Json.ArmorComponentTests.Methods

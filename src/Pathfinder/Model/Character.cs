@@ -1,7 +1,4 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
-using Pathfinder.Interface.Currency;
-using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
@@ -9,16 +6,28 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Model
 {
-	internal class Character : ICharacter, IEquatable<ICharacter>
+	internal class Character : AbstractAggregate, ICharacter, IEquatable<ICharacter>
 	{
 		private ImmutableDictionary<ItemType, IItem> _equipedArmor = ImmutableDictionary<ItemType, IItem>.Empty;
 
-		public Character(ILibrary<ISkill> pSkillLibrary)
+		public Character(IRepository<ISkill> pSkillRepository)
 		{
-			SkillLibrary = pSkillLibrary;
+			SkillRepository = pSkillRepository;
+			ApplyChange(new CharacterCreated(Guid.NewGuid()), true);
+		}
+
+		public Character(IRepository<ISkill> pSkillRepository, Guid pId)
+		{
+			SkillRepository = pSkillRepository;
+			ApplyChange(new CharacterCreated(pId), true);
 		}
 
 		public int Age { get; private set; }
@@ -437,8 +446,8 @@ namespace Pathfinder.Model
 		public IEnumerable<IFeat> Feats { get; private set; } = ImmutableList.Create<IFeat>();
 
 		public int MaxSkillRanks => Classes.Sum(x => x.Level * (Intelligence.Modifier + x.SkillAddend));
-		private ILibrary<ISkill> SkillLibrary { get; }
-		private IEnumerable<ISkill> Skills => SkillLibrary;
+		private IRepository<ISkill> SkillRepository { get; }
+		private IEnumerable<ISkill> Skills => SkillRepository;
 
 		private ImmutableDictionary<ISkill, int> SkillRanks { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
@@ -553,6 +562,122 @@ namespace Pathfinder.Model
 		public IEnumerable<ITrait> Traits => Race?.Traits;
 
 		/*
+		 * Apply Methods
+		 */
+		protected override void Apply(IEvent pEvent)
+		{
+			Version = pEvent.Version;
+			switch (pEvent)
+			{
+				case CharacterCreated asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case NameSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case AgeSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case RaceSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case LanguageAdded asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case LanguageRemoved asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case AlignmentSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case HomelandSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case HeightSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case WeightSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case DeitySet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case GenderSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case EyesSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case HairSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case StrengthSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case DexteritySet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ConstitutionSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case IntelligenceSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case WisdomSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case CharismaSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ClassAdded asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ClassLevelRaised asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case DamageTaken asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case DamageHealed asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case FeatAdded asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ItemAddedToInventory asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ItemRemovedFromInventory asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ExperienceAdded asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case SkillRanksAssigned asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ArmorRemoved asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case ArmorEquiped asEvent:
+					ApplyEvent(asEvent);
+					break;
+				case PurseSet asEvent:
+					ApplyEvent(asEvent);
+					break;
+				default:
+					throw new NotSupportedException($"Event {pEvent.GetType()} is not supported by {GetType()}.");
+			}
+		}
+
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(CharacterCreated pEvent)
+		{
+			Id = pEvent.Id;
+			Version = pEvent.Version;
+		}
+
+		/*
 		 * METHODS
 		 */
 
@@ -590,247 +715,298 @@ namespace Pathfinder.Model
 
 		public ICharacter SetRace(IRace pRace)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pRace)}: {pRace}");
-
 			Assert.ArgumentNotNull(pRace, nameof(pRace));
 
 			var newCharacter = _copy();
-
-			newCharacter.Race = pRace;
-			newCharacter.Languages =
-				newCharacter.Languages.Except(Race?.Languages ?? new List<ILanguage>())
-					.Union(newCharacter.Race.Languages).ToList();
-
+			newCharacter.ApplyChange(new RaceSet(newCharacter.Id, newCharacter.Version + 1, pRace), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(RaceSet pEvent)
+		{
+			Race = pEvent.Race;
+			Languages =
+				Languages
+					.Union(Race?.Languages ?? new List<ILanguage>())
+					.Distinct().ToList();
+		}
+
 		public ICharacter SetName(string pName)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pName)}: {pName}");
-
 			Assert.ArgumentNotNull(pName, nameof(pName));
 
 			var newCharacter = _copy();
-			newCharacter.Name = pName;
-
+			newCharacter.ApplyChange(new NameSet(Id, newCharacter.Version + 1, pName), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(NameSet pEvent)
+		{
+			Name = pEvent.Name;
+		}
+
 		public ICharacter SetAge(int pAge)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pAge)}: {pAge}");
-
 			Assert.IsTrue(pAge > 0, $"{nameof(pAge)} cannot be less than 1.");
 
 			var newCharacter = _copy();
-			newCharacter.Age = pAge;
+			newCharacter.ApplyChange(new AgeSet(newCharacter.Id, newCharacter.Version + 1, pAge), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(AgeSet pEvent)
+		{
+			Age = pEvent.Age;
+		}
+
 		public ICharacter SetAlignment(Alignment pAlignment)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pAlignment)}: {pAlignment}");
-
 			var newCharacter = _copy();
-			newCharacter.Alignment = pAlignment;
+			newCharacter.ApplyChange(new AlignmentSet(newCharacter.Id, newCharacter.Version + 1, pAlignment), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(AlignmentSet pEvent)
+		{
+			Alignment = pEvent.Alignment;
+		}
+
 		public ICharacter SetHomeland(string pHomeland)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pHomeland)}: {pHomeland}");
-
 			Assert.ArgumentNotNull(pHomeland, nameof(pHomeland));
 
 			var newCharacter = _copy();
-			newCharacter.Homeland = pHomeland;
+			newCharacter.ApplyChange(new HomelandSet(newCharacter.Id, newCharacter.Version + 1, pHomeland), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(HomelandSet pEvent)
+		{
+			Homeland = pEvent.Homeland;
+		}
+
 		public ICharacter SetDeity(IDeity pDeity)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pDeity)}: {pDeity}");
-
 			Assert.ArgumentNotNull(pDeity, nameof(pDeity));
 
 			var newCharacter = _copy();
-			newCharacter.Deity = pDeity;
+			newCharacter.ApplyChange(new DeitySet(newCharacter.Id, newCharacter.Version + 1, pDeity), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(DeitySet pEvent)
+		{
+			Deity = pEvent.Deity;
+		}
+
 		public ICharacter SetGender(Gender pGender)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pGender)}: {pGender}");
-
 			var newCharacter = _copy();
-			newCharacter.Gender = pGender;
+			newCharacter.ApplyChange(new GenderSet(newCharacter.Id, newCharacter.Version + 1, pGender), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(GenderSet pEvent)
+		{
+			Gender = pEvent.Gender;
+		}
+
 		public ICharacter SetEyes(string pEyes)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pEyes)}: {pEyes}");
-
 			Assert.ArgumentNotNull(pEyes, nameof(pEyes));
 
 			var newCharacter = _copy();
-			newCharacter.Eyes = pEyes;
+			newCharacter.ApplyChange(new EyesSet(newCharacter.Id, newCharacter.Version + 1, pEyes), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(EyesSet pEvent)
+		{
+			Eyes = pEvent.Eyes;
+		}
+
 		public ICharacter SetHair(string pHair)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pHair)}: {pHair}");
-
 			Assert.ArgumentNotNull(pHair, nameof(pHair));
 
 			var newCharacter = _copy();
-			newCharacter.Hair = pHair;
+			newCharacter.ApplyChange(new HairSet(newCharacter.Id, newCharacter.Version + 1, pHair), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(HairSet pEvent)
+		{
+			Hair = pEvent.Hair;
+		}
+
 		public ICharacter SetHeight(string pHeight)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pHeight)}: {pHeight}");
-
 			Assert.ArgumentNotNull(pHeight, nameof(pHeight));
 
 			var newCharacter = _copy();
-			newCharacter.Height = pHeight;
+			newCharacter.ApplyChange(new HeightSet(newCharacter.Id, newCharacter.Version + 1, pHeight), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(HeightSet pEvent)
+		{
+			Height = pEvent.Height;
+		}
+
 		public ICharacter SetWeight(string pWeight)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pWeight)}: {pWeight}");
-
 			Assert.ArgumentNotNull(pWeight, nameof(pWeight));
 
 			var newCharacter = _copy();
-			newCharacter.Weight = pWeight;
+			newCharacter.ApplyChange(new WeightSet(newCharacter.Id, newCharacter.Version + 1, pWeight), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(WeightSet pEvent)
+		{
+			Weight = pEvent.Weight;
 		}
 
 		public ICharacter AddLanguage(ILanguage pLanguage)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pLanguage)}: {pLanguage}");
-
 			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
+			if (Languages.Any(pLanguage.Equals))
+			{
+				return this;
+			}
 
 			var newCharacter = _copy();
 
-			if (!newCharacter.Languages.Any(pLanguage.Equals))
-			{
-				newCharacter.Languages = newCharacter.Languages.Append(pLanguage);
-			}
+			newCharacter.ApplyChange(new LanguageAdded(newCharacter.Id, newCharacter.Version + 1, pLanguage), true);
 
 			return newCharacter;
+		}
+		private void ApplyEvent(LanguageAdded pEvent)
+		{
+			var language = pEvent.Language;
+			Languages = Languages.Append(language);
 		}
 
 		public ICharacter RemoveLanguage(ILanguage pLanguage)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pLanguage)}: {pLanguage}");
-
 			Assert.ArgumentNotNull(pLanguage, nameof(pLanguage));
+			if (Race != null && Race.Languages.Contains(pLanguage))
+			{
+				return this;
+			}
 
 			var newCharacter = _copy();
 
-			newCharacter.Languages = newCharacter.Languages.Where(x => !x.Equals(pLanguage));
+			newCharacter.ApplyChange(new LanguageRemoved(newCharacter.Id, newCharacter.Version + 1, pLanguage), true);
 
 			return newCharacter;
+		}
+		private void ApplyEvent(LanguageRemoved pEvent)
+		{
+			var language = pEvent.Language;
+			Languages = Languages.Where(x => !x.Equals(language));
 		}
 
 		public ICharacter SetStrength(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseStrength = pBase;
-			newCharacter.EnhancedStrength = pEnhanced;
-			newCharacter.InherentStrength = pInherent;
+			newCharacter.ApplyChange(new StrengthSet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
 		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(StrengthSet pEvent)
+		{
+			BaseStrength = pEvent.Base;
+			EnhancedStrength = pEvent.Enhanced;
+			InherentStrength = pEvent.Inherent;
+		}
+
 		public ICharacter SetDexterity(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseDexterity = pBase;
-			newCharacter.EnhancedDexterity = pEnhanced;
-			newCharacter.InherentDexterity = pInherent;
+			newCharacter.ApplyChange(new DexteritySet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
 		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(DexteritySet pEvent)
+		{
+			BaseDexterity = pEvent.Base;
+			EnhancedDexterity = pEvent.Enhanced;
+			InherentDexterity = pEvent.Inherent;
+		}
+
 		public ICharacter SetConstitution(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseConstitution = pBase;
-			newCharacter.EnhancedConstitution = pEnhanced;
-			newCharacter.InherentConstitution = pInherent;
+			newCharacter.ApplyChange(new ConstitutionSet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
 		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(ConstitutionSet pEvent)
+		{
+
+			BaseConstitution = pEvent.Base;
+			EnhancedConstitution = pEvent.Enhanced;
+			InherentConstitution = pEvent.Inherent;
+		}
+
 		public ICharacter SetIntelligence(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseIntelligence = pBase;
-			newCharacter.EnhancedIntelligence = pEnhanced;
-			newCharacter.InherentIntelligence = pInherent;
+			newCharacter.ApplyChange(new IntelligenceSet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
 		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(IntelligenceSet pEvent)
+		{
+			BaseIntelligence = pEvent.Base;
+			EnhancedIntelligence = pEvent.Enhanced;
+			InherentIntelligence = pEvent.Inherent;
+		}
+
 		public ICharacter SetWisdom(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseWisdom = pBase;
-			newCharacter.EnhancedWisdom = pEnhanced;
-			newCharacter.InherentWisdom = pInherent;
+			newCharacter.ApplyChange(new WisdomSet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
 		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(WisdomSet pEvent)
+		{
+			BaseWisdom = pEvent.Base;
+			EnhancedWisdom = pEvent.Enhanced;
+			InherentWisdom = pEvent.Inherent;
+		}
+
 		public ICharacter SetCharisma(int pBase, int pEnhanced = 0, int pInherent = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pBase)}: {pBase}, " +
-			//						 $"{nameof(pEnhanced)}: {pEnhanced}, " +
-			//						 $"{nameof(pInherent)}: {pInherent}");
-
 			Assert.IsTrue(pBase > 0, $"{nameof(pBase)} cannot be less than 1.");
 			Assert.IsTrue(pEnhanced >= 0, $"{nameof(pEnhanced)} cannot be less than 0.");
 			Assert.IsTrue(pInherent >= 0, $"{nameof(pInherent)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.BaseCharisma = pBase;
-			newCharacter.EnhancedCharisma = pEnhanced;
-			newCharacter.InherentCharisma = pInherent;
+			newCharacter.ApplyChange(new CharismaSet(newCharacter.Id, newCharacter.Version + 1, pBase, pEnhanced, pInherent), true);
 			return newCharacter;
+		}
+		// ReSharper disable once SuggestBaseTypeForParameter
+		private void ApplyEvent(CharismaSet pEvent)
+		{
+			BaseCharisma = pEvent.Base;
+			EnhancedCharisma = pEvent.Enhanced;
+			InherentCharisma = pEvent.Inherent;
 		}
 
 		public ICharacter AddClass(IClass pClass)
 		{
-			////Tracer.Message(pMessage: $"{pClass}");
-
 			Assert.ArgumentNotNull(pClass, nameof(pClass));
 
 			var hitPoints = pClass.HitDie.Faces;
@@ -844,24 +1020,20 @@ namespace Pathfinder.Model
 			var hitPointsList = pHitPoints as int[] ?? (pHitPoints?.ToArray() ?? new int[0]);
 			Assert.IsTrue(hitPointsList.Length > 0, nameof(pHitPoints));
 
-			//Tracer.Message(pMessage: $"{nameof(pClass)}: {pClass}, " +
-			//						 $"{nameof(pLevel)}: {pLevel}, " +
-			//						 $"{nameof(pIsFavoredClass)}: {pIsFavoredClass}, " +
-			//						 $"{nameof(pHitPoints)}: [ {string.Join(", ", hitPointsList)} ]");
-
-
 			var newCharacter = _copy();
 
 			var characterClass = new CharacterClass(pClass, pLevel, pIsFavoredClass, hitPointsList);
-			newCharacter.Classes = Classes.Append(characterClass);
+			newCharacter.ApplyChange(new ClassAdded(Id, newCharacter.Version + 1, characterClass), true);
 
 			return newCharacter;
 		}
+		private void ApplyEvent(ClassAdded pEvent)
+		{
+			Classes = Classes.Append(pEvent.Class);
+		}
+
 		public ICharacter IncrementClass(IClass pClass, int pHitPoints = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pClass)}: {pClass}, " +
-			//						 $"{nameof(pHitPoints)}: {pHitPoints}");
-
 			Assert.ArgumentNotNull(pClass, nameof(pClass));
 
 			var characterClass = Classes.FirstOrDefault(x => x.Class.Equals(pClass));
@@ -870,61 +1042,82 @@ namespace Pathfinder.Model
 				throw new ArgumentException($"Class not found. Class name was {pClass.Name}");
 			}
 
-			var hitPoints = pHitPoints > 0 ? pHitPoints : pClass.HitDie.Faces;
-			var newCharacterClass = characterClass.IncrementLevel(hitPoints);
-
 			var newCharacter = _copy();
-			newCharacter.Classes = Classes.Where(x => !x.Equals(characterClass)).Append(newCharacterClass);
-
+			newCharacter.ApplyChange(new ClassLevelRaised(Id, newCharacter.Version + 1, pClass, pHitPoints), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(ClassLevelRaised pEvent)
+		{
+			var characterClass = Classes.FirstOrDefault(x => x.Class.Equals(pEvent.Class));
+			if (characterClass == null)
+			{
+				throw new ArgumentException($"Class not found. Class name was {pEvent.Class.Name}");
+			}
+
+			var hitPoints = pEvent.HitPoints > 0 ? pEvent.HitPoints : pEvent.Class.HitDie.Faces;
+			var newCharacterClass = characterClass.IncrementLevel(hitPoints);
+			Classes = Classes.Where(x => !x.Equals(characterClass)).Append(newCharacterClass);
 		}
 
 		public ICharacter SetDamage(int pDamage)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pDamage)}: {pDamage}");
-
 			Assert.IsTrue(pDamage >= 0, $"{nameof(pDamage)} cannot be less than 0.");
 
 			var newCharacter = _copy();
-			newCharacter.Damage = pDamage;
+			newCharacter.ApplyChange(new DamageTaken(Id, newCharacter.Version + 1, pDamage), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(DamageTaken pEvent)
+		{
+			Damage += pEvent.Damage;
+		}
+
 		public ICharacter AddDamage(int pDamage)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pDamage)}: {pDamage}");
-
 			var newCharacter = _copy();
-			newCharacter.Damage += pDamage;
+			var damageEvent =
+				pDamage > 0
+					? (IEvent)new DamageTaken(Id, newCharacter.Version + 1, pDamage)
+					: new DamageHealed(Id, newCharacter.Version + 1, -pDamage);
+
+			newCharacter.ApplyChange(damageEvent, true);
+
 			return newCharacter;
 		}
-
-		public ICharacter AppendExperience(IEvent pEvent)
+		private void ApplyEvent(DamageHealed pEvent)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pEvent)}: {pEvent}");
+			Damage -= pEvent.Healed;
+		}
+
+		public ICharacter AppendExperience(IExperienceEvent pEvent)
+		{
 			Assert.ArgumentNotNull(pEvent, nameof(pEvent));
 
 			var newCharacter = _copy();
-			newCharacter.Experience = Experience.Append(pEvent);
+			newCharacter.ApplyChange(new ExperienceAdded(Id, newCharacter.Version + 1, pEvent), true);
 
 			return newCharacter;
+		}
+		private void ApplyEvent(ExperienceAdded pEvent)
+		{
+			Experience = Experience.Append(pEvent.ExperienceEvent);
 		}
 
 		public ICharacter AppendExperience(IExperience pExperience)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pExperience)}: {pExperience}");
 			Assert.ArgumentNotNull(pExperience, nameof(pExperience));
 
 			var newCharacter = _copy();
-			newCharacter.Experience = Experience.Append(pExperience);
+			foreach (var experienceEvent in pExperience)
+			{
+				newCharacter.ApplyChange(new ExperienceAdded(Id, newCharacter.Version + 1, experienceEvent), true);
+			}
 
 			return newCharacter;
 		}
 
 		public ICharacter AssignSkillPoint(ISkill pSkill, int pPoint)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pSkill)}: {pSkill}, " +
-			//						 $"{nameof(pPoint)}: {pPoint}");
-
 			Assert.ArgumentNotNull(pSkill, nameof(pSkill));
 
 			var newCharacter = _copy();
@@ -933,14 +1126,17 @@ namespace Pathfinder.Model
 				SkillRanks.TryGetValue(pSkill, out originalRank) ? originalRank : 0;
 			int rank = pPoint + originalRank;
 
-			newCharacter.SkillRanks = newCharacter.SkillRanks.Add(pSkill, rank);
+			newCharacter.ApplyChange(new SkillRanksAssigned(Id, newCharacter.Version + 1, pSkill, rank), true);
 
 			return newCharacter;
+		}
+		private void ApplyEvent(SkillRanksAssigned pEvent)
+		{
+			SkillRanks = SkillRanks.Add(pEvent.Skill, pEvent.Ranks);
 		}
 
 		public ICharacter AddFeat(IFeat pFeat, string pSpecialization = null)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pFeat)}: {pFeat}");
 			Assert.ArgumentNotNull(pFeat, nameof(pFeat));
 
 			if (pFeat.IsSpecialized)
@@ -949,52 +1145,59 @@ namespace Pathfinder.Model
 			}
 
 			var newCharacter = _copy();
-			newCharacter.Feats = Feats.Append(new Feat(pFeat, pSpecialization));
+			newCharacter.ApplyChange(new FeatAdded(Id, newCharacter.Version + 1, pFeat, pSpecialization), true);
 
 			return newCharacter;
+		}
+		private void ApplyEvent(FeatAdded pEvent)
+		{
+			Feats = Feats.Append(new Feat(pEvent.Feat, pEvent.Specialization));
 		}
 
 		public ICharacter SetPurse(int pCopper, int pSilver = 0, int pGold = 0, int pPlatinum = 0)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pCopper)}: {pCopper}, " +
-			//						 $"{nameof(pSilver)}: {pSilver}, " +
-			//						 $"{nameof(pGold)}: {pGold}, " +
-			//						 $"{nameof(pPlatinum)}: {pPlatinum}");
-
 			var newCharacter = _copy();
-			newCharacter.Purse =
-				Purse.Add(
-					new Copper(pCopper),
-					new Silver(pSilver),
-					new Gold(pGold),
-					new Platinum(pPlatinum));
+			newCharacter.ApplyChange(new PurseSet(Id, newCharacter.Version + 1, pCopper, pSilver, pGold, pPlatinum), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(PurseSet pEvent)
+		{
+			Purse =
+				Purse.Add(
+					pEvent.Copper,
+					pEvent.Silver,
+					pEvent.Gold,
+					pEvent.Platinum);
 		}
 
 		public ICharacter AddToInventory(IItem pItem)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
 			Assert.ArgumentNotNull(pItem, nameof(pItem));
 
 			var newCharacter = _copy();
-			newCharacter.Inventory = Inventory.Add(pItem, 1);
-
+			newCharacter.ApplyChange(new ItemAddedToInventory(Id, newCharacter.Version + 1, pItem), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(ItemAddedToInventory pEvent)
+		{
+			Inventory = Inventory.Add(pEvent.Item, 1);
 		}
 
 		public ICharacter RemoveFromInventory(IItem pItem)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pItem)}: {pItem}");
 			Assert.ArgumentNotNull(pItem, nameof(pItem));
-			if (!Inventory.ContainsKey(pItem))
+			if (!Inventory.Contains(pItem))
 			{
 				return this;
 			}
 
 			var newCharacter = _copy();
-			newCharacter.Inventory = Inventory.Remove(pItem, 1);
-
+			newCharacter.ApplyChange(new ItemRemovedFromInventory(Id, newCharacter.Version + 1, pItem), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(ItemRemovedFromInventory pEvent)
+		{
+			Inventory = Inventory.Remove(pEvent.Item, 1);
 		}
 
 		public ICharacter UpdateInventory(IItem pItem)
@@ -1006,45 +1209,61 @@ namespace Pathfinder.Model
 
 		public ICharacter EquipArmor(IItem pArmorComponent)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pArmorComponent)}: {pArmorComponent}");
 			Assert.ArgumentNotNull(pArmorComponent, nameof(pArmorComponent));
 
-			if (!Inventory.ContainsKey(pArmorComponent))
+			if (!Inventory.Contains(pArmorComponent))
 			{
 				throw new ArgumentException("Item not in inventory.");
 			}
 
 			var newCharacter = _copy();
-			newCharacter._equipedArmor = _equipedArmor.Add(pArmorComponent.ItemType, pArmorComponent);
-
+			newCharacter.ApplyChange(new ArmorEquiped(Id, newCharacter.Version + 1, pArmorComponent), true);
 			return newCharacter;
+		}
+		private void ApplyEvent(ArmorEquiped pEvent)
+		{
+			_equipedArmor = _equipedArmor.Add(pEvent.Armor.ItemType, pEvent.Armor);
 		}
 
 		public ICharacter ReplaceArmor(IItem pArmorToReplace, IItem pArmorToEquip)
 		{
-			//Tracer.Message(pMessage: $"{nameof(pArmorToReplace)}: {pArmorToReplace}, " +
-			//						 $"{nameof(pArmorToEquip)}: {pArmorToEquip}");
 			Assert.ArgumentNotNull(pArmorToReplace, nameof(pArmorToReplace));
 			Assert.ArgumentNotNull(pArmorToEquip, nameof(pArmorToEquip));
 
-			if (!Inventory.ContainsKey(pArmorToReplace))
+			if (!Inventory.Contains(pArmorToReplace))
 			{
 				throw new ArgumentException($"Cannot remove item. Item not in inventory. {pArmorToReplace.Name}");
 			}
 
-			if (!Inventory.ContainsKey(pArmorToEquip))
+			if (!Inventory.Contains(pArmorToEquip))
 			{
 				throw new ArgumentException($"Cannot equip item. Item not in inventory. {pArmorToEquip.Name}");
 			}
 
-			var newCharacter = _copy();
-			newCharacter._equipedArmor = 
-				_equipedArmor
-					.Remove(pArmorToReplace.ItemType)
-					.Add(pArmorToEquip.ItemType, pArmorToEquip);
+			if (pArmorToReplace.ItemType != pArmorToEquip.ItemType)
+			{
+				throw new ArgumentException($"Item Types do not match; Equiped '{pArmorToReplace.ItemType}', Other '{pArmorToEquip.ItemType}'");
+			}
 
+			if (!_equipedArmor.TryGetValue(pArmorToReplace.ItemType, out IItem equipedItem)
+				|| !Equals(equipedItem, pArmorToReplace))
+			{
+				throw new ArgumentException($"Armor not equiped; {pArmorToReplace.Name}");
+			}
+
+			var newCharacter = _copy();
+			newCharacter.ApplyChange(new ArmorRemoved(Id, newCharacter.Version + 1, pArmorToReplace), true);
+			newCharacter.ApplyChange(new ArmorEquiped(Id, newCharacter.Version + 1, pArmorToEquip), true);
 			return newCharacter;
 		}
+		private void ApplyEvent(ArmorRemoved pEvent)
+		{
+			_equipedArmor = _equipedArmor.Remove(pEvent.Armor.ItemType);
+		}
+
+		/**
+		 * Utility Methods
+		 */
 
 		public ICharacter Copy()
 		{
@@ -1167,7 +1386,7 @@ namespace Pathfinder.Model
 				hashCode = (hashCode * 397) ^ CombatManeuverBonus.GetHashCode();
 				hashCode = (hashCode * 397) ^ (Experience?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (Feats?.GetHashCode() ?? 0);
-				hashCode = (hashCode * 397) ^ (SkillLibrary?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (SkillRepository?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (SkillRanks?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (MiscellenaousSkillBonuses?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (Weapons?.GetHashCode() ?? 0);

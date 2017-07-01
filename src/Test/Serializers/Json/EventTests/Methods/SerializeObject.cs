@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
@@ -12,7 +13,7 @@ namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
 		[Test]
 		public void Success()
 		{
-			var @event = new Event("Test Title", "Test Description", 100);
+			var @event = new ExperienceEvent("Test Title", "Test Description", 100);
 
 			Assert.That(
 				() => JsonConvert.SerializeObject(@event),
@@ -22,15 +23,15 @@ namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
 		[Test]
 		public void Expected()
 		{
-			var @event = new Event("Test Title", "Test Description", 100);
+			var @event = new ExperienceEvent("Test Title", "Test Description", 100);
 
 			var actual = JsonConvert.SerializeObject(@event);
 
 			var expected =
 				new StringBuilder("{")
-					.Append($"\"{nameof(IEvent.Title)}\":\"{@event.Title}\",")
-					.Append($"\"{nameof(IEvent.Description)}\":\"{@event.Description}\",")
-					.Append($"\"{nameof(IEvent.ExperiencePoints)}\":{@event.ExperiencePoints}")
+					.Append($"\"{nameof(IExperienceEvent.Title)}\":\"{@event.Title}\",")
+					.Append($"\"{nameof(IExperienceEvent.Description)}\":\"{@event.Description}\",")
+					.Append($"\"{nameof(IExperienceEvent.ExperiencePoints)}\":{@event.ExperiencePoints}")
 					.Append("}")
 					.ToString();
 

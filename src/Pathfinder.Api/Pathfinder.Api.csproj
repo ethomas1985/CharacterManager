@@ -97,14 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\CharacterGeneratorController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AbilityScoreSet.cs" />
-    <Compile Include="Models\EventImpl.cs" />
+    <Compile Include="Models\ExperienceEventImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

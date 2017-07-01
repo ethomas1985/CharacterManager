@@ -1,30 +1,25 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Model.Currency;
-using Pathfinder.Model.Items;
 using System;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class RemoveFromInventoryMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
-		}
-
-		private static Item CreateTestingItem()
-		{
-			return new Item("Testing Item", ItemType.None, "Category", new Purse(100), 10, "Description");
 		}
 
 		[Test]
@@ -33,8 +28,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var original = (ICharacter)new Character(SkillLibrary);
-					var result = original.RemoveFromInventory(null);
+					new Character(SkillRepository)
+						.RemoveFromInventory(null);
 				},
 				Throws.Exception.InstanceOf(typeof(ArgumentNullException)));
 		}
@@ -45,12 +40,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var item = CreateTestingItem();
-
-					var original = (ICharacter)new Character(SkillLibrary);
-					original = original.AddToInventory(item);
-
-					var result = original.RemoveFromInventory(item);
+					new Character(SkillRepository)
+						.AddToInventory(ItemMother.Create())
+						.RemoveFromInventory(ItemMother.Create());
 				},
 				Throws.Nothing);
 		}
@@ -61,11 +53,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var item = CreateTestingItem();
-
-					var original = (ICharacter)new Character(SkillLibrary);
-
-					var result = original.RemoveFromInventory(item);
+					new Character(SkillRepository)
+						.RemoveFromInventory(ItemMother.Create());
 				},
 				Throws.Nothing);
 		}
@@ -73,10 +62,10 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var item = CreateTestingItem();
+			var item = ItemMother.Create();
 
-			var original = (ICharacter)new Character(SkillLibrary);
-			original = original.AddToInventory(item);
+			var original = new Character(SkillRepository)
+				.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
 
@@ -86,12 +75,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var item = CreateTestingItem();
+			var item = ItemMother.Create();
 
-			var original = (ICharacter)new Character(SkillLibrary);
-			original = original.AddToInventory(item);
+			var original = new Character(SkillRepository)
+				.AddToInventory(item);
 
-			var result = original.RemoveFromInventory(item);
+			original.RemoveFromInventory(item);
 
 			Assert.IsNull(original.Name);
 		}
@@ -99,27 +88,49 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void DecrementsQuantityOfExistingItem()
 		{
-			var item = CreateTestingItem();
+			var item = ItemMother.Create();
 
-			var original = (ICharacter)new Character(SkillLibrary);
-			original = original.AddToInventory(item);
+			var original = new Character(SkillRepository)
+				.AddToInventory(item)
+				.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
 
-			Assert.IsNull(result.Name);
+			Assert.That(result.Inventory[item], Is.EqualTo(1));
 		}
 
 		[Test]
 		public void RemovesItemWhenQuantityReachesZero()
 		{
-			var item = CreateTestingItem();
+			var item = ItemMother.Create();
 
-			var original = (ICharacter)new Character(SkillLibrary);
-			original = original.AddToInventory(item);
+			var original = new Character(SkillRepository)
+				.AddToInventory(item);
 
 			var result = original.RemoveFromInventory(item);
 
-			Assert.IsNull(result.Name);
+			Assert.That(result.Inventory[item], Is.EqualTo(0));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var item = ItemMother.Create();
+
+			var original = new Character(SkillRepository)
+				.AddToInventory(item);
+
+			var result = original.RemoveFromInventory(item);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ItemAddedToInventory(original.Id, 1, item),
+						new ItemRemovedFromInventory(original.Id, 2, item),
+					}));
 		}
 	}
 }

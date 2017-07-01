@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Serializers.Json;
 using Pathfinder.Test.ObjectMothers;
 
@@ -15,11 +16,11 @@ namespace Pathfinder.Test.Serializers.Json
 	[SetUpFixture]
 	public class SetupTestFixtureForJsonSerializers
 	{
-		private static readonly Lazy<ILibrary<IClass>> LazyClassLibrary
-			= new Lazy<ILibrary<IClass>>(() =>
+		private static readonly Lazy<IRepository<IClass>> LazyClassLibrary
+			= new Lazy<IRepository<IClass>>(() =>
 			{
-				var testClass = ClassMother.Create();
-				var mockClassLibrary = new Mock<ILibrary<IClass>>();
+				var testClass = ClassMother.Level1Neutral();
+				var mockClassLibrary = new Mock<IRepository<IClass>>();
 
 				mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> { testClass });
 				mockClassLibrary.Setup(foo => foo[It.IsAny<string>()]).Returns(testClass);
@@ -27,14 +28,14 @@ namespace Pathfinder.Test.Serializers.Json
 				return mockClassLibrary.Object;
 			});
 
-		public static ILibrary<IClass> ClassLibrary => LazyClassLibrary.Value;
+		public static IRepository<IClass> ClassRepository => LazyClassLibrary.Value;
 
-		private static readonly Lazy<ILibrary<IRace>> LazyRaceLibrary
-			= new Lazy<ILibrary<IRace>>(() =>
+		private static readonly Lazy<IRepository<IRace>> LazyRaceLibrary
+			= new Lazy<IRepository<IRace>>(() =>
 				{
 					IRace race;
 					var testRace = RaceMother.Create();
-					var mockRaceLibrary = new Mock<ILibrary<IRace>>();
+					var mockRaceLibrary = new Mock<IRepository<IRace>>();
 
 					mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<IRace> { testRace });
 					mockRaceLibrary.Setup(foo => foo[It.IsAny<string>()]).Returns(testRace);
@@ -46,14 +47,14 @@ namespace Pathfinder.Test.Serializers.Json
 					return mockRaceLibrary.Object;
 				});
 
-		public static ILibrary<IRace> RaceLibrary => LazyRaceLibrary.Value;
+		public static IRepository<IRace> RaceRepository => LazyRaceLibrary.Value;
 
-		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
-			= new Lazy<ILibrary<ISkill>>(() =>
+		private static readonly Lazy<IRepository<ISkill>> LazySkillLibrary
+			= new Lazy<IRepository<ISkill>>(() =>
 				{
 					ISkill race;
 					var testSkill = SkillMother.Create();
-					var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+					var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 					var values = new List<ISkill> { testSkill };
 					
@@ -68,7 +69,7 @@ namespace Pathfinder.Test.Serializers.Json
 					return mockSkillLibrary.Object;
 				});
 
-		public static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
+		public static IRepository<ISkill> SkillRepository => LazySkillLibrary.Value;
 
 		[OneTimeSetUp]
 		public void RunBeforeAnyTests()
@@ -89,8 +90,8 @@ namespace Pathfinder.Test.Serializers.Json
 							new AbilityScoreJsonSerializer(),
 							new AbilityTypeJsonSerializer(),
 							new ArmorComponentJsonSerializer(),
-							new CharacterClassJsonSerializer(ClassLibrary),
-							new CharacterJsonSerializer(RaceLibrary, SkillLibrary),
+							new CharacterClassJsonSerializer(ClassRepository),
+							new CharacterJsonSerializer(RaceRepository, SkillRepository),
 							new ClassJsonSerializer(),
 							new ClassLevelJsonSerializer(),
 							new CurrencyJsonSerializer(),

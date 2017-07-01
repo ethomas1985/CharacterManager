@@ -1,6 +1,7 @@
 ﻿using Pathfinder.Interface;
 using Pathfinder.Utilities;
 using System;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Model
 {

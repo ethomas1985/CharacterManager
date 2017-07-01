@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Enums;
+using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model

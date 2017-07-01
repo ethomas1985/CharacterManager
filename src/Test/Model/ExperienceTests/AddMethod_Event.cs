@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 // ReSharper disable ExpressionIsAlwaysNull
@@ -15,7 +15,7 @@ namespace Pathfinder.Test.Model.ExperienceTests
 		{
 			var original = new Experience();
 
-			IEvent nullEvent = null;
+			IExperienceEvent nullEvent = null;
 			Assert.Throws<ArgumentNullException>(() => original.Append(nullEvent));
 		}
 
@@ -24,7 +24,7 @@ namespace Pathfinder.Test.Model.ExperienceTests
 		{
 			var original = new Experience();
 
-			var result = original.Append(new Event("Test", "Test", 10));
+			var result = original.Append(new ExperienceEvent("Test", "Test", 10));
 
 			Assert.AreEqual(10, result.Total);
 		}
@@ -34,7 +34,7 @@ namespace Pathfinder.Test.Model.ExperienceTests
 		{
 			var original = new Experience();
 
-			var result = original.Append(new Event("Test", "Test", 10));
+			var result = original.Append(new ExperienceEvent("Test", "Test", 10));
 
 			Assert.AreNotSame(original, result);
 		}
@@ -63,7 +63,7 @@ namespace Pathfinder.Test.Model.ExperienceTests
 		{
 			var original = new Experience();
 
-			var result = original.Append(new Event("Test", "Test", 10));
+			var result = original.Append(new ExperienceEvent("Test", "Test", 10));
 
 			Assert.AreNotSame(original, result);
 		}

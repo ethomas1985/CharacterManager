@@ -1,4 +1,4 @@
-using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Model.Currency;
 
 namespace Pathfinder.Model.Currency
 {

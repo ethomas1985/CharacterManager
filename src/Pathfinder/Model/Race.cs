@@ -2,6 +2,7 @@
 using Pathfinder.Interface;
 using System;
 using System.Collections.Generic;
+using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model

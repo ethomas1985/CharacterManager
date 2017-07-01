@@ -1,8 +1,9 @@
 ﻿using System;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Item;
 using System.Collections.Generic;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model.Items

@@ -3,17 +3,20 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
 using Moq;
+using Pathfinder.Enums;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetNameMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -22,7 +25,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.SetName(null));
 		}
@@ -30,7 +33,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			const string testName = "Test Name";
 			var result = original.SetName(testName);
@@ -41,7 +44,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -54,7 +57,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var skillLibrary = SkillLibrary;
+			var skillLibrary = SkillRepository;
 
 			var original = (ICharacter) new Character(skillLibrary);
 
@@ -62,6 +65,23 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			original.SetName(testName);
 
 			Assert.IsNull(original.Name);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			const string testName = "Test Name";
+			var result = original.SetName(testName);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new NameSet(original.Id, 1, testName),
+					}));
 		}
 	}
 }

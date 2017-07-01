@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 // ReSharper disable ExpressionIsAlwaysNull
@@ -27,9 +28,9 @@ namespace Pathfinder.Test.Model.ExperienceTests
 
 			var experience =
 				new Experience()
-					.Append(new Event("Test 1", "Test 1", 10))
-					.Append(new Event("Test 2", "Test 2", 10))
-					.Append(new Event("Test 3", "Test 3", 10));
+					.Append(new ExperienceEvent("Test 1", "Test 1", 10))
+					.Append(new ExperienceEvent("Test 2", "Test 2", 10))
+					.Append(new ExperienceEvent("Test 3", "Test 3", 10));
 			var result = original.Append(experience);
 
 			Assert.AreEqual(30, result.Total);
@@ -42,9 +43,9 @@ namespace Pathfinder.Test.Model.ExperienceTests
 
 			var experience =
 				new Experience()
-					.Append(new Event("Test 1", "Test 1", 10))
-					.Append(new Event("Test 2", "Test 2", 10))
-					.Append(new Event("Test 3", "Test 3", 10));
+					.Append(new ExperienceEvent("Test 1", "Test 1", 10))
+					.Append(new ExperienceEvent("Test 2", "Test 2", 10))
+					.Append(new ExperienceEvent("Test 3", "Test 3", 10));
 			var result = original.Append(experience);
 
 			Assert.AreNotSame(original, result);
@@ -57,9 +58,9 @@ namespace Pathfinder.Test.Model.ExperienceTests
 
 			var experience =
 				new Experience()
-					.Append(new Event("Test 1", "Test 1", 10))
-					.Append(new Event("Test 2", "Test 2", 10))
-					.Append(new Event("Test 3", "Test 3", 10));
+					.Append(new ExperienceEvent("Test 1", "Test 1", 10))
+					.Append(new ExperienceEvent("Test 2", "Test 2", 10))
+					.Append(new ExperienceEvent("Test 3", "Test 3", 10));
 			var result = original.Append(experience);
 
 			Assert.AreEqual(0, original.Count());

@@ -1,19 +1,21 @@
 using NUnit.Framework;
-using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetAgeMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -22,38 +24,54 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Negative()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			Assert.Throws<Exception>(() => original.SetAge(-1));
+			Assert.That(() => original.SetAge(-1), Throws.Exception.TypeOf<Exception>());
 		}
 
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			var result = original.SetAge(30);
 
-			Assert.AreEqual(30, result.Age);
+			Assert.That(result.Age, Is.EqualTo(30));
 		}
 
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			var result = original.SetAge(30);
 
-			Assert.AreNotSame(original, result);
+			Assert.That(result, Is.Not.SameAs(original));
 		}
 
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 			original.SetAge(30);
 
-			Assert.AreNotEqual(30, original.Age);
+			Assert.That(original.Age, Is.Not.EqualTo(30));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.SetAge(30);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new AgeSet(original.Id, 1, 30)
+					}));
 		}
 	}
 }

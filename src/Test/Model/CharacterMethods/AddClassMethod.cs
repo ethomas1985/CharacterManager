@@ -1,11 +1,13 @@
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -13,15 +15,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddClassMethod
 	{
-		private const int SKILL_ADDEND = 5;
-		private const int HIT_DIE_FACES = 6;
-
-		private static readonly Lazy<ILibrary<ISkill>> LazySkillLibrary
-			= new Lazy<ILibrary<ISkill>>(() =>
+		private static readonly Lazy<IRepository<ISkill>> LazySkillLibrary
+			= new Lazy<IRepository<ISkill>>(() =>
 			{
 				ISkill race;
 				var testSkill = SkillMother.Create();
-				var mockRaceLibrary = new Mock<ILibrary<ISkill>>();
+				var mockRaceLibrary = new Mock<IRepository<ISkill>>();
 
 				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
 				mockRaceLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
@@ -29,30 +28,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 					.Setup(foo => foo.TryGetValue(testSkill.Name, out race))
 					.OutCallback((string t, out ISkill r) => r = testSkill)
 					.Returns(true);
-					
+
 				return mockRaceLibrary.Object;
 			});
 
-		internal static ILibrary<ISkill> SkillLibrary => LazySkillLibrary.Value;
-
-		private static IClass CreateMockClass()
-		{
-			return ClassMother.Create(
-				"Mock Class",
-				new HashSet<Alignment>
-					{
-						Alignment.ChaoticGood,
-						Alignment.ChaoticNeutral,
-						Alignment.ChaoticEvil
-					},
-				new Die(HIT_DIE_FACES),
-				SKILL_ADDEND);
-		}
+		internal static IRepository<ISkill> SkillRepository => LazySkillLibrary.Value;
 
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.AddClass(null));
 		}
@@ -60,25 +45,25 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void InvalidLevel()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), -1, false, new List<int>()));
+			Assert.Throws<Exception>(() => original.AddClass(ClassMother.Chaotic(), -1, false, new List<int>()));
 		}
 
 		[Test]
 		public void NullHitPoints()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			Assert.Throws<Exception>(() => original.AddClass(CreateMockClass(), 1, false, null));
+			Assert.Throws<Exception>(() => original.AddClass(ClassMother.Chaotic(), 1, false, null));
 		}
 
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass);
 
 			Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(mockClass)));
@@ -87,9 +72,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Level()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass);
 
 			Assert.AreEqual(1, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.Level);
@@ -98,9 +83,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_IsFavored()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass);
 
 			Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.IsFavored);
@@ -109,9 +94,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_HitPoints()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary))
+			var original = ((ICharacter)new Character(SkillRepository))
 				.SetConstitution(10);
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass);
 
 			var expected = mockClass.HitDie.Faces + original.Constitution.Modifier;
@@ -121,21 +106,21 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_MaxSkillRanks()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass);
 
-			var expected = SKILL_ADDEND + original.Intelligence.Modifier;
+			var expected = mockClass.SkillAddend + original.Intelligence.Modifier;
 			Assert.AreEqual(expected, result.MaxSkillRanks);
 		}
 
 		[Test]
 		public void Success_Overload()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
 			Assert.IsTrue(result.Classes.Any(x => x.Class.Equals(mockClass)));
@@ -144,9 +129,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_Level()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
 			Assert.AreEqual(10, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.Level);
@@ -155,9 +140,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_IsFavored()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
 			Assert.AreEqual(true, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.IsFavored);
@@ -166,10 +151,10 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_HitPoints()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary))
+			var original = ((ICharacter)new Character(SkillRepository))
 				.SetConstitution(10);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
 			Assert.AreEqual(30, result.Classes.FirstOrDefault(x => x.Class.Equals(mockClass))?.HitPoints.Sum());
@@ -178,21 +163,21 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success_Overload_MaxSkillRanks()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			var result = original.AddClass(mockClass, 10, true, new List<int> { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 });
 
-			var expected = SKILL_ADDEND + original.Intelligence.Modifier;
+			var expected = mockClass.SkillAddend + original.Intelligence.Modifier;
 			Assert.AreEqual(expected, result.MaxSkillRanks);
 		}
 
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var result = original.AddClass(CreateMockClass());
+			var result = original.AddClass(ClassMother.Chaotic());
 
 			Assert.AreNotSame(original, result);
 		}
@@ -200,12 +185,29 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			var mockClass = CreateMockClass();
+			var mockClass = ClassMother.Chaotic();
 			original.AddClass(mockClass);
 
 			Assert.IsFalse(original.Classes.Any(x => x.Class.Equals(mockClass)));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var mockClass = ClassMother.Chaotic();
+			var result = original.AddClass(mockClass);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ClassAdded(original.Id, 1, new CharacterClass(mockClass, 1, true, new [] { mockClass.HitDie.Faces })),
+					}));
 		}
 	}
 }

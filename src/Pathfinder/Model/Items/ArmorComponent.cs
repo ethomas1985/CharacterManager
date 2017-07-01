@@ -1,5 +1,5 @@
 ﻿using System;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model.Items

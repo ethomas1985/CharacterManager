@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 {
@@ -10,8 +11,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		public void Success()
 		{
 			var character =
-				CharacterJsonSerializerUtils
-					.GetTestCharacter();
+				CharacterMother
+					.UnitMcTesterFace();
 
 			Assert.That(
 				() => JsonConvert.SerializeObject(character),
@@ -22,8 +23,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		public void Expected()
 		{
 			var testCharacter =
-				CharacterJsonSerializerUtils
-					.GetTestCharacter();
+				CharacterMother
+					.UnitMcTesterFace();
 
 			var actual = JsonConvert.SerializeObject(testCharacter, Formatting.Indented);
 			var expected = Resources.TestCharacter.Replace("\t", "  ");

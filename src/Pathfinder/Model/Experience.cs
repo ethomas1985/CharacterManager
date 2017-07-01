@@ -3,25 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model
 {
 	internal class Experience : IExperience, IEquatable<IExperience>
 	{
-		private readonly IEnumerable<IEvent> _events;
+		private readonly IEnumerable<IExperienceEvent> _events;
 
 		public Experience()
 		{
-			_events = new List<IEvent>();
+			_events = new List<IExperienceEvent>();
 		}
 
-		private Experience(IEnumerable<IEvent> pEvents)
+		private Experience(IEnumerable<IExperienceEvent> pEvents)
 		{
 			_events = pEvents;
 		}
 
-		public IEnumerator<IEvent> GetEnumerator()
+		public IEnumerator<IExperienceEvent> GetEnumerator()
 		{
 			return _events.GetEnumerator();
 		}
@@ -31,7 +32,7 @@ namespace Pathfinder.Model
 			return ((IEnumerable) _events).GetEnumerator();
 		}
 
-		public IExperience Append(IEvent pItem)
+		public IExperience Append(IExperienceEvent pItem)
 		{
 			Assert.ArgumentNotNull(pItem, nameof(pItem));
 
@@ -40,7 +41,7 @@ namespace Pathfinder.Model
 
 		public IExperience Append(string pTitle, string pDescription, int pExperiencePoints)
 		{
-			return Append(new Event(pTitle, pDescription, pExperiencePoints));
+			return Append(new ExperienceEvent(pTitle, pDescription, pExperiencePoints));
 		}
 
 		public IExperience Append(IExperience pExperience)
@@ -50,7 +51,7 @@ namespace Pathfinder.Model
 			return new Experience(_events.Append(pExperience));
 		}
 
-		public IExperience Remove(IEvent pEvent)
+		public IExperience Remove(IExperienceEvent pEvent)
 		{
 			return new Experience(_events.Where(x => !x.Equals(pEvent)));
 		}
@@ -77,7 +78,7 @@ namespace Pathfinder.Model
 			{
 				return true;
 			}
-			return ComparisonUtilities.CompareEnumerables(nameof(IExperience), this, pOther, nameof(IEnumerable<IEvent>));
+			return ComparisonUtilities.CompareEnumerables(nameof(IExperience), this, pOther, nameof(IEnumerable<IExperienceEvent>));
 		}
 
 		public override int GetHashCode()

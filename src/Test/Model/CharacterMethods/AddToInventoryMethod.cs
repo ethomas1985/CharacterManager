@@ -1,12 +1,13 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Model;
-using Pathfinder.Model.Currency;
-using Pathfinder.Model.Items;
 using System;
 using System.Linq;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -14,12 +15,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddToInventoryMethod
 	{
-		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
-
-		private static Item CreateTestingItem()
-		{
-			return new Item("Testing Item", ItemType.None, "Category", new Purse(100), 10, "Description");
-		}
+		private static readonly IRepository<ISkill> SkillRepository = new Mock<IRepository<ISkill>>().Object;
 
 		[Test]
 		public void ThrowsWhenItemIsNull()
@@ -27,8 +23,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.That(
 				() =>
 				{
-					var original = (ICharacter)new Character(SkillLibrary);
-					var result = original.AddToInventory(null);
+					new Character(SkillRepository).AddToInventory(null);
 				},
 				Throws.Exception.InstanceOf(typeof(ArgumentNullException)));
 		}
@@ -37,22 +32,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		public void Success()
 		{
 			Assert.That(
-				() =>
-				{
-					var original = (ICharacter)new Character(SkillLibrary);
-
-					var item = CreateTestingItem();
-
-					var result = original.AddToInventory(item);
-				},
+				() => new Character(SkillRepository)
+						.AddToInventory(ItemMother.Create()),
 				Throws.Nothing);
 		}
 
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
-			var item = CreateTestingItem();
+			var original = (ICharacter)new Character(SkillRepository);
+			var item = ItemMother.Create();
 
 			var result = original.AddToInventory(item);
 
@@ -62,8 +51,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
-			var item = CreateTestingItem();
+			var original = (ICharacter)new Character(SkillRepository);
+			var item = ItemMother.Create();
 
 			var result = original.AddToInventory(item);
 
@@ -73,12 +62,30 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void IncrementsQuantityOfExistingItem()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
-			var item = CreateTestingItem();
+			var original = (ICharacter)new Character(SkillRepository);
+			var item = ItemMother.Create();
 
 			var result = original.AddToInventory(item);
 
 			Assert.IsNull(result.Name);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			ICharacter original = new Character(SkillRepository);
+			var item = ItemMother.Create();
+
+			var result = original.AddToInventory(item);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ItemAddedToInventory(original.Id, 1, item),
+					}));
 		}
 	}
 }

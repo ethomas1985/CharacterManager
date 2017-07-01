@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.ObjectMothers
@@ -8,7 +8,7 @@ namespace Pathfinder.Test.ObjectMothers
 	public static class ClassMother
 	{
 
-		public static IClass Create()
+		public static IClass Level1Neutral()
 		{
 			return new Class(
 				pName: "Test Class",
@@ -38,13 +38,18 @@ namespace Pathfinder.Test.ObjectMothers
 				pFeatures: new List<string>());
 		}
 
-		public static IClass Create(string pName, ISet<Alignment> pAlignments, IDie pHitDie, int pSkillAddend)
+		public static IClass Chaotic()
 		{
 			return new Class(
-				pName: pName,
-				pAlignments: pAlignments,
-				pHitDie: pHitDie,
-				pSkillAddend: pSkillAddend,
+				pName: "Mock Class",
+				pAlignments: new HashSet<Alignment>
+					{
+						Alignment.ChaoticGood,
+						Alignment.ChaoticNeutral,
+						Alignment.ChaoticEvil
+					},
+				pHitDie: new Die(6),
+				pSkillAddend: 5,
 				pSkills: new HashSet<string>(),
 				pClassLevels: new IClassLevel[0],
 				pFeatures: new string[0]);

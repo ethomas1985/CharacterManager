@@ -4,19 +4,21 @@ using Pathfinder.Model;
 using System;
 using System.Linq;
 using Moq;
-using Pathfinder.Test.Serializers.Json.CharacterTests;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class AddFeatMethod
 	{
-		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
+		private static readonly IRepository<ISkill> SkillRepository = new Mock<IRepository<ISkill>>().Object;
 
 		[Test]
 		public void FailsWithNullFeat()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.AddFeat(null));
 		}
@@ -24,9 +26,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
-			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
+			var result = original.AddFeat(FeatMother.CreateTestingFeat2());
 
 			Assert.AreNotSame(original, result);
 		}
@@ -34,8 +36,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
-			original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
+			ICharacter original = new Character(SkillRepository);
+			original.AddFeat(FeatMother.CreateTestingFeat2());
 
 			Assert.That(original.Feats, Is.Empty);
 		}
@@ -43,9 +45,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
-			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2());
+			var result = original.AddFeat(FeatMother.CreateTestingFeat2());
 
 			Assert.That(result.Feats.Count(), Is.EqualTo(1));
 		}
@@ -55,11 +57,29 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		{
 			const string specialization = "user-choice";
 
-			var original = (ICharacter)new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
-			var result = original.AddFeat(CharacterJsonSerializerUtils.CreateTestingFeat2(), specialization);
+			var result = original.AddFeat(FeatMother.CreateTestingFeat2(), specialization);
 
 			Assert.That(result.Feats.First().Specialization, Is.EqualTo(specialization));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			ICharacter original = new Character(SkillRepository);
+
+			var testingFeat1 = FeatMother.CreateTestingFeat1();
+			var result = original.AddFeat(testingFeat1);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new FeatAdded(original.Id, 1, testingFeat1),
+					}));
 		}
 	}
 }

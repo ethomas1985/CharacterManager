@@ -3,8 +3,8 @@ using System.Linq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
@@ -30,7 +30,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		public void Expected()
 		{
 			var result = JsonConvert.DeserializeObject<ICharacter>(Resources.TestCharacter);
-			var testCharacter = CharacterJsonSerializerUtils.GetTestCharacter();
+			var testCharacter = CharacterMother.UnitMcTesterFace();
 
 			Assert.That(result, Is.EqualTo(testCharacter));
 		}
@@ -260,7 +260,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		[Test]
 		public void WithExperience()
 		{
-			var @event = new Event("Test Event", "Event Description", 10000);
+			var @event = new ExperienceEvent("Test Event", "Event Description", 10000);
 			var result = JsonConvert.DeserializeObject<ICharacter>(
 				$"{{ \"{nameof(ICharacter.Experience)}\": [ {JsonConvert.SerializeObject(@event)} ] }}");
 			Assert.That(result.Experience, Is.EquivalentTo(new[] { @event }));
@@ -269,7 +269,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		[Test]
 		public void WithFeats()
 		{
-			var name = CharacterJsonSerializerUtils.CreateTestingFeat1();
+			var name = FeatMother.CreateTestingFeat1();
 			var result = JsonConvert.DeserializeObject<ICharacter>(
 				$"{{ \"{nameof(ICharacter.Feats)}\": [ {JsonConvert.SerializeObject(name)} ] }}");
 			Assert.That(result.Feats, Is.EquivalentTo(new[] { name }));
@@ -278,7 +278,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		[Test]
 		public void WithInventory()
 		{
-			var testingItem = CharacterJsonSerializerUtils.CreateTestingItem();
+			var testingItem = ItemMother.Create();
 			var result = JsonConvert.DeserializeObject<ICharacter>(
 				$"{{ " +
 				$"\"{nameof(ICharacter.Inventory)}\": [ " +
@@ -294,7 +294,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 		[Test]
 		public void WithEquipedArmor()
 		{
-			var testingItem = CharacterJsonSerializerUtils.CreateTestingItem();
+			var testingItem = ItemMother.Create();
 			var result = JsonConvert.DeserializeObject<ICharacter>(
 				$"{{ " +
 				$"\"{nameof(ICharacter.Inventory)}\": [ " +

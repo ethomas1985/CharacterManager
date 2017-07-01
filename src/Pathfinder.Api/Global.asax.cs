@@ -15,11 +15,11 @@ namespace Pathfinder.Api
 			var formatters = GlobalConfiguration.Configuration.Formatters;
 			var jsonFormatter = formatters.JsonFormatter;
 
-			var libraryFactory = new LibraryFactory();
+			var libraryFactory = new RepositoryFactory();
 
-			var classLibrary = libraryFactory.GetClassLibrary();
-			var raceLibrary = libraryFactory.GetRaceLibrary();
-			var skillLibrary = libraryFactory.GetSkillLibrary();
+			var classLibrary = libraryFactory.GetClassRespository();
+			var raceLibrary = libraryFactory.GetRaceRespository();
+			var skillLibrary = libraryFactory.GetSkillRespository();
 
 			jsonFormatter.SerializerSettings.Converters =
 				new List<JsonConverter>

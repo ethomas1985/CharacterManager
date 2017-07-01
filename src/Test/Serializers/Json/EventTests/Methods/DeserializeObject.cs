@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
@@ -12,21 +13,21 @@ namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
 		public void RequiresTitle()
 		{
 			Assert.That(
-				() => JsonConvert.DeserializeObject<IEvent>("{}"),
+				() => JsonConvert.DeserializeObject<IExperienceEvent>("{}"),
 				Throws.Exception
 					.TypeOf<JsonException>()
-					.With.Message.EqualTo($"Missing Required Attribute: {nameof(IEvent.Title)}"));
+					.With.Message.EqualTo($"Missing Required Attribute: {nameof(IExperienceEvent.Title)}"));
 		}
 
 		[Test]
 		public void WithTitle()
 		{
 			const string title = "Testing Title";
-			var stringValue = $"{{ \"{nameof(IEvent.Title)}\": \"{title}\" }}";
+			var stringValue = $"{{ \"{nameof(IExperienceEvent.Title)}\": \"{title}\" }}";
 
-			var result = JsonConvert.DeserializeObject<IEvent>(stringValue);
+			var result = JsonConvert.DeserializeObject<IExperienceEvent>(stringValue);
 
-			var expected = new Event(title, string.Empty, 0);
+			var expected = new ExperienceEvent(title, string.Empty, 0);
 			Assert.That(result, Is.EqualTo(expected));
 		}
 
@@ -37,13 +38,13 @@ namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
 			const string description = "Testing Description";
 			var stringValue = 
 				$"{{ " +
-				$"\"{nameof(IEvent.Title)}\": \"{title}\", " +
-				$"\"{nameof(IEvent.Description)}\": \"{description}\" " +
+				$"\"{nameof(IExperienceEvent.Title)}\": \"{title}\", " +
+				$"\"{nameof(IExperienceEvent.Description)}\": \"{description}\" " +
 				$"}}";
 
-			var result = JsonConvert.DeserializeObject<IEvent>(stringValue);
+			var result = JsonConvert.DeserializeObject<IExperienceEvent>(stringValue);
 
-			var expected = new Event(title, description, 0);
+			var expected = new ExperienceEvent(title, description, 0);
 			Assert.That(result, Is.EqualTo(expected));
 		}
 
@@ -54,13 +55,13 @@ namespace Pathfinder.Test.Serializers.Json.EventTests.Methods
 			const int experiencePoints = 100;
 			var stringValue =
 				$"{{ " +
-				$"\"{nameof(IEvent.Title)}\": \"{title}\", " +
-				$"\"{nameof(IEvent.ExperiencePoints)}\": {experiencePoints} " +
+				$"\"{nameof(IExperienceEvent.Title)}\": \"{title}\", " +
+				$"\"{nameof(IExperienceEvent.ExperiencePoints)}\": {experiencePoints} " +
 				$"}}";
 
-			var result = JsonConvert.DeserializeObject<IEvent>(stringValue);
+			var result = JsonConvert.DeserializeObject<IExperienceEvent>(stringValue);
 
-			var expected = new Event(title, string.Empty, experiencePoints);
+			var expected = new ExperienceEvent(title, string.Empty, experiencePoints);
 			Assert.That(result, Is.EqualTo(expected));
 		}
 	}

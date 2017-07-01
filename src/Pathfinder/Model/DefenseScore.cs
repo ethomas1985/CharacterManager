@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Model
 {

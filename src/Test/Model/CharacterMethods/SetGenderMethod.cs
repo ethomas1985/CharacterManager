@@ -1,7 +1,9 @@
 using Moq;
 using NUnit.Framework;
 using Pathfinder.Enums;
+using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -9,11 +11,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class SetGenderMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -22,7 +24,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 			var result = original.SetGender(Gender.Male);
 
 			Assert.AreEqual(Gender.Male, result.Gender);
@@ -31,7 +33,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			var result = original.SetGender(Gender.Male);
 
@@ -41,10 +43,26 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 			original.SetGender(Gender.Male);
 
 			Assert.AreEqual(Gender.Female, original.Gender);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.SetGender(Gender.Male);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new GenderSet(original.Id, 1, Gender.Male), 
+					}));
 		}
 	}
 }

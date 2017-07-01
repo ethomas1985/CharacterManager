@@ -3,22 +3,25 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Pathfinder.Enums;
+using Pathfinder.Events.Character;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class ReplaceArmorMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -27,7 +30,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void RequiresArmorToReplaceNotNull()
 		{
-			ICharacter original = new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
 			Assert.That(
 				() => original.ReplaceArmor(null, null),
@@ -35,9 +38,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		}
 
 		[Test]
-		public void ReturnsArmorToEquipNotNull()
+		public void RequiresArmorToEquipNotNull()
 		{
-			ICharacter original = new Character(SkillLibrary);
+			ICharacter original = new Character(SkillRepository);
 
 			Assert.That(
 				() => original.ReplaceArmor(new Mock<IItem>().Object, null),
@@ -47,8 +50,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void RequiresArmorToReplaceToBeInInventory()
 		{
-			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			ICharacter original = new Character(SkillLibrary);
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			ICharacter original = new Character(SkillRepository);
 
 			Assert.That(
 				() => original.ReplaceArmor(armorToReplace, new Mock<IItem>().Object),
@@ -58,12 +61,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		}
 
 		[Test]
-		public void ReturnsArmorToEquipToBeInInventory()
+		public void RequiresArmorToEquipToBeInInventory()
 		{
-			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			var armorToEquip = CreateTestingItem($"Armor To Equip");
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorToReplace);
 
 			Assert.That(
@@ -74,14 +77,49 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		}
 
 		[Test]
+		public void RequiresMatchingItemType()
+		{
+			var armorToReplace = ItemMother.Armor();
+			var armorToEquip = ItemMother.Arms();
+			ICharacter original =
+				new Character(SkillRepository)
+					.AddToInventory(armorToReplace)
+					.AddToInventory(armorToEquip);
+
+			Assert.That(
+				() => original.ReplaceArmor(armorToReplace, armorToEquip),
+				Throws.Exception
+					.TypeOf<ArgumentException>()
+					.With.Message.EqualTo($"Item Types do not match; Equiped '{armorToReplace.ItemType}', Other '{armorToEquip.ItemType}'"));
+		}
+
+		[Test]
+		public void RequiresArmorToAlreadyBeEquiped()
+		{
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
+			ICharacter original =
+				new Character(SkillRepository)
+					.AddToInventory(armorToReplace)
+					.AddToInventory(armorToEquip);
+
+			Assert.That(
+				() => original.ReplaceArmor(armorToReplace, armorToEquip),
+				Throws.Exception
+					.TypeOf<ArgumentException>()
+					.With.Message.EqualTo($"Armor not equiped; {armorToReplace.Name}"));
+		}
+
+		[Test]
 		public void ReturnsNewInstance()
 		{
-			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			var armorToEquip = CreateTestingItem($"Armor To Equip");
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
 
-			ICharacter original = new Character(SkillLibrary)
+			ICharacter original = new Character(SkillRepository)
 				.AddToInventory(armorToReplace)
-				.AddToInventory(armorToEquip);
+				.AddToInventory(armorToEquip)
+				.EquipArmor(armorToReplace);
 
 			ICharacter result = original.ReplaceArmor(armorToReplace, armorToEquip);
 
@@ -91,10 +129,10 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			var armorToEquip = CreateTestingItem($"Armor To Equip");
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
 
-			ICharacter original = new Character(SkillLibrary)
+			ICharacter original = new Character(SkillRepository)
 				.AddToInventory(armorToReplace)
 				.AddToInventory(armorToEquip)
 				.EquipArmor(armorToReplace);
@@ -107,34 +145,44 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var armorToReplace = CreateTestingItem($"Armor To Replace");
-			var armorToEquip = CreateTestingItem($"Armor To Equip");
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
 
-			ICharacter original = new Character(SkillLibrary)
+			ICharacter original = new Character(SkillRepository)
 				.AddToInventory(armorToReplace)
-				.AddToInventory(armorToEquip);
+				.AddToInventory(armorToEquip)
+				.EquipArmor(armorToReplace);
 
 			var result = original.ReplaceArmor(armorToReplace, armorToEquip);
 
 			Assert.That(result.EquipedArmor.Select(x => x.Value).First(), Is.EqualTo(armorToEquip));
 		}
 
-		public static IItem CreateTestingItem(string pName)
+		[Test]
+		public void HasPendingEvents()
 		{
-			return new Item(
-				pName,
-				ItemType.None,
-				"Unit Testing",
-				new Purse(1, 1, 1, 1),
-				pWeight: 12,
-				pDescription: "For Unit Testing",
-				pArmorComponent: new ArmorComponent(
-					pArmorBonus: 1,
-					pShieldBonus: 1,
-					pMaximumDexterityBonus: 1,
-					pArmorCheckPenalty: 1,
-					pArcaneSpellFailureChance: 0.20m,
-					pSpeed: 25));
+			var armorToReplace = ItemMother.Armor($"Armor To Replace");
+			var armorToEquip = ItemMother.Armor($"Armor To Equip");
+
+			ICharacter original = new Character(SkillRepository)
+				.AddToInventory(armorToReplace)
+				.AddToInventory(armorToEquip)
+				.EquipArmor(armorToReplace);
+
+			var result = original.ReplaceArmor(armorToReplace, armorToEquip);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ItemAddedToInventory(original.Id, 1, armorToReplace),
+						new ItemAddedToInventory(original.Id, 2, armorToEquip),
+						new ArmorEquiped(original.Id, 3, armorToReplace),
+						new ArmorRemoved(original.Id, 4, armorToReplace),
+						new ArmorEquiped(original.Id, 5, armorToEquip),
+					}));
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 using Assert = NUnit.Framework.Assert;
@@ -12,12 +13,12 @@ namespace Pathfinder.Test.Serializers.Json.SkillScoreTests.Methods
 	[TestFixture]
 	public class SerializeObject
 	{
-		private static ILibrary<ISkill> SkillLibrary => SetupTestFixtureForJsonSerializers.SkillLibrary;
+		private static IRepository<ISkill> SkillRepository => SetupTestFixtureForJsonSerializers.SkillRepository;
 
 		[Test]
 		public void Success()
 		{
-			var skill = SkillLibrary.Values.First();
+			var skill = SkillRepository.Values.First();
 			var skillScore =
 				new SkillScore(skill, new AbilityScore(skill.AbilityType, 10), 1, 1, 1, 1, 1);
 
@@ -29,7 +30,7 @@ namespace Pathfinder.Test.Serializers.Json.SkillScoreTests.Methods
 		[Test]
 		public void Expected()
 		{
-			var skill = SkillLibrary.Values.First();
+			var skill = SkillRepository.Values.First();
 			var skillScore =
 				new SkillScore(skill, new AbilityScore(skill.AbilityType, 10), 1, 1, 1, 1, 1);
 			var actual = JsonConvert.SerializeObject(skillScore);

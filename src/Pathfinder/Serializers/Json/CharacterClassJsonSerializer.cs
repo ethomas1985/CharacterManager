@@ -2,15 +2,16 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Serializers.Json
 {
 	public class CharacterClassJsonSerializer : AbstractJsonSerializer<ICharacterClass>
 	{
-		public CharacterClassJsonSerializer(ILibrary<IClass> pClassLibrary)
+		public CharacterClassJsonSerializer(IRepository<IClass> pClassRepository)
 		{
-			ClassLibrary = pClassLibrary;
+			ClassRepository = pClassRepository;
 		}
 
 		protected override void SerializeToJson(
@@ -42,7 +43,7 @@ namespace Pathfinder.Serializers.Json
 			{
 				throw new JsonException($"Missing Required Attribute: {nameof(ICharacterClass.Class)}");
 			}
-			var @class = ClassLibrary[className];
+			var @class = ClassRepository[className];
 
 			var level = GetInt(pJobject, nameof(ICharacterClass.Level));
 			var isFavored = GetBoolean(pJobject, nameof(ICharacterClass.IsFavored));
@@ -53,6 +54,6 @@ namespace Pathfinder.Serializers.Json
 			return new CharacterClass(@class, level, isFavored, hitPoints);
 		}
 
-		public ILibrary<IClass> ClassLibrary { get; }
+		public IRepository<IClass> ClassRepository { get; }
 	}
 }

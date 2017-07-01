@@ -1,8 +1,8 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface.Currency;
-using Pathfinder.Interface.Item;
 using Pathfinder.Utilities;
 using System;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Model.Items
 {

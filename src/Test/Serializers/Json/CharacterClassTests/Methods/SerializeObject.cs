@@ -3,6 +3,7 @@ using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Test.ObjectMothers;
 
@@ -14,8 +15,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void Success()
 		{
-			var testClass = ClassMother.Create();
-			var mockClassLibrary = new Mock<ILibrary<IClass>>();
+			var testClass = ClassMother.Level1Neutral();
+			var mockClassLibrary = new Mock<IRepository<IClass>>();
 			mockClassLibrary.Setup(foo => foo.Values).Returns(new List<IClass> {testClass});
 			var classLibrary =mockClassLibrary.Object;
 
@@ -28,7 +29,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterClassTests.Methods
 		[Test]
 		public void Expected()
 		{
-			var testClass = ClassMother.Create();
+			var testClass = ClassMother.Level1Neutral();
 			var characterClass = new CharacterClass(testClass, 1, false, null);
 			
 			var actual = JsonConvert.SerializeObject(characterClass);

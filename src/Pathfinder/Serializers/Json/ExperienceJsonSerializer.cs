@@ -3,6 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Serializers.Json
@@ -14,7 +15,7 @@ namespace Pathfinder.Serializers.Json
 		{
 			pWriter.WriteStartArray();
 
-			foreach (IEvent experienceEvent in pValue)
+			foreach (IExperienceEvent experienceEvent in pValue)
 			{
 				pSerializer.Serialize(pWriter, experienceEvent);
 			}
@@ -31,7 +32,7 @@ namespace Pathfinder.Serializers.Json
 				tokens
 					.Aggregate(
 						experience,
-						(current, token) => current.Append(pSerializer.Deserialize<IEvent>(token.CreateReader())));
+						(current, token) => current.Append(pSerializer.Deserialize<IExperienceEvent>(token.CreateReader())));
 		}
 
 		protected override IExperience DeserializeFromJson(JsonSerializer pSerializer, JObject pJobject)

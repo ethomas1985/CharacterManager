@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Serializers.Json

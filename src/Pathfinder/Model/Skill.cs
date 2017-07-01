@@ -1,6 +1,7 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
 using System;
+using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Model

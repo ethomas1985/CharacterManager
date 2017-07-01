@@ -2,8 +2,8 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface.Currency;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;

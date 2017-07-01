@@ -2,11 +2,12 @@
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Currency;
 using Pathfinder.Model;
 using System;
 using System.Linq;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Utilities;
 
 namespace Pathfinder.Serializers.Json
@@ -14,21 +15,21 @@ namespace Pathfinder.Serializers.Json
 	public class CharacterJsonSerializer : AbstractJsonSerializer<ICharacter>
 	{
 		public CharacterJsonSerializer(
-			ILibrary<IRace> pRaceLibrary,
-			ILibrary<ISkill> pSkillLibrary)
+			IRepository<IRace> pRaceRepository,
+			IRepository<ISkill> pSkillRepository)
 		{
-			RaceLibrary = pRaceLibrary;
-			SkillLibrary = pSkillLibrary;
+			RaceRepository = pRaceRepository;
+			SkillRepository = pSkillRepository;
 		}
 
-		public ILibrary<IRace> RaceLibrary { get; }
-		public ILibrary<ISkill> SkillLibrary { get; }
+		public IRepository<IRace> RaceRepository { get; }
+		public IRepository<ISkill> SkillRepository { get; }
 
 		protected override ICharacter DeserializeFromJson(JsonSerializer pSerializer, JObject pJobject)
 		{
-			ICharacter character = new Character(SkillLibrary);
+			ICharacter character = new Character(SkillRepository);
 
-			character = ParseRace(RaceLibrary, pJobject, character);
+			character = ParseRace(RaceRepository, pJobject, character);
 
 			character = ParseClasses(pSerializer, pJobject, character);
 
@@ -104,7 +105,7 @@ namespace Pathfinder.Serializers.Json
 
 			character = ParseFeats(pSerializer, pJobject, character);
 
-			character = ParseSkills(SkillLibrary, pJobject, character);
+			character = ParseSkills(SkillRepository, pJobject, character);
 
 			character = ParseInventory(pSerializer, pJobject, character);
 
@@ -113,10 +114,10 @@ namespace Pathfinder.Serializers.Json
 			return character;
 		}
 
-		private static ICharacter ParseRace(ILibrary<IRace> pRaceLibrary, JToken pJToken, ICharacter pCharacter)
+		private static ICharacter ParseRace(IRepository<IRace> pRaceRepository, JToken pJToken, ICharacter pCharacter)
 		{
 			var parsedRace = GetString(pJToken, nameof(ICharacter.Race));
-			if (parsedRace != null && pRaceLibrary.TryGetValue(parsedRace, out IRace race))
+			if (parsedRace != null && pRaceRepository.TryGetValue(parsedRace, out IRace race))
 			{
 				return pCharacter.SetRace(race);
 			}
@@ -265,7 +266,7 @@ namespace Pathfinder.Serializers.Json
 				.Aggregate(pCharacter, (current, feat) => current.AddFeat(feat, feat.Specialization));
 		}
 
-		private static ICharacter ParseSkills(ILibrary<ISkill> pSkillLibrary, JToken pJToken, ICharacter pCharacter)
+		private static ICharacter ParseSkills(IRepository<ISkill> pSkillRepository, JToken pJToken, ICharacter pCharacter)
 		{
 			return
 				pJToken.SelectTokens(nameof(ICharacter.SkillScores))
@@ -275,10 +276,10 @@ namespace Pathfinder.Serializers.Json
 					SkillName = GetString(x, nameof(ISkillScore.Skill)),
 					Ranks = GetInt(x, nameof(ISkillScore.Ranks))
 				})
-				.Where(s => pSkillLibrary.TryGetValue(s.SkillName, out var skill))
+				.Where(s => pSkillRepository.TryGetValue(s.SkillName, out var skill))
 				.Aggregate(
 					pCharacter,
-					(c, s) => c.AssignSkillPoint(pSkillLibrary[s.SkillName], s.Ranks));
+					(c, s) => c.AssignSkillPoint(pSkillRepository[s.SkillName], s.Ranks));
 		}
 
 		private static ICharacter ParseInventory(JsonSerializer pSerializer, JToken pJToken, ICharacter pCharacter)

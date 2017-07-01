@@ -1,12 +1,13 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Currency;
-using Pathfinder.Interface.Item;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System.Linq;
 using System.Xml.Linq;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model;
 
 namespace Pathfinder.Serializers.Xml

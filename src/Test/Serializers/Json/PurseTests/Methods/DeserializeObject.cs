@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
-using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Model.Currency;
 
 namespace Pathfinder.Test.Serializers.Json.PurseTests.Methods

@@ -2,7 +2,7 @@
 	"Age": 10,
 	"Alignment": "lawfulGood",
 	"Deity": {
-		"Name": "Deity"
+		"Name": "Skepticus"
 	},
 	"Gender": "male",
 	"Eyes": "Blue",
@@ -15,7 +15,8 @@
 	"BaseSize": "medium",
 	"Size": "medium",
 	"Languages": [
-		"Test Language",
+		"Old Test-ese",
+		"Old Test-ish",
 		"Mock Language"
 	],
 	"MaxHealthPoints": 7,

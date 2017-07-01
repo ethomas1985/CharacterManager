@@ -1,11 +1,11 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -13,37 +13,20 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class IncrementClassMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
 		}
 
-		private const int SKILL_ADDEND = 5;
-		private const int HIT_DIE_FACES = 6;
-
-		private static IClass CreateMockClass()
-		{
-			return ClassMother.Create(
-				"Mock Class",
-				new HashSet<Alignment>
-				{
-					Alignment.ChaoticGood,
-					Alignment.ChaoticNeutral,
-					Alignment.ChaoticEvil
-				},
-				new Die(HIT_DIE_FACES),
-				SKILL_ADDEND);
-		}
-
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.IncrementClass(null));
 		}
@@ -51,16 +34,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NewClass()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
-			Assert.Throws<ArgumentException>(() => original.IncrementClass(ClassMother.Create()));
+			Assert.Throws<ArgumentException>(() => original.IncrementClass(ClassMother.Level1Neutral()));
 		}
 
 		[Test]
 		public void Success()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository)).AddClass(mockClass);
 
 			var firstClass = original.Classes.Select(x => x.Class).First();
 			var result = original.IncrementClass(firstClass);
@@ -71,8 +54,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository)).AddClass(mockClass);
 			var result = original.IncrementClass(mockClass);
 
 			Assert.AreNotSame(original, result);
@@ -81,8 +64,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository)).AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
 
 			var result = original.IncrementClass(mockClass);
@@ -92,10 +75,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.AreEqual(1, originalCharacterClass.Level);
 		}
 
-		[Test] public void IncrementsLevel()
+		[Test]
+		public void IncrementsLevel()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary)).AddClass(mockClass);
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository)).AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
 
 			var result = original.IncrementClass(mockClass);
@@ -107,8 +91,8 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void UpdatesHitPointsWithDefault()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary))
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository))
 				.SetConstitution(10)
 				.AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
@@ -126,10 +110,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.AreEqual(expected, actual);
 		}
 
-		[Test] public void UpdatesHitPoints()
+		[Test]
+		public void UpdatesHitPoints()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary))
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository))
 				.SetConstitution(10)
 				.AddClass(mockClass);
 			var originalCharacterClass = original.Classes.First();
@@ -147,10 +132,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			Assert.AreEqual(expected, actual);
 		}
 
-		[Test] public void UpdatesSkillPoints()
+		[Test]
+		public void UpdatesSkillPoints()
 		{
-			var mockClass = CreateMockClass();
-			var original = ((ICharacter) new Character(SkillLibrary))
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository))
 				.SetIntelligence(10)
 				.AddClass(mockClass);
 
@@ -158,8 +144,28 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var resultCharacterClass = result.Classes.First();
 
 
-			var expected = resultCharacterClass.Level * (SKILL_ADDEND + result.Intelligence.Modifier);
+			var expected = resultCharacterClass.Level * (mockClass.SkillAddend + result.Intelligence.Modifier);
 			Assert.AreEqual(expected, result.MaxSkillRanks);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var mockClass = ClassMother.Level1Neutral();
+			var original = ((ICharacter)new Character(SkillRepository)).AddClass(mockClass);
+
+			var firstClass = original.Classes.Select(x => x.Class).First();
+			var result = original.IncrementClass(firstClass, 3);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ClassAdded(original.Id, 1, new CharacterClass(firstClass, 1, true, new [] { 6 })),
+						new ClassLevelRaised(original.Id, 2, firstClass, 3),
+					}));
 		}
 	}
 }

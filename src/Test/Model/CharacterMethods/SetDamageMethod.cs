@@ -3,17 +3,19 @@ using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class SetDamageMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -22,7 +24,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Fail()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			Assert.Throws<Exception>(() => original.SetDamage(-1));
 		}
@@ -30,7 +32,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			var result = original.SetDamage(10);
 
@@ -40,7 +42,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			var result = original.SetDamage(10);
 
@@ -50,10 +52,26 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 			original.SetDamage(10);
 
 			Assert.AreEqual(0, original.Damage);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.SetDamage(10);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new DamageTaken(original.Id, 1, 10), 
+					}));
 		}
 	}
 }

@@ -4,28 +4,29 @@ using Pathfinder.Model;
 using System;
 using System.Linq;
 using Moq;
+using Pathfinder.Events.Character;
+using Pathfinder.Interface.Model;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
 	[TestFixture]
 	public class RemoveLanguageMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
 		}
 
-		private readonly Language _language = new Language("Middle Test-ese");
-
 		[Test]
 		public void Null()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.RemoveLanguage(null));
 		}
@@ -33,21 +34,36 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void Success()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).AddLanguage(_language);
-			Assert.IsTrue(original.Languages.Contains(_language));
+			var language = LanguageMother.MiddleTestese();
+			var original = new Character(SkillRepository).AddLanguage(language);
+			Assert.IsTrue(original.Languages.Contains(language));
 
-			var result = original.RemoveLanguage(_language);
+			var result = original.RemoveLanguage(language);
 
-			Assert.IsFalse(result.Languages.Contains(_language));
+			Assert.IsFalse(result.Languages.Contains(language));
+		}
+
+		[Test]
+		public void DoesNotRemoveRacialLanguages()
+		{
+			var race = RaceMother.Create();
+			var racialLanguage = LanguageMother.OldTestese();
+
+			var original = new Character(SkillRepository).SetRace(race);
+
+			var result = original.RemoveLanguage(racialLanguage);
+
+			Assert.IsTrue(result.Languages.Contains(racialLanguage));
 		}
 
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).AddLanguage(_language);
-			Assert.IsTrue(original.Languages.Contains(_language));
+			var language = LanguageMother.MiddleTestese();
+			var original = new Character(SkillRepository).AddLanguage(language);
+			Assert.IsTrue(original.Languages.Contains(language));
 
-			var result = original.RemoveLanguage(_language);
+			var result = original.RemoveLanguage(language);
 
 			Assert.AreNotSame(original, result);
 		}
@@ -55,12 +71,29 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).AddLanguage(_language);
-			Assert.IsTrue(original.Languages.Contains(_language));
+			var language = LanguageMother.MiddleTestese();
+			var original = new Character(SkillRepository).AddLanguage(language);
+			Assert.IsTrue(original.Languages.Contains(language));
 
-			original.RemoveLanguage(_language);
+			original.RemoveLanguage(language);
 
-			Assert.IsTrue(original.Languages.Contains(_language));
+			Assert.IsTrue(original.Languages.Contains(language));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.RemoveLanguage(new Language("Testing"));
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new LanguageRemoved(original.Id, 1, new Language("Testing")),
+					}));
 		}
 	}
 }

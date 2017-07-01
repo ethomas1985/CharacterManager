@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Serializers.Json.ExperienceTests.Methods
@@ -24,25 +25,25 @@ namespace Pathfinder.Test.Serializers.Json.ExperienceTests.Methods
 			var stringValue =
 				$"[ " +
 				$"{{ " +
-				$"\"{nameof(IEvent.Title)}\": \"{title} 1\", " +
-				$"\"{nameof(IEvent.ExperiencePoints)}\": {experiencePoints} " +
+				$"\"{nameof(IExperienceEvent.Title)}\": \"{title} 1\", " +
+				$"\"{nameof(IExperienceEvent.ExperiencePoints)}\": {experiencePoints} " +
 				$"}}, " +
 				$"{{ " +
-				$"\"{nameof(IEvent.Title)}\": \"{title} 2\", " +
-				$"\"{nameof(IEvent.ExperiencePoints)}\": {experiencePoints} " +
+				$"\"{nameof(IExperienceEvent.Title)}\": \"{title} 2\", " +
+				$"\"{nameof(IExperienceEvent.ExperiencePoints)}\": {experiencePoints} " +
 				$"}}, " +
 				$"{{ " +
-				$"\"{nameof(IEvent.Title)}\": \"{title} 3\", " +
-				$"\"{nameof(IEvent.ExperiencePoints)}\": {experiencePoints} " +
+				$"\"{nameof(IExperienceEvent.Title)}\": \"{title} 3\", " +
+				$"\"{nameof(IExperienceEvent.ExperiencePoints)}\": {experiencePoints} " +
 				$"}} " +
 				$"]";
 			var result = JsonConvert.DeserializeObject<IExperience>(stringValue);
 
 			var expected =
 				new Experience()
-					.Append(new Event($"{title} 1", string.Empty, experiencePoints))
-					.Append(new Event($"{title} 2", string.Empty, experiencePoints))
-					.Append(new Event($"{title} 3", string.Empty, experiencePoints));
+					.Append(new ExperienceEvent($"{title} 1", string.Empty, experiencePoints))
+					.Append(new ExperienceEvent($"{title} 2", string.Empty, experiencePoints))
+					.Append(new ExperienceEvent($"{title} 3", string.Empty, experiencePoints));
 			Assert.That(result, Is.EqualTo(expected));
 		}
 	}

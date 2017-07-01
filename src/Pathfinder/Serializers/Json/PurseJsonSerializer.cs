@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Interface.Currency;
+using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Model.Currency;
 
 namespace Pathfinder.Serializers.Json

@@ -1,6 +1,7 @@
 using Moq;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -9,11 +10,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class UpdateInventoryMethod
 	{
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
@@ -28,7 +29,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 
 			var result = original.UpdateInventory(null);
 
@@ -38,10 +39,16 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = (ICharacter) new Character(SkillLibrary);
+			var original = (ICharacter) new Character(SkillRepository);
 			original.UpdateInventory(null);
 
 			Assert.IsNull(original.Name);
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			Assert.Fail("Not Implemented");
 		}
 	}
 }

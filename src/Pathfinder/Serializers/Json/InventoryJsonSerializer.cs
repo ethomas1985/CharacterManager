@@ -4,7 +4,8 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
-using Pathfinder.Interface.Item;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model.Items;
 
 namespace Pathfinder.Serializers.Json

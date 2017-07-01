@@ -113,6 +113,9 @@
     <Compile Include="Model\SkillScoreTests.cs" />
     <Compile Include="moqExtensions.cs" />
     <Compile Include="ObjectMothers\ClassMother.cs" />
+    <Compile Include="ObjectMothers\DeityMother.cs" />
+    <Compile Include="ObjectMothers\FeatMother.cs" />
+    <Compile Include="ObjectMothers\LanguageMother.cs" />
     <Compile Include="ObjectMothers\RaceMother.cs" />
     <Compile Include="ObjectMothers\SkillMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,7 +123,8 @@
     <Compile Include="Serializers\Json\AbilityScoreTests\Methods\SerializeObject.cs" />
     <Compile Include="Serializers\Json\CharacterClassTests\Methods\DeserializeObject.cs" />
     <Compile Include="Serializers\Json\CharacterClassTests\Methods\SerializeObject.cs" />
-    <Compile Include="Serializers\Json\CharacterTests\CharacterJsonSerializerUtils.cs" />
+    <Compile Include="ObjectMothers\CharacterMother.cs" />
+    <Compile Include="ObjectMothers\ItemMother.cs" />
     <Compile Include="Serializers\Json\CharacterTests\Methods\DeserializeObject.cs" />
     <Compile Include="Serializers\Json\CharacterTests\Methods\SerializeObject.cs" />
     <Compile Include="Serializers\Json\CharacterTests\Resources.Designer.cs">

@@ -3,6 +3,7 @@ using Pathfinder.Interface;
 using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
+using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Model
 {

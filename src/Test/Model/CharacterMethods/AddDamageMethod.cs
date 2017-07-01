@@ -1,6 +1,8 @@
 using Moq;
 using NUnit.Framework;
+using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -8,45 +10,77 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddDamageMethod
 	{
-		private static readonly ILibrary<ISkill> SkillLibrary = new Mock<ILibrary<ISkill>>().Object;
+		private static readonly IRepository<ISkill> SkillRepository = new Mock<IRepository<ISkill>>().Object;
 
 		[Test]
-		public void TakeDamage()
+		public void TakesDamage()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).SetDamage(10);
+			var original = new Character(SkillRepository).SetDamage(10);
 
 			var result = original.AddDamage(5);
 
-			Assert.AreEqual(15, result.Damage);
+			Assert.That(result.Damage, Is.EqualTo(15));
 		}
 
 		[Test]
-		public void HealDamage()
+		public void HealsDamage()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).SetDamage(10);
+			var original = new Character(SkillRepository).SetDamage(10);
 
 			var result = original.AddDamage(-5);
 
-			Assert.AreEqual(5, result.Damage);
+			Assert.That(result.Damage, Is.EqualTo(5));
 		}
 
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).SetDamage(10);
+			var original = new Character(SkillRepository).SetDamage(10);
 
 			var result = original.AddDamage(-1);
 
-			Assert.AreNotSame(original, result);
+			Assert.That(result, Is.Not.SameAs(original));
 		}
 
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var original = ((ICharacter) new Character(SkillLibrary)).SetDamage(10);
+			var original = new Character(SkillRepository).SetDamage(10);
 			original.AddDamage(-1);
 
-			Assert.IsNull(original.Name);
+			Assert.That(original.Damage, Is.EqualTo(10));
+		}
+
+		[Test]
+		public void HasPendingDamageEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.AddDamage(1);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new DamageTaken(original.Id, 1, 1),
+					}));
+		}
+
+		[Test]
+		public void HasPendingHealedEvents()
+		{
+			var original = (ICharacter)new Character(SkillRepository);
+			var result = original.AddDamage(-1);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new DamageHealed(original.Id, 1, 1),
+					}));
 		}
 	}
 }

@@ -1,5 +1,5 @@
-using Pathfinder.Interface.Currency;
 using System;
+using Pathfinder.Interface.Model.Currency;
 
 namespace Pathfinder.Model.Currency
 {

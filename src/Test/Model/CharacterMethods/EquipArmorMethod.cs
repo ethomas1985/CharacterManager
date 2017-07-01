@@ -3,10 +3,11 @@ using System.Collections.Immutable;
 using Moq;
 using NUnit.Framework;
 using Pathfinder.Enums;
+using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
-using Pathfinder.Model.Currency;
-using Pathfinder.Model.Items;
+using Pathfinder.Test.ObjectMothers;
 
 namespace Pathfinder.Test.Model.CharacterMethods
 {
@@ -15,32 +16,14 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	public class EquipArmorMethod
 	{
 
-		private static ILibrary<ISkill> SkillLibrary
+		private static IRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<ILibrary<ISkill>>();
+				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}
-		}
-
-		private static Item CreateTestingItem()
-		{
-			return new Item(
-				"Testing Item",
-				ItemType.Arms,
-				"Category",
-				new Purse(100),
-				10,
-				"Description",
-				pArmorComponent: new ArmorComponent(
-					pArmorBonus: 1,
-					pShieldBonus: 1,
-					pMaximumDexterityBonus: 1,
-					pArmorCheckPenalty: 1,
-					pArcaneSpellFailureChance: 0.20m,
-					pSpeed: 25));
 		}
 
 		private static Race CreateTestingRace()
@@ -59,26 +42,26 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void NullClass()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.Throws<ArgumentNullException>(() => original.EquipArmor(null));
 		}
 		[Test]
 		public void ItemNotInInventory()
 		{
-			var original = (ICharacter)new Character(SkillLibrary);
+			var original = (ICharacter)new Character(SkillRepository);
 
 			Assert.That(
-				() => original.EquipArmor(CreateTestingItem()),
+				() => original.EquipArmor(ItemMother.Armor()),
 				Throws.TypeOf<ArgumentException>().And.Message.EqualTo("Item not in inventory."));
 		}
 
 		[Test]
 		public void Equiped()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original = 
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorComponent);
 
 			var result = original.EquipArmor(armorComponent);
@@ -89,9 +72,9 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void EquipedInSlot()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorComponent);
 
 			var result = original.EquipArmor(armorComponent);
@@ -102,11 +85,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void ReturnsNewInstance()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorComponent);
-			var result = original.EquipArmor(CreateTestingItem());
+			var result = original.EquipArmor(ItemMother.Armor());
 
 			Assert.AreNotSame(original, result);
 		}
@@ -114,12 +97,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void OriginalUnchanged()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorComponent);
 
-			original.EquipArmor(CreateTestingItem());
+			original.EquipArmor(ItemMother.Armor());
 
 			Assert.That(original.EquipedArmor, Is.Empty);
 		}
@@ -127,12 +110,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void EquipedArmorUpdatesArmorClass()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.AddToInventory(armorComponent);
 
-			var result = original.EquipArmor(CreateTestingItem());
+			var result = original.EquipArmor(ItemMother.Armor());
 
 			Assert.That(result.ArmorClass.Score, Is.EqualTo(7));
 		}
@@ -140,13 +123,13 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void EquipedArmorLimitsDexterityScore()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.SetDexterity(18)
 					.AddToInventory(armorComponent);
 
-			var result = original.EquipArmor(CreateTestingItem());
+			var result = original.EquipArmor(ItemMother.Armor());
 
 			Assert.That(result.Dexterity.Modifier, Is.LessThan(2));
 		}
@@ -154,13 +137,13 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void EquipedArmorLimitsSpeed()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.SetRace(CreateTestingRace())
 					.AddToInventory(armorComponent);
 
-			var result = original.EquipArmor(CreateTestingItem());
+			var result = original.EquipArmor(ItemMother.Armor());
 
 			Assert.That(result.Speed, Is.EqualTo(25));
 		}
@@ -168,15 +151,36 @@ namespace Pathfinder.Test.Model.CharacterMethods
 		[Test]
 		public void EquipedArmorEffectsArmorCheckPenalty()
 		{
-			var armorComponent = CreateTestingItem();
+			var armorComponent = ItemMother.Armor();
 			ICharacter original =
-				new Character(SkillLibrary)
+				new Character(SkillRepository)
 					.SetRace(CreateTestingRace())
 					.AddToInventory(armorComponent);
 
-			var result = original.EquipArmor(CreateTestingItem());
+			var result = original.EquipArmor(ItemMother.Armor());
 
 			Assert.That(result.ArmorCheckPenalty, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void HasPendingEvents()
+		{
+			var armorComponent = ItemMother.Armor();
+			ICharacter original = 
+				new Character(SkillRepository)
+					.AddToInventory(armorComponent);
+
+			var result = original.EquipArmor(armorComponent);
+
+			Assert.That(
+				result.GetPendingEvents(),
+				Is.EquivalentTo(
+					new IEvent[]
+					{
+						new CharacterCreated(original.Id),
+						new ItemAddedToInventory(original.Id, 1, armorComponent), 
+						new ArmorEquiped(original.Id, 2, armorComponent),
+					}));
 		}
 	}
 }

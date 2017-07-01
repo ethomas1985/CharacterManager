@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace Pathfinder.Test.Model.ExperienceTests
