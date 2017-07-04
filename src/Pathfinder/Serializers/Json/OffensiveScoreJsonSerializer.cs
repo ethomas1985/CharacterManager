@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Serializers.Json
@@ -16,7 +15,6 @@ namespace Pathfinder.Serializers.Json
 			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.AbilityModifier), pValue.AbilityModifier);
 			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.BaseAttackBonus), pValue.BaseAttackBonus);
 			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.SizeModifier), pValue.SizeModifier);
-			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.MiscModifier), pValue.MiscModifier);
 			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.TemporaryModifier), pValue.TemporaryModifier);
 			WriteProperty(pWriter, pSerializer, nameof(IOffensiveScore.Score), pValue.Score);
 

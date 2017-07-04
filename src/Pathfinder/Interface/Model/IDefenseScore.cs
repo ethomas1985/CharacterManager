@@ -23,9 +23,7 @@ namespace Pathfinder.Interface.Model
 		int NaturalBonus { get; }
 		int DeflectBonus { get; }
 		int DodgeBonus { get; }
-
-		int MiscellaneousBonus { get; }
-
+		
 		int TemporaryBonus { get; }
 		int BaseAttackBonus { get; }
 		int StrengthModifier { get; }

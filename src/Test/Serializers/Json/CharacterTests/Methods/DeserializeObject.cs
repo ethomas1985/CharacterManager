@@ -325,7 +325,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new DefenseScore(
 					DefensiveType.ArmorClass,
-					1, 1, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0, 0);
+					1, 1, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0);
 
 			Assert.That(result.ArmorClass, Is.EqualTo(expected));
 		}
@@ -337,7 +337,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new DefenseScore(
 					DefensiveType.FlatFooted,
-					1, 1, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0, 0);
+					1, 1, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0);
 			Assert.That(result.FlatFooted, Is.EqualTo(expected));
 		}
 
@@ -348,7 +348,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new DefenseScore(
 					DefensiveType.Touch,
-					0, 0, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0, 0);
+					0, 0, new AbilityScore(AbilityType.Dexterity, 12), 0, 0, 0, 0, 0);
 			Assert.That(result.Touch, Is.EqualTo(expected));
 		}
 
@@ -361,7 +361,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 					1,
 					new AbilityScore(AbilityType.Strength, 12),
 					new AbilityScore(AbilityType.Dexterity, 12),
-					0, 0, 0, 0, 0);
+					0, 0, 0, 0);
 			Assert.That(result.CombatManeuverDefense, Is.EqualTo(expected));
 		}
 
@@ -405,7 +405,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new OffensiveScore(
 					OffensiveType.Melee,
-					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0, 0);
+					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0);
 			Assert.That(result.Melee, Is.EqualTo(expected));
 		}
 
@@ -416,7 +416,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new OffensiveScore(
 					OffensiveType.Ranged,
-					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0, 0);
+					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0);
 			Assert.That(result.Ranged, Is.EqualTo(expected));
 		}
 
@@ -427,7 +427,7 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var expected =
 				new OffensiveScore(
 					OffensiveType.CombatManeuverBonus,
-					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0, 0);
+					new AbilityScore(AbilityType.Strength, 12), 1, 0, 0);
 			Assert.That(result.CombatManeuverBonus, Is.EqualTo(expected));
 		}
 	}

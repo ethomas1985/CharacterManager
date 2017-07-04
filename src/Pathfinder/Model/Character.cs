@@ -263,9 +263,7 @@ namespace Pathfinder.Model
 				NaturalBonus,
 				DeflectBonus,
 				DodgeBonus,
-				TemporaryBonus,
-				MiscellaneousArmorClassModifier);
-		private int MiscellaneousArmorClassModifier { get; set; }
+				TemporaryBonus);
 
 		public IDefenseScore FlatFooted =>
 			new DefenseScore(
@@ -277,9 +275,7 @@ namespace Pathfinder.Model
 				NaturalBonus,
 				DeflectBonus,
 				0,
-				TemporaryBonus,
-				MiscellaneousFlatFootedModifier);
-		private int MiscellaneousFlatFootedModifier { get; set; }
+				TemporaryBonus);
 
 		public IDefenseScore Touch =>
 			new DefenseScore(
@@ -291,9 +287,7 @@ namespace Pathfinder.Model
 				0,
 				DeflectBonus,
 				DodgeBonus,
-				TemporaryBonus,
-				MiscellaneousTouchModifier);
-		private int MiscellaneousTouchModifier { get; set; }
+				TemporaryBonus);
 
 		public IDefenseScore CombatManeuverDefense =>
 			new DefenseScore(
@@ -303,9 +297,7 @@ namespace Pathfinder.Model
 				(int)Size,
 				DeflectBonus,
 				DodgeBonus,
-				TemporaryBonus,
-				MiscellaneousCombatManeuverDefenseModifier);
-		private int MiscellaneousCombatManeuverDefenseModifier { get; set; }
+				TemporaryBonus);
 
 		private int NaturalBonus =>
 			Effects
@@ -327,7 +319,7 @@ namespace Pathfinder.Model
 				?.Where(x => x.Active
 							&& x.Type != EffectType.Deflection
 							&& x.Type != EffectType.Dodge)
-				.Sum(x => x.ArmorClassNaturalModifier) ?? 0;
+				.Sum(x => x.ArmorClassOtherModifier) ?? 0;
 
 		public int BaseAttackBonus { get { return Classes.Sum(x => x.BaseAttackBonus); } }
 
@@ -338,7 +330,7 @@ namespace Pathfinder.Model
 					BaseFortitude,
 					FortitudeResistance,
 					TemporaryFortitude,
-					MiscellaneousFortitudeModifier);
+					0);
 		public int BaseFortitude => Classes.Sum(x => x.Fortitude);
 		private int FortitudeResistance =>
 			Effects
@@ -349,8 +341,6 @@ namespace Pathfinder.Model
 				?.Where(x => x.Active && x.Type != EffectType.Resistance)
 				.Sum(x => x.FortitudeModifier) ?? 0;
 
-		private int MiscellaneousFortitudeModifier { get; set; }
-
 		public ISavingThrow Reflex =>
 				new SavingThrow(
 					SavingThrowType.Reflex,
@@ -358,7 +348,7 @@ namespace Pathfinder.Model
 					BaseReflex,
 					ReflexResistance,
 					TemporaryReflex,
-					MiscellaneousReflexModifier);
+					0);
 		public int BaseReflex => Classes.Sum(x => x.Reflex);
 		private int ReflexResistance =>
 			Effects
@@ -369,8 +359,6 @@ namespace Pathfinder.Model
 				?.Where(x => x.Active && x.Type != EffectType.Resistance)
 				.Sum(x => x.ReflexModifier) ?? 0;
 
-		private int MiscellaneousReflexModifier { get; set; }
-
 		public ISavingThrow Will =>
 				new SavingThrow(
 					SavingThrowType.Will,
@@ -378,7 +366,7 @@ namespace Pathfinder.Model
 					BaseWill,
 					WillResistance,
 					TemporaryWill,
-					MiscellaneousWillModifier);
+					0);
 		public int BaseWill => Classes.Sum(x => x.Will);
 		private int WillResistance =>
 			Effects
@@ -389,41 +377,29 @@ namespace Pathfinder.Model
 				?.Where(x => x.Active && x.Type != EffectType.Resistance)
 				.Sum(x => x.WillModifier) ?? 0;
 
-		private int MiscellaneousWillModifier { get; set; }
-
 		public IOffensiveScore Melee =>
 			new OffensiveScore(
 				OffensiveType.Melee,
 				Strength,
 				BaseAttackBonus,
 				(int)Size,
-				TemporaryMeleeModifier,
-				MiscellaneousMeleeModifier);
+				TemporaryMeleeModifier);
 		private int TemporaryMeleeModifier =>
 			Effects
 				?.Where(x => x.Active)
 				.Sum(x => x.MeleeAttackModifier) ?? 0;
-
-		private int MiscellaneousMeleeModifier { get; set; }
-
+		
 		public IOffensiveScore Ranged =>
 			new OffensiveScore(
 				OffensiveType.Ranged,
 				Dexterity ?? new AbilityScore(AbilityType.Dexterity, 0),
 				BaseAttackBonus,
 				(int)Size,
-				TemporaryRangedModifier,
-				MiscellaneousRangedModifier);
-		private int TemporaryRangedModifier
-		{
-			get
-			{
-				return Effects
-					?.Where(x => x.Active)
-					.Sum(x => x.RangedAttackModifier) ?? 0;
-			}
-		}
-		private int MiscellaneousRangedModifier { get; set; }
+				TemporaryRangedModifier);
+		private int TemporaryRangedModifier =>
+			Effects
+				?.Where(x => x.Active)
+				.Sum(x => x.RangedAttackModifier) ?? 0;
 
 		public IOffensiveScore CombatManeuverBonus =>
 			new OffensiveScore(
@@ -431,9 +407,7 @@ namespace Pathfinder.Model
 				Strength ?? new AbilityScore(AbilityType.Strength, 0),
 				BaseAttackBonus,
 				(int)Size,
-				TemporaryMeleeModifier,
-				MiscellaneousCombatManeuverBonusModifier);
-		private int MiscellaneousCombatManeuverBonusModifier { get; set; }
+				TemporaryMeleeModifier);
 
 		public IExperience Experience { get; private set; } = new Experience();
 		public int ExperiencePoints

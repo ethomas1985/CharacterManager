@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -16,7 +15,7 @@ namespace Pathfinder.Test.Serializers.Json.OffensiveScoreTests.Methods
 		[Test]
 		public void Success()
 		{
-			var offensiveScore = new OffensiveScore(OffensiveType.Melee, new AbilityScore(AbilityType.Strength, 10), 1, (int)Size.Medium, 0, 0);
+			var offensiveScore = new OffensiveScore(OffensiveType.Melee, new AbilityScore(AbilityType.Strength, 10), 1, (int)Size.Medium, 0);
 
 			Assert.That(
 				() => JsonConvert.SerializeObject(offensiveScore),
@@ -26,7 +25,7 @@ namespace Pathfinder.Test.Serializers.Json.OffensiveScoreTests.Methods
 		[Test]
 		public void Expected()
 		{
-			var offensiveScore = new OffensiveScore(OffensiveType.Melee, new AbilityScore(AbilityType.Strength, 10), 1, (int)Size.Medium, 0, 0);
+			var offensiveScore = new OffensiveScore(OffensiveType.Melee, new AbilityScore(AbilityType.Strength, 10), 1, (int)Size.Medium, 0);
 			var actual = JsonConvert.SerializeObject(offensiveScore);
 
 			var expected =
@@ -35,7 +34,6 @@ namespace Pathfinder.Test.Serializers.Json.OffensiveScoreTests.Methods
 					.Append($"\"{nameof(IOffensiveScore.AbilityModifier)}\":{offensiveScore.AbilityModifier},")
 					.Append($"\"{nameof(IOffensiveScore.BaseAttackBonus)}\":{offensiveScore.BaseAttackBonus},")
 					.Append($"\"{nameof(IOffensiveScore.SizeModifier)}\":{offensiveScore.SizeModifier},")
-					.Append($"\"{nameof(IOffensiveScore.MiscModifier)}\":{offensiveScore.MiscModifier},")
 					.Append($"\"{nameof(IOffensiveScore.TemporaryModifier)}\":{offensiveScore.TemporaryModifier},")
 					.Append($"\"{nameof(IOffensiveScore.Score)}\":{offensiveScore.Score}")
 					.Append("}")

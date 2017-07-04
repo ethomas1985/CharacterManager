@@ -114,7 +114,6 @@
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
-		"MiscellaneousBonus": 0,
 		"NaturalBonus": 0,
 		"TemporaryBonus": 0
 	},
@@ -127,7 +126,6 @@
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
-		"MiscellaneousBonus": 0,
 		"NaturalBonus": 0,
 		"TemporaryBonus": 0
 	},
@@ -140,7 +138,6 @@
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
-		"MiscellaneousBonus": 0,
 		"NaturalBonus": 0,
 		"TemporaryBonus": 0
 	},
@@ -153,7 +150,6 @@
 		"SizeModifier": 0,
 		"DeflectBonus": 0,
 		"DodgeBonus": 0,
-		"MiscellaneousBonus": 0,
 		"NaturalBonus": 0,
 		"TemporaryBonus": 0
 	},
@@ -189,7 +185,6 @@
 		"AbilityModifier": 1,
 		"BaseAttackBonus": 1,
 		"SizeModifier": 0,
-		"MiscModifier": 0,
 		"TemporaryModifier": 0,
 		"Score": 2
 	},
@@ -198,7 +193,6 @@
 		"AbilityModifier": 1,
 		"BaseAttackBonus": 1,
 		"SizeModifier": 0,
-		"MiscModifier": 0,
 		"TemporaryModifier": 0,
 		"Score": 2
 	},
@@ -207,7 +201,6 @@
 		"AbilityModifier": 1,
 		"BaseAttackBonus": 1,
 		"SizeModifier": 0,
-		"MiscModifier": 0,
 		"TemporaryModifier": 0,
 		"Score": 2
 	},

@@ -31,7 +31,6 @@ namespace Pathfinder.Serializers.Json
 			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.SizeModifier), pValue.SizeModifier);
 			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.DeflectBonus), pValue.DeflectBonus);
 			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.DodgeBonus), pValue.DodgeBonus);
-			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.MiscellaneousBonus), pValue.MiscellaneousBonus);
 			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.NaturalBonus), pValue.NaturalBonus);
 			WriteProperty(pWriter, pSerializer, nameof(IDefenseScore.TemporaryBonus), pValue.TemporaryBonus);
 

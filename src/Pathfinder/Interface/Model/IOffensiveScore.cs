@@ -14,8 +14,6 @@ namespace Pathfinder.Interface.Model
 
 		int SizeModifier { get; }
 
-		int MiscModifier { get; }
-
 		int TemporaryModifier { get; }
 	}
 }

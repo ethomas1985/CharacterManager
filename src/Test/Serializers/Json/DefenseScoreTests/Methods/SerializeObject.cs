@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -24,8 +23,7 @@ namespace Pathfinder.Test.Serializers.Json.DefenseScoreTests.Methods
 				pNaturalBonus: 1,
 				pDeflectBonus: 1,
 				pDodgeBonus: 1,
-				pTemporaryBonus: 1,
-				pMiscellaneousModifier: 1);
+				pTemporaryBonus: 1);
 		}
 
 		[Test]
@@ -55,7 +53,6 @@ namespace Pathfinder.Test.Serializers.Json.DefenseScoreTests.Methods
 					.Append($"\"{nameof(IDefenseScore.SizeModifier)}\":{defenseScore.SizeModifier},")
 					.Append($"\"{nameof(IDefenseScore.DeflectBonus)}\":{defenseScore.DeflectBonus},")
 					.Append($"\"{nameof(IDefenseScore.DodgeBonus)}\":{defenseScore.DodgeBonus},")
-					.Append($"\"{nameof(IDefenseScore.MiscellaneousBonus)}\":{defenseScore.MiscellaneousBonus},")
 					.Append($"\"{nameof(IDefenseScore.NaturalBonus)}\":{defenseScore.NaturalBonus},")
 					.Append($"\"{nameof(IDefenseScore.TemporaryBonus)}\":{defenseScore.TemporaryBonus}")
 					.Append("}")

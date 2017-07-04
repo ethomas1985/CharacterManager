@@ -20,7 +20,6 @@ namespace Pathfinder.Test.Model
 				int pBaseAttackBonus,
 				int pAbilityModifier,
 				Size pSize,
-				int pMisc,
 				int pTemporary)
 			{
 				var abilityScore =
@@ -32,8 +31,8 @@ namespace Pathfinder.Test.Model
 						pType,
 						abilityScore,
 						pBaseAttackBonus,
-						(int) pSize,
-						pTemporary, pMisc);
+						(int)pSize,
+						pTemporary);
 
 				return offensiveScore.Score;
 			}
@@ -41,73 +40,74 @@ namespace Pathfinder.Test.Model
 
 		public static class OffensiveScoreTestCase
 		{
+			private static TestCaseData MeleeTestCase(int pBaseAttackBonus, int pAbilityModifier, Size pSize, int pTemporary)
+			{
+				return new TestCaseData(OffensiveType.Melee, pBaseAttackBonus, pAbilityModifier, pSize, pTemporary);
+			}
+
+			private static TestCaseData RangedTestCase(int pBaseAttackBonus, int pAbilityModifier, Size pSize, int pTemporary)
+			{
+				return new TestCaseData(OffensiveType.Ranged, pBaseAttackBonus, pAbilityModifier, pSize, pTemporary);
+			}
+
+			private static TestCaseData CombatManeuverBonusTestCase(int pBaseAttackBonus, int pAbilityModifier, Size pSize, int pTemporary)
+			{
+				return new TestCaseData(OffensiveType.CombatManeuverBonus, pBaseAttackBonus, pAbilityModifier, pSize, pTemporary);
+			}
+
 			public static IEnumerable ScoreCases
 			{
 				get
 				{
-					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Medium, 0, 0).Returns(0);
+					yield return MeleeTestCase(0, 0, Size.Medium, 0).Returns(0);
 
-					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Melee, 0, 1, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Small, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Medium, 1, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Melee, 0, 0, Size.Medium, 0, 1).Returns(1);
+					yield return MeleeTestCase(1, 0, Size.Medium, 0).Returns(1);
+					yield return MeleeTestCase(0, 1, Size.Medium, 0).Returns(1);
+					yield return MeleeTestCase(0, 0, Size.Small, 0).Returns(1);
+					yield return MeleeTestCase(0, 0, Size.Medium, 1).Returns(1);
 
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Medium, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Small, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Medium, 1, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 0, Size.Medium, 0, 1).Returns(2);
+					yield return MeleeTestCase(1, 1, Size.Medium, 0).Returns(2);
+					yield return MeleeTestCase(1, 0, Size.Small, 0).Returns(2);
+					yield return MeleeTestCase(1, 0, Size.Medium, 1).Returns(2);
 
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Small, 0, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Medium, 1, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Medium, 0, 1).Returns(3);
+					yield return MeleeTestCase(1, 1, Size.Small, 0).Returns(3);
+					yield return MeleeTestCase(1, 1, Size.Medium, 1).Returns(3);
 
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Small, 1, 0).Returns(4);
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Small, 0, 1).Returns(4);
+					yield return MeleeTestCase(1, 1, Size.Small, 1).Returns(4);
 
-					yield return new TestCaseData(OffensiveType.Melee, 1, 1, Size.Small, 1, 1).Returns(5);
+					// RANGED TESTS
 
-					yield return new TestCaseData(OffensiveType.Ranged, 0, 0, Size.Medium, 0, 0).Returns(0);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 0, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Ranged, 0, 1, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Ranged, 0, 0, Size.Small, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Ranged, 0, 0, Size.Medium, 1, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.Ranged, 0, 0, Size.Medium, 0, 1).Returns(1);
+					yield return RangedTestCase(0, 0, Size.Medium, 0).Returns(0);
+					yield return RangedTestCase(1, 0, Size.Medium, 0).Returns(1);
+					yield return RangedTestCase(0, 1, Size.Medium, 0).Returns(1);
+					yield return RangedTestCase(0, 0, Size.Small, 0).Returns(1);
+					yield return RangedTestCase(0, 0, Size.Medium, 1).Returns(1);
 
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Medium, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 0, Size.Small, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 0, Size.Medium, 1, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 0, Size.Medium, 0, 1).Returns(2);
+					yield return RangedTestCase(1, 1, Size.Medium, 0).Returns(2);
+					yield return RangedTestCase(1, 0, Size.Small, 0).Returns(2);
+					yield return RangedTestCase(1, 0, Size.Medium, 1).Returns(2);
 
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Small, 0, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Medium, 1, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Medium, 0, 1).Returns(3);
+					yield return RangedTestCase(1, 1, Size.Small, 0).Returns(3);
+					yield return RangedTestCase(1, 1, Size.Medium, 1).Returns(3);
 
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Small, 1, 0).Returns(4);
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Small, 0, 1).Returns(4);
+					yield return RangedTestCase(1, 1, Size.Small, 1).Returns(4);
 
-					yield return new TestCaseData(OffensiveType.Ranged, 1, 1, Size.Small, 1, 1).Returns(5);
+					// COMBAT MANEUVER BONUS TESTS
 
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 0, 0, Size.Medium, 0, 0).Returns(0);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 0, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 0, 1, Size.Medium, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 0, 0, Size.Small, 0, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 0, 0, Size.Medium, 1, 0).Returns(1);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 0, 0, Size.Medium, 0, 1).Returns(1);
+					yield return CombatManeuverBonusTestCase(0, 0, Size.Medium, 0).Returns(0);
+					yield return CombatManeuverBonusTestCase(1, 0, Size.Medium, 0).Returns(1);
+					yield return CombatManeuverBonusTestCase(0, 1, Size.Medium, 0).Returns(1);
+					yield return CombatManeuverBonusTestCase(0, 0, Size.Small, 0).Returns(1);
+					yield return CombatManeuverBonusTestCase(0, 0, Size.Medium, 1).Returns(1);
 
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Medium, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 0, Size.Small, 0, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 0, Size.Medium, 1, 0).Returns(2);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 0, Size.Medium, 0, 1).Returns(2);
+					yield return CombatManeuverBonusTestCase(1, 1, Size.Medium, 0).Returns(2);
+					yield return CombatManeuverBonusTestCase(1, 0, Size.Small, 0).Returns(2);
+					yield return CombatManeuverBonusTestCase(1, 0, Size.Medium, 1).Returns(2);
 
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Small, 0, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Medium, 1, 0).Returns(3);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Medium, 0, 1).Returns(3);
+					yield return CombatManeuverBonusTestCase(1, 1, Size.Small, 0).Returns(3);
+					yield return CombatManeuverBonusTestCase(1, 1, Size.Medium, 1).Returns(3);
 
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Small, 1, 0).Returns(4);
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Small, 0, 1).Returns(4);
-
-					yield return new TestCaseData(OffensiveType.CombatManeuverBonus, 1, 1, Size.Small, 1, 1).Returns(5);
+					yield return CombatManeuverBonusTestCase(1, 1, Size.Small, 1).Returns(4);
 				}
 			}
 		}

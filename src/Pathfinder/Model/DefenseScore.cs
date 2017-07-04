@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,15 +13,13 @@ namespace Pathfinder.Model
 			DefensiveType pDefensiveType,
 			int pSizeModifier,
 			int pDeflectBonus,
-			int pTemporaryBonus,
-			int pMiscellaneousModifier)
+			int pTemporaryBonus)
 		{
 			Type = pDefensiveType;
 
 			SizeModifier = pSizeModifier;
 			Deflect = pDeflectBonus;
 			Temporary = pTemporaryBonus;
-			MiscellaneousBonus = pMiscellaneousModifier;
 		}
 
 		public DefenseScore(
@@ -34,8 +31,7 @@ namespace Pathfinder.Model
 			int pNaturalBonus,
 			int pDeflectBonus,
 			int pDodgeBonus,
-			int pTemporaryBonus,
-			int pMiscellaneousModifier ) : this(pDefensiveType, pSize, pDeflectBonus, pTemporaryBonus, pMiscellaneousModifier)
+			int pTemporaryBonus ) : this(pDefensiveType, pSize, pDeflectBonus, pTemporaryBonus)
 		{
 			Debug.Assert(pDexterity == null || AbilityType.Dexterity == pDexterity.Type);
 
@@ -47,6 +43,7 @@ namespace Pathfinder.Model
 			Natural = pNaturalBonus;
 			Dodge = pDodgeBonus;
 		}
+
 		/// <summary>
 		/// Creates a DefenseScore for <c>DefensiveType.CombatManeuverDefense</c>
 		/// </summary>
@@ -57,7 +54,6 @@ namespace Pathfinder.Model
 		/// <param name="pDeflectBonus"></param>
 		/// <param name="pDodgeBonus"></param>
 		/// <param name="pTemporaryBonus"></param>
-		/// <param name="pMiscellaneousModifier"></param>
 		public DefenseScore(
 			int pBaseAttackBonus,
 			IAbilityScore pStrength,
@@ -65,8 +61,7 @@ namespace Pathfinder.Model
 			int pSize,
 			int pDeflectBonus,
 			int pDodgeBonus,
-			int pTemporaryBonus,
-			int pMiscellaneousModifier) : this(DefensiveType.CombatManeuverDefense, pSize, pDeflectBonus, pTemporaryBonus, pMiscellaneousModifier)
+			int pTemporaryBonus) : this(DefensiveType.CombatManeuverDefense, pSize, pDeflectBonus, pTemporaryBonus)
 		{
 			Debug.Assert(AbilityType.Dexterity == pDexterity.Type);
 			Debug.Assert(AbilityType.Strength == pStrength.Type);
@@ -114,7 +109,6 @@ namespace Pathfinder.Model
 		public int SizeModifier { get; }
 		public int DeflectBonus => Deflect;
 		public int DodgeBonus => UseDodge ? Dodge : 0;
-		public int MiscellaneousBonus { get; }
 		public int NaturalBonus => UseNatural ? Natural : 0;
 		public int TemporaryBonus => Temporary;
 
@@ -129,7 +123,6 @@ namespace Pathfinder.Model
 				NaturalBonus,
 				DeflectBonus,
 				DodgeBonus,
-				MiscellaneousBonus,
 				TemporaryBonus
 			};
 
@@ -165,8 +158,7 @@ namespace Pathfinder.Model
 				&& ShieldBonus == pOther.ShieldBonus
 				&& Type == pOther.Type
 				&& BaseAttackBonus == pOther.BaseAttackBonus
-				&& SizeModifier == pOther.SizeModifier
-				&& MiscellaneousBonus == pOther.MiscellaneousBonus;
+				&& SizeModifier == pOther.SizeModifier;
 
 			return equal;
 		}
@@ -186,7 +178,6 @@ namespace Pathfinder.Model
 				hashCode = (hashCode*397) ^ (int) Type;
 				hashCode = (hashCode*397) ^ BaseAttackBonus;
 				hashCode = (hashCode*397) ^ SizeModifier;
-				hashCode = (hashCode*397) ^ MiscellaneousBonus;
 				return hashCode;
 			}
 		}

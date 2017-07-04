@@ -1,5 +1,4 @@
 ﻿using System;
-using Pathfinder.Interface;
 using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Enums;
@@ -14,15 +13,13 @@ namespace Pathfinder.Model
 			IAbilityScore pAbilityScore,
 			int pBaseAttackBonus,
 			int pSizeModifier,
-			int pTemporaryModifier,
-			int pMiscModifier)
+			int pTemporaryModifier)
 		{
 			Type = pOffensiveType;
 			Ability = pAbilityScore;
 			BaseAttackBonus = pBaseAttackBonus;
 			SizeModifier = pSizeModifier;
 			TemporaryModifier = pTemporaryModifier;
-			MiscModifier = pMiscModifier;
 		}
 
 		public OffensiveType Type { get; }
@@ -44,7 +41,6 @@ namespace Pathfinder.Model
 		public int BaseAttackBonus { get; }
 		public int AbilityModifier => Ability?.Modifier ?? 0;
 		public int SizeModifier { get; }
-		public int MiscModifier { get;}
 		public int TemporaryModifier { get; }
 
 		private IEnumerable<int> Values
@@ -53,7 +49,6 @@ namespace Pathfinder.Model
 				BaseAttackBonus,
 				AbilityModifier,
 				SizeModifier,
-				MiscModifier,
 				TemporaryModifier
 			};
 
@@ -83,7 +78,6 @@ namespace Pathfinder.Model
 				&& AbilityModifier == pOther.AbilityModifier
 				&& BaseAttackBonus == pOther.BaseAttackBonus
 				&& SizeModifier == pOther.SizeModifier
-				&& MiscModifier == pOther.MiscModifier
 				&& TemporaryModifier == pOther.TemporaryModifier;
 
 			return equal;
@@ -97,7 +91,6 @@ namespace Pathfinder.Model
 				hashCode = (hashCode*397) ^ (Ability != null ? Ability.GetHashCode() : 0);
 				hashCode = (hashCode*397) ^ BaseAttackBonus;
 				hashCode = (hashCode*397) ^ SizeModifier;
-				hashCode = (hashCode*397) ^ MiscModifier;
 				hashCode = (hashCode*397) ^ TemporaryModifier;
 				return hashCode;
 			}
