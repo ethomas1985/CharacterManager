@@ -5,6 +5,7 @@ using Pathfinder.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Pathfinder.Events.Character;
 using Pathfinder.Interface;
@@ -1329,6 +1330,7 @@ namespace Pathfinder.Model
 			return result;
 		}
 
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
 		public override int GetHashCode()
 		{
 			unchecked
