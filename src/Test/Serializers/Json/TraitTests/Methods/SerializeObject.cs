@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -19,6 +18,7 @@ namespace Pathfinder.Test.Serializers.Json.TraitTests.Methods
 				new Trait(
 					"Test Trait",
 					"Test Text",
+					true,
 					new Dictionary<string, int>());
 
 			Assert.That(
@@ -31,9 +31,10 @@ namespace Pathfinder.Test.Serializers.Json.TraitTests.Methods
 		{
 			var trait =
 				new Trait(
-						  "Test Trait",
-						  "Test Text",
-						  new Dictionary<string, int>());
+					"Test Trait",
+					"Test Text",
+					true,
+					new Dictionary<string, int>());
 
 			var actual = JsonConvert.SerializeObject(trait);
 
@@ -42,6 +43,7 @@ namespace Pathfinder.Test.Serializers.Json.TraitTests.Methods
 				new StringBuilder("{")
 					.Append($"\"{nameof(ITrait.Name)}\":\"{trait.Name}\",")
 					.Append($"\"{nameof(ITrait.Text)}\":\"{trait.Text}\",")
+					.Append($"\"{nameof(ITrait.Conditional)}\":{trait.Conditional.ToString().ToLower()},")
 					.Append($"\"{nameof(ITrait.PropertyModifiers)}\":{{")
 					.Append($"{propertyModifiersString}")
 					.Append($"}}")

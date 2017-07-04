@@ -555,7 +555,7 @@ namespace Pathfinder.Model
 			}
 		}
 
-		public IEnumerable<IEffect> Effects { get; private set; }
+		public IEnumerable<IEffect> Effects { get; private set; } = ImmutableList<IEffect>.Empty;
 
 		public IPurse Purse { get; private set; } = new Purse(0);
 
@@ -709,7 +709,7 @@ namespace Pathfinder.Model
 			var temp =
 				Effects
 					?.Where(x => x.Active)
-					.Sum(x => x[pSkill]) ?? 0;
+					.Sum(x => x[pSkill.Name]) ?? 0;
 			return temp;
 		}
 
@@ -728,6 +728,12 @@ namespace Pathfinder.Model
 				Languages
 					.Union(Race?.Languages ?? new List<ILanguage>())
 					.Distinct().ToList();
+			var racialEffects = 
+				pEvent.Race.Traits
+					.Select(
+						x => new RacialEffect(x.Name, x.Conditional? EffectType.Circumstance : EffectType.Untyped, x.Text, x.PropertyModifiers))
+					.ToList();
+			Effects = Effects.Append(racialEffects);
 		}
 
 		public ICharacter SetName(string pName)

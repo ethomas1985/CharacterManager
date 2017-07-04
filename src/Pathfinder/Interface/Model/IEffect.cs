@@ -3,9 +3,9 @@ using Pathfinder.Enums;
 
 namespace Pathfinder.Interface.Model
 {
-	public interface IEffect
+	public interface IEffect: INamed
 	{
-		string Name { get; }
+		string Text { get; }
 
 		EffectType Type { get; }
 
@@ -33,14 +33,15 @@ namespace Pathfinder.Interface.Model
 		int RangedAttackModifier { get; }
 		int RangedDamageModifier { get; }
 
-		int ExtraAttack_TwoWeaponFightingModifier { get; }
-		int ExtraAttack_MeleeModifier { get; }
-		int ExtraAttack_RangedModifier { get; }
+		int ExtraAttackTwoWeaponFightingModifier { get; }
+		int ExtraAttackMeleeModifier { get; }
+		int ExtraAttackRangedModifier { get; }
 
 		int GlobalSkillCheckModifier { get; }
-		IDictionary<ISkill, int> UniqueSkillCheckModifiers { get; }
-		int this[ISkill pSkill] { get; }
 
 		int SizeModifier { get; }
+
+		IEnumerable<string> AffectedProperties{ get; }
+		int this[string pProperty] { get; }
 	}
 }

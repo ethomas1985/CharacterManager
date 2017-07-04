@@ -112,6 +112,7 @@
     <Compile Include="Events\Character\ClassAdded.cs" />
     <Compile Include="Factories\CharacterFactory.cs" />
     <Compile Include="Interface\IAggregate.cs" />
+    <Compile Include="Model\AbstractEffect.cs" />
     <Compile Include="Interface\Model\Currency\ICopper.cs" />
     <Compile Include="Interface\Model\Currency\IGold.cs" />
     <Compile Include="Interface\Model\Currency\IPlatinum.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Interface\Model\ISpell.cs" />
     <Compile Include="Interface\Model\ISubFeature.cs" />
     <Compile Include="Interface\Model\IWeaponSpecial.cs" />
+    <Compile Include="Model\RacialEffect.cs" />
     <Compile Include="RepositoryFactory.cs" />
     <Compile Include="Library\AbstractRepository.cs" />
     <Compile Include="Library\CharacterRepository.cs" />

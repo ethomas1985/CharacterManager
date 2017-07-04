@@ -118,6 +118,7 @@
     <Compile Include="ObjectMothers\LanguageMother.cs" />
     <Compile Include="ObjectMothers\RaceMother.cs" />
     <Compile Include="ObjectMothers\SkillMother.cs" />
+    <Compile Include="ObjectMothers\TraitMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializers\Json\AbilityScoreTests\Methods\DeserializeObject.cs" />
     <Compile Include="Serializers\Json\AbilityScoreTests\Methods\SerializeObject.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Serializers\Xml\SkillXmlSerializerTests.cs" />
     <Compile Include="Serializers\Xml\TraitXmlSerializerTests.cs" />
     <Compile Include="Serializers\Xml\RaceXmlSerializerTests.cs" />
+    <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareDictionaries.cs" />
     <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareString.cs" />
     <Compile Include="Utilities\ComparisonUtilitiesMethods\Compare.cs" />
     <Compile Include="Utilities\ComparisonUtilitiesMethods\CompareSet.cs" />

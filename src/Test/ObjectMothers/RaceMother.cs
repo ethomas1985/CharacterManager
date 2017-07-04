@@ -17,7 +17,12 @@ namespace Pathfinder.Test.ObjectMothers
 					Size.Medium,
 					30,
 					new Dictionary<AbilityType, int>(),
-					new List<ITrait>(),
+					new List<ITrait>
+					{
+						TraitMother.PlusOneStrength(),
+
+						TraitMother.PlusFiveStrengthConditional()
+					},
 					new List<ILanguage>
 					{
 						LanguageMother.OldTestese(),

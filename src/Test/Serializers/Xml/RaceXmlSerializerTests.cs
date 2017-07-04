@@ -37,7 +37,7 @@ namespace Pathfinder.Test.Serializers.Xml
 				},
 				new List<ITrait>
 				{
-					new Trait("Slow and Steady", null, null)
+					new Trait("Slow and Steady", null, false, null)
 				},
 				new List<ILanguage>
 				{

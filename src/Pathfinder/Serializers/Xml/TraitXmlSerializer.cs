@@ -26,13 +26,18 @@ namespace Pathfinder.Serializers.Xml
 					.Descendants(nameof(ITrait.Text))
 					.Select(x => x.Value)
 					.FirstOrDefault();
+			var conditional =
+				xDocument
+					.Descendants(nameof(ITrait.Conditional))
+					.Select(x => x.Value)
+					.FirstOrDefault().AsBool();
 			var propertyModifiers =
 				xDocument
 					.Descendants(nameof(ITrait.PropertyModifiers))
 					.Descendants()
 					.ToDictionary(x => x.Name.LocalName, GetPropertyModifierValue);
 
-			return new Trait(name, text, propertyModifiers);
+			return new Trait(name, text, conditional, propertyModifiers);
 		}
 
 		private static int GetPropertyModifierValue(XElement pXElement)
@@ -51,6 +56,7 @@ namespace Pathfinder.Serializers.Xml
 						{
 							new XElement(nameof(ITrait.Name), pObject.Name),
 							new XElement(nameof(ITrait.Text), pObject.Text),
+							new XElement(nameof(ITrait.Conditional), pObject.Conditional),
 							new XElement(
 								nameof(ITrait.PropertyModifiers),
 								pObject.PropertyModifiers

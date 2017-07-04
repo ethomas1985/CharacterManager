@@ -40,7 +40,7 @@ namespace Pathfinder.Test.Serializers.Json.RaceTests.Methods
 			};
 			IEnumerable<ITrait> raceTraits = new[]
 			{
-				new Trait("Testing Racial Trait", "Testing Racial Trait Description", new Dictionary<string, int>())
+				new Trait("Testing Racial Trait", "Testing Racial Trait Description", true, new Dictionary<string, int>())
 			};
 			IEnumerable<ILanguage> raceLanguages = new[]
 			{

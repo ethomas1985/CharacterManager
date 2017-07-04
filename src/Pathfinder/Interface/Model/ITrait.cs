@@ -4,8 +4,8 @@ namespace Pathfinder.Interface.Model
 {
 	public interface ITrait : INamed
 	{
-		bool Active{ get; }
 		string Text { get; }
+		bool Conditional { get; }
 
 		IDictionary<string, int> PropertyModifiers { get; }
 	}

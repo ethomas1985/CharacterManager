@@ -17,6 +17,7 @@ namespace Pathfinder.Test.Serializers.Xml
 			new Trait(
 				NAME,
 				TEXT,
+				false,
 				new Dictionary<string, int>
 				{
 					[PROPERTY] = 2
@@ -24,12 +25,13 @@ namespace Pathfinder.Test.Serializers.Xml
 
 		private readonly string _xmlString =
 			//$"<?xml version=\"1.0\" encoding=\"utf-8\" ?>{Environment.NewLine}"+
-			$"<Trait>{Environment.NewLine}"+
-			$"  <Name>{NAME}</Name>{Environment.NewLine}"+
-			$"  <Text>{TEXT}</Text>{Environment.NewLine}"+
-			$"  <PropertyModifiers>{Environment.NewLine}"+
-			$"    <{PROPERTY}>2</{PROPERTY}>{Environment.NewLine}"+
-			$"  </PropertyModifiers>{Environment.NewLine}"+
+			$"<Trait>{Environment.NewLine}" +
+			$"  <Name>{NAME}</Name>{Environment.NewLine}" +
+			$"  <Text>{TEXT}</Text>{Environment.NewLine}" +
+			$"  <Conditional>{false.ToString().ToLower()}</Conditional>{Environment.NewLine}" +
+			$"  <PropertyModifiers>{Environment.NewLine}" +
+			$"    <{PROPERTY}>2</{PROPERTY}>{Environment.NewLine}" +
+			$"  </PropertyModifiers>{Environment.NewLine}" +
 			 "</Trait>";
 
 		[TestFixture]

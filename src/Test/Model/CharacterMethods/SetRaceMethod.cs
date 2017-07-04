@@ -2,8 +2,10 @@
 using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Moq;
+using Pathfinder.Enums;
 using Pathfinder.Events.Character;
 using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
@@ -40,7 +42,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 
 			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = (IRace) RaceMother.Create();
+			var race = RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.AreEqual(race, result.Race);
@@ -53,10 +55,44 @@ namespace Pathfinder.Test.Model.CharacterMethods
 
 			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = (IRace) RaceMother.Create();
+			var race = RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.IsTrue(!race.Languages.Except(result.Languages).Any());
+		}
+
+		[Test]
+		public void SetsRacialEffects()
+		{
+			var skillLibrary = SkillRepository;
+
+			var original = (ICharacter)new Character(skillLibrary);
+
+			var race = RaceMother.Create();
+			var result = original.SetRace(race);
+
+			Assert.That(
+				result.Effects,
+					Is.EquivalentTo(new IEffect[]
+					{
+						new RacialEffect(
+							"+1 Strength",
+							EffectType.Untyped,
+							"+1 Strength",
+							new Dictionary<string, int>
+							{
+								[nameof(AbilityType.Strength)] = 1
+							}),
+						new RacialEffect(
+							"+5 Strength",
+							EffectType.Circumstance,
+							"+5 Strength",
+							new Dictionary<string, int>
+							{
+								[nameof(AbilityType.Strength)] = 5
+							}),
+					}));
+
 		}
 
 		[Test]
@@ -67,7 +103,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var original = new Character(skillLibrary)
 					.SetRace(RaceMother.Create());
 
-			var race = (IRace) RaceMother.Create();
+			var race = RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.IsTrue(!race.Languages.Except(result.Languages).Any());
@@ -80,7 +116,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 
 			var original = (ICharacter)new Character(skillLibrary);
 
-			var race = (IRace) RaceMother.Create();
+			var race = RaceMother.Create();
 			var result = original.SetRace(race);
 
 			Assert.AreNotSame(original, result);
@@ -95,7 +131,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 			var original = new Character(skillLibrary)
 					.SetRace(originalRace);
 
-			var race = (IRace) RaceMother.Create();
+			var race = RaceMother.Create();
 			original.SetRace(race);
 
 			Assert.AreEqual(originalRace, original.Race);

@@ -74,11 +74,15 @@ namespace Pathfinder.Utilities
 			}
 			return (total + acc) * (pThis.StartsWith("minus", StringComparison.InvariantCultureIgnoreCase) ? -1 : 1);
 		}
+		
+		public static bool AsBool(this string pThis)
+		{
+			return bool.TryParse(pThis, out bool value) && value;
+		}
 
 		public static int AsInt(this string pThis)
 		{
-			int value;
-			return int.TryParse(pThis, out value) ? value : default(int);
+			return int.TryParse(pThis, out int value) ? value : default(int);
 		}
 
 		public static decimal AsDecimal(this string pThis)

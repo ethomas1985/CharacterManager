@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -14,6 +13,7 @@ namespace Pathfinder.Serializers.Json
 
 			WriteProperty(pWriter, pSerializer, nameof(ITrait.Name), pValue.Name);
 			WriteProperty(pWriter, pSerializer, nameof(ITrait.Text), pValue.Text);
+			WriteProperty(pWriter, pSerializer, nameof(ITrait.Conditional), pValue.Conditional);
 
 			WriteProperty(pWriter, pSerializer, nameof(ITrait.PropertyModifiers), pValue.PropertyModifiers);
 
@@ -29,10 +29,11 @@ namespace Pathfinder.Serializers.Json
 			}
 
 			var text = GetString(pJobject, nameof(ITrait.Text));
+			var conditional = GetBoolean(pJobject, nameof(ITrait.Conditional));
 
 			var propertyModifiers = GetValuesFromHashObject<string, int>(pSerializer, pJobject, nameof(ITrait.PropertyModifiers));
 
-			return new Trait(name, text, propertyModifiers);
+			return new Trait(name, text, conditional, propertyModifiers);
 		}
 	}
 }
