@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
@@ -28,7 +29,7 @@ namespace Pathfinder.Test.ObjectMothers
 
 			var testingItem = ItemMother.Create();
 			var testCharacter =
-				new CharacterImpl(skillRepository)
+				new CharacterImpl(skillRepository, new Guid("DEADBEEF-0000-0001-0010-000000000011"))
 					.SetName(name)
 					.SetAge(10)
 					.SetHomeland("Homeland")

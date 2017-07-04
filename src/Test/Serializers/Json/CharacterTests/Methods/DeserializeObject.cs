@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -33,6 +34,23 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 			var testCharacter = CharacterMother.UnitMcTesterFace();
 
 			Assert.That(result, Is.EqualTo(testCharacter));
+		}
+
+		[Test]
+		public void GeneratesNewId()
+		{
+			var result = JsonConvert.DeserializeObject<ICharacter>($"{{}}");
+
+			Assert.That(result.Id, Is.Not.EqualTo(Guid.Empty));
+		}
+
+		[Test]
+		public void LoadsId()
+		{
+			Guid newId = Guid.NewGuid();
+			var result = JsonConvert.DeserializeObject<ICharacter>($"{{ {nameof(ICharacter.Id)} : \"{newId}\"}}");
+
+			Assert.That(result.Id, Is.EqualTo(newId));
 		}
 
 		[Test]

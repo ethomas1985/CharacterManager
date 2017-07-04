@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Model;
 using System;
 using System.Linq;
@@ -27,7 +26,10 @@ namespace Pathfinder.Serializers.Json
 
 		protected override ICharacter DeserializeFromJson(JsonSerializer pSerializer, JObject pJobject)
 		{
-			ICharacter character = new Character(SkillRepository);
+			ICharacter character = 
+				Guid.TryParse(GetString(pJobject, nameof(ICharacter.Id)), out Guid id)
+					? new Character(SkillRepository, id)
+					: new Character(SkillRepository);
 
 			character = ParseRace(RaceRepository, pJobject, character);
 
@@ -307,10 +309,10 @@ namespace Pathfinder.Serializers.Json
 
 		private static ICharacter ParseEquipedArmor(JsonSerializer pSerializer, JToken pJToken, ICharacter pCharacter)
 		{
-			var equipedArmor = 
+			var equipedArmor =
 				GetValuesFromHashObject<ItemType, IItem>(pSerializer, pJToken, nameof(ICharacter.EquipedArmor));
 
-			return 
+			return
 				equipedArmor
 					.Select(valuePair => valuePair.Value)
 					.Aggregate(pCharacter, (c, i) => c.EquipArmor(i));
@@ -332,6 +334,8 @@ namespace Pathfinder.Serializers.Json
 		{
 			pWriter.WriteStartObject();
 
+			WriteProperty(pWriter, pSerializer, nameof(ICharacter.Id), pValue.Id);
+			
 			WriteProperty(pWriter, pSerializer, nameof(ICharacter.Age), pValue.Age);
 			WriteProperty(pWriter, pSerializer, nameof(ICharacter.Alignment), pValue.Alignment);
 
