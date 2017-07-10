@@ -1,18 +1,19 @@
-using System;
+﻿using System;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetHomeland : ICommand
+	public class SetCharacterHeight : ICommand
 	{
-		public SetHomeland(Guid pId, int pOriginalVersion, string pHomeland)
+		public SetCharacterHeight(Guid pId, int pOriginalVersion, string pHeight)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Homeland = pHomeland;
+			Height = pHeight;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Homeland { get; }
+		public string Height { get; }
 	}
 }

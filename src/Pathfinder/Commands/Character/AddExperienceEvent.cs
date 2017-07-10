@@ -1,18 +1,19 @@
-using System;
+﻿using System;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetHomeland : ICommand
+	public class AddExperienceEvent : ICommand
 	{
-		public SetHomeland(Guid pId, int pOriginalVersion, string pHomeland)
+		public AddExperienceEvent(Guid pId, int pOriginalVersion, IExperienceEvent pEvent)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Homeland = pHomeland;
+			Event = pEvent;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Homeland { get; }
+		public IExperienceEvent Event { get; }
 	}
 }

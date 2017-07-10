@@ -1,18 +1,20 @@
 ﻿using System;
 using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetEyes : ICommand
+	public class RemoveItemFromInventory : ICommand
 	{
-		public SetEyes(Guid pId, int pOriginalVersion, string pEyes)
+		public RemoveItemFromInventory(Guid pId, int pOriginalVersion, IItem pItem)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Eyes = pEyes;
+			Item = pItem;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Eyes { get; }
+		public IItem Item { get; }
 	}
 }

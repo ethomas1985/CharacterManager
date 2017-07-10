@@ -1,18 +1,19 @@
-using System;
+﻿using System;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetHomeland : ICommand
+	public class SetCharacterEyes : ICommand
 	{
-		public SetHomeland(Guid pId, int pOriginalVersion, string pHomeland)
+		public SetCharacterEyes(Guid pId, int pOriginalVersion, string pEyes)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Homeland = pHomeland;
+			Eyes = pEyes;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Homeland { get; }
+		public string Eyes { get; }
 	}
 }

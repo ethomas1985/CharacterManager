@@ -2,15 +2,17 @@
 using Pathfinder.Enums;
 using Pathfinder.Interface.Model;
 
-namespace Pathfinder.Commands.Character {
-	public class SetAlignment : ICommand
+namespace Pathfinder.Commands.Character
+{
+	public class SetCharacterAlignment : ICommand
 	{
-		public SetAlignment(Guid pId, int pOriginalVersion, Alignment pAlignment)
+		public SetCharacterAlignment(Guid pId, int pOriginalVersion, Alignment pAlignment)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
 			Alignment = pAlignment;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
 		public Alignment Alignment { get; }

@@ -1,18 +1,20 @@
 using System;
+using Pathfinder.Enums;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetHomeland : ICommand
+	public class SetCharacterGender : ICommand
 	{
-		public SetHomeland(Guid pId, int pOriginalVersion, string pHomeland)
+		public SetCharacterGender(Guid pId, int pOriginalVersion, Gender pGender)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Homeland = pHomeland;
+			Gender = pGender;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Homeland { get; }
+		public Gender Gender { get; }
 	}
 }

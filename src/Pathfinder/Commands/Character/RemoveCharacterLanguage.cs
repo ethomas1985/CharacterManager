@@ -3,16 +3,17 @@ using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetEyes : ICommand
+	public class RemoveCharacterLanguage : ICommand
 	{
-		public SetEyes(Guid pId, int pOriginalVersion, string pEyes)
+		public RemoveCharacterLanguage(Guid pId, int pOriginalVersion, ILanguage pLanguage)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Eyes = pEyes;
+			Language = pLanguage;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Eyes { get; }
+		public ILanguage Language { get; }
 	}
 }

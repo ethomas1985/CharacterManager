@@ -1,5 +1,4 @@
 ﻿using System;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character

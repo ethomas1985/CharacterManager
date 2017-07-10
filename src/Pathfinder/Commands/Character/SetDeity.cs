@@ -1,8 +1,8 @@
 ﻿using System;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 
-namespace Pathfinder.Commands.Character {
+namespace Pathfinder.Commands.Character
+{
 	public class SetDeity : ICommand
 	{
 		public SetDeity(Guid pId, int pOriginalVersion, IDeity pDeity)

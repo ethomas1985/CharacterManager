@@ -3,16 +3,17 @@ using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Commands.Character
 {
-	public class SetName : ICommand
+	public class SetCharacterHomeland : ICommand
 	{
-		public SetName(Guid pId, int pOriginalVersion, string pName)
+		public SetCharacterHomeland(Guid pId, int pOriginalVersion, string pHomeland)
 		{
 			Id = pId;
 			OriginalVersion = pOriginalVersion;
-			Name = pName;
+			Homeland = pHomeland;
 		}
+
 		public Guid Id { get; }
 		public int OriginalVersion { get; }
-		public string Name { get; }
+		public string Homeland { get; }
 	}
 }
