@@ -24,7 +24,6 @@ namespace PsrdParser
 
 
 		[Test]
-		[Ignore]
 		public void ConvertSkillsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "skill");
@@ -48,7 +47,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertRacialTraitsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "racial_trait");
@@ -93,7 +91,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertClassDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
@@ -124,7 +121,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertFeaturesDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "class", "core");
@@ -158,7 +154,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertFeatsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "feat");
@@ -188,7 +183,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertSpellsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "spell");
@@ -224,7 +218,6 @@ namespace PsrdParser
 		}
 
 		[Test]
-		[Ignore]
 		public void ConvertItemsDirectory()
 		{
 			var sourceDir = Path.Combine(PsrdDataCore, "item");

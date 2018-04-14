@@ -69,6 +69,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Mocks\MockHelper.cs" />
     <Compile Include="Model\AbilityScoreTests.cs" />
     <Compile Include="Model\CharacterMethods\AddClassMethod.cs" />
     <Compile Include="Model\CharacterMethods\AddDamageMethod.cs" />

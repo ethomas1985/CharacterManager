@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -7,10 +6,12 @@ namespace Pathfinder.Test.ObjectMothers
 {
 	public static class SkillMother
 	{
+		public const string SKILL_NAME = "Test Skill";
+
 		public static ISkill Create()
 		{
 			return new Skill(
-				"Test Skill",
+				SKILL_NAME,
 				AbilityType.Strength,
 				false,
 				false,

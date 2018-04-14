@@ -40,25 +40,25 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				new StringBuilder("{")
 					.Append($"\"{nameof(ISpell.Name)}\":\"{spell.Name}\",")
 					.Append($"\"{nameof(ISpell.School)}\":\"{spell.School.ToString().ToCamelCase()}\",")
-					.Append($"\"{nameof(ISpell.SubSchools)}\":[\"{string.Join("\", \"",spell.SubSchools.ToString().ToCamelCase())}\"],")
-					
+					.Append($"\"{nameof(ISpell.SubSchools)}\":[\"{string.Join("\", \"", spell.SubSchools.Select(x => x.ToString().ToCamelCase()))}\"],")
+
 					.Append($"\"{nameof(ISpell.MagicDescriptors)}\":[")
 					.Append($"{string.Join(",", magicDescriptorStrings)}")
 					.Append($"],")
-					
+
 					.Append($"\"{nameof(ISpell.SavingThrow)}\":\"{spell.SavingThrow}\",")
 					.Append($"\"{nameof(ISpell.Description)}\":\"{spell.Description}\",")
 					.Append($"\"{nameof(ISpell.HasSpellResistance)}\":{spell.HasSpellResistance.ToString().ToCamelCase()},")
 					.Append($"\"{nameof(ISpell.SpellResistance)}\":\"{spell.SpellResistance}\",")
 					.Append($"\"{nameof(ISpell.CastingTime)}\":\"{spell.CastingTime}\",")
 					.Append($"\"{nameof(ISpell.Range)}\":\"{spell.Range}\",")
-					
+
 					.Append($"\"{nameof(ISpell.LevelRequirements)}\":{{")
 					.Append($"{string.Join(",", levelRequirementStrings)}")
 					.Append($"}},")
 
 					.Append($"\"{nameof(ISpell.Duration)}\":\"{spell.Duration}\",")
-					
+
 					.Append($"\"{nameof(ISpell.Components)}\":[")
 					.Append($"{string.Join(",", spellComponentStrings)}")
 					.Append($"]")
@@ -75,7 +75,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				new Spell(
 						  "Testing Spell",
 						  MagicSchool.Abjuration,
-						  new [] { MagicSubSchool.Charm },
+						  new[] { MagicSubSchool.Charm },
 						  new HashSet<MagicDescriptor>
 						  {
 							  MagicDescriptor.Acid
