@@ -1,4 +1,4 @@
-﻿namespace Pathfinder.Interface.Model
+﻿namespace Pathfinder.Interface.Infrastructure
 {
 	internal interface ISerializer<TModel, TSerialized>
 	{

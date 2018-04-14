@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using Moq;
 using Pathfinder.Events.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
 
@@ -13,7 +14,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddFeatMethod
 	{
-		private static readonly IRepository<ISkill> SkillRepository = new Mock<IRepository<ISkill>>().Object;
+		private static readonly ILegacyRepository<ISkill> SkillRepository = new Mock<ILegacyRepository<ISkill>>().Object;
 
 		[Test]
 		public void FailsWithNullFeat()

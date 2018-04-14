@@ -1,9 +1,11 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Library
 {
-	internal class FeatureRepository : AbstractRepository<IFeature>
+    [Obsolete("This was dumb.")]
+	internal class FeatureRepository : AbstractFilesystemRepository<IFeature>
 	{
 		public FeatureRepository(ISerializer<IFeature, string> pSerializer, string pLibraryDirectory)
 		: base(pSerializer, pLibraryDirectory)

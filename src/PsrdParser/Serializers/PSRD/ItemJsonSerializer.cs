@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
-using Pathfinder.Interface.Currency;
-using Pathfinder.Interface.Item;
-using Pathfinder.Library;
 using Pathfinder.Model;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
@@ -13,6 +9,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Pathfinder.Interface.Model;
+using Pathfinder.Interface.Model.Currency;
+using Pathfinder.Interface.Model.Item;
+using Pathfinder.Library;
 using Assert = Pathfinder.Utilities.Assert;
 
 namespace PsrdParser.Serializers.PSRD
@@ -29,7 +29,7 @@ namespace PsrdParser.Serializers.PSRD
 		private const string HTML_DASH = "&mdash;";
 
 		private static readonly Regex WeightPattern = new Regex(@"(\d+) lbs?\..*");
-		private static readonly WeaponSpecialsLibrary WeaponSpecialsLibrary = new WeaponSpecialsLibrary();
+		private static readonly WeaponSpecialsRepository WeaponSpecialsLibrary = new WeaponSpecialsRepository();
 
 		public override IItem Deserialize(string pValue)
 		{

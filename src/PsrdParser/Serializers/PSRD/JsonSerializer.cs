@@ -1,6 +1,6 @@
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 
 namespace PsrdParser.Serializers.PSRD
 {

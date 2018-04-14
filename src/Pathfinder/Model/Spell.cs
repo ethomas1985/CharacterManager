@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
@@ -12,7 +11,7 @@ namespace Pathfinder.Model
 		public Spell(
 			string pName,
 			MagicSchool pSchool,
-			MagicSubSchool pSubSchool,
+			IEnumerable<MagicSubSchool> pSubSchools,
 			ISet<MagicDescriptor> pMagicDescriptors,
 			string pSavingThrow,
 			string pDescription,
@@ -26,7 +25,7 @@ namespace Pathfinder.Model
 		{
 			Name = pName;
 			School = pSchool;
-			SubSchool = pSubSchool;
+			SubSchools = pSubSchools;
 			MagicDescriptors = pMagicDescriptors;
 			SavingThrow = pSavingThrow;
 			Description = pDescription;
@@ -41,7 +40,7 @@ namespace Pathfinder.Model
 
 		public string Name { get; }
 		public MagicSchool School { get; }
-		public MagicSubSchool SubSchool { get; }
+		public IEnumerable<MagicSubSchool> SubSchools { get; }
 		public ISet<MagicDescriptor> MagicDescriptors { get; }
 		public string SavingThrow { get; }
 		public string Description { get; }
@@ -55,7 +54,7 @@ namespace Pathfinder.Model
 
 		public override string ToString()
 		{
-			return $"{nameof(Spell)}: {Name} [{School}|{SubSchool}]";
+			return $"{nameof(Spell)}: {Name} [{School}|{string.Join(",", SubSchools)}]";
 		}
 
 		public override bool Equals(object pOther)
@@ -77,7 +76,7 @@ namespace Pathfinder.Model
 
 			return ComparisonUtilities.Compare(GetType().Name, Name, pOther.Name, nameof(Name))
 				&& ComparisonUtilities.Compare(GetType().Name, School, pOther.School, nameof(School))
-				&& ComparisonUtilities.Compare(GetType().Name, SubSchool, pOther.SubSchool, nameof(SubSchool))
+				&& ComparisonUtilities.CompareEnumerables(GetType().Name, SubSchools, pOther.SubSchools, nameof(SubSchools))
 				&& ComparisonUtilities.CompareEnumerables(GetType().Name, MagicDescriptors, pOther.MagicDescriptors, nameof(MagicDescriptors))
 				&& ComparisonUtilities.Compare(GetType().Name, SavingThrow, pOther.SavingThrow, nameof(SavingThrow))
 				&& ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description))
@@ -96,7 +95,7 @@ namespace Pathfinder.Model
 			{
 				var hashCode = (Name != null ? Name.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (int)School;
-				hashCode = (hashCode * 397) ^ (int)SubSchool;
+				hashCode = (hashCode * 397) ^ (SubSchools != null ? SubSchools.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (MagicDescriptors != null ? MagicDescriptors.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (SavingThrow != null ? SavingThrow.GetHashCode() : 0);
 				hashCode = (hashCode * 397) ^ (Description != null ? Description.GetHashCode() : 0);

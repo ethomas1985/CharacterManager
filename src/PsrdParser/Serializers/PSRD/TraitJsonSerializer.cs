@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
 namespace PsrdParser.Serializers.PSRD
@@ -23,7 +23,7 @@ namespace PsrdParser.Serializers.PSRD
 					? body
 					: $"{body}<p>{description}</p>";
 
-			return new Trait(name, text, new Dictionary<string, int>());
+			return new Trait(name, text, false, new Dictionary<string, int>());
 		}
 
 		public override string Serialize(ITrait pObject)

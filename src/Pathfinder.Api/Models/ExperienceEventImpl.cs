@@ -1,5 +1,4 @@
-﻿using Pathfinder.Interface;
-using Pathfinder.Interface.Model;
+﻿using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Api.Models
 {

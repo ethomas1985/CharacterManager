@@ -1,10 +1,11 @@
-﻿using Pathfinder.Interface;
-using Pathfinder.Interface.Model;
+﻿using System;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Library
 {
-	internal class ItemRepository : AbstractRepository<IItem>
+    [Obsolete("This was dumb.")]
+	internal class ItemRepository : AbstractFilesystemRepository<IItem>
 	{
 		internal ItemRepository(
 			ISerializer<IItem, string> pSerializer,

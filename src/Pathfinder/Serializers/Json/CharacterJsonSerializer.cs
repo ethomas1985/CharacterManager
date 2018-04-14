@@ -4,6 +4,7 @@ using Pathfinder.Enums;
 using Pathfinder.Model;
 using System;
 using System.Linq;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;
@@ -14,15 +15,15 @@ namespace Pathfinder.Serializers.Json
 	public class CharacterJsonSerializer : AbstractJsonSerializer<ICharacter>
 	{
 		public CharacterJsonSerializer(
-			IRepository<IRace> pRaceRepository,
-			IRepository<ISkill> pSkillRepository)
+			ILegacyRepository<IRace> pRaceRepository,
+			ILegacyRepository<ISkill> pSkillRepository)
 		{
 			RaceRepository = pRaceRepository;
 			SkillRepository = pSkillRepository;
 		}
 
-		public IRepository<IRace> RaceRepository { get; }
-		public IRepository<ISkill> SkillRepository { get; }
+		public ILegacyRepository<IRace> RaceRepository { get; }
+		public ILegacyRepository<ISkill> SkillRepository { get; }
 
 		protected override ICharacter DeserializeFromJson(JsonSerializer pSerializer, JObject pJobject)
 		{
@@ -116,7 +117,7 @@ namespace Pathfinder.Serializers.Json
 			return character;
 		}
 
-		private static ICharacter ParseRace(IRepository<IRace> pRaceRepository, JToken pJToken, ICharacter pCharacter)
+		private static ICharacter ParseRace(ILegacyRepository<IRace> pRaceRepository, JToken pJToken, ICharacter pCharacter)
 		{
 			var parsedRace = GetString(pJToken, nameof(ICharacter.Race));
 			if (parsedRace != null && pRaceRepository.TryGetValue(parsedRace, out IRace race))
@@ -268,7 +269,7 @@ namespace Pathfinder.Serializers.Json
 				.Aggregate(pCharacter, (current, feat) => current.AddFeat(feat, feat.Specialization));
 		}
 
-		private static ICharacter ParseSkills(IRepository<ISkill> pSkillRepository, JToken pJToken, ICharacter pCharacter)
+		private static ICharacter ParseSkills(ILegacyRepository<ISkill> pSkillRepository, JToken pJToken, ICharacter pCharacter)
 		{
 			return
 				pJToken.SelectTokens(nameof(ICharacter.SkillScores))

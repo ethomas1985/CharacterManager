@@ -40,7 +40,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				new StringBuilder("{")
 					.Append($"\"{nameof(ISpell.Name)}\":\"{spell.Name}\",")
 					.Append($"\"{nameof(ISpell.School)}\":\"{spell.School.ToString().ToCamelCase()}\",")
-					.Append($"\"{nameof(ISpell.SubSchool)}\":\"{spell.SubSchool.ToString().ToCamelCase()}\",")
+					.Append($"\"{nameof(ISpell.SubSchools)}\":[\"{string.Join("\", \"",spell.SubSchools.ToString().ToCamelCase())}\"],")
 					
 					.Append($"\"{nameof(ISpell.MagicDescriptors)}\":[")
 					.Append($"{string.Join(",", magicDescriptorStrings)}")
@@ -75,7 +75,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				new Spell(
 						  "Testing Spell",
 						  MagicSchool.Abjuration,
-						  MagicSubSchool.Charm,
+						  new [] { MagicSubSchool.Charm },
 						  new HashSet<MagicDescriptor>
 						  {
 							  MagicDescriptor.Acid

@@ -5,7 +5,7 @@ using System.Linq;
 using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 

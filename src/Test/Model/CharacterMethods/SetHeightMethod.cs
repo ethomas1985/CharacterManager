@@ -4,6 +4,7 @@ using Pathfinder.Model;
 using System;
 using Moq;
 using Pathfinder.Events.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -13,11 +14,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	{
 		private const string HEIGHT = "Over 9000";
 
-		private static IRepository<ISkill> SkillRepository
+		private static ILegacyRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
+				var mockSkillLibrary = new Mock<ILegacyRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}

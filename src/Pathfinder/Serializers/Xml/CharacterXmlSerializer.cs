@@ -1,5 +1,6 @@
 ﻿using System;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Serializers.Xml

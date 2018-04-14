@@ -4,6 +4,7 @@ using Pathfinder.Model;
 using System;
 using Moq;
 using Pathfinder.Events.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -11,7 +12,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AppendExperienceMethod
 	{
-		private static readonly IRepository<ISkill> SkillRepository = new Mock<IRepository<ISkill>>().Object;
+		private static readonly ILegacyRepository<ISkill> SkillRepository = new Mock<ILegacyRepository<ISkill>>().Object;
 
 		[Test]
 		public void NotNull()

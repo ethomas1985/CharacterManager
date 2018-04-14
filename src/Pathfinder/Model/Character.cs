@@ -9,6 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;
@@ -422,7 +423,7 @@ namespace Pathfinder.Model
 
 		public int MaxSkillRanks => Classes.Sum(x => x.Level * (Intelligence.Modifier + x.SkillAddend));
 		private IRepository<ISkill> SkillRepository { get; }
-		private IEnumerable<ISkill> Skills => SkillRepository;
+		private IEnumerable<ISkill> Skills => SkillRepository.GetAll();
 
 		private ImmutableDictionary<ISkill, int> SkillRanks { get; set; } = new Dictionary<ISkill, int>().ToImmutableDictionary();
 		private IDictionary<ISkill, int> MiscellenaousSkillBonuses { get; } = new Dictionary<ISkill, int>().ToImmutableDictionary();

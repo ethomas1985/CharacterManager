@@ -5,16 +5,12 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
-using Pathfinder.Library;
-using Pathfinder.Properties;
-using Pathfinder.Serializers;
 using Pathfinder.Serializers.Xml;
 using PsrdParser.Serializers.PSRD;
 
 namespace PsrdParser
 {
-	[TestFixture]
+	[TestFixture, Explicit]
 	public class Convert
 	{
 		private static readonly string MyDocuments =

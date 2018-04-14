@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
+using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
 
@@ -52,13 +52,38 @@ namespace PsrdParser.Serializers.PSRD
 		private static MagicSchool _GetMagicSchool(JObject pJObject)
 		{
 			MagicSchool value;
-			return Enum.TryParse((string) pJObject["school"], out value) ? value : MagicSchool.Universal;
+			var jsonMagicSchool = (string)pJObject["school"];
+			var success = Enum.TryParse(jsonMagicSchool, true, out value);
+			Assert.IsTrue(jsonMagicSchool.Equals(value.ToString(), StringComparison.InvariantCultureIgnoreCase), $"Failed to correctly parse spell's magic school. was: '{jsonMagicSchool}'; parsed: '{value}'");
+			return success ? value : MagicSchool.Universal;
 		}
 
-		private static MagicSubSchool _GetSubMagicSchool(JObject pJObject)
+		private static IEnumerable<MagicSubSchool> _GetSubMagicSchool(JObject pJObject)
 		{
-			MagicSubSchool value;
-			return Enum.TryParse((string) pJObject["school"], out value) ? value : MagicSubSchool.None;
+			IEnumerable<MagicSubSchool> subSchools = new List<MagicSubSchool>();
+			var jsonSubSchools = pJObject["subschool"];
+			if (jsonSubSchools == null || !jsonSubSchools.Children().Any())
+			{
+				return new List<MagicSubSchool> { MagicSubSchool.None };
+			}
+
+			if (jsonSubSchools.Children().Count() == 1)
+			{
+				LogTo.Warning("This spell has more than one Magic SubSchool! {spellName}|{magicSubSchools}", getString(pJObject, "name"), string.Join(", ", jsonSubSchools.Children().Select(x => x.ToString())));
+			}
+
+			foreach (var child in jsonSubSchools.Children().Cast<string>())
+			{
+				var jsonMagicSubSchool = (string)jsonSubSchools[0];
+				MagicSubSchool value;
+				var success = Enum.TryParse(child, true, out value);
+				Assert.IsTrue(jsonMagicSubSchool.Equals(value.ToString(), StringComparison.InvariantCultureIgnoreCase), $"Failed to correctly parse spell's magic school. was: '{jsonMagicSubSchool}'; parsed: '{value}'");
+				if (success)
+				{
+					subSchools = subSchools.Append(value);
+				}
+			}
+			return subSchools;
 		}
 
 		private static ISet<MagicDescriptor> _GetMagicDescriptors(JObject pJObject)
@@ -71,7 +96,7 @@ namespace PsrdParser.Serializers.PSRD
 				return null;
 			}
 
-			var descriptors = jToken.Values().Select(x => (string) x).Where(x => x != null);
+			var descriptors = jToken.Values().Select(x => (string)x).Where(x => x != null);
 
 			foreach (var descriptor in descriptors)
 			{
@@ -97,7 +122,7 @@ namespace PsrdParser.Serializers.PSRD
 
 		private static bool _HasSpellResistance(JObject pJObject)
 		{
-			var str = (string) pJObject["spell_resistance"];
+			var str = (string)pJObject["spell_resistance"];
 			str = str?.Split(' ').FirstOrDefault();
 
 			bool value;
@@ -111,7 +136,7 @@ namespace PsrdParser.Serializers.PSRD
 
 		private static string _GetSpellResistance(JObject pJObject)
 		{
-			var str = (string) pJObject["spell_resistance"];
+			var str = (string)pJObject["spell_resistance"];
 			var theRest = str?.Split(' ').Skip(1).ToArray();
 
 			return theRest?.Length > 0 ? string.Join(" ", theRest) : null;
@@ -136,8 +161,8 @@ namespace PsrdParser.Serializers.PSRD
 					.Select(
 						x => new
 						{
-							ClassName = (string) x["class"],
-							Level = (int) x["level"]
+							ClassName = (string)x["class"],
+							Level = (int)x["level"]
 						});
 
 			foreach (var classLevel in levels)
@@ -167,8 +192,8 @@ namespace PsrdParser.Serializers.PSRD
 					.Select(
 						x => new
 						{
-							Type = (string) x["type"],
-							Text = _CapitalizeFirstCharacter((string) x["text"])
+							Type = (string)x["type"],
+							Text = _CapitalizeFirstCharacter((string)x["text"])
 						})
 					.Where(x => x.Type != null);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -18,21 +19,29 @@ namespace Pathfinder.Serializers.Xml
 
 			var document = XDocument.Parse(pValue);
 
-			return
-				new Spell(
-					GetName(document),
-					GetMagicSchool(document),
-					GetSubMagicSchool(document),
-					GetMagicDescriptors(document),
-					GetSavingThrow(document),
-					GetDescription(document),
-					HasSpellResistance(document),
-					GetSpellResistance(document),
-					GetCastingTime(document),
-					GetRange(document),
-					GetLevelRequirements(document),
-					GetDuration(document),
-					GetComponents(document));
+			var name = GetName(document);
+			try
+			{
+				return
+					new Spell(
+						name,
+						GetMagicSchool(document),
+						GetSubMagicSchools(document),
+						GetMagicDescriptors(document),
+						GetSavingThrow(document),
+						GetDescription(document),
+						HasSpellResistance(document),
+						GetSpellResistance(document),
+						GetCastingTime(document),
+						GetRange(document),
+						GetLevelRequirements(document),
+						GetDuration(document),
+						GetComponents(document));
+			}
+			catch (InvalidCastException invalidCastException)
+			{
+				throw new InvalidCastException($"Spell name: '{name}'", invalidCastException);
+			}
 		}
 
 		private string GetName(XDocument pDocument)
@@ -58,31 +67,36 @@ namespace Pathfinder.Serializers.Xml
 			return value;
 		}
 
-		private MagicSubSchool GetSubMagicSchool(XDocument pDocument)
+		private IEnumerable<MagicSubSchool> GetSubMagicSchools(XDocument pDocument)
 		{
-			var srcValue = pDocument
-				.Descendants(nameof(ISpell.School))
-				.Select(x => x.Value)
-				.FirstOrDefault();
+			var magicSubSchools = pDocument
+				.Descendants(nameof(ISpell.SubSchools))
+				.Select(x =>
+				{
+					MagicSubSchool value;
+					if (!Enum.TryParse(x.Value, out value))
+					{
+						throw new InvalidCastException($"Invalid Sub-Magic School: {x.Value}");
+					}
+					return value;
 
-			MagicSubSchool value;
-			if (!Enum.TryParse(srcValue, out value))
-			{
-				throw new InvalidCastException($"Invalid Sub-Magic School: {srcValue}");
-			}
-			return value;
+				});
+
+			return magicSubSchools;
 		}
 
 		private ISet<MagicDescriptor> GetMagicDescriptors(XDocument pDocument)
 		{
 			var srcValues = pDocument
-				.Descendants(nameof(ISpell.School))
+				.Descendants(nameof(MagicDescriptor))
+				.Select(x => x.Value)
+				.Where(x => !string.IsNullOrWhiteSpace(x))
 				.Select(x =>
 						{
 							MagicDescriptor value;
-							if (!Enum.TryParse(x.Value, out value))
+							if (!Enum.TryParse(x, out value))
 							{
-								throw new InvalidCastException($"Invalid Magic Descriptor: {x.Value}");
+								throw new InvalidCastException($"Invalid Magic Descriptor: '{x}'");
 							}
 							return value;
 						});
@@ -173,7 +187,7 @@ namespace Pathfinder.Serializers.Xml
 
 		private ISet<ISpellComponent> GetComponents(XDocument pDocument)
 		{
-			var components = 
+			var components =
 				pDocument
 					.Descendants(nameof(ISpell.Components))
 					.Descendants("Component")
@@ -210,7 +224,10 @@ namespace Pathfinder.Serializers.Xml
 						{
 							new XElement(nameof(ISpell.Name), pObject.Name),
 							new XElement(nameof(ISpell.School), pObject.School),
-							new XElement(nameof(ISpell.SubSchool), pObject.SubSchool),
+							new XElement(
+								nameof(ISpell.SubSchools),
+								pObject.SubSchools?.Select(
+									x => new XElement(nameof(MagicDescriptor), x))),
 							new XElement(
 								nameof(ISpell.MagicDescriptors),
 								pObject.MagicDescriptors?.Select(

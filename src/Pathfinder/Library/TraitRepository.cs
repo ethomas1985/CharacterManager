@@ -1,9 +1,11 @@
-﻿using Pathfinder.Interface;
+﻿using System;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Library
 {
-	internal class TraitRepository : AbstractRepository<ITrait>
+    [Obsolete("This was dumb.")]
+	internal class TraitRepository : AbstractFilesystemRepository<ITrait>
 	{
 		public TraitRepository(ISerializer<ITrait, string> pSerializer, string pLibraryDirectory)
 		: base(pSerializer, pLibraryDirectory)

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Pathfinder.Enums;
 using Pathfinder.Model;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Linq;
 using Moq;
 using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
 
@@ -15,12 +15,12 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class AddClassMethod
 	{
-		private static readonly Lazy<IRepository<ISkill>> LazySkillLibrary
-			= new Lazy<IRepository<ISkill>>(() =>
+		private static readonly Lazy<ILegacyRepository<ISkill>> LazySkillLibrary
+			= new Lazy<ILegacyRepository<ISkill>>(() =>
 			{
 				ISkill race;
 				var testSkill = SkillMother.Create();
-				var mockRaceLibrary = new Mock<IRepository<ISkill>>();
+				var mockRaceLibrary = new Mock<ILegacyRepository<ISkill>>();
 
 				mockRaceLibrary.Setup(foo => foo.Values).Returns(new List<ISkill> { testSkill });
 				mockRaceLibrary.Setup(foo => foo[testSkill.Name]).Returns(testSkill);
@@ -32,7 +32,7 @@ namespace Pathfinder.Test.Model.CharacterMethods
 				return mockRaceLibrary.Object;
 			});
 
-		internal static IRepository<ISkill> SkillRepository => LazySkillLibrary.Value;
+		internal static ILegacyRepository<ISkill> SkillRepository => LazySkillLibrary.Value;
 
 		[Test]
 		public void NullClass()

@@ -73,7 +73,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				$"{{" +
 				$"\"{nameof(ISpell.Name)}\":\"{name}\"," +
 				$"\"{nameof(ISpell.School)}\":\"{magicSchool}\"," +
-				$"\"{nameof(ISpell.SubSchool)}\":\"{magicSubSchool}\"," +
+				$"\"{nameof(ISpell.SubSchools)}\":[\"{magicSubSchool}\"]," +
 				$"\"{nameof(ISpell.MagicDescriptors)}\":[" +
 				$"{string.Join(",", magicDescriptorStrings)}" +
 				$"]," +
@@ -93,7 +93,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				"}");
 
 			var expected =
-				new Spell(name, magicSchool, magicSubSchool, magicDescriptors, savingThrow, description, hasSpellResistance, spellResisitance, castingTime, range, levelRequirements, duration, spellComponents);
+				new Spell(name, magicSchool, new [] { magicSubSchool }, magicDescriptors, savingThrow, description, hasSpellResistance, spellResisitance, castingTime, range, levelRequirements, duration, spellComponents);
 
 			Assert.That(result, Is.EqualTo(expected));
 		}

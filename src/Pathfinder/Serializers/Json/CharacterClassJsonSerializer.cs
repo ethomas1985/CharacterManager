@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -9,7 +10,7 @@ namespace Pathfinder.Serializers.Json
 {
 	public class CharacterClassJsonSerializer : AbstractJsonSerializer<ICharacterClass>
 	{
-		public CharacterClassJsonSerializer(IRepository<IClass> pClassRepository)
+		public CharacterClassJsonSerializer(ILegacyRepository<IClass> pClassRepository)
 		{
 			ClassRepository = pClassRepository;
 		}
@@ -54,6 +55,6 @@ namespace Pathfinder.Serializers.Json
 			return new CharacterClass(@class, level, isFavored, hitPoints);
 		}
 
-		public IRepository<IClass> ClassRepository { get; }
+		public ILegacyRepository<IClass> ClassRepository { get; }
 	}
 }

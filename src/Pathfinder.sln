@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder", "Pathfinder\Pathfinder.csproj", "{675BD0B4-F7DE-4CCC-8467-821A2F9077CE}"
 EndProject
@@ -12,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder.Api", "Pathfinder.Api\Pathfinder.Api.csproj", "{357167B6-A652-48B7-B3AE-05F2E4B480F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pathfinder.Api.Tests", "Pathfinder.Api.Tests\Pathfinder.Api.Tests.csproj", "{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabasePopulator", "DatabasePopulator\DatabasePopulator.csproj", "{53CBBE0D-E1AE-4963-8FB7-34F55112E768}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{BE77A87D-312D-4575-BAD6-5A9D7DEBCA6D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +46,15 @@ Global
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD5F9AF7-88B3-4877-9DB9-E486913ABA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CBBE0D-E1AE-4963-8FB7-34F55112E768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CBBE0D-E1AE-4963-8FB7-34F55112E768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53CBBE0D-E1AE-4963-8FB7-34F55112E768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53CBBE0D-E1AE-4963-8FB7-34F55112E768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4182B676-948B-4CE4-B332-83FE6BC3FA18}
 	EndGlobalSection
 EndGlobal

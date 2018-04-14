@@ -1,4 +1,4 @@
-﻿using Pathfinder.Interface;
+﻿using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 

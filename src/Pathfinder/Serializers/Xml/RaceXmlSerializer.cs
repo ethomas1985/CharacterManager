@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 using Pathfinder.Utilities;
@@ -12,12 +13,12 @@ namespace Pathfinder.Serializers.Xml
 {
 	internal class RaceXmlSerializer : ISerializer<IRace, string>
 	{
-		public RaceXmlSerializer(IRepository<ITrait> pTraitRepository)
+		public RaceXmlSerializer(ILegacyRepository<ITrait> pTraitRepository)
 		{
 			TraitRepository = pTraitRepository;
 		}
 
-		public IRepository<ITrait> TraitRepository { get; }
+		public ILegacyRepository<ITrait> TraitRepository { get; }
 
 		public IRace Deserialize(string pValue)
 		{
@@ -115,7 +116,7 @@ namespace Pathfinder.Serializers.Xml
 						});
 			return abilities;
 		}
-		private static IEnumerable<ITrait> GetTraits(XDocument xDocument, IRepository<ITrait> pRepository)
+		private static IEnumerable<ITrait> GetTraits(XDocument xDocument, ILegacyRepository<ITrait> pRepository)
 		{
 			var traits =
 				xDocument

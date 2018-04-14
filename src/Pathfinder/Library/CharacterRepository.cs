@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Library
 {
-	internal class CharacterRepository : AbstractRepository<ICharacter>
+    [Obsolete("This was dumb.")]
+	internal class CharacterRepository : AbstractFilesystemRepository<ICharacter>
 	{
 		public CharacterRepository(
 			ISerializer<ICharacter, string> pSerializer,
@@ -26,5 +28,5 @@ namespace Pathfinder.Library
 
 			File.WriteAllText(filePath, serialized);
 		}
-	}
+    }
 }

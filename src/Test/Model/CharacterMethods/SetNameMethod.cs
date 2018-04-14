@@ -5,6 +5,7 @@ using System;
 using Moq;
 using Pathfinder.Enums;
 using Pathfinder.Events.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Test.Model.CharacterMethods
@@ -12,11 +13,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class SetNameMethod
 	{
-		private static IRepository<ISkill> SkillRepository
+		private static ILegacyRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
+				var mockSkillLibrary = new Mock<ILegacyRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}

@@ -17,7 +17,7 @@ namespace Pathfinder.Serializers.Json
 
 			WriteProperty(pWriter, pSerializer, nameof(ISpell.Name), pValue.Name);
 			WriteProperty(pWriter, pSerializer, nameof(ISpell.School), pValue.School);
-			WriteProperty(pWriter, pSerializer, nameof(ISpell.SubSchool), pValue.SubSchool);
+			WriteArrayProperty(pWriter, pSerializer, nameof(ISpell.SubSchools), pValue.SubSchools);
 
 			WriteProperty(pWriter, pSerializer, nameof(ISpell.MagicDescriptors), pValue.MagicDescriptors);
 
@@ -51,11 +51,7 @@ namespace Pathfinder.Serializers.Json
 				throw new JsonException($"Missing Required Attribute: {nameof(ISpell.School)}");
 			}
 
-			var subMagicSchoolString = GetString(pJobject, nameof(ISpell.SubSchool));
-			if (!Enum.TryParse(subMagicSchoolString, out MagicSubSchool subschool))
-			{
-				subschool = MagicSubSchool.None;
-			}
+			var magicSubSchools = GetValuesFromArray<MagicSubSchool>(pSerializer, pJobject, nameof(ISpell.SubSchools));
 
 			var magicDescriptors = new HashSet<MagicDescriptor>(
 				GetValuesFromArray<MagicDescriptor>(pSerializer, pJobject, nameof(ISpell.MagicDescriptors)));
@@ -79,7 +75,7 @@ namespace Pathfinder.Serializers.Json
 			var spellComponents = new HashSet<ISpellComponent>(
 				GetValuesFromArray<ISpellComponent>(pSerializer, pJobject, nameof(ISpell.Components)));
 
-			return new Spell(name, magicSchool, subschool, magicDescriptors, savingThrow, description, hasSpellResistance, spellResistance, castingTime, range, levelRequirements, duration, spellComponents);
+			return new Spell(name, magicSchool, magicSubSchools, magicDescriptors, savingThrow, description, hasSpellResistance, spellResistance, castingTime, range, levelRequirements, duration, spellComponents);
 		}
 	}
 }

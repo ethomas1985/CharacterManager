@@ -1,13 +1,17 @@
-﻿using Pathfinder.Interface;
+﻿using System;
 using Pathfinder.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
+using System.Linq.Expressions;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Library
 {
-	internal class WeaponSpecialsRepository : IRepository<IWeaponSpecial>
+    [Obsolete("This was dumb.")]
+	internal class WeaponSpecialsRepository : ILegacyRepository<IWeaponSpecial>
 	{
 		private readonly Dictionary<string, IWeaponSpecial> _library;
 
@@ -49,7 +53,7 @@ namespace Pathfinder.Library
 
 		public void Save(IWeaponSpecial pValue, int pVersion)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 		public IEnumerator<IWeaponSpecial> GetEnumerator()
@@ -61,5 +65,45 @@ namespace Pathfinder.Library
 		{
 			return GetEnumerator();
 		}
-	}
+
+		public IQueryable<IWeaponSpecial> GetQueryable()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Insert(IWeaponSpecial pValue)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(IEnumerable<IWeaponSpecial> pValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(IWeaponSpecial pValue)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Replace()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IWeaponSpecial> GetAll()
+        {
+            return Values;
+        }
+
+        public IWeaponSpecial Get(string pId)
+        {
+            return Values.FirstOrDefault(x => x.Name.Equals(pId, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        //public IEnumerable<IWeaponSpecial> GetList(Expression<Func<IWeaponSpecial, bool>> pPredicate)
+        //{
+        //    return Values.Where(pPredicate.Compile()).ToList();
+        //}
+    }
 }

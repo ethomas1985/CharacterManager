@@ -1,12 +1,14 @@
-﻿using Pathfinder.Interface;
+﻿using System;
 using Pathfinder.Model;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 
 namespace Pathfinder.Library
 {
-	internal class SkillRepository : AbstractRepository<ISkill>
+    [Obsolete("This was dumb.")]
+	internal class SkillRepository : AbstractFilesystemRepository<ISkill>
 	{
 		internal SkillRepository(ISerializer<ISkill, string> pSerializer, string pLibraryDirectory)
 			: base(pSerializer, pLibraryDirectory)

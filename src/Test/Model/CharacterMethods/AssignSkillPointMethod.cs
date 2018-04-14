@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Moq;
 using Pathfinder.Events.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Test.ObjectMothers;
 
@@ -15,11 +16,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	{
 		private const string SKILL_NAME = "Test Skill";
 
-		private static IRepository<ISkill> GetSkillRepository()
+		private static ILegacyRepository<ISkill> GetSkillRepository()
 		{
 			ISkill iSkill;
 			var testSkill = SkillMother.Create();
-			var mockSkillLibrary = new Mock<IRepository<ISkill>>();
+			var mockSkillLibrary = new Mock<ILegacyRepository<ISkill>>();
 
 			mockSkillLibrary
 				.Setup(foo => foo.GetEnumerator())

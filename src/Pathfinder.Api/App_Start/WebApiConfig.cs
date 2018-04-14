@@ -7,19 +7,22 @@ namespace Pathfinder.Api
     {
         public static void Register(HttpConfiguration pConfig)
         {
-			var cors = new EnableCorsAttribute("http://localhost:64463", "*", "*");
-			pConfig.EnableCors(cors);
+            pConfig.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
+            pConfig.MessageHandlers.Add(new LogRequestAndResponseHandler());
+
+            var cors = new EnableCorsAttribute("http://localhost:8888", "*", "*");
+            pConfig.EnableCors(cors);
             // Web API configuration and services
 
             // Web API routes
             pConfig.MapHttpAttributeRoutes();
 
             pConfig.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                                        name: "DefaultApi",
+                                        routeTemplate: "api/{controller}/{action}/{id}",
+                                        defaults: new {id = RouteParameter.Optional}
+                                       );
         }
     }
 }

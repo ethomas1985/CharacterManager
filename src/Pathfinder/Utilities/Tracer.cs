@@ -9,13 +9,13 @@ namespace Pathfinder.Utilities
 		[Conditional("TRACE")]
 		public static void Message([CallerMemberName] string pCallerName = null)
 		{
-			Console.WriteLine($"{DateTime.Now} - {pCallerName}");
+            LogTo.Debug($"{DateTime.Now} - {pCallerName}");
 		}
 
 		[Conditional("TRACE")]
 		public static void Message(string pMessage, [CallerMemberName] string pCallerName = null)
 		{
-			Console.WriteLine($"{DateTime.Now} - {pCallerName} :: {pMessage}");
+			LogTo.Debug($"{DateTime.Now} - {pCallerName} :: {pMessage}");
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Assert = NUnit.Framework.Assert;
 using Pathfinder.Utilities;
@@ -12,7 +13,7 @@ namespace Pathfinder.Test.Serializers.Json.SkillTests.Methods
 	[TestFixture]
 	public class SerializeObject
 	{
-		private static IRepository<ISkill> SkillRepository => SetupTestFixtureForJsonSerializers.SkillRepository;
+		private static ILegacyRepository<ISkill> SkillRepository => SetupTestFixtureForJsonSerializers.SkillRepository;
 
 		[Test]
 		public void Success()

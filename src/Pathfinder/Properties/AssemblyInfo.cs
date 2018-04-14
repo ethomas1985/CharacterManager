@@ -37,3 +37,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Pathfinder.Test")]
 [assembly: InternalsVisibleTo("Pathfinder.Api.Tests")]
 [assembly: InternalsVisibleTo("PsrdParser")]
+[assembly: InternalsVisibleTo("DatabasePopulator")]

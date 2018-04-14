@@ -5,6 +5,7 @@ using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System.Linq;
 using System.Xml.Linq;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;

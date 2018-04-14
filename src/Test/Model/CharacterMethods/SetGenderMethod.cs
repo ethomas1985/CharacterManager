@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Pathfinder.Enums;
 using Pathfinder.Events.Character;
 using Pathfinder.Interface;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -11,11 +12,11 @@ namespace Pathfinder.Test.Model.CharacterMethods
 	[TestFixture]
 	public class SetGenderMethod
 	{
-		private static IRepository<ISkill> SkillRepository
+		private static ILegacyRepository<ISkill> SkillRepository
 		{
 			get
 			{
-				var mockSkillLibrary = new Mock<IRepository<ISkill>>();
+				var mockSkillLibrary = new Mock<ILegacyRepository<ISkill>>();
 
 				return mockSkillLibrary.Object;
 			}

@@ -31,19 +31,58 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.dotMemoryUnit.3.0.20171219.105559\lib\net35\dotMemory.Unit.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.5.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.5.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.6.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Console, Version=3.1.1.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Console.3.1.1\lib\net45\Serilog.Sinks.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.MongoDB, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.MongoDB.3.1.0\lib\net45\Serilog.Sinks.MongoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.PeriodicBatching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.1.1\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.RegularExpressions" />
     <Reference Include="System.Xml.Linq" />
@@ -130,6 +169,10 @@
     <Compile Include="Events\Character\WisdomSet.cs" />
     <Compile Include="Events\Character\ClassAdded.cs" />
     <Compile Include="Factories\CharacterFactory.cs" />
+    <Compile Include="Interface\Infrastructure\IModelInitializer.cs" />
+    <Compile Include="LibraryPaths.cs" />
+    <Compile Include="Repository\AbstractMongoRepository.cs" />
+    <Compile Include="Interface\Infrastructure\IRepository.cs" />
     <Compile Include="Interface\IAggregate.cs" />
     <Compile Include="Model\AbstractEffect.cs" />
     <Compile Include="Interface\Model\Currency\ICopper.cs" />
@@ -152,7 +195,7 @@
     <Compile Include="Enums\SavingThrowType.cs" />
     <Compile Include="Enums\Size.cs" />
     <Compile Include="Enums\EffectType.cs" />
-    <Compile Include="Interface\Model\IRepository.cs" />
+    <Compile Include="Interface\Infrastructure\ILegacyRepository.cs" />
     <Compile Include="Interface\Model\INamed.cs" />
     <Compile Include="Interface\Model\IRace.cs" />
     <Compile Include="Interface\Model\ISkillScore.cs" />
@@ -160,15 +203,16 @@
     <Compile Include="Interface\Model\ISubFeature.cs" />
     <Compile Include="Interface\Model\IWeaponSpecial.cs" />
     <Compile Include="Model\RacialEffect.cs" />
-    <Compile Include="RepositoryFactory.cs" />
-    <Compile Include="Library\AbstractRepository.cs" />
+    <Compile Include="PathfinderConfiguration.cs" />
+    <Compile Include="PathfinderManager.cs" />
+    <Compile Include="Library\AbstractFilesystemRepository.cs" />
     <Compile Include="Library\CharacterRepository.cs" />
     <Compile Include="Library\ItemRepository.cs" />
     <Compile Include="Library\ClassRepository.cs" />
     <Compile Include="Library\FeatRepository.cs" />
     <Compile Include="Library\FeatureRepository.cs" />
     <Compile Include="Library\RaceRepository.cs" />
-    <Compile Include="Library\SpellRepository.cs" />
+    <Compile Include="Library\SpellFileSystemRepository.cs" />
     <Compile Include="Interface\Model\ISpellComponent.cs" />
     <Compile Include="Model\SpellComponent.cs" />
     <Compile Include="Model\WeaponSpecial.cs" />
@@ -235,6 +279,10 @@
     <Compile Include="Serializers\Xml\FeatXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\ItemXmlSerializer.cs" />
     <Compile Include="Serializers\Xml\SpellXmlSerializer.cs" />
+    <Compile Include="Repository\SpellMongoRepository.cs" />
+    <Compile Include="Startup\AbstractModelInitializer.cs" />
+    <Compile Include="Startup\SpellComponentInitializer.cs" />
+    <Compile Include="Startup\SpellModelInitializer.cs" />
     <Compile Include="Utilities\ComparisonUtilities.cs" />
     <Compile Include="Utilities\decimalExtensions.cs" />
     <Compile Include="Utilities\enumerableExtensions.cs" />
@@ -267,7 +315,7 @@
     <Compile Include="Library\SkillRepository.cs" />
     <Compile Include="Model\AbilityScore.cs" />
     <Compile Include="Model\Character.cs" />
-    <Compile Include="Interface\Model\ISerializer.cs" />
+    <Compile Include="Interface\Infrastructure\ISerializer.cs" />
     <Compile Include="Model\DefenseScore.cs" />
     <Compile Include="Model\OffensiveScore.cs" />
     <Compile Include="Model\Currency\Purse.cs" />
@@ -275,11 +323,7 @@
     <Compile Include="Model\SkillScore.cs" />
     <Compile Include="Model\Trait.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Utilities\LogTo.cs" />
     <Compile Include="Utilities\stringExtensions.cs" />
     <Compile Include="Utilities\Tracer.cs" />
   </ItemGroup>
@@ -290,12 +334,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

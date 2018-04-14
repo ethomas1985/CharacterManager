@@ -1,5 +1,6 @@
 ﻿using System;
 using Pathfinder.Commands.Character;
+using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -7,14 +8,14 @@ namespace Pathfinder.CommandHandlers
 {
 	public class CharacterCommandHandlers
 	{
-		private IRepository<ICharacter> Repository { get; }
-		public IRepository<IRace> RaceRepository { get; }
-		private IRepository<ISkill> SkillRepository { get; }
+		private ILegacyRepository<ICharacter> Repository { get; }
+		public ILegacyRepository<IRace> RaceRepository { get; }
+		private ILegacyRepository<ISkill> SkillRepository { get; }
 
 		public CharacterCommandHandlers(
-			IRepository<ICharacter> pRepository,
-			IRepository<ISkill> pSkillRepository,
-			IRepository<IRace> pRaceRepository)
+			ILegacyRepository<ICharacter> pRepository,
+			ILegacyRepository<ISkill> pSkillRepository,
+			ILegacyRepository<IRace> pRaceRepository)
 		{
 			Repository = pRepository;
 			SkillRepository = pSkillRepository;
