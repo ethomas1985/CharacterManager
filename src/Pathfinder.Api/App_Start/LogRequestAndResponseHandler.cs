@@ -13,7 +13,7 @@ namespace Pathfinder.Api
         {
             // log request body
             string requestBody = await pRequest.Content.ReadAsStringAsync();
-            LogTo.Info("requestBody|{requestBody}", requestBody);
+            LogTo.Verbose("requestBody|{requestBody}", requestBody);
 
             // let other handlers process the request
             var result = await base.SendAsync(pRequest, pCancellationToken);
@@ -22,7 +22,7 @@ namespace Pathfinder.Api
             {
                 // once response body is ready, log it
                 var responseBody = await result.Content.ReadAsStringAsync();
-                LogTo.Info("responseBody|{responseBody}", responseBody);
+                LogTo.Verbose("responseBody|{responseBody}", responseBody);
             }
 
             return result;

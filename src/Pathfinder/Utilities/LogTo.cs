@@ -25,9 +25,14 @@ namespace Pathfinder.Utilities
 			}
 		}
 
-		public static void Info(string pMessage, params object[] pPropertyValues)
+		public static void Exception(Exception pException)
 		{
-			Logger.Information($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}", pPropertyValues);
+			Logger.Error(pException, pException.Message);
+		}
+
+		public static void Error(string pMessage, params object[] pPropertyValues)
+		{
+			Logger.Error($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}", pPropertyValues);
 		}
 
 		public static void Warning(string pMessage, params object[] pPropertyValues)
@@ -35,9 +40,19 @@ namespace Pathfinder.Utilities
 			Logger.Warning($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}", pPropertyValues);
 		}
 
-		public static void Debug(string pMessage)
+		public static void Info(string pMessage, params object[] pPropertyValues)
+		{
+			Logger.Information($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}", pPropertyValues);
+		}
+
+		public static void Debug(string pMessage, params object[] pPropertyValues)
 		{
 			Logger.Debug($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}");
+		}
+
+		public static void Verbose(string pMessage, params object[] pPropertyValues)
+		{
+			Logger.Verbose($"{DateTime.Now:yyyy-MM-dd hh:mm:ss}|Pathfinder|{pMessage}");
 		}
 	}
 }
