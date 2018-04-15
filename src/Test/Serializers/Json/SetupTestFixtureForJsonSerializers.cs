@@ -48,7 +48,6 @@ namespace Pathfinder.Test.Serializers.Json
 						new List<JsonConverter>
 						{
 							new StringEnumConverter { CamelCaseText = true },
-							//new BooleanJsonConverter(),
 							new AbilityScoreJsonSerializer(),
 							new AbilityTypeJsonSerializer(),
 							new ArmorComponentJsonSerializer(),

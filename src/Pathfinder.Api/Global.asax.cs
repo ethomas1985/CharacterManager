@@ -30,7 +30,6 @@ namespace Pathfinder.Api
                 new List<JsonConverter>
                 {
                     new StringEnumConverter {CamelCaseText = true},
-                    new BooleanJsonConverter(),
                     new AbilityScoreJsonSerializer(),
                     new AbilityTypeJsonSerializer(),
                     new ArmorComponentJsonSerializer(),

@@ -246,7 +246,6 @@
     <Compile Include="Serializers\Json\AbilityTypeJsonSerializer.cs" />
     <Compile Include="Serializers\Json\AbstractJsonSerializer.cs" />
     <Compile Include="Serializers\Json\ArmorComponentJsonSerializer.cs" />
-    <Compile Include="Serializers\Json\BooleanJsonConverter.cs" />
     <Compile Include="Serializers\Json\CharacterClassJsonSerializer.cs" />
     <Compile Include="Serializers\Json\CharacterJsonSerializer.cs" />
     <Compile Include="Serializers\Json\ClassJsonSerializer.cs" />
