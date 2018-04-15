@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Serializers.Json;
 using Pathfinder.Test.Mocks;
-using Pathfinder.Test.ObjectMothers;
 
 // ReSharper disable LocalizableElement
 

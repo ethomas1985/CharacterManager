@@ -3,7 +3,7 @@ using System.Linq;
 using Pathfinder.Enums;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
-using Pathfinder.Test.Serializers.Json;
+using Pathfinder.Test.Mocks;
 using CharacterImpl = Pathfinder.Model.Character;
 
 // ReSharper disable ExpressionIsAlwaysNull
@@ -19,7 +19,7 @@ namespace Pathfinder.Test.ObjectMothers
 			const int goldValue = 3;
 			const int platinumValue = 4;
 
-			var skillRepository = SetupTestFixtureForJsonSerializers.SkillRepository;
+			var skillRepository = MockHelper.GetSkillRepository();
 
 			const string name = "Unit McTesterFace";
 
