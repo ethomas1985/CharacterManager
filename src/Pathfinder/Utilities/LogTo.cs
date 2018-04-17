@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Serilog;
 using Serilog.Core;
 
@@ -14,15 +15,25 @@ namespace Pathfinder.Utilities
 			{
 				if (_logger == null)
 				{
-					_logger = new LoggerConfiguration()
-						.WriteTo.Console()
-						.WriteTo.MongoDB("mongodb://localhost:32768/pathfinder_log")
-						.WriteTo.File($"./Log.{DateTime.Now:yyyy-MM-dd}.log")
-						.CreateLogger();
+					_logger = LoggerFactory();
 				}
 
 				return _logger;
 			}
+		}
+
+		private static Logger LoggerFactory()
+		{
+			var loggerFactory = new LoggerConfiguration()
+				.WriteTo.Console()
+				.WriteTo.File($"./Log.{DateTime.Now:yyyy-MM-dd}.log");
+
+			if ("Mongo".Equals(ConfigurationManager.AppSettings["LogToDatabase"]))
+			{
+				loggerFactory = loggerFactory.WriteTo.MongoDB("mongodb://localhost:32768/pathfinder_log");
+			}
+
+			return loggerFactory.CreateLogger();
 		}
 
 		public static void Exception(Exception pException)
