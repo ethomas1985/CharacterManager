@@ -1,7 +1,7 @@
 ﻿using Pathfinder.Api.Models;
 using Pathfinder.Enums;
 using System.Collections.Generic;
-using System.Web;
+using System.IO;
 using System.Web.Http;
 using Pathfinder.Factories;
 using Pathfinder.Interface.Infrastructure;
@@ -16,7 +16,7 @@ namespace Pathfinder.Api.Controllers
         {
             var manager =
                 PathfinderConfiguration.Instance
-                    .CreatePathfinderManager(HttpRuntime.BinDirectory);
+                    .CreatePathfinderManager(Path.GetFullPath("."));
 
             CharacterRepository = manager.Get<ILegacyRepository<ICharacter>>();
             SkillRepository = manager.Get<ILegacyRepository<ISkill>>();

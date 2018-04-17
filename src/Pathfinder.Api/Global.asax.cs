@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
@@ -20,7 +21,7 @@ namespace Pathfinder.Api
 
             var manager =
                 PathfinderConfiguration.Instance
-                    .CreatePathfinderManager(HttpRuntime.BinDirectory);
+                    .CreatePathfinderManager(Path.GetFullPath("."));
 
             var classLibrary = manager.Get<ILegacyRepository<IClass>>();
             var raceLibrary = manager.Get<ILegacyRepository<IRace>>();

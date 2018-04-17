@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
@@ -15,7 +15,7 @@ namespace Pathfinder.Api.Controllers
 		{
 			SpellsRepository =
 				PathfinderConfiguration.Instance
-					.CreatePathfinderManager(HttpRuntime.BinDirectory)
+					.CreatePathfinderManager(Path.GetFullPath("."))
 					.Get<IRepository<ISpell>>();
 
 			FacetManager = new FacetManager<ISpell>()
