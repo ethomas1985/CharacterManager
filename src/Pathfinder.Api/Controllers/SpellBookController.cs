@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Http;
+using Pathfinder.Enums;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
@@ -20,8 +21,7 @@ namespace Pathfinder.Api.Controllers
 
 			FacetManager = new FacetManager<ISpell>()
 				.Register(nameof(ISpell.School), CreateFacetForSchool, FilterForMagicSchool)
-				.Register("Class", "Available to", CreateFacetForClass, FilterForClass)
-				.Register("Level", "Available at", CreateFacetForLevel, FilterForLevel);
+				.Register("Class", "Available to", CreateFacetForClass, FilterForClass);
 		}
 
 		public IRepository<ISpell> SpellsRepository { get; }
@@ -40,7 +40,7 @@ namespace Pathfinder.Api.Controllers
 			var results = queryable
 				.Where(x => x.Name.Contains(pCriteria.SearchText))
 				.ToList();
-			IEnumerable<Facet> facets = GetFacets(results);
+			IEnumerable<Facet> facets = FacetManager.Build(results, pCriteria.Facets);
 
 			var searchResults = new SearchResults<ISpell>
 			{
@@ -50,22 +50,19 @@ namespace Pathfinder.Api.Controllers
 				Count = results.Count
 			};
 
-			var chips = pCriteria.Facets?.Where(x => x.Buckets.Any(y => y.Selected)).Select(x => $"{x.Name}:'{x.Buckets.First(y=>y.Selected).Value}'")
+			var chips = pCriteria.Facets?.Where(x => x.Buckets.Any(y => y.Selected)).Select(x => $"{x.Name}:'{x.Buckets.First(y => y.Selected).Value}'")
 				?? new string[0];
+
 			LogTo.Info("RESPONSE|SearchText|{SearchText}|Chips|{Chips}|Results|{Results}", searchResults.SearchText, chips, results.Count);
 			return searchResults;
-		}
-
-		private IEnumerable<Facet> GetFacets(IEnumerable<ISpell> pResults)
-		{
-			return FacetManager.Build(pResults);
 		}
 
 		private static IEnumerable<Bucket> CreateFacetForSchool(IEnumerable<ISpell> pResults)
 		{
 			return pResults
 				.GroupBy(x => x.School)
-				.Select(g => new Bucket(g.Key.ToString(), g.Count()));
+				.Select(g => new Bucket(g.Key.ToString(), g.Count()))
+				.ToList();
 		}
 
 		private IQueryable<ISpell> FilterForMagicSchool(IQueryable<ISpell> pQueryable, Facet pFacet)
@@ -76,7 +73,12 @@ namespace Pathfinder.Api.Controllers
 				return pQueryable;
 			}
 
-			return pQueryable.Where(x => x.School.ToString().Equals(selectedBucket.Value));
+			if (!Enum.TryParse(selectedBucket.Value, out MagicSchool outValue))
+			{
+				return pQueryable;
+			}
+
+			return pQueryable.Where(x => x.School == outValue);
 		}
 
 		private static IEnumerable<Bucket> CreateFacetForClass(IEnumerable<ISpell> pResults)
@@ -84,25 +86,21 @@ namespace Pathfinder.Api.Controllers
 			var results = pResults as List<ISpell> ?? pResults.ToList();
 			var classes = results.SelectMany(x => x.LevelRequirements.Keys).Distinct();
 			return classes
-				.Select(x => new Bucket(x, results.Count(y => y.LevelRequirements.ContainsKey(x))));
+				.Select(x => new Bucket(x, results.Count(y => y.LevelRequirements.ContainsKey(x))))
+				.ToList();
 		}
 
-		private IQueryable<ISpell> FilterForClass(IQueryable<ISpell> pPqueryable, Facet pPfacet)
+		private IQueryable<ISpell> FilterForClass(IQueryable<ISpell> pQueryable, Facet pFacet)
 		{
-			throw new NotImplementedException();
-		}
+			var selectedBucket = pFacet.Buckets.FirstOrDefault(x => x.Selected);
+			if (selectedBucket == null)
+			{
+				return pQueryable;
+			}
 
-		private static IEnumerable<Bucket> CreateFacetForLevel(IEnumerable<ISpell> pResults)
-		{
-			var results = pResults as List<ISpell> ?? pResults.ToList();
-			var classes = results.SelectMany(x => x.LevelRequirements.Values).Distinct();
-			return classes
-				.Select(x => new Bucket($"{x}", results.Count(y => y.LevelRequirements.Values.Contains(x))));
-		}
+			var className = selectedBucket.Value;
 
-		private IQueryable<ISpell> FilterForLevel(IQueryable<ISpell> pPqueryable, Facet pPfacet)
-		{
-			throw new NotImplementedException();
+			return pQueryable.Where(x => x.LevelRequirements.ContainsKey(className));
 		}
 	}
 
@@ -128,23 +126,39 @@ namespace Pathfinder.Api.Controllers
 			return this;
 		}
 
-		public IEnumerable<Facet> Build(IEnumerable<T> pCollection)
+		public IEnumerable<Facet> Build(IEnumerable<T> pCollection, IEnumerable<Facet> pOriginalFacets)
 		{
+			var originalFacets = pOriginalFacets?.ToDictionary(k=> k.Name) ?? new Dictionary<string, Facet>();
 			var collection = pCollection.ToList();
 
-			return Factories.Select(x => x(collection));
+			return Factories.Select(generateNewFacet);
+
+			Facet generateNewFacet(FacetFactory pFactory)
+			{
+				var newFacet = pFactory(collection);
+
+				if (originalFacets.TryGetValue(newFacet.Name, out var oldFacet))
+				{
+					var oldBuckets = new HashSet<string>(oldFacet.Buckets.Where(x => x.Selected).Select(k=>k.Value));
+					foreach (var bucket in newFacet.Buckets.Where(x => oldBuckets.Contains(x.Value)))
+					{
+						bucket.Selected = true;
+					}
+				}
+
+				return newFacet;
+			}
 		}
 
 		public IQueryable<T> Filter(IQueryable<T> pQueryable, IEnumerable<Facet> pFacets)
 		{
 			return pFacets != null
-				? pFacets.Aggregate(pQueryable, FilterOnFacet)
+				? pFacets.Aggregate(pQueryable, filterOnFacet)
 				: pQueryable;
 
-			IQueryable<T> FilterOnFacet(IQueryable<T> queryable, Facet facet)
+			IQueryable<T> filterOnFacet(IQueryable<T> queryable, Facet facet)
 			{
-				ApplyFacetFilter<T> filter;
-				var success = Filters.TryGetValue(facet.Id, out filter);
+				var success = Filters.TryGetValue(facet.Id, out var filter);
 				if (!success || !facet.Buckets.Any(x => x.Selected))
 				{
 					return queryable;
