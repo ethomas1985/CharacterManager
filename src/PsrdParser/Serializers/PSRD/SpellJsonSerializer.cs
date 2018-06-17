@@ -67,17 +67,19 @@ namespace PsrdParser.Serializers.PSRD
 				return new List<MagicSubSchool> { MagicSubSchool.None };
 			}
 
-			if (jsonSubSchools.Children().Count() == 1)
+			var spellName = _GetName(pJObject);
+			if (jsonSubSchools.Children().Count() > 1)
 			{
-				LogTo.Warning("This spell has more than one Magic SubSchool! {spellName}|{magicSubSchools}", getString(pJObject, "name"), string.Join(", ", jsonSubSchools.Children().Select(x => x.ToString())));
+				LogTo.Warning("This spell has more than one Magic SubSchool! {spellName}|{magicSubSchools}", spellName, string.Join(", ", jsonSubSchools.Children().Select(x => x.ToString())));
 			}
 
-			foreach (var child in jsonSubSchools.Children().Cast<string>())
+			foreach (var (subschool, index) in jsonSubSchools.Children().Select((x, i) => (subschool: x.Value<string>(), index: i)))
 			{
-				var jsonMagicSubSchool = (string)jsonSubSchools[0];
-				MagicSubSchool value;
-				var success = Enum.TryParse(child, true, out value);
-				Assert.IsTrue(jsonMagicSubSchool.Equals(value.ToString(), StringComparison.InvariantCultureIgnoreCase), $"Failed to correctly parse spell's magic school. was: '{jsonMagicSubSchool}'; parsed: '{value}'");
+				var success = Enum.TryParse(subschool, true, out MagicSubSchool value);
+				Assert.IsTrue(
+					subschool.Equals(value.ToString(), StringComparison.InvariantCultureIgnoreCase),
+					$"{spellName}|{index}|Failed to correctly parse spell's magic school. was: '{subschool}'; parsed: '{value}'");
+
 				if (success)
 				{
 					subSchools = subSchools.Append(value);

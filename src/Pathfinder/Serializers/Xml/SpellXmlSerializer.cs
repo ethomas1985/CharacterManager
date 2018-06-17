@@ -70,13 +70,12 @@ namespace Pathfinder.Serializers.Xml
 		private IEnumerable<MagicSubSchool> GetSubMagicSchools(XDocument pDocument)
 		{
 			var magicSubSchools = pDocument
-				.Descendants(nameof(ISpell.SubSchools))
+				.Descendants(nameof(MagicSubSchool))
 				.Select(x =>
 				{
-					MagicSubSchool value;
-					if (!Enum.TryParse(x.Value, out value))
+					if (!Enum.TryParse(x.Value, true, out MagicSubSchool value))
 					{
-						throw new InvalidCastException($"Invalid Sub-Magic School: {x.Value}");
+						throw new InvalidCastException($"{GetName(pDocument)}|Invalid Magic SubSchool: {x.Value}");
 					}
 					return value;
 
@@ -93,11 +92,14 @@ namespace Pathfinder.Serializers.Xml
 				.Where(x => !string.IsNullOrWhiteSpace(x))
 				.Select(x =>
 						{
-							MagicDescriptor value;
-							if (!Enum.TryParse(x, out value))
+							if (!Enum.TryParse(x, true, out MagicDescriptor value))
 							{
-								throw new InvalidCastException($"Invalid Magic Descriptor: '{x}'");
+								throw new InvalidCastException($"{GetName(pDocument)}|Invalid Magic Descriptor: '{x}'");
 							}
+
+							Assert.IsTrue(x.Equals(value.ToString(), StringComparison.InvariantCultureIgnoreCase),
+										  $"{GetName(pDocument)}|Magic Descriptor|Parsed '{x}' as '{value}'");
+
 							return value;
 						});
 
@@ -159,7 +161,7 @@ namespace Pathfinder.Serializers.Xml
 		private IDictionary<string, int> GetLevelRequirements(XDocument pDocument)
 		{
 			return pDocument
-				.Descendants(nameof(ISpell.LevelRequirements))
+				.Descendants("LevelRequirement")
 				.Select(
 					x => new
 					{
@@ -227,7 +229,7 @@ namespace Pathfinder.Serializers.Xml
 							new XElement(
 								nameof(ISpell.SubSchools),
 								pObject.SubSchools?.Select(
-									x => new XElement(nameof(MagicDescriptor), x))),
+									x => new XElement(nameof(MagicSubSchool), x))),
 							new XElement(
 								nameof(ISpell.MagicDescriptors),
 								pObject.MagicDescriptors?.Select(

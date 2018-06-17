@@ -19,6 +19,7 @@ namespace DatabasePopulator
 		public void TestSetUp()
 		{
 			PathfinderConfiguration.InitializePersistenceLayer();
+			LogTo.ChangeLogLevel("Debug");
 		}
 
 		[Test]
@@ -51,7 +52,7 @@ namespace DatabasePopulator
 		{
 			var spellSerializer = new SpellXmlSerializer();
 			var spellRepository = new SpellFileSystemRepository(spellSerializer, RESOURCES_DIRECTORY);
-			var spells = spellRepository.Values.ToList();
+			var spells = spellRepository.Values.OrderBy(x => x.Name).ToList();
 
 			var spellStore = new SpellMongoRepository();
 			

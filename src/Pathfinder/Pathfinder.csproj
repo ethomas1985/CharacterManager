@@ -168,6 +168,7 @@
     <Compile Include="Events\Character\WisdomSet.cs" />
     <Compile Include="Events\Character\ClassAdded.cs" />
     <Compile Include="Factories\CharacterFactory.cs" />
+    <Compile Include="Features.cs" />
     <Compile Include="Interface\Infrastructure\IModelInitializer.cs" />
     <Compile Include="LibraryPaths.cs" />
     <Compile Include="Repository\AbstractMongoRepository.cs" />
