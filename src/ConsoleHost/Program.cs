@@ -30,18 +30,27 @@ namespace ConsoleHost
 			var stop = false;
 			do
 			{
-				var input = Console.ReadLine();
-				switch (input)
+				ConsoleKeyInfo input = Console.ReadKey();
+				switch (input.KeyChar)
 				{
-					case "s":
-					case "S":
+					case 's':
+					case 'S':
 						stop = true;
 						break;
-					case "c":
-					case "C":
+					case 'c':
+					case 'C':
 						Console.Clear();
 						break;
-					case "?":
+					case 'l':
+					case 'L':
+						Console.WriteLine($"Enter new log level [Error, Warning, Information, Debug, Verbose]:");
+						var level = Console.ReadLine();
+						if (!string.IsNullOrEmpty(level))
+						{
+							LogTo.ChangeLogLevel(level);
+						}
+						break;
+					case '?':
 						PrintBanner();
 						break;
 					default:
@@ -55,7 +64,7 @@ namespace ConsoleHost
 
 		private static void UnhandledExceptionTrapper(object pSender, UnhandledExceptionEventArgs pUnhandledExceptionEventArgs)
 		{
-			LogTo.Exception((Exception) pUnhandledExceptionEventArgs.ExceptionObject); ;
+			LogTo.Exception((Exception)pUnhandledExceptionEventArgs.ExceptionObject); ;
 
 			Console.WriteLine("Press Enter to continue");
 			Console.ReadLine();
@@ -68,6 +77,7 @@ namespace ConsoleHost
 			Console.WriteLine($"Enter command:");
 			Console.WriteLine($"\t[sS]: Stop service");
 			Console.WriteLine($"\t[cC]: Clear console");
+			Console.WriteLine($"\t[lL]: Change log level");
 			Console.WriteLine(new string('=', 60));
 		}
 	}

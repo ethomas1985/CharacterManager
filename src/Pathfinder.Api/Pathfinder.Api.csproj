@@ -114,6 +114,7 @@
     <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\CharacterGeneratorController.cs" />
     <Compile Include="Controllers\Facet.cs" />
+    <Compile Include="Controllers\SearchChip.cs" />
     <Compile Include="Controllers\SearchCriteria.cs" />
     <Compile Include="Controllers\SearchResults.cs" />
     <Compile Include="Controllers\SpellBookController.cs" />
@@ -152,16 +153,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62410</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8888/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

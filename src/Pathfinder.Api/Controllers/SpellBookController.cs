@@ -10,162 +10,194 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Api.Controllers
 {
-	public class SpellBookController : ApiController
-	{
-		public SpellBookController()
-		{
-			SpellsRepository =
-				PathfinderConfiguration.Instance
-					.CreatePathfinderManager(Path.GetFullPath("."))
-					.Get<IRepository<ISpell>>();
+    public class SpellBookController : ApiController
+    {
+        public SpellBookController()
+        {
+            LogTo.Debug($"{nameof(SpellBookController)}|ctor");
 
-			FacetManager = new FacetManager<ISpell>()
-				.Register(nameof(ISpell.School), CreateFacetForSchool, FilterForMagicSchool)
-				.Register("Class", "Available to", CreateFacetForClass, FilterForClass);
-		}
+            SpellsRepository =
+                PathfinderConfiguration.Instance
+                    .CreatePathfinderManager(Path.GetFullPath("."))
+                    .Get<IRepository<ISpell>>();
 
-		public IRepository<ISpell> SpellsRepository { get; }
+            FacetManager = new FacetManager<ISpell>()
+                .Register(nameof(ISpell.School), "Magic School", CreateFacetForSchool, FilterForMagicSchool)
+                .Register("Class", "Available to", CreateFacetForClass, FilterForClass);
+        }
 
-		private FacetManager<ISpell> FacetManager { get; }
+        private IRepository<ISpell> SpellsRepository { get; }
 
-		[HttpPost]
-		public SearchResults<ISpell> Search([FromBody] SearchCriteria pCriteria)
-		{
-			LogTo.Info("REQUEST|SearchText|{SearchText}", pCriteria.SearchText);
-			var queryable =
-				FacetManager.Filter(
-					SpellsRepository.GetQueryable(),
-					pCriteria.Facets);
+        private FacetManager<ISpell> FacetManager { get; }
 
-			var results = queryable
-				.Where(x => x.Name.Contains(pCriteria.SearchText))
-				.ToList();
-			IEnumerable<Facet> facets = FacetManager.Build(results, pCriteria.Facets);
+        [HttpPost]
+        public SearchResults<ISpell> Search([FromBody] SearchCriteria pCriteria)
+        {
+            var chips = pCriteria.Chips?.Select(x => x.ToString()) ?? new string[0];
+            LogTo.Info("REQUEST|SearchText|{SearchText}|Chips|{Chips}", pCriteria.SearchText, chips);
+            var queryable =
+                FacetManager.Filter(
+                    SpellsRepository.GetQueryable(),
+                    pCriteria.Chips);
 
-			var searchResults = new SearchResults<ISpell>
-			{
-				SearchText = pCriteria.SearchText,
-				Facets = facets,
-				Results = results.Take(20),
-				Count = results.Count
-			};
+            if (!string.IsNullOrWhiteSpace(pCriteria.SearchText))
+            {
+                queryable = queryable.Where(x => x.Name.Contains(pCriteria.SearchText));
+            }
 
-			var chips = pCriteria.Facets?.Where(x => x.Buckets.Any(y => y.Selected)).Select(x => $"{x.Name}:'{x.Buckets.First(y => y.Selected).Value}'")
-				?? new string[0];
+            if (pCriteria.Chips?.Any() ?? false)
+            {
+                queryable = FacetManager.Filter(queryable, pCriteria.Chips);
+            }
 
-			LogTo.Info("RESPONSE|SearchText|{SearchText}|Chips|{Chips}|Results|{Results}", searchResults.SearchText, chips, results.Count);
-			return searchResults;
-		}
+            var results = queryable.OrderBy(x => x.Name).ToList();
+            IEnumerable<Facet> facets = FacetManager.Build(results, pCriteria.Chips);
 
-		private static IEnumerable<Bucket> CreateFacetForSchool(IEnumerable<ISpell> pResults)
-		{
-			return pResults
-				.GroupBy(x => x.School)
-				.Select(g => new Bucket(g.Key.ToString(), g.Count()))
-				.ToList();
-		}
+            var searchResults = new SearchResults<ISpell>
+            {
+                SearchText = pCriteria.SearchText,
+                Facets = facets,
+                Results = results.Take(20),
+                Count = results.Count
+            };
 
-		private IQueryable<ISpell> FilterForMagicSchool(IQueryable<ISpell> pQueryable, Facet pFacet)
-		{
-			var selectedBucket = pFacet.Buckets.FirstOrDefault(x => x.Selected);
-			if (selectedBucket == null)
-			{
-				return pQueryable;
-			}
+            chips = searchResults.Facets?.Where(x => x.Buckets.Any(y => y.Selected))
+                    .SelectMany(x => x.Buckets.Where(y => y.Selected).Select(y => $"{x.Name}: {y.Value}")) ??
+                new string[0];
+            LogTo.Info("RESPONSE|SearchText|{SearchText}|Chips|{Chips}|Results|{Results}", searchResults.SearchText,
+                       chips, results.Count);
+            return searchResults;
+        }
 
-			if (!Enum.TryParse(selectedBucket.Value, out MagicSchool outValue))
-			{
-				return pQueryable;
-			}
+        private static IEnumerable<Bucket> CreateFacetForSchool(IEnumerable<ISpell> pResults)
+        {
+            return pResults
+                .GroupBy(x => x.School)
+                .Select(g => new Bucket(g.Key.ToString(), g.Count()))
+                .ToList();
+        }
 
-			return pQueryable.Where(x => x.School == outValue);
-		}
+        private IQueryable<ISpell> FilterForMagicSchool(IQueryable<ISpell> pQueryable, SearchChip pSearchChip)
+        {
+            if (pSearchChip == null)
+            {
+                return pQueryable;
+            }
 
-		private static IEnumerable<Bucket> CreateFacetForClass(IEnumerable<ISpell> pResults)
-		{
-			var results = pResults as List<ISpell> ?? pResults.ToList();
-			var classes = results.SelectMany(x => x.LevelRequirements.Keys).Distinct();
-			return classes
-				.Select(x => new Bucket(x, results.Count(y => y.LevelRequirements.ContainsKey(x))))
-				.ToList();
-		}
+            if (!Enum.TryParse(pSearchChip.Value, out MagicSchool outValue))
+            {
+                return pQueryable;
+            }
 
-		private IQueryable<ISpell> FilterForClass(IQueryable<ISpell> pQueryable, Facet pFacet)
-		{
-			var selectedBucket = pFacet.Buckets.FirstOrDefault(x => x.Selected);
-			if (selectedBucket == null)
-			{
-				return pQueryable;
-			}
+            return pQueryable.Where(x => x.School == outValue);
+        }
 
-			var className = selectedBucket.Value;
+        private static IEnumerable<Bucket> CreateFacetForClass(IEnumerable<ISpell> pResults)
+        {
+            var results = pResults as List<ISpell> ?? pResults.ToList();
+            var classes = results.SelectMany(x => x.LevelRequirements.Keys).Distinct();
+            return classes
+                .Select(x => new Bucket(x, results.Count(y => y.LevelRequirements.ContainsKey(x))))
+                .ToList();
+        }
 
-			return pQueryable.Where(x => x.LevelRequirements.ContainsKey(className));
-		}
-	}
+        private IQueryable<ISpell> FilterForClass(IQueryable<ISpell> pQueryable, SearchChip pSearchChip)
+        {
+            if (pSearchChip == null)
+            {
+                return pQueryable;
+            }
 
-	public delegate IEnumerable<Bucket> BucketCollectionFactory<in T>(IEnumerable<T> pCollection);
-	public delegate IQueryable<T> ApplyFacetFilter<T>(IQueryable<T> pQueryable, Facet pFacet);
-	public class FacetManager<T>
-	{
-		private delegate Facet FacetFactory(IEnumerable<T> pCollection);
+            var className = pSearchChip.Value;
 
-		private List<FacetFactory> Factories { get; } = new List<FacetFactory>();
-		private Dictionary<string, ApplyFacetFilter<T>> Filters { get; } = new Dictionary<string, ApplyFacetFilter<T>>();
+            return pQueryable.Where(x => x.LevelRequirements.ContainsKey(className));
+        }
+    }
 
-		public FacetManager<T> Register(string pName, BucketCollectionFactory<T> pBucketCollectionFactory, ApplyFacetFilter<T> pFilter)
-		{
-			return Register(pName, pName, pBucketCollectionFactory, pFilter);
-		}
+    public delegate IEnumerable<Bucket> BucketCollectionFactory<in T>(IEnumerable<T> pCollection);
 
-		public FacetManager<T> Register(string pId, string pName, BucketCollectionFactory<T> pFactory, ApplyFacetFilter<T> pFilter)
-		{
-			Factories.Add(x => new Facet(pId, pName, pFactory(x)));
-			Filters[pId] = pFilter;
+    public delegate IQueryable<T> ApplyFacetFilter<T>(IQueryable<T> pQueryable, SearchChip pFacet);
 
-			return this;
-		}
+    public class FacetManager<T>
+    {
+        private delegate Facet FacetFactory(IEnumerable<T> pCollection);
 
-		public IEnumerable<Facet> Build(IEnumerable<T> pCollection, IEnumerable<Facet> pOriginalFacets)
-		{
-			var originalFacets = pOriginalFacets?.ToDictionary(k=> k.Name) ?? new Dictionary<string, Facet>();
-			var collection = pCollection.ToList();
+        private Dictionary<string, string> NameToIdMap { get; } = new Dictionary<string, string>();
 
-			return Factories.Select(generateNewFacet);
+        private List<FacetFactory> Factories { get; } = new List<FacetFactory>();
 
-			Facet generateNewFacet(FacetFactory pFactory)
-			{
-				var newFacet = pFactory(collection);
+        private Dictionary<string, ApplyFacetFilter<T>> Filters { get; } =
+            new Dictionary<string, ApplyFacetFilter<T>>();
 
-				if (originalFacets.TryGetValue(newFacet.Name, out var oldFacet))
-				{
-					var oldBuckets = new HashSet<string>(oldFacet.Buckets.Where(x => x.Selected).Select(k=>k.Value));
-					foreach (var bucket in newFacet.Buckets.Where(x => oldBuckets.Contains(x.Value)))
-					{
-						bucket.Selected = true;
-					}
-				}
+        public FacetManager<T> Register(string pName, BucketCollectionFactory<T> pBucketCollectionFactory,
+            ApplyFacetFilter<T> pFilter)
+        {
+            return Register(pName, pName, pBucketCollectionFactory, pFilter);
+        }
 
-				return newFacet;
-			}
-		}
+        public FacetManager<T> Register(string pId, string pName, BucketCollectionFactory<T> pFactory,
+            ApplyFacetFilter<T> pFilter)
+        {
+            Factories.Add(x => new Facet(pId, pName, pFactory(x)));
+            NameToIdMap[pName] = pId;
+            Filters[pId] = pFilter;
 
-		public IQueryable<T> Filter(IQueryable<T> pQueryable, IEnumerable<Facet> pFacets)
-		{
-			return pFacets != null
-				? pFacets.Aggregate(pQueryable, filterOnFacet)
-				: pQueryable;
+            return this;
+        }
 
-			IQueryable<T> filterOnFacet(IQueryable<T> queryable, Facet facet)
-			{
-				var success = Filters.TryGetValue(facet.Id, out var filter);
-				if (!success || !facet.Buckets.Any(x => x.Selected))
-				{
-					return queryable;
-				}
+        public IEnumerable<Facet> Build(IEnumerable<T> pCollection, IEnumerable<SearchChip> pSearchChips)
+        {
+            var groupedSearchChips = pSearchChips?.ToLookup(k => k.Name);
+            var collection = pCollection.ToList();
 
-				return filter(queryable, facet);
-			}
-		}
-	}
+            return Factories.Select(generateNewFacet);
+
+            Facet generateNewFacet(FacetFactory pFactory)
+            {
+                var newFacet = pFactory(collection);
+
+                if (groupedSearchChips != null && groupedSearchChips.Contains(newFacet.Name))
+                {
+                    var oldBuckets = new HashSet<string>(groupedSearchChips[newFacet.Name].Select(k => k.Value));
+                    foreach (var bucket in newFacet.Buckets)
+                    {
+                        bucket.Selected = oldBuckets.Contains(bucket.Value);
+                    }
+                }
+
+                return newFacet;
+            }
+        }
+
+        public IQueryable<T> Filter(IQueryable<T> pQueryable, IEnumerable<SearchChip> pSearchChips)
+        {
+            return pSearchChips != null
+                ? pSearchChips.Aggregate(pQueryable, filterOnFacet)
+                : pQueryable;
+
+            IQueryable<T> filterOnFacet(IQueryable<T> queryable, SearchChip searchChip)
+            {
+                var success = NameToIdMap.TryGetValue(searchChip.Name, out var id);
+                if (!success)
+                {
+                    LogTo.Warning(
+                        $"{nameof(FacetManager<T>)}|{typeof(T)}.Name|{searchChip.Name}|name not registered");
+
+                    return queryable;
+                }
+
+                success = Filters.TryGetValue(NameToIdMap[searchChip.Name], out var filter);
+                if (!success)
+                {
+                    LogTo.Warning(
+                        $"{nameof(FacetManager<T>)}|{typeof(T)}.Name|{searchChip.Name}|filter not registered");
+
+                    return queryable;
+                }
+
+                LogTo.Debug($"{nameof(FacetManager<T>)}|{typeof(T)}.Name|{searchChip.Name}");
+                return filter(queryable, searchChip);
+            }
+        }
+    }
 }

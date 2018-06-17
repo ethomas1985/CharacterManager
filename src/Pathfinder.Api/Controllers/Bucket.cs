@@ -1,4 +1,6 @@
-﻿namespace Pathfinder.Api.Controllers {
+﻿using Newtonsoft.Json;
+
+namespace Pathfinder.Api.Controllers {
 	public class Bucket
 	{
 		public Bucket(string pValue, int pCount, bool pSelected = false)
@@ -11,5 +13,10 @@
 		public string Value { get; set; }
 		public int Count { get; set; }
 		public bool Selected { get; set; }
+
+		public override string ToString()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.None);
+		}
 	}
 }

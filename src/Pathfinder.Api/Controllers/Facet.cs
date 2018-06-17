@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Pathfinder.Api.Controllers {
 	public class Facet
@@ -21,5 +22,9 @@ namespace Pathfinder.Api.Controllers {
 		public string Name { get; set; }
 
 		public IEnumerable<Bucket> Buckets { get; set; }
+		public override string ToString()
+		{
+			return JsonConvert.SerializeObject(this, Formatting.None);
+		}
 	}
 }
