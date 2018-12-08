@@ -32,54 +32,59 @@ namespace Pathfinder.Test.Serializers.Json
 
 		[OneTimeSetUp]
 		public void RunBeforeAnyTests()
-		{
-			Console.WriteLine($"EXECUTING {nameof(SetupTestFixtureForJsonSerializers)}.{nameof(RunBeforeAnyTests)}");
+        {
+            Console.WriteLine($"EXECUTING {nameof(SetupTestFixtureForJsonSerializers)}.{nameof(RunBeforeAnyTests)}");
 
-			JsonConvert.DefaultSettings = GetJsonSerializerSettings;
+            SetupJsonConverters();
+        }
 
-			JsonSerializerSettings GetJsonSerializerSettings()
-			{
-				return new JsonSerializerSettings
-				{
-					Converters =
-						new List<JsonConverter>
-						{
-							new StringEnumConverter { CamelCaseText = true },
-							new AbilityScoreJsonSerializer(),
-							new AbilityTypeJsonSerializer(),
-							new ArmorComponentJsonSerializer(),
-							new CharacterClassJsonSerializer(ClassRepository),
-							new CharacterJsonSerializer(RaceRepository, SkillRepository),
-							new ClassJsonSerializer(),
-							new ClassLevelJsonSerializer(),
-							new CurrencyJsonSerializer(),
-							new DefenseScoreJsonSerializer(),
-							new DiceJsonSerializer(),
-							new DieJsonSerializer(),
-							new EventJsonSerializer(),
-							new ExperienceJsonSerializer(),
-							new FeatJsonSerializer(),
-							new FeatureJsonSerializer(),
-							new InventoryJsonSerializer(),
-							new ItemJsonSerializer(),
-							new LanguageJsonSerializer(),
-							new OffensiveScoreJsonSerializer(),
-							new PurseJsonSerializer(),
-							new RaceJsonSerializer(),
-							new SavingThrowJsonSerializer(),
-							new SkillJsonSerializer(),
-							new SkillScoreJsonSerializer(),
-							new SpellJsonSerializer(),
-							new SubFeatureJsonSerializer(),
-							new SpellComponentJsonSerializer(),
-							new TraitJsonSerializer(),
-							new WeaponComponentJsonSerializer(),
-							new WeaponSpecialJsonSerializer(),
-						},
-					//StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
-					//Formatting = Formatting.Indented,
-				};
-			}
-		}
-	}
+        public static void SetupJsonConverters()
+        {
+            JsonConvert.DefaultSettings = GetJsonSerializerSettings;
+
+            JsonSerializerSettings GetJsonSerializerSettings()
+            {
+                return new JsonSerializerSettings
+                {
+                    Converters =
+                        new List<JsonConverter>
+                        {
+                            new StringEnumConverter {CamelCaseText = true},
+                            new AbilityScoreJsonSerializer(),
+                            new AbilityTypeJsonSerializer(),
+                            new ArmorComponentJsonSerializer(),
+                            new CharacterClassJsonSerializer(ClassRepository),
+                            new CharacterJsonSerializer(RaceRepository, SkillRepository),
+                            new ClassJsonSerializer(),
+                            new ClassLevelJsonSerializer(),
+                            new CurrencyJsonSerializer(),
+                            new DefenseScoreJsonSerializer(),
+                            new DiceJsonSerializer(),
+                            new DieJsonSerializer(),
+                            new EventJsonSerializer(),
+                            new ExperienceJsonSerializer(),
+                            new FeatJsonSerializer(),
+                            new FeatureJsonSerializer(),
+                            new InventoryJsonSerializer(),
+                            new ItemJsonSerializer(),
+                            new LanguageJsonSerializer(),
+                            new OffensiveScoreJsonSerializer(),
+                            new PurseJsonSerializer(),
+                            new RaceJsonSerializer(),
+                            new SavingThrowJsonSerializer(),
+                            new SkillJsonSerializer(),
+                            new SkillScoreJsonSerializer(),
+                            new SpellJsonSerializer(),
+                            new SubFeatureJsonSerializer(),
+                            new SpellComponentJsonSerializer(),
+                            new TraitJsonSerializer(),
+                            new WeaponComponentJsonSerializer(),
+                            new WeaponSpecialJsonSerializer(),
+                        },
+                    //StringEscapeHandling = StringEscapeHandling.EscapeNonAscii,
+                    //Formatting = Formatting.Indented,
+                };
+            }
+        }
+    }
 }

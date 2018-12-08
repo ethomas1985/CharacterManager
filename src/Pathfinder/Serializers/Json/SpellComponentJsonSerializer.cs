@@ -29,11 +29,6 @@ namespace Pathfinder.Serializers.Json
 			}
 
 			var description = GetString(pJobject, nameof(ISpellComponent.Description));
-			if (string.IsNullOrWhiteSpace(description))
-			{
-				throw new JsonException($"Missing Required Attribute: {nameof(ISpellComponent.Description)}");
-			}
-
 			return new SpellComponent(componentType, description);
 		}
 	}

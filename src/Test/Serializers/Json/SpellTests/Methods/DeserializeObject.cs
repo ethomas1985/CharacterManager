@@ -46,7 +46,6 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				MagicDescriptor.Acid
 			};
 			const string savingThrow = "Testing Saving Throw";
-			const string description = "Testing Description";
 			const bool hasSpellResistance = true;
 			const string spellResisitance = "Testing Spell Resisitance";
 			const string castingTime = "Testing Casting Time";
@@ -55,6 +54,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 			{
 				["Testing Something"] = 1
 			};
+			var description = new List<string> { "Testing Description"};
 			const string duration = "Testing Duration";
 			var spellComponents = new HashSet<ISpellComponent>
 			{
@@ -78,7 +78,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
 				$"{string.Join(",", magicDescriptorStrings)}" +
 				$"]," +
 				$"\"{nameof(ISpell.SavingThrow)}\":\"{savingThrow}\"," +
-				$"\"{nameof(ISpell.Description)}\":\"{description}\"," +
+				$"\"{nameof(ISpell.Description)}\":[\"{description}\"]," +
 				$"\"{nameof(ISpell.HasSpellResistance)}\":\"{hasSpellResistance}\"," +
 				$"\"{nameof(ISpell.SpellResistance)}\":\"{spellResisitance}\"," +
 				$"\"{nameof(ISpell.CastingTime)}\":\"{castingTime}\"," +

@@ -11,5 +11,6 @@
 		Illusion,
 		Necromancy,
 		Transmutation,
+        NONE
 	}
 }

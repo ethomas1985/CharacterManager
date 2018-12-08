@@ -10,17 +10,21 @@ using Newtonsoft.Json;
 using Pathfinder.Interface;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
+using Pathfinder.Utilities;
 
 namespace Pathfinder.Library
 {
     [Obsolete("This was dumb.")]
     internal abstract class AbstractFilesystemRepository<T> : ILegacyRepository<T> where T : INamed
     {
+        protected internal const string XML = "*.xml";
+
         private readonly Lazy<ConcurrentDictionary<string, T>> _library =
             new Lazy<ConcurrentDictionary<string, T>>(
-                                                      () => new ConcurrentDictionary<string, T>());
+                () => new ConcurrentDictionary<string, T>());
 
-        internal AbstractFilesystemRepository(ISerializer<T, string> pSerializer, string pLibraryDirectory)
+        internal AbstractFilesystemRepository(ISerializer<T, string> pSerializer, string pLibraryDirectory,
+            string pFileType = XML)
         {
             //Tracer.Message($"{GetType().FullName}: Path := \"{Path.GetFullPath(pLibraryDirectory)}\"");
             if (!Directory.Exists(pLibraryDirectory))
@@ -30,18 +34,35 @@ namespace Pathfinder.Library
 
             Serializer = pSerializer;
             LibraryDirectory = pLibraryDirectory;
+            FileType = pFileType;
 
             Initialize();
         }
 
         private void Initialize()
         {
-            var files = Directory.EnumerateFiles(LibraryDirectory, "*.xml");
-            Parallel.ForEach(files, x => LoadFile(Serializer, x));
+            var files = Directory.EnumerateFiles(LibraryDirectory, FileType).ToList();
+            LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|{nameof(LibraryDirectory)}|{LibraryDirectory}");
+            LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|# of {nameof(files)}|{files.Count()}");
+
+            Parallel.ForEach(files, x =>
+            {
+                LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|{nameof(x)}|{x}");
+                try
+                {
+                    LoadFile(Serializer, x);
+                }
+                catch (Exception e)
+                {
+                    LogTo.Exception(e);
+                    throw new Exception($"Exception deserializing file \"{x}\"", e);
+                }
+            });
         }
 
         protected ISerializer<T, string> Serializer { get; }
         protected string LibraryDirectory { get; }
+        protected string FileType { get; }
         internal ConcurrentDictionary<string, T> Library => _library.Value;
 
         public IEnumerable<string> Keys => Library.Keys.ToImmutableList();
@@ -103,16 +124,15 @@ namespace Pathfinder.Library
         {
             var xml = File.ReadAllText(pFile);
             var deserialize = pSerializer.Deserialize(xml);
-
             Library.TryAdd(deserialize.Name, deserialize);
         }
 
-		public IQueryable<T> GetQueryable()
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<T> GetQueryable()
+        {
+            throw new NotImplementedException();
+        }
 
-		public void Insert(T pValue)
+        public void Insert(T pValue)
         {
             throw new NotImplementedException();
         }

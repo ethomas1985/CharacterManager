@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -31,17 +32,22 @@ namespace Pathfinder.Utilities
 
 		private static Logger LoggerFactory()
 		{
-			var loggerFactory = new LoggerConfiguration()
+            var pathToLogFile = Path.GetFullPath($"./logs/Log.{DateTime.Now:yyyy-MM-dd}.log");
+            var loggerFactory = new LoggerConfiguration()
 				.MinimumLevel.ControlledBy(LogLevelSwitch)
 				.WriteTo.Console()
-				.WriteTo.File($"./Log.{DateTime.Now:yyyy-MM-dd}.log");
+				.WriteTo.File(pathToLogFile);
 
 			if ("Mongo".Equals(ConfigurationManager.AppSettings["LogToDatabase"]))
 			{
 				loggerFactory = loggerFactory.WriteTo.MongoDB("mongodb://localhost:32768/pathfinder_log");
 			}
 
-			return loggerFactory.CreateLogger();
+            var logger = loggerFactory.CreateLogger();
+
+            logger.Information($"{nameof(LogTo)}|{nameof(pathToLogFile)}|{pathToLogFile}");
+
+            return logger;
 		}
 
 		public static void ChangeLogLevel(string pLogLevel)

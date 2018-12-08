@@ -2,9 +2,13 @@
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using Moq;
 using NUnit.Framework;
 using Pathfinder.Api.Controllers;
 using Pathfinder.Enums;
+using Pathfinder.Interface.Infrastructure;
+using Pathfinder.Interface.Model;
+using Pathfinder.Test.ObjectMothers;
 using Pathfinder.Utilities;
 using Assert = NUnit.Framework.Assert;
 
@@ -20,10 +24,21 @@ namespace Pathfinder.Api.Tests.Spells
             LogTo.ChangeLogLevel("Debug");
         }
 
+        private IRepository<ISpell> SpellRepository
+        {
+            get
+            {
+                var testClass = SpellMother.AcidArrow();
+                var mockClassLibrary = new Mock<IRepository<ISpell>>();
+                mockClassLibrary.Setup(foo => foo.GetAll()).Returns(new List<ISpell> {testClass});
+                return mockClassLibrary.Object;
+            }
+        }
+
         [Test]
         public void FetchesExpectedForSearchText()
         {
-            var spellBookController = new SpellBookController
+            var spellBookController = new SpellBookController(SpellRepository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -43,7 +58,7 @@ namespace Pathfinder.Api.Tests.Spells
         [Test]
         public void FetchesExpectedForFacet()
         {
-            var spellBookController = new SpellBookController
+            var spellBookController = new SpellBookController(SpellRepository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()

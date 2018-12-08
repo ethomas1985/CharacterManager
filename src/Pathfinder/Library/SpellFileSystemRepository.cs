@@ -16,8 +16,8 @@ namespace Pathfinder.Library
         private readonly Lazy<SpellByLevelByClassIndex> _spellByLevelByClassIndex =
             new Lazy<SpellByLevelByClassIndex>(() => new SpellByLevelByClassIndex());
 
-        internal SpellFileSystemRepository(ISerializer<ISpell, string> pSerializer, string pLibraryDirectory)
-            : base(pSerializer, pLibraryDirectory) { }
+        internal SpellFileSystemRepository(ISerializer<ISpell, string> pSerializer, string pLibraryDirectory, string pFileType = XML)
+            : base(pSerializer, pLibraryDirectory, pFileType) { }
 
         private SpellByClassIndex SpellByClassIndex => _spellByClassIndex.Value;
         private SpellByLevelByClassIndex SpellByLevelByClassIndex => _spellByLevelByClassIndex.Value;

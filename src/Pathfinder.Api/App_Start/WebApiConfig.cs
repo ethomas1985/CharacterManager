@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Dependencies;
+using Microsoft.AspNet.OData.Batch;
+using Microsoft.AspNet.OData.Builder;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.OData.Edm;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Pathfinder.Enums;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
+using Pathfinder.Repository;
 using Pathfinder.Serializers.Json;
+using Unity;
 
 namespace Pathfinder.Api
 {
@@ -24,6 +33,10 @@ namespace Pathfinder.Api
             pConfig.EnableCors(cors);
             // Web API configuration and services
 
+            var container = new UnityContainer();
+            container.RegisterType<IRepository<ISpell>, SpellMongoRepository>(new HierarchicalLifetimeManager());
+            pConfig.DependencyResolver = new UnityResolver(container);
+
             // Web API routes
             pConfig.MapHttpAttributeRoutes();
 
@@ -32,6 +45,49 @@ namespace Pathfinder.Api
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new {id = RouteParameter.Optional}
             );
+
+            pConfig.MapODataServiceRoute("ODataRoute", "odata", GetEdmModel(),
+                                         new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer));
+        }
+
+        private static IEdmModel GetEdmModel()
+        {
+            var builder = new ODataModelBuilder()
+            {
+                Namespace = "Pathfinder",
+                ContainerName = "Models"
+            };
+            builder.AddEnumTypeAndValues<MagicSchool>()
+                .AddEnumTypeAndValues<MagicSubSchool>()
+                .AddEnumTypeAndValues<MagicDescriptor>()
+                .AddEnumTypeAndValues<ComponentType>();
+
+            //var kvpType = typeof(KeyValuePair<string, int>);
+            //var kvpEdmType = builder.AddComplexType(kvpType);
+            //kvpEdmType.AddProperty(kvpType.GetProperty("Key"));
+            //kvpEdmType.AddProperty(kvpType.GetProperty("Value"));
+
+            var spellEntityConfig = builder.EntitySet<ISpell>("Spells").EntityType;
+            spellEntityConfig.Name = "Spell";
+            spellEntityConfig.HasKey(x => x.Name);
+            spellEntityConfig.EnumProperty(x => x.School);
+            spellEntityConfig.CollectionProperty(x => x.SubSchools);
+            spellEntityConfig.CollectionProperty(x => x.MagicDescriptors);
+            spellEntityConfig.Property(x => x.SavingThrow);
+            spellEntityConfig.CollectionProperty(x => x.Description);
+            spellEntityConfig.Property(x => x.HasSpellResistance);
+            spellEntityConfig.Property(x => x.SpellResistance);
+            spellEntityConfig.Property(x => x.CastingTime);
+            spellEntityConfig.Property(x => x.Range);
+            spellEntityConfig.ComplexProperty(x => x.LevelRequirements);
+            spellEntityConfig.Property(x => x.Duration);
+            spellEntityConfig.CollectionProperty(x => x.Components);
+
+            var spellComponentEntityTypeConfig = builder.ComplexType<ISpellComponent>();
+            spellComponentEntityTypeConfig.EnumProperty(x => x.ComponentType);
+            spellComponentEntityTypeConfig.Property(x => x.Description);
+
+            return builder.GetEdmModel();
         }
 
         private static void RegisterJsonConverters(HttpConfiguration pConfig)
@@ -78,6 +134,51 @@ namespace Pathfinder.Api
                     new WeaponComponentJsonSerializer(),
                     new WeaponSpecialJsonSerializer()
                 };
+        }
+    }
+
+    public class UnityResolver : IDependencyResolver
+    {
+        protected IUnityContainer Container { get; }
+
+        public UnityResolver(IUnityContainer container)
+        {
+            Container = container ?? throw new ArgumentNullException(nameof(container));
+        }
+
+        public object GetService(Type serviceType)
+        {
+            try
+            {
+                return Container.Resolve(serviceType);
+            }
+            catch (ResolutionFailedException)
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            try
+            {
+                return Container.ResolveAll(serviceType);
+            }
+            catch (ResolutionFailedException)
+            {
+                return new List<object>();
+            }
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            var child = Container.CreateChildContainer();
+            return new UnityResolver(child);
+        }
+
+        public void Dispose()
+        {
+            Container.Dispose();
         }
     }
 }

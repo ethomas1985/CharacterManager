@@ -12,14 +12,14 @@ namespace Pathfinder.Api.Controllers
 {
     public class SpellBookController : ApiController
     {
-        public SpellBookController()
+        public SpellBookController(IRepository<ISpell> pSpellRepository)
         {
             LogTo.Debug($"{nameof(SpellBookController)}|ctor");
 
-            SpellsRepository =
-                PathfinderConfiguration.Instance
-                    .CreatePathfinderManager(Path.GetFullPath("."))
-                    .Get<IRepository<ISpell>>();
+            SpellsRepository = pSpellRepository;
+                //PathfinderConfiguration.Instance
+                //    .CreatePathfinderManager(Path.GetFullPath("."))
+                //    .Get<IRepository<ISpell>>();
 
             FacetManager = new FacetManager<ISpell>()
                 .Register(nameof(ISpell.School), "Magic School", CreateFacetForSchool, FilterForMagicSchool)
@@ -51,7 +51,7 @@ namespace Pathfinder.Api.Controllers
             }
 
             var results = queryable.OrderBy(x => x.Name).ToList();
-            IEnumerable<Facet> facets = FacetManager.Build(results, pCriteria.Chips);
+            var facets = FacetManager.Build(results, pCriteria.Chips);
 
             var searchResults = new SearchResults<ISpell>
             {

@@ -124,6 +124,7 @@
     <Compile Include="ObjectMothers\LanguageMother.cs" />
     <Compile Include="ObjectMothers\RaceMother.cs" />
     <Compile Include="ObjectMothers\SkillMother.cs" />
+    <Compile Include="ObjectMothers\SpellMother.cs" />
     <Compile Include="ObjectMothers\TraitMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializers\Json\AbilityScoreTests\Methods\DeserializeObject.cs" />

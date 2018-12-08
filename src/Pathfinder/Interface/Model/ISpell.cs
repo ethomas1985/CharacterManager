@@ -9,7 +9,7 @@ namespace Pathfinder.Interface.Model
         IEnumerable<MagicSubSchool> SubSchools { get; }
         ISet<MagicDescriptor> MagicDescriptors { get; }
         string SavingThrow { get; }
-        string Description { get; }
+        IEnumerable<string> Description { get; }
         bool HasSpellResistance { get; }
         string SpellResistance { get; }
         string CastingTime { get; }

@@ -77,9 +77,9 @@ namespace Pathfinder
             var skillRepository = new SkillRepository(skillSerializer, libraryPath.SkillLibrary);
             pRegistry.Register<ILegacyRepository<ISkill>>(skillRepository);
 
-            var spellSerializer = new SpellXmlSerializer();
-            var spellRepository = new SpellFileSystemRepository(spellSerializer, libraryPath.SpellLibrary);
-            pRegistry.Register<ILegacyRepository<ISpell>>(spellRepository);
+            //var spellSerializer = new SpellXmlSerializer();
+            //var spellRepository = new SpellFileSystemRepository(spellSerializer, libraryPath.SpellLibrary);
+            //pRegistry.Register<ILegacyRepository<ISpell>>(spellRepository);
 
             var traitSerializer = new TraitXmlSerializer();
             var traitRepository = new TraitRepository(traitSerializer, libraryPath.TraitLibrary);

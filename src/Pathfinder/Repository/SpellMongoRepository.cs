@@ -14,13 +14,13 @@ namespace Pathfinder.Repository
 		IEnumerable<ISpell> GetListForClass(IClass pClass);
 	}
 
-	internal class SpellMongoRepository : ISpellPersistenceStore
+	public class SpellMongoRepository : ISpellPersistenceStore
 	{
 		private readonly MongoRepository<Spell> _store;
 
 		public SpellMongoRepository()
 		{
-			_store = new MongoRepository<Spell>("mongodb://localhost:32768", "pathfinder", "spells");
+			_store = new MongoRepository<Spell>("mongodb://localhost:27017", "pathfinder", "spells");
 		}
 
 		private IMongoCollection<Spell> GetCollection()

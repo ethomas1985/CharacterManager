@@ -14,7 +14,7 @@ namespace Pathfinder.Model
 			IEnumerable<MagicSubSchool> pSubSchools,
 			ISet<MagicDescriptor> pMagicDescriptors,
 			string pSavingThrow,
-			string pDescription,
+            IEnumerable<string> pDescription,
 			bool pHasSpellResistance,
 			string pSpellResistance,
 			string pCastingTime,
@@ -43,7 +43,7 @@ namespace Pathfinder.Model
 		public IEnumerable<MagicSubSchool> SubSchools { get; }
 		public ISet<MagicDescriptor> MagicDescriptors { get; }
 		public string SavingThrow { get; }
-		public string Description { get; }
+		public IEnumerable<string> Description { get; }
 		public bool HasSpellResistance { get; }
 		public string SpellResistance { get; }
 		public string CastingTime { get; }
