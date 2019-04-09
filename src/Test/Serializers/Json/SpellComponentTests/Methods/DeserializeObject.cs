@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Enums;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Model;
 
@@ -21,16 +20,15 @@ namespace Pathfinder.Test.Serializers.Json.SpellComponentTests.Methods
 		}
 
 		[Test]
-		public void RequiresDescription()
+		public void AllowsDescriptionToBeOptional()
 		{
 			const ComponentType componentType = ComponentType.DivineFocus;
 			var value = $"{{ \"{nameof(ISpellComponent.ComponentType)}\": \"{componentType}\"}}";
-			Assert.That(
-				() => JsonConvert.DeserializeObject<ISpellComponent>(value),
-				Throws.Exception
-					.TypeOf<JsonException>()
-					.With.Message.EqualTo($"Missing Required Attribute: {nameof(ISpellComponent.Description)}"));
-		}
+            var result = JsonConvert.DeserializeObject<ISpellComponent>(value);
+            var expected = new SpellComponent(componentType);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
 
 		[Test]
 		public void Expected()

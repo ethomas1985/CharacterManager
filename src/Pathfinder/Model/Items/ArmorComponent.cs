@@ -69,5 +69,15 @@ namespace Pathfinder.Model.Items
 				return hashCode;
 			}
 		}
+
+        public static ArmorComponent Copy(IArmorComponent pOther)
+        {
+            return new ArmorComponent(pOther.ArmorBonus,
+                                      pOther.ShieldBonus,
+                                      pOther.MaximumDexterityBonus,
+                                      pOther.ArmorCheckPenalty,
+                                      pOther.ArcaneSpellFailureChance,
+                                      pOther.SpeedModifier);
+        }
 	}
 }

@@ -3,6 +3,8 @@ using Pathfinder.Utilities;
 using System;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;
+using WeaponComponentImpl = Pathfinder.Model.Items.WeaponComponent;
+using ArmorComponentImpl = Pathfinder.Model.Items.ArmorComponent;
 
 namespace Pathfinder.Model.Items
 {
@@ -85,5 +87,17 @@ namespace Pathfinder.Model.Items
 				return hashCode;
 			}
 		}
+
+        public static Item Copy(IItem pOther)
+        {
+            return new Item(pOther.Name,
+                            pOther.ItemType,
+                            pOther.Category,
+                            pOther.Cost,
+                            pOther.Weight,
+                            pOther.Description,
+                            WeaponComponentImpl.Copy(pOther.WeaponComponent),
+                            ArmorComponentImpl.Copy(pOther.ArmorComponent));
+        }
 	}
 }

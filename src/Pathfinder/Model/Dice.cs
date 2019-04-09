@@ -1,5 +1,4 @@
 ﻿using System;
-using Pathfinder.Interface;
 using Pathfinder.Interface.Model;
 using Pathfinder.Utilities;
 
@@ -50,5 +49,10 @@ namespace Pathfinder.Model
 			// I am relying on my implementation of IDie's ToString() to return a string like "d{faces}".
 			return $"{DieCount}{Die}";
 		}
+
+        public static Dice Copy(IDice pOther)
+        {
+            return new Dice(pOther.DieCount, pOther.Die);
+        }
 	}
 }

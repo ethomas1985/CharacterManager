@@ -79,7 +79,7 @@ namespace Pathfinder.Model
 				&& ComparisonUtilities.CompareEnumerables(GetType().Name, SubSchools, pOther.SubSchools, nameof(SubSchools))
 				&& ComparisonUtilities.CompareEnumerables(GetType().Name, MagicDescriptors, pOther.MagicDescriptors, nameof(MagicDescriptors))
 				&& ComparisonUtilities.Compare(GetType().Name, SavingThrow, pOther.SavingThrow, nameof(SavingThrow))
-				&& ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description))
+				&& ComparisonUtilities.CompareEnumerables(GetType().Name, Description, pOther.Description, nameof(Description))
 				&& ComparisonUtilities.Compare(GetType().Name, HasSpellResistance, pOther.HasSpellResistance, nameof(HasSpellResistance))
 				&& ComparisonUtilities.Compare(GetType().Name, SpellResistance, pOther.SpellResistance, nameof(SpellResistance))
 				&& ComparisonUtilities.Compare(GetType().Name, CastingTime, pOther.CastingTime, nameof(CastingTime))
