@@ -16,7 +16,7 @@ namespace Pathfinder.Api.Controllers
         {
             var manager =
                 PathfinderConfiguration.Instance
-                    .CreatePathfinderManager(Path.GetFullPath("."));
+                    .InitializeContainer(new BasicDependencyContainer(), Path.GetFullPath("."));
 
             CharacterRepository = manager.Get<ILegacyRepository<ICharacter>>();
             SkillRepository = manager.Get<ILegacyRepository<ISkill>>();

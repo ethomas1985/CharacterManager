@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using MongoDB.Bson.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 using Pathfinder;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
 using Pathfinder.Library;
 using Pathfinder.Repository;
-using Pathfinder.Serializers.Json;
-using Pathfinder.Serializers.Xml;
 using Pathfinder.Test.Serializers.Json;
 using Pathfinder.Utilities;
 using Assert = NUnit.Framework.Assert;
@@ -44,7 +37,9 @@ namespace DatabasePopulator
 
             var spell = spellRepository.Values.First();
 
-            var spellStore = new SpellMongoRepository();
+            var spellStore = new SpellMongoRepository(
+                new MongoSettings(
+                    new Uri("mongodb://localhost:27017"), "pathfinder"));
 
             LogTo.Info("{Class}.{Method}|Loaded Spell \"{Name}\" from file system.",
                        nameof(SpellPersistenceTests), nameof(TestInsert), spell.Name);
@@ -69,7 +64,9 @@ namespace DatabasePopulator
             var spellRepository = new SpellFileSystemRepository(spellSerializer, RESOURCES_DIRECTORY, "*.json");
             var spells = spellRepository.Values.OrderBy(x => x.Name).ToList();
 
-            var spellStore = new SpellMongoRepository();
+            var spellStore = new SpellMongoRepository(
+                new MongoSettings(
+                    new Uri("mongodb://localhost:27017"), "pathfinder"));
 
             LogTo.Info("{Class}.{Method}|Loaded {Count} Spells from file system.",
                        nameof(SpellPersistenceTests), nameof(UpdateMongoDatabase), spells.Count);

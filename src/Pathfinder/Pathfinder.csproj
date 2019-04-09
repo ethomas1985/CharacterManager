@@ -123,6 +123,7 @@
     <Compile Include="Commands\Character\SetHomeland.cs" />
     <Compile Include="Commands\Character\SetCharacterRace.cs" />
     <Compile Include="Commands\Character\SetWeight.cs" />
+    <Compile Include="DependencyContainerExtensions.cs" />
     <Compile Include="Enums\AbilityType.cs" />
     <Compile Include="Enums\Alignment.cs" />
     <Compile Include="Enums\BonusType.cs" />
@@ -170,9 +171,10 @@
     <Compile Include="Events\Character\ClassAdded.cs" />
     <Compile Include="Factories\CharacterFactory.cs" />
     <Compile Include="Features.cs" />
+    <Compile Include="IDependencyContainer.cs" />
     <Compile Include="Interface\Infrastructure\IModelInitializer.cs" />
     <Compile Include="LibraryPaths.cs" />
-    <Compile Include="Repository\AbstractMongoRepository.cs" />
+    <Compile Include="Repository\MongoRepository.cs" />
     <Compile Include="Interface\Infrastructure\IRepository.cs" />
     <Compile Include="Interface\IAggregate.cs" />
     <Compile Include="Model\AbstractEffect.cs" />
@@ -205,7 +207,7 @@
     <Compile Include="Interface\Model\IWeaponSpecial.cs" />
     <Compile Include="Model\RacialEffect.cs" />
     <Compile Include="PathfinderConfiguration.cs" />
-    <Compile Include="PathfinderManager.cs" />
+    <Compile Include="BasicDependencyContainer.cs" />
     <Compile Include="Library\AbstractFilesystemRepository.cs" />
     <Compile Include="Library\CharacterRepository.cs" />
     <Compile Include="Library\ItemRepository.cs" />
@@ -243,6 +245,8 @@
     <Compile Include="Model\Spell.cs" />
     <Compile Include="Model\SubFeature.cs" />
     <Compile Include="Model\Items\WeaponComponent.cs" />
+    <Compile Include="Repository\ItemMongoRepository.cs" />
+    <Compile Include="Repository\MongoSettings.cs" />
     <Compile Include="Serializers\Json\AbilityScoreJsonSerializer.cs" />
     <Compile Include="Serializers\Json\AbilityTypeJsonSerializer.cs" />
     <Compile Include="Serializers\Json\AbstractJsonSerializer.cs" />

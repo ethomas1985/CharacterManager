@@ -10,22 +10,35 @@ using Microsoft.AspNet.OData.Extensions;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Pathfinder.Api.Controllers;
+using Pathfinder.Api.Controllers.OData;
 using Pathfinder.Enums;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
-using Pathfinder.Repository;
 using Pathfinder.Serializers.Json;
-using Unity;
+using Pathfinder.Utilities;
+using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
+using SimpleInjector.Lifestyles;
 
 namespace Pathfinder.Api
 {
     public static class WebApiConfig
     {
+        private static T InitializeContainer<T>(T pContainer) where T: class, IDependencyContainer
+        {
+            return PathfinderConfiguration.Instance
+                .InitializeContainer(pContainer, Path.GetFullPath("."));
+        }
+
         public static void Register(HttpConfiguration pConfig)
         {
-            pConfig.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            // SWITCH TO simple.injector....
+            var dependencyContainer = InitializeContainer(new DependencyContainer());
+            dependencyContainer.Container.RegisterWebApiControllers(pConfig);
 
-            RegisterJsonConverters(pConfig);
+            pConfig.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            RegisterJsonConverters(dependencyContainer, pConfig);
 
             pConfig.MessageHandlers.Add(new LogRequestAndResponseHandler());
 
@@ -33,9 +46,7 @@ namespace Pathfinder.Api
             pConfig.EnableCors(cors);
             // Web API configuration and services
 
-            var container = new UnityContainer();
-            container.RegisterType<IRepository<ISpell>, SpellMongoRepository>(new HierarchicalLifetimeManager());
-            pConfig.DependencyResolver = new UnityResolver(container);
+            pConfig.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(dependencyContainer.Container);
 
             // Web API routes
             pConfig.MapHttpAttributeRoutes();
@@ -90,15 +101,11 @@ namespace Pathfinder.Api
             return builder.GetEdmModel();
         }
 
-        private static void RegisterJsonConverters(HttpConfiguration pConfig)
+        private static void RegisterJsonConverters(IDependencyContainer pContainer, HttpConfiguration pConfig)
         {
-            var manager =
-                PathfinderConfiguration.Instance
-                    .CreatePathfinderManager(Path.GetFullPath("."));
-
-            var classLibrary = manager.Get<ILegacyRepository<IClass>>();
-            var raceLibrary = manager.Get<ILegacyRepository<IRace>>();
-            var skillLibrary = manager.Get<ILegacyRepository<ISkill>>();
+            var classLibrary = pContainer.Get<ILegacyRepository<IClass>>();
+            var raceLibrary = pContainer.Get<ILegacyRepository<IRace>>();
+            var skillLibrary = pContainer.Get<ILegacyRepository<ISkill>>();
             pConfig.Formatters.JsonFormatter.SerializerSettings.Converters =
                 new List<JsonConverter>
                 {
@@ -137,48 +144,37 @@ namespace Pathfinder.Api
         }
     }
 
-    public class UnityResolver : IDependencyResolver
+    public class DependencyContainer : IDependencyContainer
     {
-        protected IUnityContainer Container { get; }
+        public Container Container { get; }
 
-        public UnityResolver(IUnityContainer container)
+        public DependencyContainer()
         {
-            Container = container ?? throw new ArgumentNullException(nameof(container));
+            Container = new Container();
+            Container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
         }
 
-        public object GetService(Type serviceType)
+        public IDependencyContainer Register<TInterface, TClass>()
+            where TInterface : class
+            where TClass : class, TInterface
         {
-            try
-            {
-                return Container.Resolve(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return null;
-            }
+            Container.Register<TInterface, TClass>(Lifestyle.Scoped);
+
+            return this;
         }
 
-        public IEnumerable<object> GetServices(Type serviceType)
+        public IDependencyContainer RegisterInstance<TInterface, TClass>(TClass pSingleton)
+            where TInterface : class
+            where TClass : class, TInterface
         {
-            try
-            {
-                return Container.ResolveAll(serviceType);
-            }
-            catch (ResolutionFailedException)
-            {
-                return new List<object>();
-            }
+            Container.RegisterInstance<TInterface>(pSingleton);
+
+            return this;
         }
 
-        public IDependencyScope BeginScope()
+        public T Get<T>() where T : class
         {
-            var child = Container.CreateChildContainer();
-            return new UnityResolver(child);
-        }
-
-        public void Dispose()
-        {
-            Container.Dispose();
+            return Container.GetInstance<T>();
         }
     }
 }
