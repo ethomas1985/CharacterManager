@@ -45,19 +45,28 @@ namespace Pathfinder.Library
             LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|{nameof(LibraryDirectory)}|{LibraryDirectory}");
             LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|# of {nameof(files)}|{files.Count()}");
 
-            Parallel.ForEach(files, x =>
+            Parallel.ForEach(files, LoadFile);
+        }
+
+        private void LoadFile(string filePath)
+        {
+            LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|{nameof(filePath)}|{filePath}");
+            try
             {
-                LogTo.Debug($"{GetType().Name}|{typeof(T).Name}|{nameof(Initialize)}|{nameof(x)}|{x}");
-                try
-                {
-                    LoadFile(Serializer, x);
-                }
-                catch (Exception e)
-                {
-                    LogTo.Exception(e);
-                    throw new Exception($"Exception deserializing file \"{x}\"", e);
-                }
-            });
+                LoadFile(Serializer, filePath);
+            }
+            catch (Exception e)
+            {
+                LogTo.Exception(e);
+                throw new Exception($"Exception deserializing file \"{filePath}\"", e);
+            }
+        }
+
+        protected virtual void LoadFile(ISerializer<T, string> pSerializer, string pFile)
+        {
+            var xml = File.ReadAllText(pFile);
+            var deserialize = pSerializer.Deserialize(xml);
+            Library.TryAdd(deserialize.Name, deserialize);
         }
 
         protected ISerializer<T, string> Serializer { get; }
@@ -118,13 +127,6 @@ namespace Pathfinder.Library
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }
-
-        protected virtual void LoadFile(ISerializer<T, string> pSerializer, string pFile)
-        {
-            var xml = File.ReadAllText(pFile);
-            var deserialize = pSerializer.Deserialize(xml);
-            Library.TryAdd(deserialize.Name, deserialize);
         }
 
         public IQueryable<T> GetQueryable()

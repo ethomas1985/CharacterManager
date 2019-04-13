@@ -18,7 +18,7 @@ namespace Pathfinder.Test.ObjectMothers
 				"Unit Testing",
 				new Purse(1, 1, 1, 1),
 				pWeight: 12,
-				pDescription: "For Unit Testing",
+				pDescription: new [] {"For Unit Testing" },
 				pWeaponComponent: new WeaponComponent(
 					Proficiency.None,
 					WeaponType.Unarmed,
@@ -50,7 +50,7 @@ namespace Pathfinder.Test.ObjectMothers
 				"Category",
 				new Purse(100),
 				10,
-				"Description",
+				new [] { "Description" },
 				pArmorComponent: new ArmorComponent(
 					pArmorBonus: 1,
 					pShieldBonus: 1,
@@ -68,7 +68,7 @@ namespace Pathfinder.Test.ObjectMothers
 				"Category",
 				new Purse(100),
 				10,
-				"Description",
+				new [] { "Description" },
 				pArmorComponent: new ArmorComponent(
 					pArmorBonus: 1,
 					pShieldBonus: 1,
@@ -86,7 +86,7 @@ namespace Pathfinder.Test.ObjectMothers
 				"Category",
 				new Purse(100),
 				10,
-				"Description",
+				new [] { "Description" },
 				pArmorComponent: new ArmorComponent(
 					pArmorBonus: 1,
 					pShieldBonus: 1,

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -301,8 +301,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 				$"{{ " +
 				$"\"{nameof(ICharacter.Inventory)}\": [ " +
 				$"{{ " +
-				$"\"{nameof(KeyValuePair<IItem, int>.Key)}\": {JsonConvert.SerializeObject(testingItem)}, " +
-				$"\"{nameof(KeyValuePair<IItem, int>.Value)}\": {1} " +
+				$"\"{nameof(IInventoryItem.Item)}\": {JsonConvert.SerializeObject(testingItem)}, " +
+				$"\"{nameof(IInventoryItem.Quantity)}\": {1} " +
 				$"}} " +
 				$"] " +
 				$"}}");
@@ -317,8 +317,8 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 				$"{{ " +
 				$"\"{nameof(ICharacter.Inventory)}\": [ " +
 				$"{{ " +
-				$"\"{nameof(KeyValuePair<IItem, int>.Key)}\": {JsonConvert.SerializeObject(testingItem)}, " +
-				$"\"{nameof(KeyValuePair<IItem, int>.Value)}\": {1} " +
+				$"\"{nameof(IInventoryItem.Item)}\": {JsonConvert.SerializeObject(testingItem)}, " +
+				$"\"{nameof(IInventoryItem.Quantity)}\": {1} " +
 				$"}} " +
 				$"], " +
 				$"\"{nameof(ICharacter.EquipedArmor)}\": {{ " +

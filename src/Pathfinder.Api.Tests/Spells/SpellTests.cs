@@ -5,6 +5,7 @@ using System.Web.Http;
 using Moq;
 using NUnit.Framework;
 using Pathfinder.Api.Controllers;
+using Pathfinder.Api.Searching;
 using Pathfinder.Enums;
 using Pathfinder.Interface.Infrastructure;
 using Pathfinder.Interface.Model;
@@ -31,6 +32,7 @@ namespace Pathfinder.Api.Tests.Spells
                 var testClass = SpellMother.AcidArrow();
                 var mockClassLibrary = new Mock<IRepository<ISpell>>();
                 mockClassLibrary.Setup(foo => foo.GetAll()).Returns(new List<ISpell> {testClass});
+                mockClassLibrary.Setup(foo => foo.GetQueryable()).Returns(new List<ISpell> {testClass}.AsQueryable());
                 return mockClassLibrary.Object;
             }
         }
@@ -71,7 +73,7 @@ namespace Pathfinder.Api.Tests.Spells
                     new SearchChip
                     {
                         Name = "Magic School",
-                        Value = $"{MagicSchool.Universal}"
+                        Value = $"{MagicSchool.Conjuration}"
                     }
                 }
             };
@@ -79,8 +81,8 @@ namespace Pathfinder.Api.Tests.Spells
 
             Assert.That(response.SearchText, Is.EqualTo(requested.SearchText));
             Assert.That(response.Facets.Count(), Is.EqualTo(2));
-            Assert.That(response.Count, Is.EqualTo(5));
-            Assert.That(response.Results.Count(), Is.EqualTo(5));
+            Assert.That(response.Count, Is.EqualTo(1));
+            Assert.That(response.Results.Count(), Is.EqualTo(1));
         }
     }
 }

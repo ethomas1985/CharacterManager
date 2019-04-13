@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pathfinder.Api.Controllers {
+namespace Pathfinder.Api.Searching {
 	public class SearchResults<T>
 	{
 		public string SearchText { get; set; }

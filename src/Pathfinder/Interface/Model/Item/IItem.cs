@@ -1,4 +1,5 @@
-﻿using Pathfinder.Enums;
+﻿using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Interface.Model.Currency;
 
 namespace Pathfinder.Interface.Model.Item
@@ -8,7 +9,7 @@ namespace Pathfinder.Interface.Model.Item
 		string Category { get; }
 		IPurse Cost { get; }
 		decimal Weight { get; }
-		string Description { get; }
+		IEnumerable<string> Description { get; }
 		ItemType ItemType { get; }
 
 		IWeaponComponent WeaponComponent { get; }

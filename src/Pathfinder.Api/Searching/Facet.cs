@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Pathfinder.Api.Controllers {
+namespace Pathfinder.Api.Searching {
 	public class Facet
 	{
 		public Facet(string pId, string pName, IEnumerable<Bucket> pBuckets)

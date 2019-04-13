@@ -297,8 +297,8 @@ namespace Pathfinder.Serializers.Json
 			var character = pCharacter;
 			foreach (var valuePair in inventory)
 			{
-				var item = valuePair.Key;
-				var quantity = valuePair.Value;
+				var item = valuePair.Item;
+				var quantity = valuePair.Quantity;
 				for (var i = 0; i < quantity; i++)
 				{
 					character = character.AddToInventory(item);

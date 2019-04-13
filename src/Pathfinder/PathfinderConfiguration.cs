@@ -1,4 +1,7 @@
 ﻿using System;
+using Pathfinder.Containers;
+using Pathfinder.Interface.Infrastructure;
+using Pathfinder.Model.Currency;
 using Pathfinder.Repository;
 using Pathfinder.Startup;
 using Pathfinder.Utilities;
@@ -28,7 +31,7 @@ namespace Pathfinder
             InitializePersistenceLayer();
         }
 
-        public T InitializeContainer<T>(T pContainer, string pBaseDirectory) where T: class, IDependencyContainer
+        public T InitializeContainer<T>(T pContainer, string pBaseDirectory) where T : class, IDependencyContainer
         {
             return pContainer
                 .RegisterInstance<IMongoSettings, MongoSettings>(
@@ -40,9 +43,28 @@ namespace Pathfinder
         public static void InitializePersistenceLayer()
         {
             LogTo.Info($"{nameof(InitializePersistenceLayer)}");
+            
+            var modelRegisters = new IModelRegister[]
+            {
+                new SpellModelInitializer(),
+                new SpellComponentInitializer(),
+                new ItemModelInitializer(),
+                new PurseModelInitializer(),
+                new AbstractCurrencyModelInitializer(),
+                new CopperModelInitializer(),
+                new SilverModelInitializer(),
+                new GoldModelInitializer(),
+                new PlatinumModelInitializer(),
+                new WeaponComponentModelInitializer(),
+                new DiceModelInitializer(),
+                new WeaponSpecialModelInitializer(), 
+                new ArmorComponentModelInitializer(),
+            };
 
-            new SpellModelInitializer().Register();
-            new SpellComponentInitializer().Register();
+            foreach (var modelRegister in modelRegisters)
+            {
+                modelRegister.Register();
+            }
         }
     }
 }

@@ -92,9 +92,6 @@ namespace DatabasePopulator
 
             Assert.That(spellStore.GetAll().Count(), Is.EqualTo(552));
         }
-
-        [Test, Explicit]
-        public void CompareParsedWithDb() { }
     }
 
     internal class SpellJsonSerializer : ISerializer<ISpell, string>

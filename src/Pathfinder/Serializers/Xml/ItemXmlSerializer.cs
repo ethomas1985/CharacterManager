@@ -1,12 +1,14 @@
-﻿using Pathfinder.Enums;
-using Pathfinder.Interface;
+﻿using System;
+using System.Collections.Generic;
+using Pathfinder.Enums;
 using Pathfinder.Model.Currency;
 using Pathfinder.Model.Items;
 using Pathfinder.Utilities;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Pathfinder.Interface.Infrastructure;
-using Pathfinder.Interface.Model;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;
 using Pathfinder.Model;
@@ -27,11 +29,19 @@ namespace Pathfinder.Serializers.Xml
 				_GetElementValue(xDocument, nameof(IItem.Category)),
 				_GetCost(xDocument),
 				_GetWeightValue(xDocument),
-				_GetElementValue(xDocument, nameof(IItem.Description))
+                _SplitParagraphs(_GetElementValue(xDocument, nameof(IItem.Description)))
 				);
 		}
 
-		private static decimal _GetWeightValue(XContainer pXDocument)
+        private IEnumerable<string> _SplitParagraphs(string pGetElementValue)
+        {
+            return WebUtility.HtmlDecode(pGetElementValue)
+                .Replace(@"<\p>", Environment.NewLine)
+                .Replace(@"<p>", string.Empty)
+                .Split(new [] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static decimal _GetWeightValue(XContainer pXDocument)
 		{
 			return _GetElementValue(pXDocument, nameof(IItem.Weight)).AsDecimal();
 		}
@@ -42,9 +52,9 @@ namespace Pathfinder.Serializers.Xml
 				.Descendants(pName)
 				.Select(x => x.Value)
 				.FirstOrDefault();
-		}
+        }
 
-		private static ItemType _GetItemType(XContainer pXDocument)
+        private static ItemType _GetItemType(XContainer pXDocument)
 		{
 			var itemType = _GetElementValue(pXDocument, nameof(IItem.ItemType));
 			ItemType value;
@@ -57,10 +67,16 @@ namespace Pathfinder.Serializers.Xml
 
 		private static Purse _GetCost(XContainer pXDocument)
 		{
-			var copper = _GetElementValue(pXDocument, nameof(IPurse.Copper)).AsInt();
-			var silver = _GetElementValue(pXDocument, nameof(IPurse.Silver)).AsInt();
-			var gold = _GetElementValue(pXDocument, nameof(IPurse.Gold)).AsInt();
-			var platinum = _GetElementValue(pXDocument, nameof(IPurse.Platinum)).AsInt();
+            var regex = new Regex(@"(\d+)(?: [csgp]p)?");
+            string capture(string value)
+            {
+                return regex.Match(value).Groups[1].Value;
+            };
+
+            var copper = capture(_GetElementValue(pXDocument, nameof(IPurse.Copper))).AsInt();
+			var silver = capture(_GetElementValue(pXDocument, nameof(IPurse.Silver))).AsInt();
+			var gold = capture(_GetElementValue(pXDocument, nameof(IPurse.Gold))).AsInt();
+			var platinum = capture(_GetElementValue(pXDocument, nameof(IPurse.Platinum))).AsInt();
 
 			return new Purse(copper, silver, gold, platinum);
 		}

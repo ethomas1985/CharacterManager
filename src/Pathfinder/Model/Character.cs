@@ -468,7 +468,7 @@ namespace Pathfinder.Model
 		public IInventory Inventory { get; private set; } = new Inventory();
 		public IEnumerable<IItem> Weapons =>
 			Inventory
-				.Select(x => x.Key)
+				.Select(x => x.Item)
 				.Where(x => x.WeaponComponent != null)
 				.ToImmutableList();
 

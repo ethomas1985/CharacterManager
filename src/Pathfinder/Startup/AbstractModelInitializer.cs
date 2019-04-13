@@ -3,13 +3,15 @@ using Pathfinder.Interface.Infrastructure;
 
 namespace Pathfinder.Startup
 {
-    public abstract class AbstractModelInitializer<T> : IModelInitializer<T>
-        where T : class
+    internal interface IModelInitializer<T> : IModelRegister where T : class {
+        void Initializer(BsonClassMap<T> pClassMap);
+    }
+
+    public abstract class AbstractModelInitializer<T> : IModelInitializer<T> where T : class
     {
-        public BsonClassMap<T> Register()
+        public void Register()
         {
-            return BsonClassMap.RegisterClassMap<T>(Initializer);
-                //.AddKnownType(typeof(TClass));
+            BsonClassMap.RegisterClassMap<T>(Initializer);
         }
 
         public abstract void Initializer(BsonClassMap<T> pClassMap);

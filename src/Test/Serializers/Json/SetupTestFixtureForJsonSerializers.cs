@@ -66,6 +66,7 @@ namespace Pathfinder.Test.Serializers.Json
                             new FeatJsonSerializer(),
                             new FeatureJsonSerializer(),
                             new InventoryJsonSerializer(),
+                            new InventoryItemJsonSerializer(),
                             new ItemJsonSerializer(),
                             new LanguageJsonSerializer(),
                             new OffensiveScoreJsonSerializer(),

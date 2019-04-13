@@ -38,7 +38,7 @@ namespace Pathfinder.Model
 			Components = pComponents;
 		}
 
-		public string Name { get; }
+        public string Name { get; }
 		public MagicSchool School { get; }
 		public IEnumerable<MagicSubSchool> SubSchools { get; }
 		public ISet<MagicDescriptor> MagicDescriptors { get; }

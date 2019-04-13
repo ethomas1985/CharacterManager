@@ -25,18 +25,6 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
         }
 
         [Test]
-        public void RequiresSchool()
-        {
-            const string name = "Testing Spell";
-            var value = $"{{ \"{nameof(ISpell.Name)}\": \"{name}\"}}";
-            Assert.That(
-                () => JsonConvert.DeserializeObject<ISpell>(value),
-                Throws.Exception
-                    .TypeOf<JsonException>()
-                    .With.Message.EqualTo($"Missing Required Attribute: {nameof(ISpell.School)}"));
-        }
-
-        [Test]
         public void Expected()
         {
             LogTo.ChangeLogLevel("Verbose");
@@ -81,7 +69,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
                 $"{string.Join(",", magicDescriptorStrings)}" +
                 $"]," +
                 $"\"{nameof(ISpell.SavingThrow)}\":\"{savingThrow}\"," +
-                $"\"{nameof(ISpell.Description)}\":[\"{description}\"]," +
+                $"\"{nameof(ISpell.Description)}\":[\"{string.Join("\", \"", description)}\"]," +
                 $"\"{nameof(ISpell.HasSpellResistance)}\":\"{hasSpellResistance}\"," +
                 $"\"{nameof(ISpell.SpellResistance)}\":\"{spellResistance}\"," +
                 $"\"{nameof(ISpell.CastingTime)}\":\"{castingTime}\"," +

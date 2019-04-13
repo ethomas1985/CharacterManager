@@ -45,7 +45,7 @@ namespace Pathfinder.Test.Serializers.Json.SpellTests.Methods
                     .Append($"{string.Join(",", magicDescriptorStrings)}")
                     .Append($"],")
                     .Append($"\"{nameof(ISpell.SavingThrow)}\":\"{spell.SavingThrow}\",")
-                    .Append($"\"{nameof(ISpell.Description)}\":\"{spell.Description}\",")
+                    .Append($"\"{nameof(ISpell.Description)}\":[\"{string.Join("\", \"", spell.Description)}\"],")
                     .Append(
                         $"\"{nameof(ISpell.HasSpellResistance)}\":{spell.HasSpellResistance.ToString().ToCamelCase()},")
                     .Append($"\"{nameof(ISpell.SpellResistance)}\":\"{spell.SpellResistance}\",")

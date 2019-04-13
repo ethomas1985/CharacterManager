@@ -74,7 +74,7 @@ namespace Pathfinder.Test.Serializers.Xml
 			[Test]
 			public void Expected()
 			{
-				var traitLibrary = new TraitRepository(new TraitXmlSerializer(), "../../../../resources/Traits/");
+				var traitLibrary = new TraitRepository(new TraitXmlSerializer(), Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../resources/Traits/")));
 				var serializer = new RaceXmlSerializer(traitLibrary);
 				var xml = serializer.Serialize(_race);
 
@@ -85,10 +85,10 @@ namespace Pathfinder.Test.Serializers.Xml
 		[TestFixture]
 		public class DeserializeMethod : RaceXmlSerializerTests
 		{
-			private readonly TraitRepository _traitRepository =
+			private TraitRepository _traitRepository =>
 				new TraitRepository(
 					new TraitXmlSerializer(),
-					Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../resources/Traits/")));
+					Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../resources/Traits/")));
 
 			[Test]
 			public void ThrowsForNullString()

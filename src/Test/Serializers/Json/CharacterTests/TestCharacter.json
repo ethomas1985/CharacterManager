@@ -1,324 +1,328 @@
 ﻿{
-	"Id": "deadbeef-0000-0001-0010-000000000011",
-	"Age": 10,
-	"Alignment": "lawfulGood",
-	"Deity": {
-		"Name": "Skepticus"
-	},
-	"Gender": "male",
-	"Eyes": "Blue",
-	"Hair": "Blue",
-	"Height": "9' 6\"",
-	"Weight": "180 lbs.",
-	"Homeland": "Homeland",
-	"Name": "Unit McTesterFace",
-	"Race": "Test Race",
-	"BaseSize": "medium",
-	"Size": "medium",
-	"Languages": [
-		"Old Test-ese",
-		"Old Test-ish",
-		"Mock Language"
-	],
-	"MaxHealthPoints": 7,
-	"Damage": 2,
-	"HealthPoints": 5,
-	"BaseSpeed": 30,
-	"Speed": 25,
-	"Purse": {
-		"Copper": 1,
-		"Silver": 2,
-		"Gold": 3,
-		"Platinum": 4
-	},
-	"Initiative": 1,
-	"Classes": [
-		{
-			"Class": "Test Class",
-			"Level": 1,
-			"IsFavored": true,
-			"BaseAttackBonus": 1,
-			"Fortitude": 1,
-			"Reflex": 1,
-			"Will": 1,
-			"HitPoints": [
-				6
-			]
-		}
-	],
-	"Strength": {
-		"Type": "strength",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"Dexterity": {
-		"Type": "dexterity",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"Constitution": {
-		"Type": "constitution",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"Intelligence": {
-		"Type": "intelligence",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"Wisdom": {
-		"Type": "wisdom",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"Charisma": {
-		"Type": "charisma",
-		"Score": 12,
-		"Modifier": 1,
-		"Base": 12,
-		"Enhanced": 0,
-		"Inherent": 0,
-		"Penalty": 0,
-		"Temporary": 0
-	},
-	"ArmorClass": {
-		"Type": "armorClass",
-		"Score": 13,
-		"ArmorBonus": 1,
-		"ShieldBonus": 1,
-		"DexterityModifier": 1,
-		"SizeModifier": 0,
-		"DeflectBonus": 0,
-		"DodgeBonus": 0,
-		"NaturalBonus": 0,
-		"TemporaryBonus": 0
-	},
-	"FlatFooted": {
-		"Type": "flatFooted",
-		"Score": 12,
-		"ArmorBonus": 1,
-		"ShieldBonus": 1,
-		"DexterityModifier": 0,
-		"SizeModifier": 0,
-		"DeflectBonus": 0,
-		"DodgeBonus": 0,
-		"NaturalBonus": 0,
-		"TemporaryBonus": 0
-	},
-	"Touch": {
-		"Type": "touch",
-		"Score": 11,
-		"ArmorBonus": 0,
-		"ShieldBonus": 0,
-		"DexterityModifier": 1,
-		"SizeModifier": 0,
-		"DeflectBonus": 0,
-		"DodgeBonus": 0,
-		"NaturalBonus": 0,
-		"TemporaryBonus": 0
-	},
-	"CombatManeuverDefense": {
-		"Type": "combatManeuverDefense",
-		"Score": 13,
-		"StrengthModifier": 1,
-		"BaseAttackBonus": 1,
-		"DexterityModifier": 1,
-		"SizeModifier": 0,
-		"DeflectBonus": 0,
-		"DodgeBonus": 0,
-		"NaturalBonus": 0,
-		"TemporaryBonus": 0
-	},
-	"Fortitude": {
-		"Type": "fortitude",
-		"AbilityModifier": 1,
-		"Base": 1,
-		"Resist": 0,
-		"Misc": 0,
-		"Temporary": 0,
-		"Score": 2
-	},
-	"Reflex": {
-		"Type": "reflex",
-		"AbilityModifier": 1,
-		"Base": 1,
-		"Resist": 0,
-		"Misc": 0,
-		"Temporary": 0,
-		"Score": 2
-	},
-	"Will": {
-		"Type": "will",
-		"AbilityModifier": 1,
-		"Base": 1,
-		"Resist": 0,
-		"Misc": 0,
-		"Temporary": 0,
-		"Score": 2
-	},
-	"Melee": {
-		"Type": "melee",
-		"AbilityModifier": 1,
-		"BaseAttackBonus": 1,
-		"SizeModifier": 0,
-		"TemporaryModifier": 0,
-		"Score": 2
-	},
-	"Ranged": {
-		"Type": "ranged",
-		"AbilityModifier": 1,
-		"BaseAttackBonus": 1,
-		"SizeModifier": 0,
-		"TemporaryModifier": 0,
-		"Score": 2
-	},
-	"CombatManeuverBonus": {
-		"Type": "combatManeuverBonus",
-		"AbilityModifier": 1,
-		"BaseAttackBonus": 1,
-		"SizeModifier": 0,
-		"TemporaryModifier": 0,
-		"Score": 2
-	},
-	"SkillScores": [
-		{
-			"Skill": "Test Skill",
-			"Ability": "strength",
-			"AbilityModifier": 1,
-			"Ranks": 1,
-			"ClassModifier": 0,
-			"MiscModifier": 0,
-			"ArmorClassPenalty": 1
-		}
-	],
-	"Experience": [
-		{
-			"Title": "Event 1",
-			"Description": "Freebie",
-			"ExperiencePoints": 2000
-		}
-	],
-	"Feats": [
-		{
-			"Name": "Feat 1",
-			"FeatType": "general",
-			"Description": "Testing Description",
-			"Benefit": "Testing Benefit",
-			"Special": "Testing Special",
-			"Prerequisites": [],
-			"Specialization": "user-choice"
-		},
-		{
-			"Name": "Feat 2",
-			"FeatType": "general",
-			"Description": "Testing Description",
-			"Benefit": "Testing Benefit",
-			"Special": "Testing Special",
-			"Prerequisites": [
-				"Feat 1"
-			]
-		}
-	],
-	"Inventory": [
-		{
-			"Key": {
-				"Name": "Testing Item",
-				"ItemType": "none",
-				"Category": "Unit Testing",
-				"Description": "For Unit Testing",
-				"Weight": 12.0,
-				"Cost": {
-					"Copper": 1,
-					"Silver": 1,
-					"Gold": 1,
-					"Platinum": 1
-				},
-				"WeaponComponent": {
-					"Proficiency": "none",
-					"WeaponType": "unarmed",
-					"Encumbrance": "none",
-					"Size": "medium",
-					"DamageType": "bludgeoning",
-					"BaseWeaponDamage": [
-						"1d6"
-					],
-					"CriticalThreat": 2,
-					"CriticalMultiplier": 20,
-					"Range": 0,
-					"Specials": []
-				},
-				"ArmorComponent": {
-					"ArmorBonus": 1,
-					"ShieldBonus": 1,
-					"MaximumDexterityBonus": 1,
-					"ArmorCheckPenalty": 1,
-					"ArcaneSpellFailureChance": 0.20,
-					"SpeedModifier": 25
-				}
-			},
-			"Value": 1
-		}
-	],
-	"EquipedArmor": {
-		"None": {
-			"Name": "Testing Item",
-			"ItemType": "none",
-			"Category": "Unit Testing",
-			"Description": "For Unit Testing",
-			"Weight": 12.0,
-			"Cost": {
-				"Copper": 1,
-				"Silver": 1,
-				"Gold": 1,
-				"Platinum": 1
-			},
-			"WeaponComponent": {
-				"Proficiency": "none",
-				"WeaponType": "unarmed",
-				"Encumbrance": "none",
-				"Size": "medium",
-				"DamageType": "bludgeoning",
-				"BaseWeaponDamage": [
-					"1d6"
-				],
-				"CriticalThreat": 2,
-				"CriticalMultiplier": 20,
-				"Range": 0,
-				"Specials": []
-			},
-			"ArmorComponent": {
-				"ArmorBonus": 1,
-				"ShieldBonus": 1,
-				"MaximumDexterityBonus": 1,
-				"ArmorCheckPenalty": 1,
-				"ArcaneSpellFailureChance": 0.20,
-				"SpeedModifier": 25
-			}
-		}
-	}
+    "Id": "deadbeef-0000-0001-0010-000000000011",
+    "Age": 10,
+    "Alignment": "lawfulGood",
+    "Deity": {
+        "Name": "Skepticus"
+    },
+    "Gender": "male",
+    "Eyes": "Blue",
+    "Hair": "Blue",
+    "Height": "9' 6\"",
+    "Weight": "180 lbs.",
+    "Homeland": "Homeland",
+    "Name": "Unit McTesterFace",
+    "Race": "Test Race",
+    "BaseSize": "medium",
+    "Size": "medium",
+    "Languages": [
+        "Old Test-ese",
+        "Old Test-ish",
+        "Mock Language"
+    ],
+    "MaxHealthPoints": 7,
+    "Damage": 2,
+    "HealthPoints": 5,
+    "BaseSpeed": 30,
+    "Speed": 25,
+    "Purse": {
+        "Copper": 1,
+        "Silver": 2,
+        "Gold": 3,
+        "Platinum": 4
+    },
+    "Initiative": 1,
+    "Classes": [
+        {
+            "Class": "Test Class",
+            "Level": 1,
+            "IsFavored": true,
+            "BaseAttackBonus": 1,
+            "Fortitude": 1,
+            "Reflex": 1,
+            "Will": 1,
+            "HitPoints": [
+                6
+            ]
+        }
+    ],
+    "Strength": {
+        "Type": "strength",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "Dexterity": {
+        "Type": "dexterity",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "Constitution": {
+        "Type": "constitution",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "Intelligence": {
+        "Type": "intelligence",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "Wisdom": {
+        "Type": "wisdom",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "Charisma": {
+        "Type": "charisma",
+        "Score": 12,
+        "Modifier": 1,
+        "Base": 12,
+        "Enhanced": 0,
+        "Inherent": 0,
+        "Penalty": 0,
+        "Temporary": 0
+    },
+    "ArmorClass": {
+        "Type": "armorClass",
+        "Score": 13,
+        "ArmorBonus": 1,
+        "ShieldBonus": 1,
+        "DexterityModifier": 1,
+        "SizeModifier": 0,
+        "DeflectBonus": 0,
+        "DodgeBonus": 0,
+        "NaturalBonus": 0,
+        "TemporaryBonus": 0
+    },
+    "FlatFooted": {
+        "Type": "flatFooted",
+        "Score": 12,
+        "ArmorBonus": 1,
+        "ShieldBonus": 1,
+        "DexterityModifier": 0,
+        "SizeModifier": 0,
+        "DeflectBonus": 0,
+        "DodgeBonus": 0,
+        "NaturalBonus": 0,
+        "TemporaryBonus": 0
+    },
+    "Touch": {
+        "Type": "touch",
+        "Score": 11,
+        "ArmorBonus": 0,
+        "ShieldBonus": 0,
+        "DexterityModifier": 1,
+        "SizeModifier": 0,
+        "DeflectBonus": 0,
+        "DodgeBonus": 0,
+        "NaturalBonus": 0,
+        "TemporaryBonus": 0
+    },
+    "CombatManeuverDefense": {
+        "Type": "combatManeuverDefense",
+        "Score": 13,
+        "StrengthModifier": 1,
+        "BaseAttackBonus": 1,
+        "DexterityModifier": 1,
+        "SizeModifier": 0,
+        "DeflectBonus": 0,
+        "DodgeBonus": 0,
+        "NaturalBonus": 0,
+        "TemporaryBonus": 0
+    },
+    "Fortitude": {
+        "Type": "fortitude",
+        "AbilityModifier": 1,
+        "Base": 1,
+        "Resist": 0,
+        "Misc": 0,
+        "Temporary": 0,
+        "Score": 2
+    },
+    "Reflex": {
+        "Type": "reflex",
+        "AbilityModifier": 1,
+        "Base": 1,
+        "Resist": 0,
+        "Misc": 0,
+        "Temporary": 0,
+        "Score": 2
+    },
+    "Will": {
+        "Type": "will",
+        "AbilityModifier": 1,
+        "Base": 1,
+        "Resist": 0,
+        "Misc": 0,
+        "Temporary": 0,
+        "Score": 2
+    },
+    "Melee": {
+        "Type": "melee",
+        "AbilityModifier": 1,
+        "BaseAttackBonus": 1,
+        "SizeModifier": 0,
+        "TemporaryModifier": 0,
+        "Score": 2
+    },
+    "Ranged": {
+        "Type": "ranged",
+        "AbilityModifier": 1,
+        "BaseAttackBonus": 1,
+        "SizeModifier": 0,
+        "TemporaryModifier": 0,
+        "Score": 2
+    },
+    "CombatManeuverBonus": {
+        "Type": "combatManeuverBonus",
+        "AbilityModifier": 1,
+        "BaseAttackBonus": 1,
+        "SizeModifier": 0,
+        "TemporaryModifier": 0,
+        "Score": 2
+    },
+    "SkillScores": [
+        {
+            "Skill": "Test Skill",
+            "Ability": "strength",
+            "AbilityModifier": 1,
+            "Ranks": 1,
+            "ClassModifier": 0,
+            "MiscModifier": 0,
+            "ArmorClassPenalty": 1
+        }
+    ],
+    "Experience": [
+        {
+            "Title": "Event 1",
+            "Description": "Freebie",
+            "ExperiencePoints": 2000
+        }
+    ],
+    "Feats": [
+        {
+            "Name": "Feat 1",
+            "FeatType": "general",
+            "Description": "Testing Description",
+            "Benefit": "Testing Benefit",
+            "Special": "Testing Special",
+            "Prerequisites": [],
+            "Specialization": "user-choice"
+        },
+        {
+            "Name": "Feat 2",
+            "FeatType": "general",
+            "Description": "Testing Description",
+            "Benefit": "Testing Benefit",
+            "Special": "Testing Special",
+            "Prerequisites": [
+                "Feat 1"
+            ]
+        }
+    ],
+    "Inventory": [
+        {
+            "Item": {
+                "Name": "Testing Item",
+                "ItemType": "none",
+                "Category": "Unit Testing",
+                "Description": [
+                    "For Unit Testing"
+                ],
+                "Weight": 12.0,
+                "Cost": {
+                    "Copper": 1,
+                    "Silver": 1,
+                    "Gold": 1,
+                    "Platinum": 1
+                },
+                "WeaponComponent": {
+                    "Proficiency": "none",
+                    "WeaponType": "unarmed",
+                    "Encumbrance": "none",
+                    "Size": "medium",
+                    "DamageType": "bludgeoning",
+                    "BaseWeaponDamage": [
+                        "1d6"
+                    ],
+                    "CriticalThreat": 2,
+                    "CriticalMultiplier": 20,
+                    "Range": 0,
+                    "Specials": []
+                },
+                "ArmorComponent": {
+                    "ArmorBonus": 1,
+                    "ShieldBonus": 1,
+                    "MaximumDexterityBonus": 1,
+                    "ArmorCheckPenalty": 1,
+                    "ArcaneSpellFailureChance": 0.20,
+                    "SpeedModifier": 25
+                }
+            },
+            "Quantity": 1
+        }
+    ],
+    "EquipedArmor": {
+        "None": {
+            "Name": "Testing Item",
+            "ItemType": "none",
+            "Category": "Unit Testing",
+            "Description": [
+                "For Unit Testing"
+            ],
+            "Weight": 12.0,
+            "Cost": {
+                "Copper": 1,
+                "Silver": 1,
+                "Gold": 1,
+                "Platinum": 1
+            },
+            "WeaponComponent": {
+                "Proficiency": "none",
+                "WeaponType": "unarmed",
+                "Encumbrance": "none",
+                "Size": "medium",
+                "DamageType": "bludgeoning",
+                "BaseWeaponDamage": [
+                    "1d6"
+                ],
+                "CriticalThreat": 2,
+                "CriticalMultiplier": 20,
+                "Range": 0,
+                "Specials": []
+            },
+            "ArmorComponent": {
+                "ArmorBonus": 1,
+                "ShieldBonus": 1,
+                "MaximumDexterityBonus": 1,
+                "ArmorCheckPenalty": 1,
+                "ArcaneSpellFailureChance": 0.20,
+                "SpeedModifier": 25
+            }
+        }
+    }
 }

@@ -7,7 +7,7 @@ using Pathfinder.Library;
 using Pathfinder.Repository;
 using Pathfinder.Serializers.Xml;
 
-namespace Pathfinder
+namespace Pathfinder.Containers
 {
     internal static class DependencyContainerExtensions
     {
@@ -36,10 +36,6 @@ namespace Pathfinder
             var skillRepository = new SkillRepository(skillSerializer, libraryPath.SkillLibrary);
             pRegistry.RegisterInstance<ILegacyRepository<ISkill>, SkillRepository>(skillRepository);
 
-            //var spellSerializer = new SpellXmlSerializer();
-            //var spellRepository = new SpellFileSystemRepository(spellSerializer, libraryPath.SpellLibrary);
-            //pRegistry.RegisterInstance<ILegacyRepository<ISpell>>(spellRepository);
-
             var traitSerializer = new TraitXmlSerializer();
             var traitRepository = new TraitRepository(traitSerializer, libraryPath.TraitLibrary);
             pRegistry.RegisterInstance<ILegacyRepository<ITrait>, TraitRepository>(traitRepository);
@@ -47,10 +43,6 @@ namespace Pathfinder
             var raceSerializer = new RaceXmlSerializer(traitRepository);
             var raceRepository = new RaceRepository(raceSerializer, libraryPath.RaceLibrary);
             pRegistry.RegisterInstance<ILegacyRepository<IRace>, RaceRepository>(raceRepository);
-
-            var itemSerializer = new ItemXmlSerializer();
-            var itemRepository = new ItemRepository(itemSerializer, libraryPath.ItemLibrary);
-            pRegistry.RegisterInstance<ILegacyRepository<IItem>, ItemRepository>(itemRepository);
 
             var characterSerializer = new CharacterXmlSerializer();
             var characterRepository = new CharacterRepository(characterSerializer, libraryPath.CharacterLibrary);

@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Pathfinder.Test.ObjectMothers;
 
@@ -26,8 +26,16 @@ namespace Pathfinder.Test.Serializers.Json.CharacterTests.Methods
 				CharacterMother
 					.UnitMcTesterFace();
 
-			var actual = JsonConvert.SerializeObject(testCharacter, Formatting.Indented);
-			var expected = Resources.TestCharacter.Replace("\t", "  ");
+			var actual = JsonConvert.SerializeObject(testCharacter)
+                .Replace("\t", string.Empty)
+                .Replace("\r", string.Empty)
+                .Replace("\n", string.Empty);
+			var expected = Resources.TestCharacter
+                .Replace(": ", ":")
+                .Replace("    ", string.Empty)
+                .Replace("\t", string.Empty)
+                .Replace("\r", string.Empty)
+                .Replace("\n", string.Empty);
 
 			//Console.WriteLine($"result output : {Path.GetFullPath("result.json")}");
 			//File.WriteAllText("result.json", actual);

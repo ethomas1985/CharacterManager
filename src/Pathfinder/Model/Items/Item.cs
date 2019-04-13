@@ -1,6 +1,7 @@
 ﻿using Pathfinder.Enums;
 using Pathfinder.Utilities;
 using System;
+using System.Collections.Generic;
 using Pathfinder.Interface.Model.Currency;
 using Pathfinder.Interface.Model.Item;
 using WeaponComponentImpl = Pathfinder.Model.Items.WeaponComponent;
@@ -16,7 +17,7 @@ namespace Pathfinder.Model.Items
 			string pCategory,
 			IPurse pCost,
 			decimal pWeight,
-			string pDescription,
+            IEnumerable<string> pDescription,
 			IWeaponComponent pWeaponComponent = null,
 			IArmorComponent pArmorComponent = null)
 		{
@@ -35,7 +36,7 @@ namespace Pathfinder.Model.Items
 		public string Category { get; }
 		public IPurse Cost { get; }
 		public decimal Weight { get; }
-		public string Description { get; }
+		public IEnumerable<string> Description { get; }
 		public ItemType ItemType { get; }
 		public IWeaponComponent WeaponComponent { get; }
 		public IArmorComponent ArmorComponent { get; }
@@ -66,7 +67,7 @@ namespace Pathfinder.Model.Items
 			result &= ComparisonUtilities.Compare(GetType().Name, Category, pOther.Category, nameof(Category));
 			result &= ComparisonUtilities.Compare(GetType().Name, Cost, pOther.Cost, nameof(Cost));
 			result &= ComparisonUtilities.Compare(GetType().Name, Weight, pOther.Weight, nameof(Weight));
-			result &= ComparisonUtilities.Compare(GetType().Name, Description, pOther.Description, nameof(Description));
+			result &= ComparisonUtilities.CompareEnumerables(GetType().Name, Description, pOther.Description, nameof(Description));
 			result &= ComparisonUtilities.Compare(GetType().Name, ItemType, pOther.ItemType, nameof(ItemType));
 			result &= ComparisonUtilities.Compare(GetType().Name, WeaponComponent, pOther.WeaponComponent, nameof(WeaponComponent));
 			result &= ComparisonUtilities.Compare(GetType().Name, ArmorComponent, pOther.ArmorComponent, nameof(ArmorComponent));
@@ -83,6 +84,8 @@ namespace Pathfinder.Model.Items
 				hashCode = (hashCode * 397) ^ (Cost?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ Weight.GetHashCode();
 				hashCode = (hashCode * 397) ^ (Description?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (WeaponComponent?.GetHashCode() ?? 0);
+				hashCode = (hashCode * 397) ^ (ArmorComponent?.GetHashCode() ?? 0);
 				hashCode = (hashCode * 397) ^ (int)ItemType;
 				return hashCode;
 			}

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Pathfinder.Api.Controllers {
+namespace Pathfinder.Api.Searching {
 	public class Bucket
 	{
 		public Bucket(string pValue, int pCount, bool pSelected = false)

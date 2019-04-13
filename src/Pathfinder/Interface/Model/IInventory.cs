@@ -3,16 +3,21 @@ using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Interface.Model
 {
-	public interface IInventory : IEnumerable<KeyValuePair<IItem, int>>
-	{
-		int this[IItem pKey] { get; }
+    public interface IInventoryItem
+    {
+        IItem Item { get; }
+        int Quantity { get; }
+    }
 
-		IInventory Add(IItem pItem, int pCount);
-		IInventory Remove(IItem pItem, int pQuantity);
+    public interface IInventory : IEnumerable<IInventoryItem>
+    {
+        int this[IItem pKey] { get; }
 
-		bool TryGetValue(IItem pKey, out int pValue);
-		bool Contains(IItem pKey);
+        IInventory Add(IItem pItem, int pCount);
+        IInventory Remove(IItem pItem, int pQuantity);
 
-		decimal Load { get; }
-	}
+        bool Contains(IItem pKey);
+
+        decimal Load { get; }
+    }
 }

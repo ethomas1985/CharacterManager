@@ -1,4 +1,4 @@
-﻿namespace Pathfinder.Api.Controllers
+﻿namespace Pathfinder.Api.Searching
 {
 	public class SearchChip
 	{

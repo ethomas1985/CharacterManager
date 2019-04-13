@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Pathfinder
+namespace Pathfinder.Containers
 {
     public class BasicDependencyContainer : IDependencyContainer
     {

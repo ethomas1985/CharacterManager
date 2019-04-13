@@ -9,69 +9,123 @@ using Pathfinder.Interface.Model.Item;
 
 namespace Pathfinder.Model.Items
 {
-	internal class Inventory : IInventory
-	{
-		private readonly ImmutableDictionary<IItem, int> _inventory;
-		private readonly Lazy<decimal> _load;
+    internal class Inventory : IInventory
+    {
+        private readonly ImmutableDictionary<string, InventoryItem> _inventory;
+        private readonly Lazy<decimal> _load;
 
-		private IDictionary<IItem, int> AsDictionary => _inventory;
+        private IDictionary<string, InventoryItem> AsDictionary => _inventory;
 
-		public Inventory() : this(ImmutableDictionary<IItem, int>.Empty)
-		{ }
+        public Inventory() : this(ImmutableDictionary<string, InventoryItem>.Empty) { }
 
-		private Inventory(IDictionary<IItem, int> pList)
-		{
-			_inventory = pList.ToImmutableDictionary();
-			_load = new Lazy<decimal>(() => _inventory.Sum(x => x.Key.Weight * x.Value));
-		}
+        private Inventory(IDictionary<string, InventoryItem> pList)
+        {
+            _inventory = pList.ToImmutableDictionary();
+            _load = new Lazy<decimal>(() => _inventory.Sum(x => x.Value.Item.Weight * x.Value.Quantity));
+        }
 
-		public IInventory Add(IItem pItem, int pQuantity)
-		{
-			Assert.ArgumentNotNull(pItem, nameof(pItem));
+        public IInventory Add(IItem pItem, int pQuantity)
+        {
+            Assert.ArgumentNotNull(pItem, nameof(pItem));
 
-			var quantity = Math.Max(pQuantity, 1);
-			return _inventory.TryGetKey(pItem, out IItem keyItem)
-				? new Inventory(_inventory.SetItem(keyItem, _inventory[keyItem] + quantity))
-				: new Inventory(_inventory.SetItem(pItem, quantity));
-		}
+            var quantity = Math.Max(pQuantity, 1);
+            return _inventory.TryGetValue(pItem.Name, out InventoryItem inventoryItem)
+                ? new Inventory(_inventory.SetItem(inventoryItem.Item.Name, inventoryItem.Add(quantity)))
+                : new Inventory(_inventory.SetItem(pItem.Name, new InventoryItem(pItem, quantity)));
+        }
 
-		public IInventory Remove(IItem pItem, int pQuantity)
-		{
-			Assert.ArgumentNotNull(pItem, nameof(pItem));
+        public IInventory Remove(IItem pItem, int pQuantity)
+        {
+            Assert.ArgumentNotNull(pItem, nameof(pItem));
 
-			if (!_inventory.TryGetKey(pItem, out IItem keyItem))
-			{
-				throw new ArgumentException("Item not in inventory.");
-			}
+            if (!_inventory.TryGetValue(pItem.Name, out InventoryItem inventoryItem))
+            {
+                throw new ArgumentException("Item not in inventory.");
+            }
 
-			var quantity = _inventory[keyItem] - Math.Max(pQuantity, 1);
-			return quantity < 1 
-				? new Inventory(_inventory.Remove(keyItem))
-				: new Inventory(_inventory.SetItem(keyItem, quantity));
-		}
+            inventoryItem = inventoryItem.Remove(Math.Max(pQuantity, 1));
+            return inventoryItem.Quantity < 1
+                ? new Inventory(_inventory.Remove(pItem.Name))
+                : new Inventory(_inventory.SetItem(pItem.Name, inventoryItem));
+        }
 
-		public decimal Load => _load.Value;
+        public decimal Load => _load.Value;
 
-		public bool Contains(IItem pKey)
-		{
-			return _inventory.ContainsKey(pKey);
-		}
+        public bool Contains(IItem pKey)
+        {
+            return _inventory.ContainsKey(pKey.Name);
+        }
 
-		public bool TryGetValue(IItem pKey, out int pValue)
-		{
-			return _inventory.TryGetValue(pKey, out pValue);
-		}
+        public int this[IItem pKey] => AsDictionary.TryGetValue(pKey.Name, out var value) ? value.Quantity : 0;
 
-		public int this[IItem pKey] => AsDictionary.TryGetValue(pKey, out int value) ? value : 0;
+        public IEnumerator<IInventoryItem> GetEnumerator()
+        {
+            return _inventory.Values.GetEnumerator();
+        }
 
-		public IEnumerator<KeyValuePair<IItem, int>> GetEnumerator()
-		{
-			return _inventory.GetEnumerator();
-		}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)_inventory.Values).GetEnumerator();
+        }
+    }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return ((IEnumerable) _inventory).GetEnumerator();
-		}
-	}
+    internal class InventoryItem : IInventoryItem, IEquatable<IInventoryItem>
+    {
+        public InventoryItem(IItem pItem, int pQuantity)
+        {
+            Item = pItem;
+            Quantity = pQuantity;
+        }
+
+        public IItem Item { get; }
+        public int Quantity { get; }
+
+        public InventoryItem Add(int pToAdd)
+        {
+            return new InventoryItem(Item, Quantity + pToAdd);
+        }
+
+        public InventoryItem Remove(int pToRemove)
+        {
+            return new InventoryItem(Item, Quantity - pToRemove);
+        }
+
+        public override string ToString()
+        {
+            return $"{Item}[{Quantity}]";
+        }
+
+        public bool Equals(IInventoryItem pOther)
+        {
+            if (ReferenceEquals(null, pOther))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, pOther))
+            {
+                return true;
+            }
+
+            if (pOther.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals(Item, pOther.Item) && Quantity == pOther.Quantity;
+        }
+
+        public override bool Equals(object pOther)
+        {
+            return Equals(pOther as IInventoryItem);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Item != null ? Item.GetHashCode() : 0) * 397) ^ Quantity;
+            }
+        }
+    }
 }

@@ -56,7 +56,7 @@ namespace Pathfinder.Test.Serializers.Json.ItemTests.Methods
 				$"\"{nameof(IItem.Name)}\": \"{itemName}\"," +
 				$"\"{nameof(IItem.ItemType)}\": \"{itemType.ToString().ToCamelCase()}\"," +
 				$"\"{nameof(IItem.Category)}\": \"{itemCategory}\"," +
-				$"\"{nameof(IItem.Description)}\": \"{itemDescription}\"," +
+				$"\"{nameof(IItem.Description)}\": [\"{itemDescription}\"]," +
 				$"\"{nameof(IItem.Weight)}\": {itemWeight}," +
 				$"\"{nameof(IItem.Cost)}\": {JsonConvert.SerializeObject(itemPurse)}," +
 				$"\"{nameof(IItem.WeaponComponent)}\": {JsonConvert.SerializeObject(weaponComponent)}," +
@@ -64,7 +64,7 @@ namespace Pathfinder.Test.Serializers.Json.ItemTests.Methods
 				$"}}";
 			var result = JsonConvert.DeserializeObject<IItem>(item);
 
-			var expected = new Item(itemName, itemType, itemCategory, itemPurse, itemWeight, itemDescription, weaponComponent, armorComponent);
+			var expected = new Item(itemName, itemType, itemCategory, itemPurse, itemWeight, new [] {itemDescription}, weaponComponent, armorComponent);
 
 			Assert.That(result, Is.EqualTo(expected));
 		}
