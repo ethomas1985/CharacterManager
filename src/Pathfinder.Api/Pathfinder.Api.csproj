@@ -105,6 +105,8 @@
   <ItemGroup>
     <Compile Include="App_Start\LogRequestAndResponseHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AbstractSearchController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Searching\ISearchController.cs" />
     <Compile Include="Searching\FacetManager.cs" />
     <Compile Include="Searching\Bucket.cs" />

@@ -10,71 +10,25 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Api.Controllers
 {
-    public class SpellBookController : ApiController, ISearchController<ISpell>
+    public class SpellBookController : AbstractSearchController<ISpell>
     {
         public SpellBookController(IRepository<ISpell> pSpellRepository)
         {
             LogTo.Debug($"{nameof(SpellBookController)}|ctor");
 
             SpellsRepository = pSpellRepository;
-                //PathfinderConfiguration.Instance
-                //    .CreatePathfinderManager(Path.GetFullPath("."))
-                //    .Get<IRepository<ISpell>>();
 
-            FacetManager = new FacetManager<ISpell>()
-                .Register(nameof(ISpell.School), "Magic School", CreateFacetForSchool, FilterForMagicSchool)
+            FacetManager
+                .Register(nameof(ISpell.School), "Magic School",
+                          FacetManager<ISpell>.CreateStandardFacetFunction(x => x.School), FilterForMagicSchool)
                 .Register("Class", "Available to", CreateFacetForClass, FilterForClass);
         }
 
         private IRepository<ISpell> SpellsRepository { get; }
 
-        private FacetManager<ISpell> FacetManager { get; }
-
-        [HttpPost]
-        public SearchResults<ISpell> Search([FromBody] SearchCriteria pCriteria)
+        protected override IQueryable<ISpell> GetQueryable()
         {
-            var chips = pCriteria.Chips?.Select(x => x.ToString()) ?? new string[0];
-            LogTo.Info("REQUEST|SearchText|{SearchText}|Chips|{Chips}", pCriteria.SearchText, chips);
-            var queryable =
-                FacetManager.Filter(
-                    SpellsRepository.GetQueryable(),
-                    pCriteria.Chips);
-
-            if (!string.IsNullOrWhiteSpace(pCriteria.SearchText))
-            {
-                queryable = queryable.Where(x => x.Name.Contains(pCriteria.SearchText));
-            }
-
-            if (pCriteria.Chips?.Any() ?? false)
-            {
-                queryable = FacetManager.Filter(queryable, pCriteria.Chips);
-            }
-
-            var results = queryable.OrderBy(x => x.Name).ToList();
-            var facets = FacetManager.Build(results, pCriteria.Chips);
-
-            var searchResults = new SearchResults<ISpell>
-            {
-                SearchText = pCriteria.SearchText,
-                Facets = facets,
-                Results = results.Take(20),
-                Count = results.Count
-            };
-
-            chips = searchResults.Facets?.Where(x => x.Buckets.Any(y => y.Selected))
-                    .SelectMany(x => x.Buckets.Where(y => y.Selected).Select(y => $"{x.Name}: {y.Value}")) ??
-                new string[0];
-            LogTo.Info("RESPONSE|SearchText|{SearchText}|Chips|{Chips}|Results|{Results}", searchResults.SearchText,
-                       chips, results.Count);
-            return searchResults;
-        }
-
-        private static IEnumerable<Bucket> CreateFacetForSchool(IEnumerable<ISpell> pResults)
-        {
-            return pResults
-                .GroupBy(x => x.School)
-                .Select(g => new Bucket(g.Key.ToString(), g.Count()))
-                .ToList();
+            return SpellsRepository.GetQueryable();
         }
 
         private IQueryable<ISpell> FilterForMagicSchool(IQueryable<ISpell> pQueryable, SearchChip pSearchChip)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pathfinder.Utilities;
 
@@ -88,6 +89,14 @@ namespace Pathfinder.Api.Searching
                 LogTo.Debug($"{nameof(FacetManager<T>)}|{typeof(T)}.Name|{searchChip.Name}");
                 return filter(queryable, searchChip);
             }
+        }
+
+        public static BucketCollectionFactory<T> CreateStandardFacetFunction<TOut>(Func<T, TOut> pSelector)
+        {
+            return x => x
+                .GroupBy(pSelector)
+                .Select(g => new Bucket(g.Key.ToString(), g.Count()))
+                .ToList();
         }
     }
 }

@@ -7,7 +7,7 @@ using Pathfinder.Utilities;
 
 namespace Pathfinder.Repository
 {
-    internal class MongoRepository<TInterface>
+    internal class MongoRepository<TModel> where TModel: class
     {
         private IMongoSettings Settings { get; }
         protected string CollectionName { get; }
@@ -57,7 +57,7 @@ namespace Pathfinder.Repository
             {
                 return;
             }
-            LogTo.Debug($"{nameof(MongoRepository<TInterface>)}|{typeof(TInterface).Name}|{pEvent.CommandName} - {pEvent.Command.ToJson()}");
+            LogTo.Debug($"{nameof(MongoRepository<TModel>)}|{typeof(TModel).Name}|{pEvent.CommandName} - {pEvent.Command.ToJson()}");
         }
 
 
@@ -66,9 +66,9 @@ namespace Pathfinder.Repository
             return Create().GetDatabase(DatabaseName);
         }
 
-        public IMongoCollection<TInterface> GetCollection()
+        public IMongoCollection<TModel> GetCollection()
         {
-            return GetDatabase().GetCollection<TInterface>(CollectionName);
+            return GetDatabase().GetCollection<TModel>(CollectionName);
         }
     }
 }

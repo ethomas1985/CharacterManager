@@ -16,14 +16,14 @@ namespace Pathfinder.Repository
 
     public class ItemMongoRepository : IItemPersistenceStore
     {
-        private readonly MongoRepository<IItem> _store;
+        private readonly MongoRepository<Item> _store;
 
         public ItemMongoRepository(IMongoSettings pSettings)
         {
-            _store = new MongoRepository<IItem>(pSettings, "items");
+            _store = new MongoRepository<Item>(pSettings, "items");
         }
 
-        private IMongoCollection<IItem> GetCollection()
+        private IMongoCollection<Item> GetCollection()
         {
             return _store.GetCollection();
         }
@@ -51,8 +51,8 @@ namespace Pathfinder.Repository
 
         public void Update(IItem pValue)
         {
-            var filter = new FilterDefinitionBuilder<IItem>()
-                .Eq(nameof(IItem.Name), pValue.Name);
+            var filter = new FilterDefinitionBuilder<Item>()
+                .Eq(nameof(Item.Name), pValue.Name);
 
             GetCollection().ReplaceOne(filter, ConvertToConcrete(pValue));
         }
@@ -71,7 +71,7 @@ namespace Pathfinder.Repository
 
         public IItem Get(string pId)
         {
-            var filter = new FilterDefinitionBuilder<IItem>().Eq(nameof(IItem.Name), pId);
+            var filter = new FilterDefinitionBuilder<Item>().Eq(nameof(Item.Name), pId);
             return GetCollection()
                 .Find(filter)
                 .Limit(1)
